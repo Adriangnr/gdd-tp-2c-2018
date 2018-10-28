@@ -89,7 +89,7 @@ create table ESECUELE.Usuario(
 	usr_nuevo bit default 1,
 	usr_fallas tinyint default 0,
 	usr_fecha_creacion datetime default null,
-	usr_tipo varchar(7) default null, -- Que es esto
+	usr_tipo varchar(7) default null,
 
 	usr_email varchar(50) default null,
 	usr_telefono varchar(20) default null,
@@ -213,7 +213,7 @@ go
 create table ESECUELE.Entrada(
 	entrada_id int identity(1,1) primary key,
 	entrada_publicacion int default null,
-	entrada_fila int default null,
+	entrada_fila char default null,
 	entrada_asiento int default null,
 	entrada_sin_numerar bit default 0,
 	entrada_precio decimal not null,
@@ -295,31 +295,97 @@ go
 */
 
 /*--------------------------- Migracion de datos --------------------------------*/
--- Cargar Empresas
-insert into ESECUELE.Empresa (empresa_razon_social, empresa_cuit, empresa_usuario)
-select distinct Espec_Empresa_Razon_Social, Espec_Empresa_Cuit, CONCAT('usr_', Espec_Empresa_Cuit)
+-- Carga de Empresas
+insert into ESECUELE.Empresa 
+(empresa_razon_social, 
+empresa_cuit, 
+empresa_usuario)
+
+select distinct 
+Espec_Empresa_Razon_Social, 
+Espec_Empresa_Cuit, 
+CONCAT('usr_', Espec_Empresa_Cuit)
 from gd_esquema.Maestra
 
 insert into ESECUELE.Usuario 
-(usr_username, usr_pass, usr_tipo, usr_email, usr_direccion, usr_codigo_postal, usr_fecha_creacion)
+(usr_username, 
+usr_pass, 
+usr_tipo, 
+usr_email, 
+usr_direccion, 
+usr_codigo_postal, 
+usr_fecha_creacion)
+
 select distinct 
 CONCAT('usr_', Espec_Empresa_Cuit),
 (SELECT HASHBYTES('SHA2_256', Espec_Empresa_Cuit)),
 'Empresa',
- Espec_Empresa_Mail,
- CONCAT(Espec_Empresa_Dom_Calle, ' ', Espec_Empresa_Nro_Calle, ', piso ',Espec_Empresa_Piso, ', dpto ', Espec_Empresa_Depto),
- Espec_Empresa_Cod_Postal,
- Espec_Empresa_Fecha_Creacion
+Espec_Empresa_Mail,
+CONCAT(Espec_Empresa_Dom_Calle, ' ', Espec_Empresa_Nro_Calle, ', piso ',Espec_Empresa_Piso, ', dpto ', Espec_Empresa_Depto),
+Espec_Empresa_Cod_Postal,
+Espec_Empresa_Fecha_Creacion
 from gd_esquema.Maestra
--- Fin Cargar Empresas
+-- Fin de Carga de Empresas
+
+
+
+-- Carga de Espectaculos
+insert into ESECUELE.Publicacion
+(publicacion_codigo, 
+publicacion_fecha_inicio, 
+publicacion_descripcion, 
+publicacion_fecha_publicacion,
+publicacion_rubro, 
+publicacion_estado)
+
+select distinct
+Espectaculo_Cod, 
+Espectaculo_Fecha_Venc,
+Espectaculo_Descripcion, 
+Espectaculo_Fecha,  
+Espectaculo_Rubro_Descripcion,
+Espectaculo_Estado
+ from gd_esquema.Maestra order by Espectaculo_Cod
+-- Fin de Carga de Espectaculos
+
+-- Carga de Entradas
+insert into ESECUELE.Entrada
+(entrada_fila, entrada_asiento, entrada_sin_numerar, entrada_precio, entrada_tipo)
+select distinct
+Ubicacion_Fila, 
+Ubicacion_Asiento, 
+Ubicacion_Sin_numerar, 
+Ubicacion_Precio, 
+Ubicacion_Tipo_Codigo
+from gd_esquema.Maestra
+-- Fin de Carga de Entradas
+
+-- Carga de Tipos de Entradas
+SET IDENTITY_INSERT ESECUELE.Tipo_Entrada ON;
+insert into ESECUELE.Tipo_Entrada
+(tipo_entrada_id, tipo_entrada_desc)
+select distinct Ubicacion_Tipo_Codigo, Ubicacion_Tipo_Descripcion
+from gd_esquema.Maestra
+SET IDENTITY_INSERT ESECUELE.Tipo_Entrada OFF;
+-- Fin de Carga de Tipos de Entradas
+
+
+
 
 /*----------------------- Fin Migracion de datos --------------------------------*/
 
 /*--------------------------- Creacion de restricciones -------------------------*/
+-- Relacion Empresa - Usuario
+alter table ESECUELE.Empresa add constraint FK_Emp_UserName foreign key (empresa_usuario) references ESECUELE.Usuario(usr_username)
 
-alter table ESECUELE.Empresa add constraint FK_UserName foreign key (empresa_usuario) references ESECUELE.Usuario(usr_username)
+-- Relacion Publicacion - Usuario
+alter table ESECUELE.Publicacion add constraint FK_Pub_UserName foreign key (publicacion_usuario) references ESECUELE.Usuario(usr_username)
+
+-- Relacion Entrada - Tipo_Entrada
+alter table ESECUELE.Entrada add constraint FK_Tipo_Entrada foreign key(entrada_tipo) references ESECUELE.Tipo_Entrada(tipo_entrada_id)
 go
 /*------------------------Fin Creacion de restricciones -------------------------*/
+
 
 /*--------------------------- Store procedures ----------------------------------*/
 
