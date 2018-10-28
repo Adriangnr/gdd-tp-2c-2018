@@ -1,20 +1,23 @@
--- Select DB
+-- Seleccionamos la base
 use GD2C2018
 go
 
--- Create schema
-if not exists(select * from sys.schemas where name = 'TRUNCATE') 
+/*
+	Creamos el schema, N antes de un string es para que sea varchar
+*/
+if not exists(select 1 from sys.schemas where name = 'ESECUELE') 
 BEGIN
-EXEC sp_executesql N'CREATE SCHEMA TRUNCATE'
+	EXEC sp_executesql N'CREATE SCHEMA ESECUELE AUTHORIZATION [gd]'
 END
---exec sp_executesql 'create schema TRUNCATE'
 go
--- Vars
-declare @schema_name varchar(11) = 'TRUNCATE'
+-- Variables
+declare @schema_name varchar(10) = 'ESECUELE'
 declare @schema_id int = schema_id(@schema_name)
 declare @drop_statement nvarchar(max)
 
--- Fresh start
+/*
+	Borramos todo, se concatenan los alter table en un string y se ejecutan con sp_executesql
+*/
 select @drop_statement = isnull(@drop_statement, '') +
   ' alter table ['    + @schema_name + '].[' + object_name(parent_object_id) + '] drop constraint [' + name + '];' + char(13)
   from sys.check_constraints
@@ -44,328 +47,386 @@ select @drop_statement = isnull(@drop_statement, '') +
 execute sp_executesql @drop_statement
 go
 
+/*
+* --------------------- Creacion de tablas. --------------------------------------
+*/
 
--- Create table to store the current system date
--- We do this here to have access to the function in constraints & defaults
--- This serves as a way to persist env. vars in the db
--- Each one is it's own column, and this table cannot have more than 1 row
-create table VOX_MACHINA.EnvironmentVariables(
-  -- Lock
-  lock int not null default 1 primary key check (lock = 1),
-
-  [current_date] date not null
+/*
+	Rol
+	Estado 0 - Habilitado
+	Estado 1 - Deshabilitado
+*/
+create table ESECUELE.Rol(
+	rol_id tinyint identity(1,1) primary key,
+	rol_nombre varchar(50) not null,
+	rol_estado bit not null default 0
 )
-insert into VOX_MACHINA.EnvironmentVariables([current_date])
-values (getdate())
 go
 
-create function VOX_MACHINA.getCurrentDate()
-returns date
-as
-begin
-  declare @date date
-  select @date = [current_date]
-  from VOX_MACHINA.EnvironmentVariables
-  return @date
-end
+--Funcionalidad
+create table ESECUELE.Funcionalidad(
+	func_id tinyint identity(1,1) primary key,
+	func_nombre varchar(30) not null
+)
 go
 
-create procedure VOX_MACHINA.SetCurrentDate(@date date)
-as
-begin
-  update VOX_MACHINA.EnvironmentVariables
-  set [current_date] = @date
-  where lock = 1
-end
+--Funcionalidad_Rol
+create table ESECUELE.Funcionalidad_Rol(
+	frol_rol_id tinyint,
+	frol_func_id tinyint
+)
+go
+
+/*
+	Usuario
+	Estado 0 - No habilitado
+	Estado 1 - Habilitado
+*/
+create table ESECUELE.Usuario(
+	usr_username varchar(50) primary key,
+	usr_pass varbinary(8000) default null,
+	usr_estado bit default 1,
+	usr_nuevo bit default 1,
+	usr_fallas tinyint default 0,
+	usr_fecha_creacion datetime default null,
+	usr_tipo varchar(7) default null, -- Que es esto
+
+	usr_email varchar(50) default null,
+	usr_telefono varchar(20) default null,
+	usr_direccion varchar(150) default null,
+	usr_codigo_postal varchar(10) null
+)
+go
+
+/*
+	Rol_Usuario
+	Seleccionado 0 - Este rol no esta siendo usado
+	Seleccionado 1 - El usuario esta usando este rol
+*/
+create table ESECUELE.Rol_Usuario(
+	rol_usr_id tinyint,
+	rol_usr_username varchar(50),
+	rol_usr_seleccionado bit default 0
+)
+go
+
+--Tarjeta
+create table ESECUELE.Tarjeta(
+	tarjeta_id int identity(1,1) primary key,
+	tarjeta_numero varchar(20),
+	tarjeta_tipo varchar(10)
+)
+go
+
+--Producto
+create table ESECUELE.Producto(
+	prod_id int identity(1,1) primary key,
+	prod_descripcion varchar(50) default null,
+	prod_puntos int default null
+)
+go
+
+--Cliente
+create table ESECUELE.Cliente(
+	cliente_id int identity(1,1) primary key,
+	cliente_nombre varchar(50) default null,
+	cliente_apellido varchar(50) default null,
+	cliente_tipo_doc varchar(10) default null,
+	cliente_num_doc int unique default null,
+	cliente_cuil int unique default null,
+	cliente_fecha_nacimiento datetime default null,
+	cliente_datos_tarjeta int default null,
+	cliente_usuario varchar(50)
+)
+go
+
+--Punto
+create table ESECUELE.Punto(
+	punto_id int identity(1,1) primary key,
+	punto_valor int default null,
+	punto_usados int default null,
+	punto_cliente int default null,
+	punto_fecha_vencimiento datetime default null
+)
+go
+
+--Canje
+create table ESECUELE.Canje(
+	canje_id int identity(1,1) primary key,
+	canje_cliente int default null,
+	canje_puntos int default null,
+	canje_fecha datetime default null, 
+	canje_producto int default null
+)
 go
 
 
-
--- Main tables
-
-create table VOX_MACHINA.Role (
-  id smallint primary key identity (1, 1),
-  name varchar(50) not null, -- Not PK to make it easily editable
-  state bit not null default 1
+--Empresa
+create table ESECUELE.Empresa(
+	empresa_id int identity(1,1) primary key,
+	empresa_razon_social varchar(60) unique default null,
+	empresa_ciudad varchar(40) default null,
+	empresa_cuit varchar(30) unique default null,
+	empresa_usuario varchar(50) default null
 )
-
-create table VOX_MACHINA.Capability (
-  id smallint primary key identity (1, 1),
-  name varchar(50)
-)
-
-create table VOX_MACHINA.IdType (
-  code char(3) primary key
-)
-
-create table VOX_MACHINA.LoginUser ( -- User is a reserved word
-  username varchar(50) primary key,
-  password binary(32) not null,
-  disabled bit default 0, -- Logical deletion
-
-  failed_login_attempts tinyint not null default 0,
-
-  -- Personal info (for admins & receptionists)
-  name nvarchar(255),
-  surname nvarchar(255),
-  mail varchar(255),
-  phone int,
-  address_street nvarchar(255),
-  address_street_number smallint,
-  address_floor tinyint,
-  address_apt nvarchar(50),
-  nationality varchar(255), -- Maybe from a table?
-  id_type char(3) foreign key references VOX_MACHINA.IdType,
---   id int unique
-)
-
-create table VOX_MACHINA.UserRole (
-  username varchar(50) not null foreign key references VOX_MACHINA.LoginUser,
-  role smallint not null foreign key references VOX_MACHINA.Role,
-  hotel int foreign key references VOX_MACHINA.Hotel, -- If user is Guest this will be null
-  selected bit not null default 0,
-  constraint PK_UserRole primary key (username, role, hotel)
-)
-
-create table VOX_MACHINA.RoleCapability (
-  role smallint not null foreign key references VOX_MACHINA.Role,
-  capability smallint not null foreign key references VOX_MACHINA.Capability,
-  constraint PK_RoleCapability primary key (role, capability)
-)
-
 go
-insert into VOX_MACHINA.LoginUser (username, password) values
+
+--Rubro
+create table ESECUELE.Rubro(
+	rubro_codigo int identity(1,1) primary key,
+	rubro_descripcion varchar(50) default null
+)
+go
+
+--Grado_Publicacion
+create table ESECUELE.Grado(
+	grado_id int identity(1,1) primary key,
+	grado_descripcion varchar(5) default null,
+	grado_comision decimal default null
+)
+go
+
+--Publicacion
+create table ESECUELE.Publicacion(
+	publicacion_codigo int,
+	publicacion_fecha_inicio datetime default null,
+	publicacion_descripcion nvarchar(255) default null,
+	publicacion_fecha_publicacion datetime default null,
+	publicacion_rubro int default null,
+	publicacion_direccion varchar(50) default null,
+	publicacion_grado int default null,
+	publicacion_usuario varchar(50) default null,
+	publicacion_estado varchar(10) default null,
+
+	constraint PK_Pub primary key (publicacion_codigo, publicacion_fecha_inicio)
+)
+go
+
+--Tipo_Entrada
+create table ESECUELE.Tipo_Entrada(
+	tipo_entrada_id int identity(1,1) primary key,
+	tipo_entrada_desc varchar(50) default null
+)
+go
+
+--Entrada
+create table ESECUELE.Entrada(
+	entrada_id int identity(1,1) primary key,
+	entrada_publicacion int default null,
+	entrada_fila int default null,
+	entrada_asiento int default null,
+	entrada_sin_numerar bit default 0,
+	entrada_precio decimal not null,
+	entrada_tipo int default null
+)
+go
+
+--Factura
+create table ESECUELE.Factura(
+	fact_id int identity(1,1) primary key,
+	fact_nro int default null,
+	fact_fecha datetime default null,
+	fact_empresa int default null,
+	fact_estado bit default 0,
+	fact_total decimal default null,
+	fact_forma_pago varchar(60) default null
+)
+go
+
+--Item_Factura
+create table ESECUELE.Item_Factura(
+	item_id int identity(1,1) primary key,
+	item_id_factura int default null,
+	item_cantidad int default null,
+	item_precio decimal default null,
+	item_descripcion varchar(50) default null,
+	item_entrada int default null
+)
+go
+
+--Compra
+create table ESECUELE.Compra(
+	compra_id int identity(1,1) primary key,
+	compra_entrada int default null,
+	compra_total decimal not null,
+	compra_cliente int default null,
+	compra_fecha datetime default null,
+	compra_cantidad int default null,
+	compra_medio_pago int default null
+)
+go
+
+/*
+* --------------------- Fin Creacion de tablas. ----------------------------------
+*/
+
+/*
+* --------------------- Ingreso valores default ----------------------------------
+*/
+
+insert into ESECUELE.Rol (rol_nombre) values
+  ('Administrador General'),
+  ('Administrador'),
+  ('Cliente'),
+  ('Empresa')
+
+-- Ingreso de la cuenta para el administrador general
+insert into ESECUELE.Usuario (usr_username, usr_pass) values
   ('admin', hashbytes('SHA2_256', 'w23e'))
 
-insert into VOX_MACHINA.Capability (name) values
+-- Se ingresan todas las funcionalidades
+insert into ESECUELE.Funcionalidad (func_nombre) values
   ('Gestionar roles'),
   ('Gestionar usuarios'),
-  ('Realizar reserva'),
-  ('Modificar rol de invitados'),
-  ('Gestionar hoteles'),
-  ('Gestionar habitaciones'),
-  ('Gestionar reservas'),
-  ('CHECKIN'),
-  ('CHECKOUT'),
-  ('CONSUMABLE'),
-  ('Generar reporte')
+  ('Modificar rol')
 go
 
-insert into VOX_MACHINA.RoleCapability (role, capability) values (2, 2)
--- Use previous inserts to automate a bit
-insert into VOX_MACHINA.UserRole (username, role, hotel)
-select 'admin', 1, Hotel.id
-from VOX_MACHINA.Hotel;
+-- Ingreso valores para el administrador greneral
+insert into ESECUELE.Rol_Usuario (rol_usr_id, rol_usr_username)
+values (0,'admin')
 
-insert into VOX_MACHINA.RoleCapability (role, capability)
-select 1, Capability.id
-from VOX_MACHINA.Capability
+insert into ESECUELE.Funcionalidad_Rol (frol_rol_id, frol_func_id)
+select 0, func_id
+from ESECUELE.Funcionalidad
 go
 
--- Proceduress
+/*
+* --------------------- Fin ingreso valores default ------------------------------
+*/
 
--- Select role
-create procedure VOX_MACHINA.SelectUserRole(@username varchar(50), @role smallint, @hotel int)
+/*--------------------------- Migracion de datos --------------------------------*/
+-- Cargar Empresas
+insert into ESECUELE.Empresa (empresa_razon_social, empresa_cuit, empresa_usuario)
+select distinct Espec_Empresa_Razon_Social, Espec_Empresa_Cuit, CONCAT('usr_', Espec_Empresa_Cuit)
+from gd_esquema.Maestra
+
+insert into ESECUELE.Usuario 
+(usr_username, usr_pass, usr_tipo, usr_email, usr_direccion, usr_codigo_postal, usr_fecha_creacion)
+select distinct 
+CONCAT('usr_', Espec_Empresa_Cuit),
+(SELECT HASHBYTES('SHA2_256', Espec_Empresa_Cuit)),
+'Empresa',
+ Espec_Empresa_Mail,
+ CONCAT(Espec_Empresa_Dom_Calle, ' ', Espec_Empresa_Nro_Calle, ', piso ',Espec_Empresa_Piso, ', dpto ', Espec_Empresa_Depto),
+ Espec_Empresa_Cod_Postal,
+ Espec_Empresa_Fecha_Creacion
+from gd_esquema.Maestra
+-- Fin Cargar Empresas
+
+/*----------------------- Fin Migracion de datos --------------------------------*/
+
+/*--------------------------- Creacion de restricciones -------------------------*/
+
+alter table ESECUELE.Empresa add constraint FK_UserName foreign key (empresa_usuario) references ESECUELE.Usuario(usr_username)
+go
+/*------------------------Fin Creacion de restricciones -------------------------*/
+
+/*--------------------------- Store procedures ----------------------------------*/
+
+create procedure ESECUELE.SeleccionarRol(@username varchar(50), @role tinyint)
 as begin
-  update VOX_MACHINA.UserRole
-    set selected = case when (role = @role and hotel = @hotel) then 1 else -1 end
-    where username = @username
+  update ESECUELE.Rol_Usuario
+    set rol_usr_seleccionado = case when rol_usr_id = @role then 1 else -1 end
+    where rol_usr_username = @username
 end
 go
 
-create procedure VOX_MACHINA.DeactiveUserRole(@username varchar(50), @role smallint, @hotel int)
+create procedure ESECUELE.DeseleccionarRol(@username varchar(50), @role tinyint)
 as
 begin
-  update VOX_MACHINA.UserRole
-    set selected = case when role = @role and hotel = @hotel then 0 else -1 end
-    where username = @username
+  update ESECUELE.Rol_Usuario
+    set rol_usr_seleccionado = case when rol_usr_id = @role then 0 else -1 end
+    where rol_usr_username = @username
 end
 go
 
--- Login Procedure
+create procedure ESECUELE.LimpiarHabilitarUsuario(@username varchar(50))
+as
+begin
+	  update ESECUELE.Usuario
+		set usr_fallas = 0, usr_estado= 1
+		where usr_username = @username
+end
+go
+
+-- Sproc para loguear
 -- Returns -1 if login failed, the user is disabled
 -- Returns -2 if password incorrect
 -- Returns -3 if user doesnt exist
 -- Returns -4 if no user has no roles assigned( dont know if can happen)
 -- 0 if the login succeeded but there are many roles to choose from, or
 -- positive integers if there was only one role and was automatically assigned
-create procedure VOX_MACHINA.Login(@username varchar(50), @plain_password varchar(100), @return_val int output)
+create procedure ESECUELE.Login(@username varchar(50), @plain_password varchar(100), @return_val smallint output)
 as begin
-  print 'login ' + @username + ', pw: ' + @plain_password;
-  declare @disabled bit = null
+  declare @estado bit = null
   declare @password binary(32) = null
-  declare @failed_attempts tinyint = null
+  declare @fallos tinyint = null
 
-  select @disabled = L.disabled, @failed_attempts = L.failed_login_attempts, @password = L.password
-  from VOX_MACHINA.LoginUser L
-  where L.username = @username
+  declare @usuario_no_habilitado smallint
+  declare @password_incorrecto smallint
+  declare @usuario_no_existe smallint
+  declare @usuario_no_tiene_roles smallint
+  declare @login_exitoso_muchos_roles smallint
 
-  -- The user was already disabled or it doesn't exist
-  if @disabled = 1
+  set @usuario_no_habilitado = -1
+  set @password_incorrecto = -2
+  set @usuario_no_existe = -3
+  set @usuario_no_tiene_roles = -4
+  set @login_exitoso_muchos_roles = -5
+
+  select @estado = usr_estado, @fallos = usr_fallas, @password = usr_pass
+  from ESECUELE.Usuario
+  where usr_username = @username
+
+  if @estado = 0
   begin
-    select @return_val = -1
+    select @return_val = @usuario_no_habilitado
 	return
   end
   if @password is null
   begin
-	select @return_val = -3
+	select @return_val = @usuario_no_existe
 	return
   end
 
-  -- User exists and is not disabled, hash pw and check if it matches
-  if @password <> hashbytes('SHA2_256', @plain_password) begin
-    -- Increment failed attempts by 1, return fail
-    select @failed_attempts = @failed_attempts + 1
-    update VOX_MACHINA.LoginUser
-      set failed_login_attempts = @failed_attempts,
-          disabled = case when @failed_attempts >= 3  or disabled = 1 then 1
-                          else 0 end
-      where username = @username
-    select @return_val = -2
+  -- Si el usuario existe, checkeo passwords
+  if @password <> hashbytes('SHA2_256', @plain_password)
+  begin
+    -- Si hay fallo, incremento
+    set @fallos = @fallos + 1
+    update ESECUELE.Usuario
+      set usr_fallas = @fallos,
+          usr_estado = case when @fallos >= 3  or usr_estado = 0 then 0
+                          else 1 end
+      where usr_username = @username
+    set @return_val = @password_incorrecto
   end
   else begin
-    -- Clean failed login attempts
-    update VOX_MACHINA.LoginUser
-      set failed_login_attempts = 0
-      where username = @username
+    -- Como el login fue exitoso, limpiar los logueos fallidos
+    exec ESECUELE.LimpiarHabilitarUsuario @username
 
-    -- Get role list for user
-    declare @hotel int
+    -- Obtener los roles del usuario
     declare @role smallint
     declare @count smallint
-    select @count = count(role), @role = max(role), @hotel = max(hotel)
-      from UserRole left join Role on Role.id = UserRole.role
-      where username = @username and Role.state = 1
+    select @count = count(R.rol_id), @role = max(R.rol_id)
+      from ESECUELE.Rol_Usuario RU left join ESECUELE.Rol R on R.rol_id = RU.rol_usr_id
+      where RU.rol_usr_username = @username and R.rol_estado = 1 -- Rol habilitado
     if @count > 1
-      select @return_val = 0
+      set @return_val = @login_exitoso_muchos_roles
     else if @count < 1
-		select @return_val = -4
+		select @return_val = @usuario_no_tiene_roles
 	else begin
-      exec SelectUserRole @username, @role, @hotel
-      select @return_val = @role
+      exec SeleccionarRol @username, @role
+      set @return_val = @role -- Retorno el unico rol disponible
     end
   end
 end
 go
 
-create procedure VOX_MACHINA.CleanAndEnableUser(@username varchar(50))
-as
-begin
-	  update VOX_MACHINA.LoginUser
-		set failed_login_attempts = 0, disabled= 0
-		where username = @username
-end
-go
-
-create procedure VOX_MACHINA.ListCapabilities
-as
-begin
-	Select C.id, C.name
-	from VOX_MACHINA.Capability C
-end
-go
-
-create procedure VOX_MACHINA.ListCapabilitiesFromRole(@role smallint)
-as
-begin
-	select C.id, C.name
-	from VOX_MACHINA.Capability C join VOX_MACHINA.RoleCapability RC on RC.capability = C.id
-	where RC.role = @role
-end
-go
-
-create procedure VOX_MACHINA.CreateRole(@name varchar(50), @return_val smallint output)
-as
-begin
-	insert into VOX_MACHINA.Role (name) values(@name)
-	select @return_val = R.id from VOX_MACHINA.Role R where R.name = @name
-end
-go
-
-create procedure VOX_MACHINA.IsNewRole(@name varchar(50), @return_val int output)
-as
-begin
-	if exists(select * from VOX_MACHINA.Role R where R.name = @name)
-		select @return_val = 0
-	else
-		select @return_val = 1
-end
-go
-
-create procedure VOX_MACHINA.InsertGuestCapability(@cap int)
-as
-begin
-	insert into VOX_MACHINA.RoleCapability (role, capability) values (0, @cap)
-end
-go
-
-create procedure VOX_MACHINA.InsertNewRoleWithCapability(@role varchar(50), @cap int)
-as
-begin
-	declare @id int
-	begin try
-		begin transaction
-			if not exists(select * from VOX_MACHINA.Role R where R.name = @role)
-				insert into VOX_MACHINA.Role (name) values(@role)
-			select @id = R.id from VOX_MACHINA.Role R where R.name = @role
-			insert into VOX_MACHINA.RoleCapability values (@id, @cap)
-		commit
-	end try
-	begin catch
-		raiserror('Error al insertar valores en la tabla de funcionalidades por rol.',16,1)
-		rollback
-		if exists(select * from VOX_MACHINA.Role R where R.name = @role)
-			exec VOX_MACHINA.DeleteRole @id
-		return
-	end catch
-end
-go
-
--- Used only when failure at RoleCreation
-create procedure VOX_MACHINA.DeleteRole(@roleId int)
-as
-begin
-	delete VOX_MACHINA.RoleCapability where role = @roleId
-	delete VOX_MACHINA.Role where id = @roleId
-end
-go
-
-create procedure VOX_MACHINA.EnableRole(@role varchar(50))
-as
-begin
-	update VOX_MACHINA.Role set state = 1 where name = @role
-end
-go
-
-create procedure VOX_MACHINA.DisableRole(@role varchar(50))
-as
-begin
-	update VOX_MACHINA.Role set state = 1 where name = @role
-end
-go
-
-create procedure VOX_MACHINA.ChangeRoleName(@role varchar(50), @name varchar(50))
-as
-begin
-	update VOX_MACHINA.Role set name = @name where name = @role
-end
-go
-
-create procedure VOX_MACHINA.DeleteCapabilityFromRole(@role varchar(50), @cap int)
-as
-begin
-	declare @id int
-	begin try
-		begin transaction
-			if not exists(select * from VOX_MACHINA.Role R where R.name = @role)
-				insert into VOX_MACHINA.Role (name) values(@role)
-			select @id = R.id from VOX_MACHINA.Role R where R.name = @role
-			delete VOX_MACHINA.RoleCapability where role = @role and capability = @cap
-		commit
-	end try
-	begin catch
-		raiserror('Error al borrar funcionalidad.',16,1)
-		rollback
-	end catch
+create procedure ESECUELE.ListarFuncionalidades(@role smallint)
+as begin
+	select F.func_id, F.func_nombre
+	from ESECUELE.Funcionalidad F join ESECUELE.Funcionalidad_Rol FR on FR.frol_func_id = F.func_id
+	where FR.frol_rol_id = @role
 end
 go
