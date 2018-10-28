@@ -128,15 +128,15 @@ go
 
 --Cliente
 create table ESECUELE.Cliente(
-	cliente_id int identity(1,1) primary key,
 	cliente_nombre varchar(50) default null,
 	cliente_apellido varchar(50) default null,
 	cliente_tipo_doc varchar(10) default null,
-	cliente_num_doc int unique default null,
-	cliente_cuil int unique default null,
+	cliente_num_doc varchar(30) default null,
+	cliente_cuil varchar(30) default 'cuil',
 	cliente_fecha_nacimiento datetime default null,
 	cliente_datos_tarjeta int default null,
 	cliente_usuario varchar(50)
+	constraint PK_Cliente primary key (cliente_tipo_doc, cliente_num_doc, cliente_cuil)
 )
 go
 
@@ -369,6 +369,42 @@ from gd_esquema.Maestra
 SET IDENTITY_INSERT ESECUELE.Tipo_Entrada OFF;
 -- Fin de Carga de Tipos de Entradas
 
+-- Carga de Cliente
+insert into ESECUELE.Usuario
+(usr_username,
+usr_pass,
+usr_tipo,
+usr_email,
+usr_direccion,
+usr_codigo_postal
+)
+select distinct
+concat('cli_', Cli_Dni),
+(SELECT HASHBYTES('SHA2_256', concat('cli_', Cli_Dni))),
+'Cliente',
+Cli_Mail,
+concat(Cli_Dom_Calle, ', ', Cli_Nro_Calle, ', piso ', Cli_Piso, ', ', Cli_Depto),
+Cli_Cod_Postal
+from gd_esquema.Maestra where Cli_Dni is not null
+
+insert into ESECUELE.Cliente
+(cliente_nombre, 
+cliente_apellido, 
+cliente_tipo_doc, 
+cliente_num_doc, 
+cliente_fecha_nacimiento,
+cliente_usuario)
+
+select distinct
+Cli_Nombre,
+Cli_Apeliido,
+'DNI',
+Cli_Dni,
+Cli_Fecha_Nac,
+concat('cli_', Cli_Dni)
+from gd_esquema.Maestra where Cli_Dni is not null
+-- Fin de Carga de Cliente
+
 
 
 
@@ -383,6 +419,9 @@ alter table ESECUELE.Publicacion add constraint FK_Pub_UserName foreign key (pub
 
 -- Relacion Entrada - Tipo_Entrada
 alter table ESECUELE.Entrada add constraint FK_Tipo_Entrada foreign key(entrada_tipo) references ESECUELE.Tipo_Entrada(tipo_entrada_id)
+
+-- Relacion Cliente - Usuario
+alter table ESECUELE.Cliente add constraint FK_Cli_UserName foreign key (cliente_usuario) references ESECUELE.Usuario(usr_username)
 go
 /*------------------------Fin Creacion de restricciones -------------------------*/
 
