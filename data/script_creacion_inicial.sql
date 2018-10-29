@@ -529,10 +529,10 @@ alter table ESECUELE.Canje add constraint FK_ProdId foreign key(canje_producto) 
 alter table ESECUELE.Cliente add constraint FK_TarjId foreign key(cliente_datos_tarjeta) references ESECUELE.Tarjeta(tarjeta_id)
 
 -- Relacion Punto - Cliente
-alter table ESECUELE.Punto add constraint FK_ClieId foreign key(punto_cliente) references ESECUELE.Cliente(cliente_id)
+alter table ESECUELE.Punto add constraint FK_P_ClieId foreign key(punto_cliente) references ESECUELE.Cliente(cliente_id)
 
 -- Relacion Factura - Empresa
-alter table ESECUELE.Factura add constraint FK_EmpId foreign key(fact_empresa) references ESECUELE.Empresa(empresa_id)
+alter table ESECUELE.Factura add constraint FK_F_EmpId foreign key(fact_empresa) references ESECUELE.Empresa(empresa_id)
 
 
 
