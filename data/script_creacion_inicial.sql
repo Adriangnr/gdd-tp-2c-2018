@@ -128,6 +128,7 @@ go
 
 --Cliente
 create table ESECUELE.Cliente(
+	cliente_id int identity(1,1),
 	cliente_nombre varchar(50) default null,
 	cliente_apellido varchar(50) default null,
 	cliente_tipo_doc varchar(10) default null,
@@ -163,11 +164,12 @@ go
 
 --Empresa
 create table ESECUELE.Empresa(
-	empresa_id int identity(1,1) primary key,
-	empresa_razon_social varchar(60) unique default null,
+	empresa_id int identity(1,1),
+	empresa_razon_social varchar(60),
 	empresa_ciudad varchar(40) default null,
-	empresa_cuit varchar(30) unique default null,
-	empresa_usuario varchar(50) default null
+	empresa_cuit varchar(30),
+	empresa_usuario varchar(50) default null,
+	constraint PK_Empresa primary key (empresa_razon_social, empresa_cuit)
 )
 go
 
@@ -211,25 +213,25 @@ go
 
 --Entrada
 create table ESECUELE.Entrada(
-	entrada_id int identity(1,1) primary key,
+	entrada_id int identity(1,1),
 	entrada_publicacion int default null,
 	entrada_fila char default null,
 	entrada_asiento int default null,
 	entrada_sin_numerar bit default 0,
 	entrada_precio decimal not null,
 	entrada_tipo int default null
+	constraint PK_Entrada primary key (entrada_publicacion, entrada_fila, entrada_asiento, entrada_tipo)
 )
 go
 
 --Factura
 create table ESECUELE.Factura(
-	fact_id int identity(1,1) primary key,
-	fact_nro int default null,
+	fact_id int identity(1,1),
+	fact_nro int primary key,
 	fact_fecha datetime default null,
 	fact_empresa int default null,
 	fact_estado bit default 0,
-	fact_total decimal default null,
-	fact_forma_pago varchar(60) default null
+	fact_total decimal default null
 )
 go
 
@@ -252,7 +254,14 @@ create table ESECUELE.Compra(
 	compra_cliente int default null,
 	compra_fecha datetime default null,
 	compra_cantidad int default null,
-	compra_medio_pago int default null
+	compra_medio_pago int default 1
+)
+go
+
+--Medio de pago
+create table ESECUELE.Medio_de_Pago(
+	medio_pago_id tinyint identity(1,1) primary key,
+	medio_pago_descripcion varchar(40) default null
 )
 go
 
@@ -288,6 +297,11 @@ values (0,'admin')
 insert into ESECUELE.Funcionalidad_Rol (frol_rol_id, frol_func_id)
 select 0, func_id
 from ESECUELE.Funcionalidad
+go
+
+-- Ingreso de medios de pago
+insert into ESECUELE.Medio_de_Pago (medio_pago_descripcion) values('EFECTIVO')
+insert into ESECUELE.Medio_de_Pago (medio_pago_descripcion) values('T_CREDITO')
 go
 
 /*
@@ -335,7 +349,8 @@ insert into ESECUELE.Publicacion
 publicacion_fecha_inicio, 
 publicacion_descripcion, 
 publicacion_fecha_publicacion,
-publicacion_rubro, 
+publicacion_rubro,
+publicacion_usuario, 
 publicacion_estado)
 
 select distinct
@@ -344,14 +359,16 @@ Espectaculo_Fecha_Venc,
 Espectaculo_Descripcion, 
 Espectaculo_Fecha,  
 Espectaculo_Rubro_Descripcion,
+CONCAT('usr_', Espec_Empresa_Cuit),
 Espectaculo_Estado
- from gd_esquema.Maestra order by Espectaculo_Cod
+ from gd_esquema.Maestra
 -- Fin de Carga de Espectaculos
 
 -- Carga de Entradas
 insert into ESECUELE.Entrada
-(entrada_fila, entrada_asiento, entrada_sin_numerar, entrada_precio, entrada_tipo)
+(entrada_publicacion,entrada_fila, entrada_asiento, entrada_sin_numerar, entrada_precio, entrada_tipo)
 select distinct
+Espectaculo_Cod,
 Ubicacion_Fila, 
 Ubicacion_Asiento, 
 Ubicacion_Sin_numerar, 
@@ -405,7 +422,66 @@ concat('cli_', Cli_Dni)
 from gd_esquema.Maestra where Cli_Dni is not null
 -- Fin de Carga de Cliente
 
+-- Carga de Compras
+insert into ESECUELE.Compra
+(compra_entrada,
+compra_total,
+compra_cliente,
+compra_fecha,
+compra_cantidad)
 
+select 
+(select e.entrada_id from ESECUELE.Entrada e 
+where e.entrada_fila = m.Ubicacion_Fila and e.entrada_asiento = m.Ubicacion_Asiento
+and e.entrada_publicacion = m.Espectaculo_Cod and e.entrada_tipo = m.Ubicacion_Tipo_Codigo),
+(m.Ubicacion_Precio*m.Compra_Cantidad),
+(select c.cliente_id from ESECUELE.Cliente c 
+where c.cliente_tipo_doc = 'DNI' and c.cliente_cuil = 'cuil' and c.cliente_num_doc = m.Cli_Dni),
+m.Compra_Fecha,
+m.Compra_Cantidad
+from gd_esquema.Maestra m 
+where m.Compra_Cantidad is not null and m.Compra_Fecha is not null
+-- Fin de Carga de Compras
+
+-- Carga de Facturas
+insert into ESECUELE.Factura
+(fact_nro,
+fact_fecha,
+fact_empresa,
+fact_total)
+
+select distinct
+m.Factura_Nro, 
+m.Factura_Fecha, 
+(select empresa_id from ESECUELE.Empresa where 
+empresa_razon_social = m.Espec_Empresa_Razon_Social and empresa_cuit = m.Espec_Empresa_Cuit),
+m.Factura_Total
+ from gd_esquema.Maestra m
+ where Factura_Nro is not null and Factura_Fecha is not null and Factura_Total is not null
+-- Fin de Carga de Facturas
+
+-- Carga de Item_Factura
+insert into ESECUELE.Item_Factura
+(item_id_factura,
+item_cantidad,
+item_precio,
+item_descripcion,
+item_entrada)
+
+select 
+distinct
+m.Factura_Nro, 
+m.Item_Factura_Cantidad, 
+m.Item_Factura_Monto, 
+Item_Factura_Descripcion,
+(select entrada_id from ESECUELE.Entrada where 
+entrada_asiento = m.Ubicacion_Asiento and entrada_fila = m.Ubicacion_Fila 
+and entrada_publicacion = m.Espectaculo_Cod and entrada_tipo = m.Ubicacion_Tipo_Codigo) from gd_esquema.Maestra m 
+where 
+m.Item_Factura_Monto is not null and 
+m.Item_Factura_Cantidad is not null and 
+m.Item_Factura_Descripcion is not null 
+-- Fin de Carga de Item_Factura
 
 
 /*----------------------- Fin Migracion de datos --------------------------------*/
@@ -422,6 +498,14 @@ alter table ESECUELE.Entrada add constraint FK_Tipo_Entrada foreign key(entrada_
 
 -- Relacion Cliente - Usuario
 alter table ESECUELE.Cliente add constraint FK_Cli_UserName foreign key (cliente_usuario) references ESECUELE.Usuario(usr_username)
+
+-- Relacion Compra - Cliente
+create unique index index_client_id on ESECUELE.Cliente(cliente_id)
+alter table ESECUELE.Compra add constraint FK_Comp_Clie foreign key (compra_cliente) references ESECUELE.Cliente(cliente_id)
+
+-- Relacion Compra - Entrada
+create unique index index_entrada_id on ESECUELE.Entrada(entrada_id)
+alter table ESECUELE.Compra add constraint FK_Comp_Entrada foreign key (compra_entrada) references ESECUELE.Entrada(entrada_id)
 go
 /*------------------------Fin Creacion de restricciones -------------------------*/
 
