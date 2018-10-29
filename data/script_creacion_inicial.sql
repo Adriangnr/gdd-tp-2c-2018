@@ -83,6 +83,7 @@ go
 	Estado 1 - Habilitado
 */
 create table ESECUELE.Usuario(
+	usr_id int identity(1,1),
 	usr_username varchar(50) primary key,
 	usr_pass varbinary(8000) default null,
 	usr_estado bit default 1,
@@ -104,7 +105,7 @@ go
 	Seleccionado 1 - El usuario esta usando este rol
 */
 create table ESECUELE.Rol_Usuario(
-	rol_usr_id tinyint,
+	rol_usr_rol_id tinyint not null,
 	rol_usr_username varchar(50),
 	rol_usr_seleccionado bit default 0
 )
@@ -197,7 +198,7 @@ create table ESECUELE.Publicacion(
 	publicacion_rubro int default null,
 	publicacion_direccion varchar(50) default null,
 	publicacion_grado int default null,
-	publicacion_usuario varchar(50) default null,
+	publicacion_empresa int default null,
 	publicacion_estado varchar(10) default null,
 
 	constraint PK_Pub primary key (publicacion_codigo, publicacion_fecha_inicio)
@@ -291,11 +292,11 @@ insert into ESECUELE.Funcionalidad (func_nombre) values
 go
 
 -- Ingreso valores para el administrador greneral
-insert into ESECUELE.Rol_Usuario (rol_usr_id, rol_usr_username)
-values (0,'admin')
+insert into ESECUELE.Rol_Usuario (rol_usr_rol_id, rol_usr_username)
+values (1,'admin')
 
 insert into ESECUELE.Funcionalidad_Rol (frol_rol_id, frol_func_id)
-select 0, func_id
+select 1, func_id
 from ESECUELE.Funcionalidad
 go
 
@@ -350,7 +351,7 @@ publicacion_fecha_inicio,
 publicacion_descripcion, 
 publicacion_fecha_publicacion,
 publicacion_rubro,
-publicacion_usuario, 
+publicacion_empresa, 
 publicacion_estado)
 
 select distinct
@@ -359,7 +360,7 @@ Espectaculo_Fecha_Venc,
 Espectaculo_Descripcion, 
 Espectaculo_Fecha,  
 Espectaculo_Rubro_Descripcion,
-CONCAT('usr_', Espec_Empresa_Cuit),
+(select empresa_id from ESECUELE.Empresa where empresa_usuario = CONCAT('usr_', Espec_Empresa_Cuit)),
 Espectaculo_Estado
  from gd_esquema.Maestra
 -- Fin de Carga de Espectaculos
@@ -483,15 +484,28 @@ m.Item_Factura_Cantidad is not null and
 m.Item_Factura_Descripcion is not null 
 -- Fin de Carga de Item_Factura
 
-
 /*----------------------- Fin Migracion de datos --------------------------------*/
 
 /*--------------------------- Creacion de restricciones -------------------------*/
+-- Indices
+create unique index index_usr_id on ESECUELE.Usuario(usr_id)
+create unique index index_client_id on ESECUELE.Cliente(cliente_id)
+create unique index index_empresa_id on ESECUELE.Empresa(empresa_id)
+create unique index index_entrada_id on ESECUELE.Entrada(entrada_id)
+
+-- Relacion Rol_Usuario
+alter table ESECUELE.Rol_Usuario add constraint FK_RU_RolId foreign key(rol_usr_rol_id) references ESECUELE.Rol(rol_id)
+alter table ESECUELE.Rol_Usuario add constraint FK_UsrId foreign key(rol_usr_username) references ESECUELE.Usuario(usr_username)
+
+-- Relacion Funcionalidad_Rol
+alter table ESECUELE.Funcionalidad_Rol add constraint FK_FuncId foreign key(frol_func_id) references ESECUELE.Funcionalidad(func_id)
+alter table ESECUELE.Funcionalidad_Rol add constraint FK_FR_RolId foreign key(frol_rol_id) references ESECUELE.Rol(rol_id)
+
 -- Relacion Empresa - Usuario
 alter table ESECUELE.Empresa add constraint FK_Emp_UserName foreign key (empresa_usuario) references ESECUELE.Usuario(usr_username)
 
--- Relacion Publicacion - Usuario
-alter table ESECUELE.Publicacion add constraint FK_Pub_UserName foreign key (publicacion_usuario) references ESECUELE.Usuario(usr_username)
+-- Relacion Publicacion -Empresa
+alter table ESECUELE.Publicacion add constraint FK_EmpId foreign key (publicacion_empresa) references ESECUELE.Empresa(empresa_id)
 
 -- Relacion Entrada - Tipo_Entrada
 alter table ESECUELE.Entrada add constraint FK_Tipo_Entrada foreign key(entrada_tipo) references ESECUELE.Tipo_Entrada(tipo_entrada_id)
@@ -500,12 +514,28 @@ alter table ESECUELE.Entrada add constraint FK_Tipo_Entrada foreign key(entrada_
 alter table ESECUELE.Cliente add constraint FK_Cli_UserName foreign key (cliente_usuario) references ESECUELE.Usuario(usr_username)
 
 -- Relacion Compra - Cliente
-create unique index index_client_id on ESECUELE.Cliente(cliente_id)
 alter table ESECUELE.Compra add constraint FK_Comp_Clie foreign key (compra_cliente) references ESECUELE.Cliente(cliente_id)
 
 -- Relacion Compra - Entrada
-create unique index index_entrada_id on ESECUELE.Entrada(entrada_id)
 alter table ESECUELE.Compra add constraint FK_Comp_Entrada foreign key (compra_entrada) references ESECUELE.Entrada(entrada_id)
+
+-- Relacion Canje - Cliente
+alter table ESECUELE.Canje add constraint FK_ClieId foreign key(canje_cliente) references ESECUELE.Cliente(cliente_id)
+
+-- Relacion Canje - Producto
+alter table ESECUELE.Canje add constraint FK_ProdId foreign key(canje_producto) references ESECUELE.Producto(prod_id)
+
+-- Relacion Cliente - Tarjeta
+alter table ESECUELE.Cliente add constraint FK_TarjId foreign key(cliente_datos_tarjeta) references ESECUELE.Tarjeta(tarjeta_id)
+
+-- Relacion Punto - Cliente
+alter table ESECUELE.Punto add constraint FK_ClieId foreign key(punto_cliente) references ESECUELE.Cliente(cliente_id)
+
+-- Relacion Factura - Empresa
+alter table ESECUELE.Factura add constraint FK_EmpId foreign key(fact_empresa) references ESECUELE.Empresa(empresa_id)
+
+
+
 go
 /*------------------------Fin Creacion de restricciones -------------------------*/
 
@@ -515,7 +545,7 @@ go
 create procedure ESECUELE.SeleccionarRol(@username varchar(50), @role tinyint)
 as begin
   update ESECUELE.Rol_Usuario
-    set rol_usr_seleccionado = case when rol_usr_id = @role then 1 else -1 end
+    set rol_usr_seleccionado = case when rol_usr_rol_id = @role then 1 else -1 end
     where rol_usr_username = @username
 end
 go
@@ -524,7 +554,7 @@ create procedure ESECUELE.DeseleccionarRol(@username varchar(50), @role tinyint)
 as
 begin
   update ESECUELE.Rol_Usuario
-    set rol_usr_seleccionado = case when rol_usr_id = @role then 0 else -1 end
+    set rol_usr_seleccionado = case when rol_usr_rol_id = @role then 0 else -1 end
     where rol_usr_username = @username
 end
 go
@@ -598,7 +628,7 @@ as begin
     declare @role smallint
     declare @count smallint
     select @count = count(R.rol_id), @role = max(R.rol_id)
-      from ESECUELE.Rol_Usuario RU left join ESECUELE.Rol R on R.rol_id = RU.rol_usr_id
+      from ESECUELE.Rol_Usuario RU left join ESECUELE.Rol R on R.rol_id = RU.rol_usr_rol_id
       where RU.rol_usr_username = @username and R.rol_estado = 1 -- Rol habilitado
     if @count > 1
       set @return_val = @login_exitoso_muchos_roles
