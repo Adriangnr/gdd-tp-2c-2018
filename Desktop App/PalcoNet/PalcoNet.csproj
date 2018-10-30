@@ -46,154 +46,154 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Vistas\Administrador\Cliente_Detalle.cs">
+    <Compile Include="Src\Forms\Vistas\Administrador\Cliente_Detalle.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Vistas\Administrador\Cliente_Detalle.Designer.cs">
+    <Compile Include="Src\Forms\Vistas\Administrador\Cliente_Detalle.Designer.cs">
       <DependentUpon>Cliente_Detalle.cs</DependentUpon>
     </Compile>
-    <Compile Include="Vistas\Administrador\Cliente_Listado.cs">
+    <Compile Include="Src\Forms\Vistas\Administrador\Cliente_Listado.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Vistas\Administrador\Cliente_Listado.Designer.cs">
+    <Compile Include="Src\Forms\Vistas\Administrador\Cliente_Listado.Designer.cs">
       <DependentUpon>Cliente_Listado.cs</DependentUpon>
     </Compile>
-    <Compile Include="Vistas\Administrador\Empresa_Detalle.cs">
+    <Compile Include="Src\Forms\Vistas\Administrador\Empresa_Detalle.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Vistas\Administrador\Empresa_Detalle.Designer.cs">
+    <Compile Include="Src\Forms\Vistas\Administrador\Empresa_Detalle.Designer.cs">
       <DependentUpon>Empresa_Detalle.cs</DependentUpon>
     </Compile>
-    <Compile Include="Vistas\Administrador\Estadisticas.cs">
+    <Compile Include="Src\Forms\Vistas\Administrador\Estadisticas.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Vistas\Administrador\Estadisticas.Designer.cs">
+    <Compile Include="Src\Forms\Vistas\Administrador\Estadisticas.Designer.cs">
       <DependentUpon>Estadisticas.cs</DependentUpon>
     </Compile>
-    <Compile Include="Vistas\Administrador\Rol_Listado.cs">
+    <Compile Include="Src\Forms\Vistas\Administrador\Rol_Listado.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Vistas\Administrador\Rol_Listado.Designer.cs">
+    <Compile Include="Src\Forms\Vistas\Administrador\Rol_Listado.Designer.cs">
       <DependentUpon>Rol_Listado.cs</DependentUpon>
     </Compile>
-    <Compile Include="Vistas\Administrador\Rol_Detalle.cs">
+    <Compile Include="Src\Forms\Vistas\Administrador\Rol_Detalle.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Vistas\Administrador\Rol_Detalle.Designer.cs">
+    <Compile Include="Src\Forms\Vistas\Administrador\Rol_Detalle.Designer.cs">
       <DependentUpon>Rol_Detalle.cs</DependentUpon>
     </Compile>
-    <Compile Include="Vistas\Cliente\Compra.cs">
+    <Compile Include="Src\Forms\Vistas\Cliente\Compra.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Vistas\Cliente\Compra.Designer.cs">
+    <Compile Include="Src\Forms\Vistas\Cliente\Compra.Designer.cs">
       <DependentUpon>Compra.cs</DependentUpon>
     </Compile>
-    <Compile Include="Vistas\Cliente\Historial.cs">
+    <Compile Include="Src\Forms\Vistas\Cliente\Historial.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Vistas\Cliente\Historial.Designer.cs">
+    <Compile Include="Src\Forms\Vistas\Cliente\Historial.Designer.cs">
       <DependentUpon>Historial.cs</DependentUpon>
     </Compile>
-    <Compile Include="Vistas\Administrador\Empresa_Listado.cs">
+    <Compile Include="Src\Forms\Vistas\Administrador\Empresa_Listado.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Vistas\Administrador\Empresa_Listado.Designer.cs">
+    <Compile Include="Src\Forms\Vistas\Administrador\Empresa_Listado.Designer.cs">
       <DependentUpon>Empresa_Listado.cs</DependentUpon>
     </Compile>
-    <Compile Include="Vistas\Administrador\Comisiones_Detalle.cs">
+    <Compile Include="Src\Forms\Vistas\Administrador\Comisiones_Detalle.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Vistas\Administrador\Comisiones_Detalle.Designer.cs">
+    <Compile Include="Src\Forms\Vistas\Administrador\Comisiones_Detalle.Designer.cs">
       <DependentUpon>Comisiones_Detalle.cs</DependentUpon>
     </Compile>
-    <Compile Include="Vistas\Empresa\Publicacion_Detalle.cs">
+    <Compile Include="Src\Forms\Vistas\Empresa\Publicacion_Detalle.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Vistas\Empresa\Publicacion_Detalle.Designer.cs">
+    <Compile Include="Src\Forms\Vistas\Empresa\Publicacion_Detalle.Designer.cs">
       <DependentUpon>Publicacion_Detalle.cs</DependentUpon>
     </Compile>
-    <Compile Include="Vistas\General\Registro.cs">
+    <Compile Include="Src\Forms\Vistas\General\Registro.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Vistas\General\Registro.Designer.cs">
+    <Compile Include="Src\Forms\Vistas\General\Registro.Designer.cs">
       <DependentUpon>Registro.cs</DependentUpon>
     </Compile>
-    <Compile Include="Vistas\Cliente\Canje_Puntos.cs">
+    <Compile Include="Src\Forms\Vistas\Cliente\Canje_Puntos.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Vistas\Cliente\Canje_Puntos.Designer.cs">
+    <Compile Include="Src\Forms\Vistas\Cliente\Canje_Puntos.Designer.cs">
       <DependentUpon>Canje_Puntos.cs</DependentUpon>
     </Compile>
-    <Compile Include="Vistas\Empresa\Publicacion_Listado.cs">
+    <Compile Include="Src\Forms\Vistas\Empresa\Publicacion_Listado.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Vistas\Empresa\Publicacion_Listado.Designer.cs">
+    <Compile Include="Src\Forms\Vistas\Empresa\Publicacion_Listado.Designer.cs">
       <DependentUpon>Publicacion_Listado.cs</DependentUpon>
     </Compile>
-    <Compile Include="Layouts\Listado.cs">
+    <Compile Include="Src\Forms\Layouts\Listado.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Layouts\Listado.Designer.cs">
+    <Compile Include="Src\Forms\Layouts\Listado.Designer.cs">
       <DependentUpon>Listado.cs</DependentUpon>
     </Compile>
-    <Compile Include="Layouts\Menu.cs">
+    <Compile Include="Src\Forms\Layouts\Menu.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Layouts\Menu.Designer.cs">
+    <Compile Include="Src\Forms\Layouts\Menu.Designer.cs">
       <DependentUpon>Menu.cs</DependentUpon>
     </Compile>
-    <Compile Include="Layouts\Master.cs">
+    <Compile Include="Src\Forms\Layouts\Master.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Layouts\Master.Designer.cs">
+    <Compile Include="Src\Forms\Layouts\Master.Designer.cs">
       <DependentUpon>Master.cs</DependentUpon>
     </Compile>
-    <Compile Include="Vistas\General\Login.cs">
+    <Compile Include="Src\Forms\Vistas\General\Login.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Vistas\General\Login.Designer.cs">
+    <Compile Include="Src\Forms\Vistas\General\Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
-    <Compile Include="Modelos\Database.cs" />
+    <Compile Include="Src\Modelo\DBConector\Database.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Vistas\General\Selector_Rol.cs">
+    <Compile Include="Src\Forms\Vistas\General\Selector_Rol.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Vistas\General\Selector_Rol.Designer.cs">
+    <Compile Include="Src\Forms\Vistas\General\Selector_Rol.Designer.cs">
       <DependentUpon>Selector_Rol.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Layouts\Listado.resx">
+    <EmbeddedResource Include="Src\Forms\Layouts\Listado.resx">
       <DependentUpon>Listado.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Layouts\Menu.resx">
+    <EmbeddedResource Include="Src\Forms\Layouts\Menu.resx">
       <DependentUpon>Menu.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Layouts\Master.resx">
+    <EmbeddedResource Include="Src\Forms\Layouts\Master.resx">
       <DependentUpon>Master.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Vistas\Administrador\Cliente_Listado.resx">
+    <EmbeddedResource Include="Src\Forms\Vistas\Administrador\Cliente_Listado.resx">
       <DependentUpon>Cliente_Listado.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Vistas\Administrador\Empresa_Listado.resx">
+    <EmbeddedResource Include="Src\Forms\Vistas\Administrador\Empresa_Listado.resx">
       <DependentUpon>Empresa_Listado.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Vistas\Administrador\Rol_Listado.resx">
+    <EmbeddedResource Include="Src\Forms\Vistas\Administrador\Rol_Listado.resx">
       <DependentUpon>Rol_Listado.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Vistas\Cliente\Canje_Puntos.resx">
+    <EmbeddedResource Include="Src\Forms\Vistas\Cliente\Canje_Puntos.resx">
       <DependentUpon>Canje_Puntos.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Vistas\Cliente\Compra.resx">
+    <EmbeddedResource Include="Src\Forms\Vistas\Cliente\Compra.resx">
       <DependentUpon>Compra.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Vistas\Administrador\Comisiones_Detalle.resx">
+    <EmbeddedResource Include="Src\Forms\Vistas\Administrador\Comisiones_Detalle.resx">
       <DependentUpon>Comisiones_Detalle.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Vistas\Empresa\Publicacion_Listado.resx">
+    <EmbeddedResource Include="Src\Forms\Vistas\Empresa\Publicacion_Listado.resx">
       <DependentUpon>Publicacion_Listado.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Vistas\General\Login.resx">
+    <EmbeddedResource Include="Src\Forms\Vistas\General\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -205,7 +205,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Vistas\General\Selector_Rol.resx">
+    <EmbeddedResource Include="Src\Forms\Vistas\General\Selector_Rol.resx">
       <DependentUpon>Selector_Rol.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
@@ -223,7 +223,9 @@
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Src\Servicios\Leeme.txt" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
