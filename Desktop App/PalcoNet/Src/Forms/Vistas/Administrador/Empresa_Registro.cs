@@ -1,25 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace PalcoNet.Vistas.General
+namespace PalcoNet.Src.Forms.Vistas.Administrador
 {
-    public partial class Registro : Layouts.Master
+    public partial class Empresa_Registro : UserControl
     {
-        public Registro()
+        public Empresa_Registro()
         {
             InitializeComponent();
-        }
-
-        private void Registro_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

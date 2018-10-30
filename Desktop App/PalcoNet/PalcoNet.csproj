@@ -64,6 +64,12 @@
     <Compile Include="Src\Forms\Vistas\Administrador\Empresa_Detalle.Designer.cs">
       <DependentUpon>Empresa_Detalle.cs</DependentUpon>
     </Compile>
+    <Compile Include="Src\Forms\Vistas\Administrador\Empresa_Registro.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Src\Forms\Vistas\Administrador\Empresa_Registro.Designer.cs">
+      <DependentUpon>Empresa_Registro.cs</DependentUpon>
+    </Compile>
     <Compile Include="Src\Forms\Vistas\Administrador\Estadisticas.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -81,6 +87,12 @@
     </Compile>
     <Compile Include="Src\Forms\Vistas\Administrador\Rol_Detalle.Designer.cs">
       <DependentUpon>Rol_Detalle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Src\Forms\Vistas\Administrador\Cliente_Registro.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Src\Forms\Vistas\Administrador\Cliente_Registro.Designer.cs">
+      <DependentUpon>Cliente_Registro.cs</DependentUpon>
     </Compile>
     <Compile Include="Src\Forms\Vistas\Cliente\Compra.cs">
       <SubType>Form</SubType>
@@ -175,8 +187,14 @@
     <EmbeddedResource Include="Src\Forms\Vistas\Administrador\Cliente_Listado.resx">
       <DependentUpon>Cliente_Listado.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Src\Forms\Vistas\Administrador\Cliente_Registro.resx">
+      <DependentUpon>Cliente_Registro.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Src\Forms\Vistas\Administrador\Empresa_Listado.resx">
       <DependentUpon>Empresa_Listado.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Src\Forms\Vistas\Administrador\Empresa_Registro.resx">
+      <DependentUpon>Empresa_Registro.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Src\Forms\Vistas\Administrador\Rol_Listado.resx">
       <DependentUpon>Rol_Listado.cs</DependentUpon>
@@ -205,6 +223,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Src\Forms\Vistas\General\Registro.resx">
+      <DependentUpon>Registro.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Src\Forms\Vistas\General\Selector_Rol.resx">
       <DependentUpon>Selector_Rol.cs</DependentUpon>
     </EmbeddedResource>
