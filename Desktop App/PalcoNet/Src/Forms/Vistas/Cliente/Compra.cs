@@ -21,5 +21,10 @@ namespace PalcoNet.Vistas.Cliente
         {
 
         }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

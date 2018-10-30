@@ -31,11 +31,29 @@
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Visible = false;
+            // 
+            // button1
+            // 
+            this.btn_habilitar.Text = "Editar";
+            // 
+            // button3
+            // 
+            this.btn_edit.Location = new System.Drawing.Point(632, 290);
+            this.btn_edit.Text = "Crear Nueva";
+            // 
             // Entidad
             // 
             this.Entidad.Size = new System.Drawing.Size(100, 18);
             this.Entidad.Text = "Publicaciones";
             this.Entidad.Click += new System.EventHandler(this.Entidad_Click);
+            // 
+            // listBox1
+            // 
+            this.listBox1.Location = new System.Drawing.Point(32, 83);
+            this.listBox1.Size = new System.Drawing.Size(579, 316);
             // 
             // Form1
             // 

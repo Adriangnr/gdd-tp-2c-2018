@@ -94,6 +94,12 @@
     <Compile Include="Src\Forms\Vistas\Administrador\Cliente_Registro.Designer.cs">
       <DependentUpon>Cliente_Registro.cs</DependentUpon>
     </Compile>
+    <Compile Include="Src\Forms\Vistas\Cliente\Canje_Puntos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Src\Forms\Vistas\Cliente\Canje_Puntos.Designer.cs">
+      <DependentUpon>Canje_Puntos.cs</DependentUpon>
+    </Compile>
     <Compile Include="Src\Forms\Vistas\Cliente\Compra.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -129,12 +135,6 @@
     </Compile>
     <Compile Include="Src\Forms\Vistas\General\Registro.Designer.cs">
       <DependentUpon>Registro.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Src\Forms\Vistas\Cliente\Canje_Puntos.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Src\Forms\Vistas\Cliente\Canje_Puntos.Designer.cs">
-      <DependentUpon>Canje_Puntos.cs</DependentUpon>
     </Compile>
     <Compile Include="Src\Forms\Vistas\Empresa\Publicacion_Listado.cs">
       <SubType>Form</SubType>
@@ -207,6 +207,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Src\Forms\Vistas\Administrador\Comisiones_Detalle.resx">
       <DependentUpon>Comisiones_Detalle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Src\Forms\Vistas\Cliente\Historial.resx">
+      <DependentUpon>Historial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Src\Forms\Vistas\Empresa\Publicacion_Detalle.resx">
+      <DependentUpon>Publicacion_Detalle.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Src\Forms\Vistas\Empresa\Publicacion_Listado.resx">
       <DependentUpon>Publicacion_Listado.cs</DependentUpon>

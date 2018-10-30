@@ -10,11 +10,16 @@ using System.Windows.Forms;
 
 namespace PalcoNet.Vistas.Cliente
 {
-    public partial class Historial : Form
+    public partial class Historial : Layouts.Master
     {
         public Historial()
         {
             InitializeComponent();
+        }
+
+        private void Historial_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

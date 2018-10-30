@@ -38,12 +38,12 @@
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.btn_search = new System.Windows.Forms.Button();
+            this.btn_habilitar = new System.Windows.Forms.Button();
+            this.btn_edit = new System.Windows.Forms.Button();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.Entidad = new System.Windows.Forms.Label();
-            this.button4 = new System.Windows.Forms.Button();
+            this.btn_cancel = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -58,7 +58,7 @@
             this.groupBox1.Controls.Add(this.textBox2);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.textBox1);
-            this.groupBox1.Controls.Add(this.button2);
+            this.groupBox1.Controls.Add(this.btn_search);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.ForeColor = System.Drawing.Color.DimGray;
             this.groupBox1.Location = new System.Drawing.Point(32, 78);
@@ -162,47 +162,47 @@
             this.textBox1.TabIndex = 6;
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
-            // button2
+            // btn_search
             // 
-            this.button2.BackColor = System.Drawing.SystemColors.Highlight;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.ForeColor = System.Drawing.SystemColors.Window;
-            this.button2.Location = new System.Drawing.Point(19, 267);
-            this.button2.Margin = new System.Windows.Forms.Padding(0);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(145, 45);
-            this.button2.TabIndex = 5;
-            this.button2.Text = "Buscar";
-            this.button2.UseVisualStyleBackColor = false;
+            this.btn_search.BackColor = System.Drawing.SystemColors.Highlight;
+            this.btn_search.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_search.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_search.ForeColor = System.Drawing.SystemColors.Window;
+            this.btn_search.Location = new System.Drawing.Point(19, 267);
+            this.btn_search.Margin = new System.Windows.Forms.Padding(0);
+            this.btn_search.Name = "btn_search";
+            this.btn_search.Size = new System.Drawing.Size(145, 45);
+            this.btn_search.TabIndex = 5;
+            this.btn_search.Text = "Buscar";
+            this.btn_search.UseVisualStyleBackColor = false;
             // 
-            // button1
+            // btn_habilitar
             // 
-            this.button1.BackColor = System.Drawing.SystemColors.Highlight;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.SystemColors.Window;
-            this.button1.Location = new System.Drawing.Point(632, 83);
-            this.button1.Margin = new System.Windows.Forms.Padding(0);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(129, 45);
-            this.button1.TabIndex = 14;
-            this.button1.Text = "Deshabilitar";
-            this.button1.UseVisualStyleBackColor = false;
+            this.btn_habilitar.BackColor = System.Drawing.SystemColors.Highlight;
+            this.btn_habilitar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_habilitar.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_habilitar.ForeColor = System.Drawing.SystemColors.Window;
+            this.btn_habilitar.Location = new System.Drawing.Point(632, 83);
+            this.btn_habilitar.Margin = new System.Windows.Forms.Padding(0);
+            this.btn_habilitar.Name = "btn_habilitar";
+            this.btn_habilitar.Size = new System.Drawing.Size(129, 45);
+            this.btn_habilitar.TabIndex = 14;
+            this.btn_habilitar.Text = "Deshabilitar";
+            this.btn_habilitar.UseVisualStyleBackColor = false;
             // 
-            // button3
+            // btn_edit
             // 
-            this.button3.BackColor = System.Drawing.SystemColors.Highlight;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.ForeColor = System.Drawing.SystemColors.Window;
-            this.button3.Location = new System.Drawing.Point(632, 137);
-            this.button3.Margin = new System.Windows.Forms.Padding(0);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(129, 45);
-            this.button3.TabIndex = 15;
-            this.button3.Text = "Editar";
-            this.button3.UseVisualStyleBackColor = false;
+            this.btn_edit.BackColor = System.Drawing.SystemColors.Highlight;
+            this.btn_edit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_edit.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_edit.ForeColor = System.Drawing.SystemColors.Window;
+            this.btn_edit.Location = new System.Drawing.Point(632, 137);
+            this.btn_edit.Margin = new System.Windows.Forms.Padding(0);
+            this.btn_edit.Name = "btn_edit";
+            this.btn_edit.Size = new System.Drawing.Size(129, 45);
+            this.btn_edit.TabIndex = 15;
+            this.btn_edit.Text = "Editar";
+            this.btn_edit.UseVisualStyleBackColor = false;
             // 
             // listBox1
             // 
@@ -224,40 +224,38 @@
             this.Entidad.Text = "[Entidad]";
             this.Entidad.Click += new System.EventHandler(this.label5_Click);
             // 
-            // button4
+            // btn_cancel
             // 
-            this.button4.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button4.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button4.ForeColor = System.Drawing.SystemColors.Window;
-            this.button4.Location = new System.Drawing.Point(632, 354);
-            this.button4.Margin = new System.Windows.Forms.Padding(0);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(129, 45);
-            this.button4.TabIndex = 18;
-            this.button4.Text = "Cancelar";
-            this.button4.UseVisualStyleBackColor = false;
+            this.btn_cancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_cancel.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_cancel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.btn_cancel.Location = new System.Drawing.Point(632, 354);
+            this.btn_cancel.Name = "btn_cancel";
+            this.btn_cancel.Size = new System.Drawing.Size(129, 45);
+            this.btn_cancel.TabIndex = 56;
+            this.btn_cancel.Text = "Cancelar";
+            this.btn_cancel.UseVisualStyleBackColor = true;
             // 
             // Listado
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 441);
-            this.Controls.Add(this.button4);
+            this.Controls.Add(this.btn_cancel);
             this.Controls.Add(this.Entidad);
             this.Controls.Add(this.listBox1);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btn_edit);
+            this.Controls.Add(this.btn_habilitar);
             this.Controls.Add(this.groupBox1);
             this.Name = "Listado";
             this.Text = "Listado";
             this.Load += new System.EventHandler(this.Listado_Load);
             this.Controls.SetChildIndex(this.groupBox1, 0);
-            this.Controls.SetChildIndex(this.button1, 0);
-            this.Controls.SetChildIndex(this.button3, 0);
+            this.Controls.SetChildIndex(this.btn_habilitar, 0);
+            this.Controls.SetChildIndex(this.btn_edit, 0);
             this.Controls.SetChildIndex(this.listBox1, 0);
             this.Controls.SetChildIndex(this.Entidad, 0);
-            this.Controls.SetChildIndex(this.button4, 0);
+            this.Controls.SetChildIndex(this.btn_cancel, 0);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -268,20 +266,20 @@
         #endregion
 
         public System.Windows.Forms.GroupBox groupBox1;
-        public System.Windows.Forms.Button button2;
+        public System.Windows.Forms.Button btn_search;
         public System.Windows.Forms.Label label1;
         public System.Windows.Forms.Label label3;
         public System.Windows.Forms.Label label2;
         public System.Windows.Forms.Label label4;
-        public System.Windows.Forms.Button button1;
-        public System.Windows.Forms.Button button3;
-        private System.Windows.Forms.ListBox listBox1;
-        public System.Windows.Forms.Button button4;
+        public System.Windows.Forms.Button btn_habilitar;
+        public System.Windows.Forms.Button btn_edit;
         public System.Windows.Forms.TextBox textBox1;
         public System.Windows.Forms.TextBox textBox3;
         public System.Windows.Forms.TextBox textBox2;
         public System.Windows.Forms.TextBox textBox4;
         public System.Windows.Forms.Label Entidad;
         private System.Windows.Forms.LinkLabel linkLabel1;
+        public System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.Button btn_cancel;
     }
 }

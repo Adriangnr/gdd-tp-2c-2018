@@ -8,16 +8,16 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace PalcoNet.Canje_Puntos
+namespace PalcoNet.Src.Forms.Vistas.Cliente
 {
-    public partial class Form1 : Layouts.Listado
+    public partial class Canje_Puntos : Layouts.Master
     {
-        public Form1()
+        public Canje_Puntos()
         {
             InitializeComponent();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void Canje_Puntos_Load(object sender, EventArgs e)
         {
 
         }
