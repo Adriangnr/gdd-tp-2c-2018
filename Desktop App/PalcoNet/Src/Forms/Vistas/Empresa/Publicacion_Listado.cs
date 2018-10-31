@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace PalcoNet.Editar_Publicacion
 {
-    public partial class Form1 : Layouts.Listado
+    public partial class Form1 : Layouts.Master
     {
         public Form1()
         {

@@ -30,66 +30,35 @@
         {
             this.dateFrom = new System.Windows.Forms.DateTimePicker();
             this.dateTo = new System.Windows.Forms.DateTimePicker();
+            this.btn_buy = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.categoria = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.descripcion = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label8);
+            this.groupBox1.Controls.Add(this.label7);
+            this.groupBox1.Controls.Add(this.label6);
+            this.groupBox1.Controls.Add(this.descripcion);
+            this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.dateTo);
+            this.groupBox1.Controls.Add(this.categoria);
             this.groupBox1.Controls.Add(this.dateFrom);
-            this.groupBox1.Controls.SetChildIndex(this.btn_search, 0);
-            this.groupBox1.Controls.SetChildIndex(this.textBox1, 0);
-            this.groupBox1.Controls.SetChildIndex(this.label1, 0);
-            this.groupBox1.Controls.SetChildIndex(this.textBox2, 0);
-            this.groupBox1.Controls.SetChildIndex(this.label2, 0);
-            this.groupBox1.Controls.SetChildIndex(this.textBox3, 0);
-            this.groupBox1.Controls.SetChildIndex(this.label3, 0);
-            this.groupBox1.Controls.SetChildIndex(this.textBox4, 0);
-            this.groupBox1.Controls.SetChildIndex(this.label4, 0);
             this.groupBox1.Controls.SetChildIndex(this.dateFrom, 0);
+            this.groupBox1.Controls.SetChildIndex(this.categoria, 0);
             this.groupBox1.Controls.SetChildIndex(this.dateTo, 0);
-            // 
-            // label1
-            // 
-            this.label1.Size = new System.Drawing.Size(66, 15);
-            this.label1.Text = "Categorías";
-            // 
-            // label3
-            // 
-            this.label3.Size = new System.Drawing.Size(83, 15);
-            this.label3.Text = "Fecha Desde:";
-            // 
-            // label2
-            // 
-            this.label2.Size = new System.Drawing.Size(72, 15);
-            this.label2.Text = "Descripción";
-            // 
-            // label4
-            // 
-            this.label4.Size = new System.Drawing.Size(79, 15);
-            this.label4.Text = "Fecha Hasta:";
-            // 
-            // button1
-            // 
-            this.btn_habilitar.Text = "Comprar";
-            // 
-            // button3
-            // 
-            this.btn_edit.Enabled = false;
-            this.btn_edit.Text = "---";
-            this.btn_edit.Visible = false;
-            // 
-            // textBox1
-            // 
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
-            // 
-            // textBox3
-            // 
-            this.textBox3.Visible = false;
-            // 
-            // textBox4
-            // 
-            this.textBox4.Visible = false;
+            this.groupBox1.Controls.SetChildIndex(this.label5, 0);
+            this.groupBox1.Controls.SetChildIndex(this.btn_search, 0);
+            this.groupBox1.Controls.SetChildIndex(this.descripcion, 0);
+            this.groupBox1.Controls.SetChildIndex(this.label6, 0);
+            this.groupBox1.Controls.SetChildIndex(this.label7, 0);
+            this.groupBox1.Controls.SetChildIndex(this.label8, 0);
             // 
             // Entidad
             // 
@@ -112,14 +81,93 @@
             this.dateTo.Size = new System.Drawing.Size(145, 22);
             this.dateTo.TabIndex = 16;
             // 
+            // btn_buy
+            // 
+            this.btn_buy.BackColor = System.Drawing.SystemColors.Highlight;
+            this.btn_buy.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_buy.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_buy.ForeColor = System.Drawing.SystemColors.Window;
+            this.btn_buy.Location = new System.Drawing.Point(632, 83);
+            this.btn_buy.Margin = new System.Windows.Forms.Padding(0);
+            this.btn_buy.Name = "btn_buy";
+            this.btn_buy.Size = new System.Drawing.Size(129, 45);
+            this.btn_buy.TabIndex = 58;
+            this.btn_buy.Text = "Comprar";
+            this.btn_buy.UseVisualStyleBackColor = false;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(19, 26);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(66, 15);
+            this.label5.TabIndex = 60;
+            this.label5.Text = "Categorías";
+            // 
+            // categoria
+            // 
+            this.categoria.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.categoria.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.categoria.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.categoria.Location = new System.Drawing.Point(19, 45);
+            this.categoria.Name = "categoria";
+            this.categoria.Size = new System.Drawing.Size(145, 24);
+            this.categoria.TabIndex = 59;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(19, 79);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(72, 15);
+            this.label6.TabIndex = 62;
+            this.label6.Text = "Descripción";
+            // 
+            // descripcion
+            // 
+            this.descripcion.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.descripcion.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.descripcion.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.descripcion.Location = new System.Drawing.Point(19, 98);
+            this.descripcion.Name = "descripcion";
+            this.descripcion.Size = new System.Drawing.Size(145, 24);
+            this.descripcion.TabIndex = 61;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(19, 133);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(80, 15);
+            this.label7.TabIndex = 60;
+            this.label7.Text = "Fecha Desde";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(19, 187);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(76, 15);
+            this.label8.TabIndex = 60;
+            this.label8.Text = "Fecha Hasta";
+            // 
             // Compra
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 441);
+            this.Controls.Add(this.btn_buy);
             this.Name = "Compra";
-            this.Text = "Comprar";
+            this.Text = "Palco.NET - Comprar";
             this.Load += new System.EventHandler(this.Compra_Load);
+            this.Controls.SetChildIndex(this.btn_buy, 0);
+            this.Controls.SetChildIndex(this.groupBox1, 0);
+            this.Controls.SetChildIndex(this.listBox1, 0);
+            this.Controls.SetChildIndex(this.Entidad, 0);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -131,5 +179,12 @@
 
         private System.Windows.Forms.DateTimePicker dateTo;
         private System.Windows.Forms.DateTimePicker dateFrom;
+        public System.Windows.Forms.Button btn_buy;
+        public System.Windows.Forms.Label label8;
+        public System.Windows.Forms.Label label7;
+        public System.Windows.Forms.Label label6;
+        public System.Windows.Forms.TextBox descripcion;
+        public System.Windows.Forms.Label label5;
+        public System.Windows.Forms.TextBox categoria;
     }
 }

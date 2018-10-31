@@ -29,18 +29,18 @@
         private void InitializeComponent()
         {
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.nrodoc = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.apellido = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.nombre = new System.Windows.Forms.TextBox();
+            this.doc = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.cuil = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.nacimiento = new System.Windows.Forms.DateTimePicker();
             this.label6 = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.tarjeta = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label3
@@ -53,12 +53,12 @@
             this.label3.TabIndex = 11;
             this.label3.Text = "Documento:";
             // 
-            // textBox3
+            // nrodoc
             // 
-            this.textBox3.Location = new System.Drawing.Point(173, 110);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(76, 20);
-            this.textBox3.TabIndex = 10;
+            this.nrodoc.Location = new System.Drawing.Point(173, 110);
+            this.nrodoc.Name = "nrodoc";
+            this.nrodoc.Size = new System.Drawing.Size(76, 20);
+            this.nrodoc.TabIndex = 10;
             // 
             // label2
             // 
@@ -70,12 +70,12 @@
             this.label2.TabIndex = 9;
             this.label2.Text = "Apellido:";
             // 
-            // textBox2
+            // apellido
             // 
-            this.textBox2.Location = new System.Drawing.Point(112, 74);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(137, 20);
-            this.textBox2.TabIndex = 8;
+            this.apellido.Location = new System.Drawing.Point(112, 74);
+            this.apellido.Name = "apellido";
+            this.apellido.Size = new System.Drawing.Size(137, 20);
+            this.apellido.TabIndex = 8;
             // 
             // label1
             // 
@@ -87,20 +87,20 @@
             this.label1.TabIndex = 7;
             this.label1.Text = "Nombre:";
             // 
-            // textBox1
+            // nombre
             // 
-            this.textBox1.Location = new System.Drawing.Point(112, 39);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(137, 20);
-            this.textBox1.TabIndex = 6;
+            this.nombre.Location = new System.Drawing.Point(112, 39);
+            this.nombre.Name = "nombre";
+            this.nombre.Size = new System.Drawing.Size(137, 20);
+            this.nombre.TabIndex = 6;
             // 
-            // comboBox1
+            // doc
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(112, 110);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(55, 21);
-            this.comboBox1.TabIndex = 12;
+            this.doc.FormattingEnabled = true;
+            this.doc.Location = new System.Drawing.Point(112, 110);
+            this.doc.Name = "doc";
+            this.doc.Size = new System.Drawing.Size(55, 21);
+            this.doc.TabIndex = 12;
             // 
             // label4
             // 
@@ -112,12 +112,12 @@
             this.label4.TabIndex = 14;
             this.label4.Text = "CUIL:";
             // 
-            // textBox4
+            // cuil
             // 
-            this.textBox4.Location = new System.Drawing.Point(112, 146);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(137, 20);
-            this.textBox4.TabIndex = 13;
+            this.cuil.Location = new System.Drawing.Point(112, 146);
+            this.cuil.Name = "cuil";
+            this.cuil.Size = new System.Drawing.Size(137, 20);
+            this.cuil.TabIndex = 13;
             // 
             // label5
             // 
@@ -129,14 +129,14 @@
             this.label5.TabIndex = 16;
             this.label5.Text = "Nacimiento:";
             // 
-            // dateTimePicker1
+            // nacimiento
             // 
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker1.Location = new System.Drawing.Point(112, 181);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(137, 20);
-            this.dateTimePicker1.TabIndex = 17;
-            this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
+            this.nacimiento.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.nacimiento.Location = new System.Drawing.Point(112, 181);
+            this.nacimiento.Name = "nacimiento";
+            this.nacimiento.Size = new System.Drawing.Size(137, 20);
+            this.nacimiento.TabIndex = 17;
+            this.nacimiento.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
             // 
             // label6
             // 
@@ -148,12 +148,12 @@
             this.label6.TabIndex = 19;
             this.label6.Text = "Tarjeta:";
             // 
-            // textBox5
+            // tarjeta
             // 
-            this.textBox5.Location = new System.Drawing.Point(112, 216);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(137, 20);
-            this.textBox5.TabIndex = 18;
+            this.tarjeta.Location = new System.Drawing.Point(112, 216);
+            this.tarjeta.Name = "tarjeta";
+            this.tarjeta.Size = new System.Drawing.Size(137, 20);
+            this.tarjeta.TabIndex = 18;
             // 
             // Cliente_Registro
             // 
@@ -161,18 +161,18 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.textBox5);
-            this.Controls.Add(this.dateTimePicker1);
+            this.Controls.Add(this.tarjeta);
+            this.Controls.Add(this.nacimiento);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.textBox4);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.cuil);
+            this.Controls.Add(this.doc);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.nrodoc);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.apellido);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.nombre);
             this.Name = "Cliente_Registro";
             this.Size = new System.Drawing.Size(311, 271);
             this.Load += new System.EventHandler(this.Cliente_Registro_Load);
@@ -184,18 +184,18 @@
         #endregion
 
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox nrodoc;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox apellido;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.TextBox nombre;
+        private System.Windows.Forms.ComboBox doc;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox cuil;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker nacimiento;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox tarjeta;
 
     }
 }

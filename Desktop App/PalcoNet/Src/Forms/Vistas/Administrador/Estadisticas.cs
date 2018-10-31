@@ -10,11 +10,16 @@ using System.Windows.Forms;
 
 namespace PalcoNet.Vistas.Administrador
 {
-    public partial class Estadisticas : Form
+    public partial class Estadisticas : Layouts.Master
     {
         public Estadisticas()
         {
             InitializeComponent();
+        }
+
+        private void Estadisticas_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

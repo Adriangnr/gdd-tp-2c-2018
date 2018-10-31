@@ -28,20 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.razonSocial = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.cuit = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.ciudad = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
-            // textBox1
+            // razonSocial
             // 
-            this.textBox1.Location = new System.Drawing.Point(112, 39);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(137, 20);
-            this.textBox1.TabIndex = 0;
+            this.razonSocial.Location = new System.Drawing.Point(112, 39);
+            this.razonSocial.Name = "razonSocial";
+            this.razonSocial.Size = new System.Drawing.Size(137, 20);
+            this.razonSocial.TabIndex = 0;
             // 
             // label1
             // 
@@ -63,12 +63,12 @@
             this.label2.TabIndex = 3;
             this.label2.Text = "CUIT:";
             // 
-            // textBox2
+            // cuit
             // 
-            this.textBox2.Location = new System.Drawing.Point(112, 74);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(137, 20);
-            this.textBox2.TabIndex = 2;
+            this.cuit.Location = new System.Drawing.Point(112, 74);
+            this.cuit.Name = "cuit";
+            this.cuit.Size = new System.Drawing.Size(137, 20);
+            this.cuit.TabIndex = 2;
             // 
             // label3
             // 
@@ -80,12 +80,12 @@
             this.label3.TabIndex = 5;
             this.label3.Text = "Ciudad:";
             // 
-            // textBox3
+            // ciudad
             // 
-            this.textBox3.Location = new System.Drawing.Point(112, 110);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(137, 20);
-            this.textBox3.TabIndex = 4;
+            this.ciudad.Location = new System.Drawing.Point(112, 110);
+            this.ciudad.Name = "ciudad";
+            this.ciudad.Size = new System.Drawing.Size(137, 20);
+            this.ciudad.TabIndex = 4;
             // 
             // Empresa_Registro
             // 
@@ -93,11 +93,11 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.ciudad);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.cuit);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.razonSocial);
             this.Name = "Empresa_Registro";
             this.Size = new System.Drawing.Size(311, 165);
             this.ResumeLayout(false);
@@ -107,11 +107,11 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox razonSocial;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox cuit;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox ciudad;
     }
 }

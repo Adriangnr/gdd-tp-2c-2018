@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.login_btn_salir = new System.Windows.Forms.Button();
+            this.btn_cancel = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -41,30 +41,30 @@
             this.dataGridView1.Size = new System.Drawing.Size(717, 229);
             this.dataGridView1.TabIndex = 2;
             // 
-            // login_btn_salir
+            // btn_cancel
             // 
-            this.login_btn_salir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.login_btn_salir.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.login_btn_salir.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.login_btn_salir.Location = new System.Drawing.Point(620, 345);
-            this.login_btn_salir.Name = "login_btn_salir";
-            this.login_btn_salir.Size = new System.Drawing.Size(129, 45);
-            this.login_btn_salir.TabIndex = 21;
-            this.login_btn_salir.Text = "Volver";
-            this.login_btn_salir.UseVisualStyleBackColor = true;
+            this.btn_cancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_cancel.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_cancel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.btn_cancel.Location = new System.Drawing.Point(620, 345);
+            this.btn_cancel.Name = "btn_cancel";
+            this.btn_cancel.Size = new System.Drawing.Size(129, 45);
+            this.btn_cancel.TabIndex = 21;
+            this.btn_cancel.Text = "Volver";
+            this.btn_cancel.UseVisualStyleBackColor = true;
             // 
             // Historial
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 441);
-            this.Controls.Add(this.login_btn_salir);
+            this.Controls.Add(this.btn_cancel);
             this.Controls.Add(this.dataGridView1);
             this.Name = "Historial";
-            this.Text = "Historial";
+            this.Text = "Palco.NET - Historial de cliente";
             this.Load += new System.EventHandler(this.Historial_Load);
             this.Controls.SetChildIndex(this.dataGridView1, 0);
-            this.Controls.SetChildIndex(this.login_btn_salir, 0);
+            this.Controls.SetChildIndex(this.btn_cancel, 0);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -74,6 +74,6 @@
         #endregion
 
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.Button login_btn_salir;
+        private System.Windows.Forms.Button btn_cancel;
     }
 }

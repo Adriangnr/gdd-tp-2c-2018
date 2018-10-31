@@ -39,15 +39,15 @@
             this.label7 = new System.Windows.Forms.Label();
             this.direccion = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.grado = new System.Windows.Forms.ComboBox();
+            this.estado = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
             this.stock = new System.Windows.Forms.NumericUpDown();
             this.fechaDeInicio = new System.Windows.Forms.DateTimePicker();
             this.rubro = new System.Windows.Forms.ComboBox();
             this.registerLink = new System.Windows.Forms.LinkLabel();
-            this.login_btn_salir = new System.Windows.Forms.Button();
-            this.login_btn_entrar = new System.Windows.Forms.Button();
+            this.btn_cancel = new System.Windows.Forms.Button();
+            this.btn_guardar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.stock)).BeginInit();
             this.SuspendLayout();
             // 
@@ -154,21 +154,21 @@
             this.label8.TabIndex = 46;
             this.label8.Text = "Grado de publicación:";
             // 
-            // comboBox1
+            // grado
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(517, 192);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(174, 21);
-            this.comboBox1.TabIndex = 47;
+            this.grado.FormattingEnabled = true;
+            this.grado.Location = new System.Drawing.Point(517, 192);
+            this.grado.Name = "grado";
+            this.grado.Size = new System.Drawing.Size(174, 21);
+            this.grado.TabIndex = 47;
             // 
-            // comboBox2
+            // estado
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(517, 235);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(174, 21);
-            this.comboBox2.TabIndex = 49;
+            this.estado.FormattingEnabled = true;
+            this.estado.Location = new System.Drawing.Point(517, 235);
+            this.estado.Name = "estado";
+            this.estado.Size = new System.Drawing.Size(174, 21);
+            this.estado.TabIndex = 49;
             // 
             // label9
             // 
@@ -222,30 +222,30 @@
             this.registerLink.TabStop = true;
             this.registerLink.Text = "Limpiar Formulario";
             // 
-            // login_btn_salir
+            // btn_cancel
             // 
-            this.login_btn_salir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.login_btn_salir.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.login_btn_salir.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.login_btn_salir.Location = new System.Drawing.Point(418, 342);
-            this.login_btn_salir.Name = "login_btn_salir";
-            this.login_btn_salir.Size = new System.Drawing.Size(129, 45);
-            this.login_btn_salir.TabIndex = 54;
-            this.login_btn_salir.Text = "Cancelar";
-            this.login_btn_salir.UseVisualStyleBackColor = true;
+            this.btn_cancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_cancel.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_cancel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.btn_cancel.Location = new System.Drawing.Point(418, 342);
+            this.btn_cancel.Name = "btn_cancel";
+            this.btn_cancel.Size = new System.Drawing.Size(129, 45);
+            this.btn_cancel.TabIndex = 54;
+            this.btn_cancel.Text = "Cancelar";
+            this.btn_cancel.UseVisualStyleBackColor = true;
             // 
-            // login_btn_entrar
+            // btn_guardar
             // 
-            this.login_btn_entrar.BackColor = System.Drawing.SystemColors.MenuHighlight;
-            this.login_btn_entrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.login_btn_entrar.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.login_btn_entrar.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.login_btn_entrar.Location = new System.Drawing.Point(562, 342);
-            this.login_btn_entrar.Name = "login_btn_entrar";
-            this.login_btn_entrar.Size = new System.Drawing.Size(129, 45);
-            this.login_btn_entrar.TabIndex = 53;
-            this.login_btn_entrar.Text = "Guardar";
-            this.login_btn_entrar.UseVisualStyleBackColor = false;
+            this.btn_guardar.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.btn_guardar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_guardar.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_guardar.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btn_guardar.Location = new System.Drawing.Point(562, 342);
+            this.btn_guardar.Name = "btn_guardar";
+            this.btn_guardar.Size = new System.Drawing.Size(129, 45);
+            this.btn_guardar.TabIndex = 53;
+            this.btn_guardar.Text = "Guardar";
+            this.btn_guardar.UseVisualStyleBackColor = false;
             // 
             // Publicacion_Detalle
             // 
@@ -253,14 +253,14 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 441);
             this.Controls.Add(this.registerLink);
-            this.Controls.Add(this.login_btn_salir);
-            this.Controls.Add(this.login_btn_entrar);
+            this.Controls.Add(this.btn_cancel);
+            this.Controls.Add(this.btn_guardar);
             this.Controls.Add(this.rubro);
             this.Controls.Add(this.fechaDeInicio);
             this.Controls.Add(this.stock);
-            this.Controls.Add(this.comboBox2);
+            this.Controls.Add(this.estado);
             this.Controls.Add(this.label9);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.grado);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.direccion);
@@ -273,6 +273,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.descripcion);
             this.Name = "Publicacion_Detalle";
+            this.Text = "Palco.NET - Creación de Publicación";
             this.Load += new System.EventHandler(this.Publicacion_Detalle_Load);
             this.Controls.SetChildIndex(this.descripcion, 0);
             this.Controls.SetChildIndex(this.label1, 0);
@@ -285,14 +286,14 @@
             this.Controls.SetChildIndex(this.direccion, 0);
             this.Controls.SetChildIndex(this.label7, 0);
             this.Controls.SetChildIndex(this.label8, 0);
-            this.Controls.SetChildIndex(this.comboBox1, 0);
+            this.Controls.SetChildIndex(this.grado, 0);
             this.Controls.SetChildIndex(this.label9, 0);
-            this.Controls.SetChildIndex(this.comboBox2, 0);
+            this.Controls.SetChildIndex(this.estado, 0);
             this.Controls.SetChildIndex(this.stock, 0);
             this.Controls.SetChildIndex(this.fechaDeInicio, 0);
             this.Controls.SetChildIndex(this.rubro, 0);
-            this.Controls.SetChildIndex(this.login_btn_entrar, 0);
-            this.Controls.SetChildIndex(this.login_btn_salir, 0);
+            this.Controls.SetChildIndex(this.btn_guardar, 0);
+            this.Controls.SetChildIndex(this.btn_cancel, 0);
             this.Controls.SetChildIndex(this.registerLink, 0);
             ((System.ComponentModel.ISupportInitialize)(this.stock)).EndInit();
             this.ResumeLayout(false);
@@ -313,14 +314,14 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox direccion;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox grado;
+        private System.Windows.Forms.ComboBox estado;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.NumericUpDown stock;
         private System.Windows.Forms.DateTimePicker fechaDeInicio;
         private System.Windows.Forms.ComboBox rubro;
         private System.Windows.Forms.LinkLabel registerLink;
-        private System.Windows.Forms.Button login_btn_salir;
-        private System.Windows.Forms.Button login_btn_entrar;
+        private System.Windows.Forms.Button btn_cancel;
+        private System.Windows.Forms.Button btn_guardar;
     }
 }

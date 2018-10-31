@@ -36,8 +36,8 @@
             this.rectangleShape2 = new Microsoft.VisualBasic.PowerPacks.RectangleShape();
             this.rectangleShape1 = new Microsoft.VisualBasic.PowerPacks.RectangleShape();
             this.registerLink = new System.Windows.Forms.LinkLabel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.login_label = new System.Windows.Forms.Label();
+            this.titulo = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // login_btn_entrar
@@ -140,34 +140,34 @@
             this.registerLink.Text = "Registrate!";
             this.registerLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
-            // label2
+            // login_label
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
-            this.label2.Location = new System.Drawing.Point(326, 347);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(119, 16);
-            this.label2.TabIndex = 19;
-            this.label2.Text = "¿No tenes cuenta?";
+            this.login_label.AutoSize = true;
+            this.login_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.login_label.Location = new System.Drawing.Point(326, 347);
+            this.login_label.Name = "login_label";
+            this.login_label.Size = new System.Drawing.Size(119, 16);
+            this.login_label.TabIndex = 19;
+            this.login_label.Text = "¿No tenes cuenta?";
             // 
-            // label1
+            // titulo
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Verdana", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.SystemColors.ControlDark;
-            this.label1.Location = new System.Drawing.Point(344, 72);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(174, 29);
-            this.label1.TabIndex = 20;
-            this.label1.Text = "Iniciar Sesión";
+            this.titulo.AutoSize = true;
+            this.titulo.Font = new System.Drawing.Font("Verdana", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.titulo.ForeColor = System.Drawing.SystemColors.ControlDark;
+            this.titulo.Location = new System.Drawing.Point(344, 72);
+            this.titulo.Name = "titulo";
+            this.titulo.Size = new System.Drawing.Size(174, 29);
+            this.titulo.TabIndex = 20;
+            this.titulo.Text = "Iniciar Sesión";
             // 
             // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 441);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.titulo);
+            this.Controls.Add(this.login_label);
             this.Controls.Add(this.registerLink);
             this.Controls.Add(this.login_tbox_password);
             this.Controls.Add(this.login_tbox_usuario);
@@ -183,8 +183,8 @@
             this.Controls.SetChildIndex(this.login_tbox_usuario, 0);
             this.Controls.SetChildIndex(this.login_tbox_password, 0);
             this.Controls.SetChildIndex(this.registerLink, 0);
-            this.Controls.SetChildIndex(this.label2, 0);
-            this.Controls.SetChildIndex(this.label1, 0);
+            this.Controls.SetChildIndex(this.login_label, 0);
+            this.Controls.SetChildIndex(this.titulo, 0);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -199,8 +199,8 @@
         private Microsoft.VisualBasic.PowerPacks.ShapeContainer shapeContainer1;
         private Microsoft.VisualBasic.PowerPacks.RectangleShape rectangleShape1;
         private System.Windows.Forms.LinkLabel registerLink;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label login_label;
         private Microsoft.VisualBasic.PowerPacks.RectangleShape rectangleShape2;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label titulo;
     }
 }

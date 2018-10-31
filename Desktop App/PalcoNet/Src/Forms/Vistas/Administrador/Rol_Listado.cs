@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace PalcoNet.Vistas.Administrador
 {
-    public partial class Rol_Listado : Layouts.Listado
+    public partial class Rol_Listado : Layouts.Master
     {
         public Rol_Listado()
         {
