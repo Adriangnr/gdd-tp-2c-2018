@@ -16,16 +16,16 @@ namespace PalcoNet.Modelo.Entidades
         public int spExecuteScalar(String _spString, List<SqlParameter> _params)
         {
             SqlCommand command = this.dbconnector.obtenerComando();
+            command.CommandType = CommandType.StoredProcedure;
             command.CommandText = _spString;
 
             if (_params != null)
-                _params.ForEach(
-                    param => {
-                        command.Parameters.AddWithValue(param.ParameterName, param.Value);
-                    });
+                _params.ForEach( param => command.Parameters.AddWithValue(param.ParameterName, param.Value) );
 
-            var returnParam = command.Parameters.Add("@return_val", SqlDbType.Int);
+            var returnParam = command.Parameters.AddWithValue("@return_val", SqlDbType.Int);
             returnParam.Direction = ParameterDirection.Output;
+
+            Console.WriteLine(command.Parameters);
 
             command.ExecuteNonQuery();
             command.Connection.Close();

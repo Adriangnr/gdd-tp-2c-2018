@@ -37,7 +37,6 @@ namespace PalcoNet.Modelo.DBConector.Database
         {
             SqlCommand comando = new SqlCommand();
             comando.Connection = this.ObtenerConexion();
-            comando.CommandType = System.Data.CommandType.Text;
             return comando;
         }
     }
