@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Reflection;
 using PalcoNet.Modelo.DBConector.Database;
+using PalcoNet.Modelo.Entidades;
 
 namespace PalcoNet.Servicios
 {

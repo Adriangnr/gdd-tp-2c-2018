@@ -635,7 +635,7 @@ as begin
     else if @count < 1
 		select @return_val = @usuario_no_tiene_roles
 	else begin
-      exec SeleccionarRol @username, @role
+      exec ESECUELE.SeleccionarRol @username, @role
       set @return_val = @role -- Retorno el unico rol disponible
     end
   end
@@ -649,3 +649,16 @@ as begin
 	where FR.frol_rol_id = @role
 end
 go
+
+create procedure ESECUELE.getUsuario(@username varchar(50))
+as begin
+	select * from ESECUELE.Usuario u join ESECUELE.Rol_Usuario r on u.usr_username = r.rol_usr_username
+	where u.usr_username = @username
+end
+go 
+
+create procedure ESECUELE.getRol(@id tinyint)
+as begin
+	select * from ESECUELE.Rol r where r.rol_id = @id
+end
+go 

@@ -17,7 +17,7 @@ namespace PalcoNet.Modelo.DBConector.Database
             return instance;
         }
 
-        private SqlConnection ObtenerConexion()
+        public SqlConnection ObtenerConexion()
         {
             try
             {

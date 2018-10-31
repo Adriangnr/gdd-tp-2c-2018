@@ -186,6 +186,7 @@
     <Compile Include="Src\Servicios\DatabaseService.cs" />
     <Compile Include="Src\Servicios\LoginService.cs" />
     <Compile Include="Src\Servicios\ServiceFactory\ServiceFactory.cs" />
+    <Compile Include="Src\Servicios\UserService.cs" />
     <EmbeddedResource Include="Src\Forms\Layouts\Listado.resx">
       <DependentUpon>Listado.cs</DependentUpon>
     </EmbeddedResource>

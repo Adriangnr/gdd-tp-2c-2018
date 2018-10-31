@@ -23,8 +23,7 @@ namespace PalcoNet.Servicios.ServiceFactory
             else
             {
                 Assembly assembly = Assembly.GetExecutingAssembly();
-                DatabaseService srv = assembly.CreateInstance("PalcoNet.Servicios.LoginService") as DatabaseService;
-                Console.WriteLine("\n\n Instancia -> srv "+srv+"\n\n");
+                DatabaseService srv = assembly.CreateInstance("PalcoNet.Servicios."+ serviceName) as DatabaseService;
                 services.Add(serviceName, srv);
                 return services[serviceName]; 
             }
