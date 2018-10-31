@@ -1,14 +1,7 @@
-﻿using PalcoNet.Modelos;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
+using PalcoNet.Servicios;
 using System.Windows.Forms;
+using PalcoNet.Servicios.ServiceFactory;
 
 namespace PalcoNet.Login
 {
@@ -50,13 +43,13 @@ namespace PalcoNet.Login
                 return;
             }
 
-
-            int result = Database.spExecuteScalar("ESECUELE.Login",
-                                        new List<SqlParameter> {
-                                                        new SqlParameter("@username", username),
-                                                        new SqlParameter("@plain_password", password)
-            });
-
+            /*
+             Aca llamo a ServiceFactory y le paso el nombre del servicio que quiero. Hay que castearlo, porque 
+             la factory devuelve un servicio generico que se llama DatabaseService.
+             */
+            LoginService loginService = (LoginService)ServiceFactory.GetService("LoginService");
+            int result = loginService.GetLogin(username, password);
+            
             switch (result)
             {
                 case 0:

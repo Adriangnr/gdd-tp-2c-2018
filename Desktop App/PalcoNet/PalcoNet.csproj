@@ -33,7 +33,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="Microsoft.VisualBasic.PowerPacks, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.VisualBasic.PowerPacks.Vs, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.VisualStudio.TestTools.UITest.Extension, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Xml.Linq" />
@@ -175,6 +178,14 @@
     <Compile Include="Src\Forms\Vistas\General\Selector_Rol.Designer.cs">
       <DependentUpon>Selector_Rol.cs</DependentUpon>
     </Compile>
+    <Compile Include="Src\Modelo\Entidades\DatabaseEntity.cs" />
+    <Compile Include="Src\Modelo\Entidades\Funcionalidad.cs" />
+    <Compile Include="Src\Modelo\Entidades\Login.cs" />
+    <Compile Include="Src\Modelo\Entidades\Rol.cs" />
+    <Compile Include="Src\Modelo\Entidades\Usuario.cs" />
+    <Compile Include="Src\Servicios\DatabaseService.cs" />
+    <Compile Include="Src\Servicios\LoginService.cs" />
+    <Compile Include="Src\Servicios\ServiceFactory\ServiceFactory.cs" />
     <EmbeddedResource Include="Src\Forms\Layouts\Listado.resx">
       <DependentUpon>Listado.cs</DependentUpon>
     </EmbeddedResource>
