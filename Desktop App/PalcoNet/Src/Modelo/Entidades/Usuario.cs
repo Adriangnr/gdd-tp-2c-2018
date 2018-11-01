@@ -41,6 +41,11 @@ namespace PalcoNet.Modelo.Entidades
             });
         }
 
+        public List<Rol> GetRoles()
+        {
+            return this.Roles;
+        }
+
         public void addRol(byte rolId)
         {
             Rol rol = new Rol(rolId);

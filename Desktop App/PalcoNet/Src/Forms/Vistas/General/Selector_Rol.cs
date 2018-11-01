@@ -1,23 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using PalcoNet.Modelo.Entidades;
+using System;
 using System.Windows.Forms;
 
 namespace PalcoNet.Vistas.General
 {
-    public partial class Selector_Rol : Form
+    public partial class Selector_Rol : Layouts.Master
     {
-        public Selector_Rol()
+        public Selector_Rol(Form previous, Usuario user)
         {
             InitializeComponent();
+            this.combo_rol.DataSource = user.GetRoles();
         }
 
         private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }

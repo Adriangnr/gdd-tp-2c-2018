@@ -3,6 +3,7 @@ using PalcoNet.Servicios;
 using System.Windows.Forms;
 using PalcoNet.Servicios.ServiceFactory;
 using PalcoNet.Modelo.Entidades;
+using PalcoNet.Vistas.General;
 
 namespace PalcoNet.Login
 {
@@ -55,9 +56,10 @@ namespace PalcoNet.Login
             {
                 case -5:
                     {
-                        //new AbmRol.RoleLoginSelection(this, username).Show();
-                        //this.Hide();
-                        MessageBox.Show(String.Format("Se deberian elegir roles."));
+                        UserService usrService = (UserService)ServiceFactory.GetService("UserService");
+                        Usuario usr = usrService.GetUser(username);
+                        new Selector_Rol(this, usr).Show();
+                        this.Hide();
                         break;
                     }
                 case -1:
@@ -81,7 +83,7 @@ namespace PalcoNet.Login
                         intentosFallidos = 0;
                         UserService usrService = (UserService)ServiceFactory.GetService("UserService");
                         Usuario usr = usrService.GetUser(username);
-                        //new MenuPrincipal.MainMenu(this, Role.Get(result, username)).Show();
+                        //new MenuPrincipal.MainMenu(this, Usuario).Show();
                         //this.Hide();
                         MessageBox.Show(String.Format("El usuario tiene solo 1 rol"));
                         break;

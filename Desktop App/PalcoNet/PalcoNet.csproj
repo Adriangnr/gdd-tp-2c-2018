@@ -121,6 +121,12 @@
     <Compile Include="Src\Forms\Vistas\Empresa\Publicacion_Detalle.Designer.cs">
       <DependentUpon>Publicacion_Detalle.cs</DependentUpon>
     </Compile>
+    <Compile Include="Src\Forms\Vistas\General\MenuPrincipal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Src\Forms\Vistas\General\MenuPrincipal.Designer.cs">
+      <DependentUpon>MenuPrincipal.cs</DependentUpon>
+    </Compile>
     <Compile Include="Src\Forms\Vistas\General\Registro.cs">
       <SubType>Form</SubType>
     </Compile>

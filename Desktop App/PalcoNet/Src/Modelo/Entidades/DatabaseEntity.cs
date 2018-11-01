@@ -25,26 +25,11 @@ namespace PalcoNet.Modelo.Entidades
         }
 
         /*
-            Devuelve una tabla. 
+            Devuelve una lista con los datos del registro pedido, para armar el modelo. 
         */
         public List<List<object>> Get(String entityName, List<SqlParameter> _params)
         {
-            SqlCommand command = this.prepareStoreProcedureCommand("ESECUELE.get"+entityName, _params);
-            SqlDataReader raws = command.ExecuteReader();
-            List<List<object>> results = new List<List<object>>();
-
-            while (raws.Read())
-            {
-                List<object> raw = new List<object>();
-                for(int i = 0; i < raws.FieldCount; i++)
-                {
-                    raw.Add(raws.GetValue(i));
-                }
-                results.Add(raw);
-            }
-
-            command.Connection.Close();
-            return results;
+            return this.spExecuteDataReader("ESECUELE.get" + entityName, _params);
         }
 
         /*
@@ -57,12 +42,31 @@ namespace PalcoNet.Modelo.Entidades
             var returnParam = command.Parameters.AddWithValue("@return_val", SqlDbType.Int);
             returnParam.Direction = ParameterDirection.Output;
 
-            Console.WriteLine(command.Parameters);
-
             command.ExecuteNonQuery();
             command.Connection.Close();
 
             return Convert.ToInt32(returnParam.Value);
+        }
+
+        /*Ejecuta un store procedure y devuelve la lista de columnas*/
+        public List<List<object>> spExecuteDataReader(String _spString, List<SqlParameter> _params)
+        {
+            SqlCommand command = this.prepareStoreProcedureCommand(_spString, _params);
+            SqlDataReader raws = command.ExecuteReader();
+            List<List<object>> results = new List<List<object>>();
+
+            while (raws.Read())
+            {
+                List<object> raw = new List<object>();
+                for (int i = 0; i < raws.FieldCount; i++)
+                {
+                    raw.Add(raws.GetValue(i));
+                }
+                results.Add(raw);
+            }
+
+            command.Connection.Close();
+            return results;
         }
     }
 }
