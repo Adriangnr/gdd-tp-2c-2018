@@ -72,6 +72,7 @@
             this.btn_confirm.TabIndex = 5;
             this.btn_confirm.Text = "Continuar";
             this.btn_confirm.UseVisualStyleBackColor = false;
+            this.btn_confirm.Click += new System.EventHandler(this.btn_confirm_Click);
             // 
             // combo_rol
             // 

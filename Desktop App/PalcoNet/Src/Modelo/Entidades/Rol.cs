@@ -37,6 +37,11 @@ namespace PalcoNet.Modelo.Entidades
             });
         }
 
+        public List<Funcionalidad> GetFuncionalidades()
+        {
+            return this.Funcionalidades;
+        }
+
         public override string ToString()
         {
             return this.Nombre;

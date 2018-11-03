@@ -52,6 +52,16 @@ namespace PalcoNet.Modelo.Entidades
             this.Roles.Add(rol);
         }
 
+        public void seleccionarRol(int id)
+        {
+            (this.Roles.Find(rol => rol.Id == id)).Seleccionado = true;
+        }
+
+        public Rol ObtenerRolSeleccionado()
+        {
+            return this.Roles.Find(rol => rol.Seleccionado == true);
+        }
+
         private void LoadAttributes(List<object> row)
         {
             this.Id = (int)row[0];

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace PalcoNet.Modelo.Entidades
 {
-    class Funcionalidad : DatabaseEntity
+    public class Funcionalidad : DatabaseEntity
     {
         private byte id;
         private string name;
