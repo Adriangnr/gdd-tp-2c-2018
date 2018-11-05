@@ -1,4 +1,4 @@
-﻿namespace PalcoNet.Layouts
+﻿namespace PalcoNet.Src.Forms.Layouts
 {
     partial class Master
     {

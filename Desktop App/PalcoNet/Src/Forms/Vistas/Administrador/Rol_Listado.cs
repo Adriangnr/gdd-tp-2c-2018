@@ -8,9 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace PalcoNet.Vistas.Administrador
+namespace PalcoNet.Src.Forms.Vistas.Administrador
 {
-    public partial class Rol_Listado : Layouts.Master
+    public partial class Rol_Listado : Src.Forms.Layouts.Master
     {
         public Rol_Listado()
         {

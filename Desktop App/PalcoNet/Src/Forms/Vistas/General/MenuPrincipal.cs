@@ -9,9 +9,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace PalcoNet.Src.Forms.Vistas.General
+namespace PalcoNet.Src.Forms.Vistas.Administrador.General
 {
-    public partial class MenuPrincipal : Layouts.Master
+    public partial class MenuPrincipal : Src.Forms.Layouts.Master
     {
         private Form previous = null;
         private Usuario user = null;

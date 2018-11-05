@@ -8,9 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace PalcoNet.Vistas.Empresa
+namespace PalcoNet.Src.Forms.Vistas.Administrador.Empresa
 {
-    public partial class Publicacion_Detalle : Layouts.Master
+    public partial class Publicacion_Detalle : Src.Forms.Layouts.Master
     {
         public Publicacion_Detalle()
         {

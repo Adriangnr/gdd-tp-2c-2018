@@ -8,9 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace PalcoNet.Vistas.General
+namespace PalcoNet.Src.Forms.Vistas.Administrador.General
 {
-    public partial class Registro : Layouts.Master
+    public partial class Registro : Src.Forms.Layouts.Master
     {
         public Registro()
         {

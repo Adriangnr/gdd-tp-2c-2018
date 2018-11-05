@@ -1,16 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using PalcoNet.Src.Forms.Layouts;
+using System;
 
-namespace PalcoNet.Vistas
+namespace PalcoNet.Src.Forms.Vistas.Administrador
 {
-    public partial class Comisiones_Detalle : Layouts.Master
+    public partial class Comisiones_Detalle : Master
     {
         public Comisiones_Detalle()
         {

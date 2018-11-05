@@ -8,9 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace PalcoNet.Vistas.Cliente
+namespace PalcoNet.Src.Forms.Vistas.Administrador.Cliente
 {
-    public partial class Historial : Layouts.Master
+    public partial class Historial : Src.Forms.Layouts.Master
     {
         public Historial()
         {

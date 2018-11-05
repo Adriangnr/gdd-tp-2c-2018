@@ -1,4 +1,4 @@
-﻿namespace PalcoNet.Src.Forms.Vistas.Cliente
+﻿namespace PalcoNet.Src.Forms.Vistas.Administrador.Cliente
 {
     partial class Canje_Puntos
     {

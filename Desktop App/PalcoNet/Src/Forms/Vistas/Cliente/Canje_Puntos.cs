@@ -8,9 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace PalcoNet.Src.Forms.Vistas.Cliente
+namespace PalcoNet.Src.Forms.Vistas.Administrador.Cliente
 {
-    public partial class Canje_Puntos : Layouts.Master
+    public partial class Canje_Puntos : Src.Forms.Layouts.Master
     {
         public Canje_Puntos()
         {

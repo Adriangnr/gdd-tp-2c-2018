@@ -1,4 +1,4 @@
-﻿namespace PalcoNet.Vistas.Cliente
+﻿namespace PalcoNet.Src.Forms.Vistas.Administrador.Cliente
 {
     partial class Compra
     {

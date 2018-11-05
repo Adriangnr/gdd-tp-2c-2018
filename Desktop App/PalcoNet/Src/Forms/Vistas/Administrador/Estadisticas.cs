@@ -8,9 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace PalcoNet.Vistas.Administrador
+namespace PalcoNet.Src.Forms.Vistas.Administrador
 {
-    public partial class Estadisticas : Layouts.Master
+    public partial class Estadisticas : Src.Forms.Layouts.Master
     {
         public Estadisticas()
         {

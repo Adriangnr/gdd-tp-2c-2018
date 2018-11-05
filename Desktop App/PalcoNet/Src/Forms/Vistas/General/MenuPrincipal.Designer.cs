@@ -1,4 +1,4 @@
-﻿namespace PalcoNet.Src.Forms.Vistas.General
+﻿namespace PalcoNet.Src.Forms.Vistas.Administrador.General
 {
     partial class MenuPrincipal
     {

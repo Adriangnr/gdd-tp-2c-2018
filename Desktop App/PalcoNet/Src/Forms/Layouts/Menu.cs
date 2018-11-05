@@ -1,14 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
-namespace PalcoNet.Layouts
+namespace PalcoNet.Src.Forms.Layouts
 {
     public partial class MainMenu : Master
     {

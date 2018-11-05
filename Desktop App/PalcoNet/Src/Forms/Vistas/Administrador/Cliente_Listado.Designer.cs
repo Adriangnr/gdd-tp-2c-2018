@@ -1,4 +1,4 @@
-﻿namespace PalcoNet.Vistas.Administrador
+﻿namespace PalcoNet.Src.Forms.Vistas.Administrador
 {
     partial class Cliente_Listado
     {

@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace PalcoNet.Abm_Empresa_Espectaculo
 {
-    public partial class Form1 : Layouts.Listado
+    public partial class Form1 : Src.Forms.Layouts.Listado
     {
         public Form1()
         {

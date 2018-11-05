@@ -8,9 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace PalcoNet.Vistas.Cliente
+namespace PalcoNet.Src.Forms.Vistas.Administrador.Cliente
 {
-    public partial class Compra : Layouts.Listado
+    public partial class Compra : Src.Forms.Layouts.Listado
     {
         public Compra()
         {

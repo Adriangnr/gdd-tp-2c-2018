@@ -1,4 +1,4 @@
-﻿namespace PalcoNet.Vistas
+﻿namespace PalcoNet.Src.Forms.Vistas.Administrador
 {
     partial class Comisiones_Detalle
     {
