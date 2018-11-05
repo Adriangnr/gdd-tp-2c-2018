@@ -1,17 +1,10 @@
 ﻿using PalcoNet.Modelo.Entidades;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using PalcoNet.Src.Forms.Layouts;
 using System.Windows.Forms;
 
-namespace PalcoNet.Src.Forms.Vistas.Administrador.General
+namespace PalcoNet.Src.Forms.Vistas.General
 {
-    public partial class MenuPrincipal : Src.Forms.Layouts.Master
+    public partial class MenuPrincipal : Master
     {
         private Form previous = null;
         private Usuario user = null;

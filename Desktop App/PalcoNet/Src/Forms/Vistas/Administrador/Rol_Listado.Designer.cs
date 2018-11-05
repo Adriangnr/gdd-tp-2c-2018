@@ -32,7 +32,6 @@
             this.list_Roles = new System.Windows.Forms.ListView();
             this.btn_create = new System.Windows.Forms.Button();
             this.btn_edit = new System.Windows.Forms.Button();
-            this.Entidad = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btn_cancel
@@ -123,6 +122,5 @@
         private System.Windows.Forms.ListView list_Roles;
         public System.Windows.Forms.Button btn_create;
         public System.Windows.Forms.Button btn_edit;
-        public System.Windows.Forms.Label Entidad;
     }
 }

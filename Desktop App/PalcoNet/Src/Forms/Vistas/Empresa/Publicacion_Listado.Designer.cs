@@ -1,6 +1,6 @@
-﻿namespace PalcoNet.Editar_Publicacion
+﻿namespace PalcoNet.Src.Forms.Vistas.Empresa
 {
-    partial class Form1
+    partial class Publicacion_Listado
     {
         /// <summary>
         /// Required designer variable.

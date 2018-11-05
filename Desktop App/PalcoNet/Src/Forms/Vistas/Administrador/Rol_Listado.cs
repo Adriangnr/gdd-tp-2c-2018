@@ -1,16 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using PalcoNet.Src.Forms.Layouts;
+using System;
 
 namespace PalcoNet.Src.Forms.Vistas.Administrador
 {
-    public partial class Rol_Listado : Src.Forms.Layouts.Master
+    public partial class Rol_Listado : Listado
     {
         public Rol_Listado()
         {

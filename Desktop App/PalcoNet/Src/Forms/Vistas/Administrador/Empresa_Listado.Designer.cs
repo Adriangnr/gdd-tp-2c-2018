@@ -1,6 +1,6 @@
-﻿namespace PalcoNet.Abm_Empresa_Espectaculo
+﻿namespace PalcoNet.Src.Forms.Vistas.Administrador
 {
-    partial class Form1
+    partial class Empresa_Listado
     {
         /// <summary>
         /// Required designer variable.
@@ -189,7 +189,7 @@
             this.Controls.Add(this.btn_habilitar);
             this.Name = "Form1";
             this.Text = "Form1";
-            this.Load += new System.EventHandler(this.Form1_Load);
+            this.Load += new System.EventHandler(this.Empresa_Listado_Load);
             this.Controls.SetChildIndex(this.groupBox1, 0);
             this.Controls.SetChildIndex(this.listBox1, 0);
             this.Controls.SetChildIndex(this.Entidad, 0);

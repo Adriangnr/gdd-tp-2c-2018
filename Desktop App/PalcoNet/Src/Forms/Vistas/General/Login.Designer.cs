@@ -1,4 +1,4 @@
-﻿namespace PalcoNet.Login
+﻿namespace PalcoNet.Src.Forms.Vistas.General
 {
     partial class Login
     {

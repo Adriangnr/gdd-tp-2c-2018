@@ -1,18 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using PalcoNet.Src.Forms.Layouts;
+using System;
 
-namespace PalcoNet.Editar_Publicacion
+namespace PalcoNet.Src.Forms.Vistas.Empresa
 {
-    public partial class Form1 : Src.Forms.Layouts.Master
+    public partial class Publicacion_Listado : Master
     {
-        public Form1()
+        public Publicacion_Listado()
         {
             InitializeComponent();
         }

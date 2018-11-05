@@ -1,16 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using PalcoNet.Src.Forms.Layouts;
+using System;
 
-namespace PalcoNet.Src.Forms.Vistas.Administrador.General
+namespace PalcoNet.Src.Forms.Vistas.General
 {
-    public partial class Registro : Src.Forms.Layouts.Master
+    public partial class Registro : Master
     {
         public Registro()
         {

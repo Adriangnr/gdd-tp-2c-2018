@@ -1,4 +1,4 @@
-﻿namespace PalcoNet.Src.Forms.Vistas.Administrador.Cliente
+﻿namespace PalcoNet.Src.Forms.Vistas.Cliente
 {
     partial class Historial
     {

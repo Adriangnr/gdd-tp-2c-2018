@@ -1,23 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using PalcoNet.Src.Forms.Layouts;
+using System;
 
-namespace PalcoNet.Abm_Empresa_Espectaculo
+namespace PalcoNet.Src.Forms.Vistas.Administrador
 {
-    public partial class Form1 : Src.Forms.Layouts.Listado
+    public partial class Empresa_Listado : Listado
     {
-        public Form1()
+        public Empresa_Listado()
         {
             InitializeComponent();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void Empresa_Listado_Load(object sender, EventArgs e)
         {
 
         }

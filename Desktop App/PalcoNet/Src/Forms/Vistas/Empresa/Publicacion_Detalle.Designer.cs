@@ -1,4 +1,4 @@
-﻿namespace PalcoNet.Src.Forms.Vistas.Administrador.Empresa
+﻿namespace PalcoNet.Src.Forms.Vistas.Empresa
 {
     partial class Publicacion_Detalle
     {

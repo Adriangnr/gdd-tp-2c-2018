@@ -3,11 +3,11 @@ using PalcoNet.Servicios;
 using System.Windows.Forms;
 using PalcoNet.Servicios.ServiceFactory;
 using PalcoNet.Modelo.Entidades;
-using PalcoNet.Src.Forms.Vistas.Administrador.General;
+using PalcoNet.Src.Forms.Layouts;
 
-namespace PalcoNet.Login
+namespace PalcoNet.Src.Forms.Vistas.General
 {
-    public partial class Login : Src.Forms.Layouts.Master
+    public partial class Login : Master
     {
         int intentosFallidos;
 
