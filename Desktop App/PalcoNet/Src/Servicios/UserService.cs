@@ -10,5 +10,10 @@ namespace PalcoNet.Servicios
         {
             return new Usuario(username);
         }
+
+        public void saveUser(Dictionary<string, string> userParams)
+        {
+
+        }
     }
 }

@@ -33,7 +33,7 @@
             this.register_btn_cancel = new System.Windows.Forms.Button();
             this.register_btn_registrar = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox_contraseña = new System.Windows.Forms.TextBox();
+            this.textBox_contrasena = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.textBox_usuario = new System.Windows.Forms.TextBox();
             this.register_title = new System.Windows.Forms.Label();
@@ -121,13 +121,13 @@
             this.label2.TabIndex = 26;
             this.label2.Text = "Contraseña:";
             // 
-            // textBox_contraseña
+            // textBox_contrasena
             // 
-            this.textBox_contraseña.Location = new System.Drawing.Point(183, 220);
-            this.textBox_contraseña.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.textBox_contraseña.Name = "textBox_contraseña";
-            this.textBox_contraseña.Size = new System.Drawing.Size(204, 26);
-            this.textBox_contraseña.TabIndex = 25;
+            this.textBox_contrasena.Location = new System.Drawing.Point(183, 220);
+            this.textBox_contrasena.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.textBox_contrasena.Name = "textBox_contrasena";
+            this.textBox_contrasena.Size = new System.Drawing.Size(204, 26);
+            this.textBox_contrasena.TabIndex = 25;
             // 
             // label1
             // 
@@ -237,6 +237,7 @@
             this.groupBox1.TabIndex = 34;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Dirección";
+            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // textBox_cp
             // 
@@ -335,6 +336,7 @@
             this.rolSelector.Name = "rolSelector";
             this.rolSelector.Size = new System.Drawing.Size(180, 28);
             this.rolSelector.TabIndex = 36;
+            this.rolSelector.SelectedIndexChanged += new System.EventHandler(this.rolSelector_SelectedIndexChanged);
             // 
             // Registro
             // 
@@ -349,7 +351,7 @@
             this.Controls.Add(this.textBox_mail);
             this.Controls.Add(this.register_title);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.textBox_contraseña);
+            this.Controls.Add(this.textBox_contrasena);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBox_usuario);
             this.Controls.Add(this.link_limpiar);
@@ -366,7 +368,7 @@
             this.Controls.SetChildIndex(this.link_limpiar, 0);
             this.Controls.SetChildIndex(this.textBox_usuario, 0);
             this.Controls.SetChildIndex(this.label1, 0);
-            this.Controls.SetChildIndex(this.textBox_contraseña, 0);
+            this.Controls.SetChildIndex(this.textBox_contrasena, 0);
             this.Controls.SetChildIndex(this.label2, 0);
             this.Controls.SetChildIndex(this.register_title, 0);
             this.Controls.SetChildIndex(this.textBox_mail, 0);
@@ -390,7 +392,7 @@
         private System.Windows.Forms.Button register_btn_cancel;
         private System.Windows.Forms.Button register_btn_registrar;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox_contraseña;
+        private System.Windows.Forms.TextBox textBox_contrasena;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBox_usuario;
         private System.Windows.Forms.Label register_title;
