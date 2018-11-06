@@ -53,20 +53,21 @@ go
 
 /*
 	Rol
-	Estado 0 - Habilitado
-	Estado 1 - Deshabilitado
+	Estado 0 - Deshabilitado
+	Estado 1 - Habilitado
 */
 create table ESECUELE.Rol(
 	rol_id tinyint identity(1,1) primary key,
 	rol_nombre varchar(50) not null,
-	rol_estado bit not null default 0
+	rol_estado bit not null default 1
 )
 go
 
 --Funcionalidad
 create table ESECUELE.Funcionalidad(
 	func_id tinyint identity(1,1) primary key,
-	func_nombre varchar(30) not null
+	func_nombre varchar(30) not null,
+	func_desc varchar(50) not null
 )
 go
 
@@ -275,8 +276,7 @@ go
 */
 
 insert into ESECUELE.Rol (rol_nombre) values
-  ('Administrador General'),
-  ('Administrador'),
+  ('Admin'),
   ('Cliente'),
   ('Empresa')
 
@@ -285,20 +285,41 @@ insert into ESECUELE.Usuario (usr_username, usr_pass) values
   ('admin', hashbytes('SHA2_256', 'w23e'))
 
 -- Se ingresan todas las funcionalidades
-insert into ESECUELE.Funcionalidad (func_nombre) values
-  ('Gestionar roles'),
-  ('Gestionar usuarios'),
-  ('Modificar rol')
+insert into ESECUELE.Funcionalidad (func_nombre, func_desc) values
+  ('Cliente_Listado', 'Listado de Clientes.'),
+  ('Cliente_Registro', 'Registro de Clientes.'),
+  ('Comisiones_Detalle', 'Detalle de Comisiones.'),
+  ('Empresa_Listado', 'Listado de Empresas.'),
+  ('Empresa_Registro', 'Registro de Empresas.'),
+  ('Estadisticas', 'Estadisticas.'),
+  ('Rol_Detalle', 'Detalle de Roles.'),
+  ('Rol_Listado', 'Listado de Roles.'),
+  ('Canje_Puntos', 'Canje de Puntos.'),
+  ('Compra', 'Compras.'),
+  ('Historial', 'Historial.'),
+  ('Publicacion_Detalle', 'Detalle de Publicaciones.'),
+  ('Publicacion_Listado', 'Listado de Publicaciones.')
 go
+
+-- Ingreso de valores para Funcionalidad - Rol
+insert into ESECUELE.Funcionalidad_Rol (frol_rol_id, frol_func_id) values (1,1)
+insert into ESECUELE.Funcionalidad_Rol (frol_rol_id, frol_func_id) values (1,2)
+insert into ESECUELE.Funcionalidad_Rol (frol_rol_id, frol_func_id) values (1,3)
+insert into ESECUELE.Funcionalidad_Rol (frol_rol_id, frol_func_id) values (1,4)
+insert into ESECUELE.Funcionalidad_Rol (frol_rol_id, frol_func_id) values (1,5)
+insert into ESECUELE.Funcionalidad_Rol (frol_rol_id, frol_func_id) values (1,6)
+insert into ESECUELE.Funcionalidad_Rol (frol_rol_id, frol_func_id) values (1,7)
+insert into ESECUELE.Funcionalidad_Rol (frol_rol_id, frol_func_id) values (1,8)
+insert into ESECUELE.Funcionalidad_Rol (frol_rol_id, frol_func_id) values (2,9)
+insert into ESECUELE.Funcionalidad_Rol (frol_rol_id, frol_func_id) values (2,10)
+insert into ESECUELE.Funcionalidad_Rol (frol_rol_id, frol_func_id) values (2,11)
+insert into ESECUELE.Funcionalidad_Rol (frol_rol_id, frol_func_id) values (3,12)
+insert into ESECUELE.Funcionalidad_Rol (frol_rol_id, frol_func_id) values (3,13)
 
 -- Ingreso valores para el administrador greneral
-insert into ESECUELE.Rol_Usuario (rol_usr_rol_id, rol_usr_username)
-values (1,'admin')
-
-insert into ESECUELE.Funcionalidad_Rol (frol_rol_id, frol_func_id)
-select 1, func_id
-from ESECUELE.Funcionalidad
-go
+insert into ESECUELE.Rol_Usuario (rol_usr_rol_id, rol_usr_username) values (1,'admin')
+insert into ESECUELE.Rol_Usuario (rol_usr_rol_id, rol_usr_username) values (2,'admin')
+insert into ESECUELE.Rol_Usuario (rol_usr_rol_id, rol_usr_username) values (3,'admin')
 
 -- Ingreso de medios de pago
 insert into ESECUELE.Medio_de_Pago (medio_pago_descripcion) values('EFECTIVO')

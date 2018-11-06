@@ -54,14 +54,6 @@ namespace PalcoNet.Src.Forms.Vistas.General
             
             switch (result)
             {
-                case -5:
-                    {
-                        UserService usrService = (UserService)ServiceFactory.GetService("UserService");
-                        Usuario usr = usrService.GetUser(username);
-                        new Selector_Rol(this, usr).Show();
-                        this.Hide();
-                        break;
-                    }
                 case -1:
                     {
                         MessageBox.Show(@"El usuario se encuentra deshabilitado.");
@@ -76,6 +68,19 @@ namespace PalcoNet.Src.Forms.Vistas.General
                 case -3:
                     {
                         MessageBox.Show(@"El usuario no existe.");
+                        break;
+                    }
+                case -4:
+                    {
+                        MessageBox.Show(@"El usuario no tiene roles asignados.");
+                        break;
+                    }
+                case -5:
+                    {
+                        UserService usrService = (UserService)ServiceFactory.GetService("UserService");
+                        Usuario usr = usrService.GetUser(username);
+                        new Selector_Rol(this, usr).Show();
+                        this.Hide();
                         break;
                     }
                 default:
@@ -108,7 +113,9 @@ namespace PalcoNet.Src.Forms.Vistas.General
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-
+            Registro registro = new Registro(this);
+            registro.Show();
+            this.Hide();
         }
 
         private void login_tbox_password_Click(object sender, EventArgs e)
@@ -120,6 +127,11 @@ namespace PalcoNet.Src.Forms.Vistas.General
         private void login_tbox_usuario_Click(object sender, EventArgs e)
         {
             login_tbox_usuario.Text = "";
+        }
+
+        private void login_tbox_usuario_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -181,6 +181,7 @@
     <Compile Include="Src\Servicios\LoginService.cs" />
     <Compile Include="Src\Servicios\ServiceFactory\ServiceFactory.cs" />
     <Compile Include="Src\Servicios\UserService.cs" />
+    <Compile Include="Src\Utils\Utils.cs" />
     <EmbeddedResource Include="Src\Forms\Layouts\Listado.resx">
       <DependentUpon>Listado.cs</DependentUpon>
     </EmbeddedResource>
@@ -241,6 +242,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Src\Forms\Vistas\General\MenuPrincipal.resx">
+      <DependentUpon>MenuPrincipal.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Src\Forms\Vistas\General\Registro.resx">
       <DependentUpon>Registro.cs</DependentUpon>
     </EmbeddedResource>

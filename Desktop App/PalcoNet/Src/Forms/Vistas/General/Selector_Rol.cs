@@ -13,6 +13,7 @@ namespace PalcoNet.Src.Forms.Vistas.General
         {
             InitializeComponent();
             this.user = user;
+            this.previous = previous;
             this.combo_rol.DataSource = this.user.GetRoles();
         }
 
@@ -30,7 +31,7 @@ namespace PalcoNet.Src.Forms.Vistas.General
         {
             this.user.seleccionarRol(((Rol)this.combo_rol.SelectedItem).Id);
 
-            MenuPrincipal loginMenu = new MenuPrincipal(this, this.user);
+            MenuPrincipal loginMenu = new MenuPrincipal(this.previous, this.user);
 
             this.Hide();
             loginMenu.Show();

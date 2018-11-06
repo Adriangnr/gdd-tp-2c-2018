@@ -5,9 +5,16 @@ namespace PalcoNet.Src.Forms.Layouts
 {
     public partial class Master : Form
     {
+        protected Form previous;
+
         public Master()
         {
             InitializeComponent();
+        }
+
+        public void setPrevious(Form previous)
+        {
+            this.previous = previous;
         }
 
         private void label1_Click(object sender, EventArgs e)

@@ -32,7 +32,7 @@ namespace PalcoNet.Modelo.Entidades
                 new List<SqlParameter> { new SqlParameter("@role", this.Id) });
             rows.ForEach(row =>
             {
-                Funcionalidad func = new Funcionalidad((byte)row[0], (string)row[1]);
+                Funcionalidad func = new Funcionalidad((byte)row[0], (string)row[1], (string)row[2]);
                 this.Funcionalidades.Add(func);
             });
         }

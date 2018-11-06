@@ -7,11 +7,13 @@ namespace PalcoNet.Modelo.Entidades
     {
         private byte id;
         private string name;
+        private string descripcion;
 
-        public Funcionalidad(byte id, string name)
+        public Funcionalidad(byte id, string name, string descripcion)
         {
             this.id = id;
             this.name = name;
+            this.descripcion = descripcion;
         }
 
         public byte GetId()
@@ -22,6 +24,11 @@ namespace PalcoNet.Modelo.Entidades
         public string GetNombre()
         {
             return this.name;
+        }
+
+        public string GetDescripcion()
+        {
+            return this.descripcion;
         }
     }
 }
