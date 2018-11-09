@@ -1,19 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 
 namespace PalcoNet.Modelo.Entidades
 {
     public class Funcionalidad : DatabaseEntity
     {
-        private byte id;
-        private string name;
-        private string descripcion;
+        private readonly byte id;
+        private readonly string nombre;
+        private readonly string descripcion;
+        // Este estado es para las funcionalidades en modificacion/creacion de roles
+        private EstadoFuncionalidad estado {get; set;}
 
-        public Funcionalidad(byte id, string name, string descripcion)
+        public Funcionalidad(byte id, String nombre, String descripcion)
         {
             this.id = id;
-            this.name = name;
+            this.nombre = nombre;
             this.descripcion = descripcion;
+            this.estado = EstadoFuncionalidad.SIN_CAMBIOS;
         }
 
         public byte GetId()
@@ -23,12 +27,30 @@ namespace PalcoNet.Modelo.Entidades
 
         public string GetNombre()
         {
-            return this.name;
+            return this.nombre;
         }
 
         public string GetDescripcion()
         {
             return this.descripcion;
+        }
+
+
+        public enum EstadoFuncionalidad : short
+        {
+            SIN_ESTADO,
+            NUEVO_CREADO,
+            SIN_CAMBIOS,
+            NUEVO_AGREGADO,
+            NUEVO_BORRADO
+        }
+
+        /*
+         * Este override es para mostrar las descripciones en los CheckedListBox
+         */
+        public override string ToString()
+        {
+            return descripcion;
         }
     }
 }

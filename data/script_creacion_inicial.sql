@@ -38,6 +38,11 @@ select @drop_statement = isnull(@drop_statement, '') +
   ' drop table [' + @schema_name + '].[' + name + '];' + char(13)
   from sys.tables
   where schema_id = @schema_id
+  --Agrego tipos por ahora
+  select @drop_statement = isnull(@drop_statement, '') +
+  ' drop type [' + @schema_name + '].[' + name + '];' + char(13)
+  from sys.types
+  where schema_id = @schema_id
 select @drop_statement = isnull(@drop_statement, '') +
   ' drop function ['  + @schema_name + '].[' + name + '];' + char(13)
   from sys.objects
@@ -58,7 +63,7 @@ go
 */
 create table ESECUELE.Rol(
 	rol_id tinyint identity(1,1) primary key,
-	rol_nombre varchar(50) not null,
+	rol_nombre varchar(50) not null unique,
 	rol_estado bit not null default 1
 )
 go
@@ -671,6 +676,13 @@ as begin
 end
 go
 
+create procedure ESECUELE.getFullListFuncionalidad
+as begin
+	select *
+	from ESECUELE.Funcionalidad
+end
+go
+
 create procedure ESECUELE.getUsuario(@username varchar(50))
 as begin
 	select * from ESECUELE.Usuario u join ESECUELE.Rol_Usuario r on u.usr_username = r.rol_usr_username
@@ -683,3 +695,34 @@ as begin
 	select * from ESECUELE.Rol r where r.rol_id = @id
 end
 go 
+
+create procedure ESECUELE.SaveRol( @rol_nombre_nuevo varchar(50), @return_val smallint output)
+as begin
+	begin try
+		insert into Rol(rol_nombre, rol_estado)
+		values(@rol_nombre_nuevo,1)
+		select @return_val = rol_id from ESECUELE.Rol where rol_nombre = @rol_nombre_nuevo
+	end try
+	begin catch
+		raiserror(50001,30,10,'El rol ya existe.')
+	end catch
+end
+go
+
+CREATE TYPE ESECUELE.FuncRolType AS TABLE
+(
+    frol_rol_id tinyint,
+    frol_func_id tinyint
+);
+go
+
+create procedure ESECUELE.SaveRolFuncionalidades( @func_nuevo_rol as ESECUELE.FuncRolType readonly)
+as begin
+	begin try
+	insert into Funcionalidad_Rol(frol_rol_id,frol_func_id) select frol_rol_id, frol_func_id from @func_nuevo_rol
+	end try
+	begin catch
+		raiserror(50111,30,10,'Error aca')
+	end catch
+end
+go

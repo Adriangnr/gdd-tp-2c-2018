@@ -52,11 +52,6 @@
             this.list_funcionalidades.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.list_funcionalidades.FormattingEnabled = true;
             this.list_funcionalidades.HorizontalScrollbar = true;
-            this.list_funcionalidades.Items.AddRange(new object[] {
-            "Lorem Ipsum",
-            "Lorem Ipsum",
-            "Lorem Ipsum",
-            "Lorem Ipsum"});
             this.list_funcionalidades.Location = new System.Drawing.Point(19, 23);
             this.list_funcionalidades.Name = "list_funcionalidades";
             this.list_funcionalidades.Size = new System.Drawing.Size(386, 195);
@@ -91,6 +86,7 @@
             this.btn_cancel.TabIndex = 30;
             this.btn_cancel.Text = "Cancelar";
             this.btn_cancel.UseVisualStyleBackColor = true;
+            this.btn_cancel.Click += new System.EventHandler(this.btn_cancel_Click);
             // 
             // btn_crear
             // 
@@ -118,6 +114,7 @@
             this.Controls.Add(this.btn_crear);
             this.Name = "Rol_Creacion";
             this.Text = "Rol_Creacion";
+            this.Load += new System.EventHandler(this.Rol_Creacion_Load);
             this.Controls.SetChildIndex(this.btn_crear, 0);
             this.Controls.SetChildIndex(this.btn_cancel, 0);
             this.Controls.SetChildIndex(this.textBox_nombre, 0);
@@ -132,10 +129,10 @@
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox1;
-        public System.Windows.Forms.CheckedListBox list_funcionalidades;
+        private System.Windows.Forms.CheckedListBox list_funcionalidades;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBox_nombre;
         private System.Windows.Forms.Button btn_cancel;
-        public System.Windows.Forms.Button btn_crear;
+        private System.Windows.Forms.Button btn_crear;
     }
 }

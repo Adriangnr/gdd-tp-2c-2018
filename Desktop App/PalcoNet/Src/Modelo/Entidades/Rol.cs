@@ -42,6 +42,11 @@ namespace PalcoNet.Modelo.Entidades
             return this.Funcionalidades;
         }
 
+        public void AgregarFuncionalidad(Funcionalidad funcionalidad)
+        {
+            Funcionalidades.Add(funcionalidad);
+        }
+
         public override string ToString()
         {
             return this.Nombre;

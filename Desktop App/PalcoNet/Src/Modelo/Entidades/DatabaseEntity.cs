@@ -68,5 +68,18 @@ namespace PalcoNet.Modelo.Entidades
             command.Connection.Close();
             return results;
         }
+
+
+        /*
+         * Ejecuta un sproc sin retorno
+         */
+        public void spExecute(String _spString, List<SqlParameter> _params)
+        {
+            SqlCommand command = this.prepareStoreProcedureCommand(_spString, _params);
+
+            command.ExecuteNonQuery();
+
+            command.Connection.Close();
+        }
     }
 }

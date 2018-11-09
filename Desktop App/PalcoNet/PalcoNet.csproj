@@ -67,6 +67,12 @@
     <Compile Include="Src\Forms\Vistas\Administrador\Estadisticas.Designer.cs">
       <DependentUpon>Estadisticas.cs</DependentUpon>
     </Compile>
+    <Compile Include="Src\Forms\Vistas\Administrador\Rol_Creacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Src\Forms\Vistas\Administrador\Rol_Creacion.Designer.cs">
+      <DependentUpon>Rol_Creacion.cs</DependentUpon>
+    </Compile>
     <Compile Include="Src\Forms\Vistas\Administrador\Rol_Listado.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -179,6 +185,7 @@
     <Compile Include="Src\Modelo\Entidades\Usuario.cs" />
     <Compile Include="Src\Servicios\DatabaseService.cs" />
     <Compile Include="Src\Servicios\LoginService.cs" />
+    <Compile Include="Src\Servicios\RolService.cs" />
     <Compile Include="Src\Servicios\ServiceFactory\ServiceFactory.cs" />
     <Compile Include="Src\Servicios\UserService.cs" />
     <Compile Include="Src\Utils\Utils.cs" />
@@ -205,6 +212,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Src\Forms\Vistas\Administrador\Estadisticas.resx">
       <DependentUpon>Estadisticas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Src\Forms\Vistas\Administrador\Rol_Creacion.resx">
+      <DependentUpon>Rol_Creacion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Src\Forms\Vistas\Administrador\Rol_Detalle.resx">
       <DependentUpon>Rol_Detalle.cs</DependentUpon>
