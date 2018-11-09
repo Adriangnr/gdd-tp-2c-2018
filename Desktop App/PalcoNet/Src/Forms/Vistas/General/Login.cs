@@ -98,7 +98,7 @@ namespace PalcoNet.Src.Forms.Vistas.General
 
         private void Login_Load(object sender, EventArgs e)
         {
-
+            this.ActiveControl = login_tbox_usuario;
         }
 
         private void login_label_titulo_Click(object sender, EventArgs e)

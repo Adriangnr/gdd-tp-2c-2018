@@ -159,11 +159,11 @@
         #endregion
 
         private System.Windows.Forms.Button btn_cancel;
-        private System.Windows.Forms.Button btn_guardar;
+        public System.Windows.Forms.Button btn_guardar;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBox_nombre;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.CheckedListBox list_funcionalidades;
+        public System.Windows.Forms.CheckedListBox list_funcionalidades;
         private System.Windows.Forms.CheckBox habilitado;
         private System.Windows.Forms.Button btn_delete;
     }
