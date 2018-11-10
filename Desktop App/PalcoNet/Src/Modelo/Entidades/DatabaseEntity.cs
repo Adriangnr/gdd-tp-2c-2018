@@ -42,30 +42,51 @@ namespace PalcoNet.Modelo.Entidades
             var returnParam = command.Parameters.AddWithValue("@return_val", SqlDbType.Int);
             returnParam.Direction = ParameterDirection.Output;
 
-            command.ExecuteNonQuery();
-            command.Connection.Close();
+            try
+            {
+                command.ExecuteNonQuery();
+            }
+            finally
+            {
+                command.Connection.Close();
+            }
 
             return Convert.ToInt32(returnParam.Value);
+        }
+
+        /*
+         * Para usar por si devuelve un error desde la base
+         * Sacar si no es necesario
+         */
+        public Boolean listadoVacio(List<List<object>> lista)
+        {
+            return lista.Count == 0;
         }
 
         /*Ejecuta un store procedure y devuelve la lista de columnas*/
         public List<List<object>> spExecuteDataReader(String _spString, List<SqlParameter> _params)
         {
             SqlCommand command = this.prepareStoreProcedureCommand(_spString, _params);
-            SqlDataReader raws = command.ExecuteReader();
             List<List<object>> results = new List<List<object>>();
 
-            while (raws.Read())
+            try
             {
-                List<object> raw = new List<object>();
-                for (int i = 0; i < raws.FieldCount; i++)
-                {
-                    raw.Add(raws.GetValue(i));
-                }
-                results.Add(raw);
-            }
+                SqlDataReader raws = command.ExecuteReader();
 
-            command.Connection.Close();
+                while (raws.Read())
+                {
+                    List<object> raw = new List<object>();
+                    for (int i = 0; i < raws.FieldCount; i++)
+                    {
+                        raw.Add(raws.GetValue(i));
+                    }
+                    results.Add(raw);
+                }
+            }
+            finally
+            {
+                command.Connection.Close();
+            }
             return results;
         }
 
@@ -76,10 +97,14 @@ namespace PalcoNet.Modelo.Entidades
         public void spExecute(String _spString, List<SqlParameter> _params)
         {
             SqlCommand command = this.prepareStoreProcedureCommand(_spString, _params);
-
-            command.ExecuteNonQuery();
-
-            command.Connection.Close();
+            try
+            {
+                command.ExecuteNonQuery();
+            }
+            finally
+            {
+                command.Connection.Close();
+            }
         }
     }
 }

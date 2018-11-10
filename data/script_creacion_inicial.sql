@@ -704,7 +704,9 @@ as begin
 		select @return_val = rol_id from ESECUELE.Rol where rol_nombre = @rol_nombre_nuevo
 	end try
 	begin catch
-		raiserror(50001,30,10,'El rol ya existe.')
+		declare @msg VARCHAR(100)
+		set @msg = formatmessage('El rol %s ya existe.', @rol_nombre_nuevo)
+		raiserror(@msg,18,9)
 	end catch
 end
 go
@@ -722,7 +724,7 @@ as begin
 	insert into Funcionalidad_Rol(frol_rol_id,frol_func_id) select frol_rol_id, frol_func_id from @func_nuevo_rol
 	end try
 	begin catch
-		raiserror(50111,30,10,'Error aca')
+		raiserror('Error insercion de funcionalidad_rol', 18, 10)
 	end catch
 end
 go

@@ -34,13 +34,14 @@
             this.textBox_nombre = new System.Windows.Forms.TextBox();
             this.btn_cancel = new System.Windows.Forms.Button();
             this.btn_crear = new System.Windows.Forms.Button();
+            this.label_limpiar_seleccion = new System.Windows.Forms.LinkLabel();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.list_funcionalidades);
-            this.groupBox1.Location = new System.Drawing.Point(317, 60);
+            this.groupBox1.Location = new System.Drawing.Point(318, 77);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(430, 244);
             this.groupBox1.TabIndex = 33;
@@ -62,7 +63,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label1.Location = new System.Drawing.Point(37, 83);
+            this.label1.Location = new System.Drawing.Point(38, 100);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(47, 13);
             this.label1.TabIndex = 32;
@@ -70,7 +71,7 @@
             // 
             // textBox_nombre
             // 
-            this.textBox_nombre.Location = new System.Drawing.Point(114, 80);
+            this.textBox_nombre.Location = new System.Drawing.Point(115, 97);
             this.textBox_nombre.Name = "textBox_nombre";
             this.textBox_nombre.Size = new System.Drawing.Size(137, 20);
             this.textBox_nombre.TabIndex = 31;
@@ -80,7 +81,7 @@
             this.btn_cancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_cancel.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_cancel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.btn_cancel.Location = new System.Drawing.Point(483, 335);
+            this.btn_cancel.Location = new System.Drawing.Point(484, 352);
             this.btn_cancel.Name = "btn_cancel";
             this.btn_cancel.Size = new System.Drawing.Size(129, 45);
             this.btn_cancel.TabIndex = 30;
@@ -94,7 +95,7 @@
             this.btn_crear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_crear.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_crear.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btn_crear.Location = new System.Drawing.Point(618, 335);
+            this.btn_crear.Location = new System.Drawing.Point(619, 352);
             this.btn_crear.Name = "btn_crear";
             this.btn_crear.Size = new System.Drawing.Size(129, 45);
             this.btn_crear.TabIndex = 29;
@@ -102,11 +103,23 @@
             this.btn_crear.UseVisualStyleBackColor = false;
             this.btn_crear.Click += new System.EventHandler(this.btn_crear_Click);
             // 
+            // label_limpiar_seleccion
+            // 
+            this.label_limpiar_seleccion.AutoSize = true;
+            this.label_limpiar_seleccion.Location = new System.Drawing.Point(318, 328);
+            this.label_limpiar_seleccion.Name = "label_limpiar_seleccion";
+            this.label_limpiar_seleccion.Size = new System.Drawing.Size(151, 13);
+            this.label_limpiar_seleccion.TabIndex = 34;
+            this.label_limpiar_seleccion.TabStop = true;
+            this.label_limpiar_seleccion.Text = "Quitar todos los seleccionados";
+            this.label_limpiar_seleccion.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.label_limpiar_seleccion_LinkClicked);
+            // 
             // Rol_Creacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 441);
+            this.Controls.Add(this.label_limpiar_seleccion);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBox_nombre);
@@ -120,6 +133,7 @@
             this.Controls.SetChildIndex(this.textBox_nombre, 0);
             this.Controls.SetChildIndex(this.label1, 0);
             this.Controls.SetChildIndex(this.groupBox1, 0);
+            this.Controls.SetChildIndex(this.label_limpiar_seleccion, 0);
             this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -134,5 +148,6 @@
         private System.Windows.Forms.TextBox textBox_nombre;
         private System.Windows.Forms.Button btn_cancel;
         private System.Windows.Forms.Button btn_crear;
+        private System.Windows.Forms.LinkLabel label_limpiar_seleccion;
     }
 }

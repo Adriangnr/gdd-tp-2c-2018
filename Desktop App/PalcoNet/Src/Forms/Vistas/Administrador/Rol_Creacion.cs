@@ -16,6 +16,10 @@ namespace PalcoNet.Src.Forms.Vistas.Administrador
 {
     public partial class Rol_Creacion : Layouts.Master
     {
+
+        private readonly String ERROR_MSG = "Error";
+        private readonly String EXITO_MSG = "Exito";
+
         public Rol_Creacion()
         {
             InitializeComponent();
@@ -24,9 +28,16 @@ namespace PalcoNet.Src.Forms.Vistas.Administrador
         private void btn_crear_Click(object sender, EventArgs e)
         {
             String nombre_rol = textBox_nombre.Text;
+
             if (String.IsNullOrWhiteSpace(nombre_rol))
 
-                MessageBox.Show("Debe ingresar el nombre del nuevo rol.");
+                MessageBox.Show("Debe ingresar el nombre del nuevo rol.", ERROR_MSG);
+
+            else if (list_funcionalidades.CheckedItems.Count < 1)
+            {
+                MessageBox.Show("Un rol debe tener al menos una funcionalidad.", ERROR_MSG);
+
+            }
             else
             {
                 List<Funcionalidad> funcionalidades_nuevas = list_funcionalidades.CheckedItems.OfType<Funcionalidad>().ToList();
@@ -39,10 +50,12 @@ namespace PalcoNet.Src.Forms.Vistas.Administrador
                 try
                 {
                     rolService.saveRol(rol_nuevo);
+                    MessageBox.Show(String.Format("El rol '{0}' fue creado con exito.", nombre_rol), EXITO_MSG);
                 }
                 catch (SqlException exception)
                 {
-                    MessageBox.Show(exception.Message);
+                    MessageBox.Show(exception.Message, ERROR_MSG);
+                    this.ActiveControl = textBox_nombre;
                 }
             }
         }
@@ -55,7 +68,15 @@ namespace PalcoNet.Src.Forms.Vistas.Administrador
 
         private void btn_cancel_Click(object sender, EventArgs e)
         {
+            this.Close();
+        }
 
+        private void label_limpiar_seleccion_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            for (int i = 0; i < list_funcionalidades.Items.Count; i++)
+            {
+                list_funcionalidades.SetItemChecked(i, false);
+            }
         }
     }
 }
