@@ -22,6 +22,21 @@ namespace PalcoNet.Servicios
             return funcionalidades;
         }
 
+        public List<Rol> getAllRoles()
+        {
+            DatabaseEntity dbEntity = new DatabaseEntity();
+            List<List<Object>> listaDeListas = dbEntity.queryListExecute("SELECT * FROM ESECUELE.Rol ORDER BY rol_nombre");
+            List<Rol> roles = new List<Rol>();
+            listaDeListas.ForEach(lista =>
+            {
+                roles.Add(new Rol(
+                    (byte)lista[0], 
+                    (String)lista[1],
+                    (bool)lista[2]));
+            });
+            return roles;
+        }
+
         public void saveRol(Rol rol)
         {
             DatabaseEntity dbEntity = new DatabaseEntity();

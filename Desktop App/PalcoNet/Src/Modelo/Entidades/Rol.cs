@@ -26,6 +26,13 @@ namespace PalcoNet.Modelo.Entidades
             this.CargarFuncionalidades();
         }
 
+        public Rol(byte id, String nombre, bool estado)
+        {
+            this.Id = id;
+            this.Nombre = nombre;
+            this.Estado = estado;
+        }
+
         private void CargarFuncionalidades()
         {
             List<List<object>> rows = this.spExecuteDataReader("ESECUELE.ListarFuncionalidades",
