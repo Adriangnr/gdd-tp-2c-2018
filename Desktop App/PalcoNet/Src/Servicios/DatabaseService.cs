@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Reflection;
 using PalcoNet.Modelo.DBConector.Database;
-using PalcoNet.Modelo.Entidades;
+using PalcoNet.Src.Modelo.Entidades;
 
-namespace PalcoNet.Servicios
+namespace PalcoNet.Src.Servicios
 {
     public class DatabaseService
     {

@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using PalcoNet.Modelo.Entidades;
+using PalcoNet.Src.Modelo.Entidades;
 using System.Data;
 using System.Data.SqlClient;
 
-namespace PalcoNet.Servicios
+namespace PalcoNet.Src.Servicios
 {
     class RolService : DatabaseService
     {

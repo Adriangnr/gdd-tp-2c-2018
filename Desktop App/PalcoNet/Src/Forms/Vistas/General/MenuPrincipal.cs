@@ -1,4 +1,4 @@
-﻿using PalcoNet.Modelo.Entidades;
+﻿using PalcoNet.Src.Modelo.Entidades;
 using PalcoNet.Src.Forms.Layouts;
 using System.Drawing;
 using PalcoNet.Src.Utils;

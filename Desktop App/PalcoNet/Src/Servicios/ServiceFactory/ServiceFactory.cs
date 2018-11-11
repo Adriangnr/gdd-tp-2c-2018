@@ -8,7 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 
-namespace PalcoNet.Servicios.ServiceFactory
+namespace PalcoNet.Src.Servicios.ServiceFactory
 {
     public class ServiceFactory
     {
@@ -23,7 +23,7 @@ namespace PalcoNet.Servicios.ServiceFactory
             else
             {
                 Assembly assembly = Assembly.GetExecutingAssembly();
-                DatabaseService srv = assembly.CreateInstance("PalcoNet.Servicios."+ serviceName) as DatabaseService;
+                DatabaseService srv = assembly.CreateInstance("PalcoNet.Src.Servicios."+ serviceName) as DatabaseService;
                 services.Add(serviceName, srv);
                 return services[serviceName]; 
             }

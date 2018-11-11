@@ -1,13 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
+using PalcoNet.Src.Modelo.Entidades;
 
-namespace PalcoNet.Servicios
+namespace PalcoNet.Src.Servicios
 {
     class LoginService : DatabaseService
     {
         public int GetLogin(String username, String password)
         {
-           PalcoNet.Modelo.Entidades.Login loginEntity = new PalcoNet.Modelo.Entidades.Login();
+           Login loginEntity = new Login();
            return loginEntity.GetLogin(username, password);
         }
     }

@@ -1,8 +1,8 @@
 ﻿using System;
-using PalcoNet.Servicios;
+using PalcoNet.Src.Servicios;
 using System.Windows.Forms;
-using PalcoNet.Servicios.ServiceFactory;
-using PalcoNet.Modelo.Entidades;
+using PalcoNet.Src.Servicios.ServiceFactory;
+using PalcoNet.Src.Modelo.Entidades;
 using PalcoNet.Src.Forms.Layouts;
 
 namespace PalcoNet.Src.Forms.Vistas.General

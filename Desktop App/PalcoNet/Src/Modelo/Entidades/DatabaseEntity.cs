@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 
-namespace PalcoNet.Modelo.Entidades
+namespace PalcoNet.Src.Modelo.Entidades
 {
     public class DatabaseEntity
     {
@@ -100,6 +100,10 @@ namespace PalcoNet.Modelo.Entidades
             try
             {
                 command.ExecuteNonQuery();
+            }
+            catch(Exception e)
+            {
+                throw e;
             }
             finally
             {
