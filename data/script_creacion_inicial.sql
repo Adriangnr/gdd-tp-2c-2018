@@ -729,7 +729,6 @@ as begin
 end
 go
 
-<<<<<<< HEAD
 create procedure ESECUELE.DeleteRol( @rol_id smallint)
 as begin
 	update ESECUELE.Rol set rol_estado = 0 where rol_id = @rol_id
@@ -739,7 +738,7 @@ go
 create procedure ESECUELE.HabilitarRol( @rol_id smallint)
 as begin
 	update ESECUELE.Rol set rol_estado = 1 where rol_id = @rol_id
-=======
+
 create procedure ESECUELE.SaveUsuario(@usr_username varchar(50), 
 								   @usr_pass varchar(50),
 								   @usr_tipo varchar(7),
@@ -758,6 +757,5 @@ begin
 	begin catch
 		raiserror('Error insercion de usuario', 18, 10)
 	end catch
->>>>>>> 7a29c86ff7f541e2951782964c595a68561116e4
 end
 go
