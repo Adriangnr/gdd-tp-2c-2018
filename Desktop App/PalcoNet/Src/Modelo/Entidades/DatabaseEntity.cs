@@ -11,6 +11,26 @@ namespace PalcoNet.Src.Modelo.Entidades
         protected string schema = "ESECUELE";
         protected Database dbconnector = Database.GetInstance();
 
+        public List<List<object>> queryListExecute(String _query)
+        {
+            List<List<object>> results = null;
+            SqlCommand command = this.dbconnector.obtenerComando();
+            command.CommandType = CommandType.Text;
+            command.CommandText = _query;
+
+            try
+            {
+                SqlDataReader raws = command.ExecuteReader();
+                results = llenarLista(raws);
+            }
+            finally
+            {
+                command.Connection.Close();
+            }
+
+            return results;
+        }
+
         private SqlCommand prepareStoreProcedureCommand(String _spString, List<SqlParameter> _params)
         {
             SqlCommand command = this.dbconnector.obtenerComando();
@@ -61,28 +81,39 @@ namespace PalcoNet.Src.Modelo.Entidades
          */
         public Boolean listadoVacio(List<List<object>> lista)
         {
-            return lista.Count == 0;
+            if (lista == null)
+                return true;
+            else
+                return lista.Count == 0;
+        }
+
+        private List<List<object>> llenarLista(SqlDataReader raws)
+        {
+            List<List<object>> results = new List<List<object>>();
+
+            while (raws.Read())
+            {
+                List<object> raw = new List<object>();
+                for (int i = 0; i < raws.FieldCount; i++)
+                {
+                    raw.Add(raws.GetValue(i));
+                }
+                results.Add(raw);
+            }
+            return results;
         }
 
         /*Ejecuta un store procedure y devuelve la lista de columnas*/
         public List<List<object>> spExecuteDataReader(String _spString, List<SqlParameter> _params)
         {
             SqlCommand command = this.prepareStoreProcedureCommand(_spString, _params);
-            List<List<object>> results = new List<List<object>>();
+            List<List<object>> results = null;
 
             try
             {
                 SqlDataReader raws = command.ExecuteReader();
 
-                while (raws.Read())
-                {
-                    List<object> raw = new List<object>();
-                    for (int i = 0; i < raws.FieldCount; i++)
-                    {
-                        raw.Add(raws.GetValue(i));
-                    }
-                    results.Add(raw);
-                }
+                results = llenarLista(raws);
             }
             finally
             {

@@ -1,4 +1,4 @@
-﻿using PalcoNet.Src.Modelo.Entidades;
+using PalcoNet.Src.Modelo.Entidades;
 using PalcoNet.Src.Servicios;
 using PalcoNet.Src.Servicios.ServiceFactory;
 using System;
@@ -11,12 +11,11 @@ namespace PalcoNet.Src.Forms.Vistas.Administrador
 {
     public partial class Rol_Creacion : Layouts.Master
     {
+        private Rol_Listado form_rol_listado;
 
-        private readonly String ERROR_MSG = "Error";
-        private readonly String EXITO_MSG = "Exito";
-
-        public Rol_Creacion()
+        public Rol_Creacion(Rol_Listado _form_anterior)
         {
+            this.form_rol_listado = _form_anterior;
             InitializeComponent();
         }
 
@@ -26,11 +25,11 @@ namespace PalcoNet.Src.Forms.Vistas.Administrador
 
             if (String.IsNullOrWhiteSpace(nombre_rol))
 
-                MessageBox.Show("Debe ingresar el nombre del nuevo rol.", ERROR_MSG);
+                MessageBox.Show("Debe ingresar el nombre del nuevo rol.", Titulo.ERROR);
 
             else if (list_funcionalidades.CheckedItems.Count < 1)
             {
-                MessageBox.Show("Un rol debe tener al menos una funcionalidad.", ERROR_MSG);
+                MessageBox.Show("Un rol debe tener al menos una funcionalidad.", Titulo.ERROR);
 
             }
             else
@@ -45,11 +44,14 @@ namespace PalcoNet.Src.Forms.Vistas.Administrador
                 try
                 {
                     rolService.saveRol(rol_nuevo);
-                    MessageBox.Show(String.Format("El rol '{0}' fue creado con exito.", nombre_rol), EXITO_MSG);
+                    MessageBox.Show(String.Format("El rol '{0}' fue creado con exito.", nombre_rol), Titulo.EXITO);
+                    form_rol_listado.actualizarListadoRoles();
+                    form_rol_listado.Show();
+                    Close();
                 }
                 catch (SqlException exception)
                 {
-                    MessageBox.Show(exception.Message, ERROR_MSG);
+                    MessageBox.Show(exception.Message, Titulo.ERROR);
                     this.ActiveControl = textBox_nombre;
                 }
             }
@@ -59,11 +61,13 @@ namespace PalcoNet.Src.Forms.Vistas.Administrador
         {
             RolService rolService = (RolService)ServiceFactory.GetService("RolService");
             list_funcionalidades.DataSource = rolService.getAllFuncionalidades();
+            this.ActiveControl = textBox_nombre;
         }
 
         private void btn_cancel_Click(object sender, EventArgs e)
         {
-            this.Close();
+            form_rol_listado.Show();
+            Close();
         }
 
         private void label_limpiar_seleccion_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

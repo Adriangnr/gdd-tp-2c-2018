@@ -22,6 +22,21 @@ namespace PalcoNet.Src.Servicios
             return funcionalidades;
         }
 
+        public List<Rol> getAllRoles()
+        {
+            DatabaseEntity dbEntity = new DatabaseEntity();
+            List<List<Object>> listaDeListas = dbEntity.queryListExecute("SELECT * FROM ESECUELE.Rol ORDER BY rol_nombre");
+            List<Rol> roles = new List<Rol>();
+            listaDeListas.ForEach(lista =>
+            {
+                roles.Add(new Rol(
+                    (byte)lista[0], 
+                    (String)lista[1],
+                    (bool)lista[2]));
+            });
+            return roles;
+        }
+
         public void saveRol(Rol rol)
         {
             DatabaseEntity dbEntity = new DatabaseEntity();
@@ -44,6 +59,18 @@ namespace PalcoNet.Src.Servicios
             sqlParam.Value = dt;
             dbEntity.spExecute("ESECUELE.SaveRolFuncionalidades", new List<SqlParameter> {  sqlParam });
 
+        }
+
+        public void deleteRol(byte id)
+        {
+            DatabaseEntity dbEntity = new DatabaseEntity();
+            dbEntity.spExecute("ESECUELE.DeleteRol", new List<SqlParameter> { new SqlParameter("@rol_id", id) });
+        }
+
+        public void habilitarRol(byte id)
+        {
+            DatabaseEntity dbEntity = new DatabaseEntity();
+            dbEntity.spExecute("ESECUELE.HabilitarRol", new List<SqlParameter> { new SqlParameter("@rol_id", id) });
         }
     }
 }

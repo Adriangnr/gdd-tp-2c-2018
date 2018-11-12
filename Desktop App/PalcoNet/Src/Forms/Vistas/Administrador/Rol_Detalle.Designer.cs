@@ -33,9 +33,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.textBox_nombre = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.list_funcionalidades = new System.Windows.Forms.CheckedListBox();
             this.habilitado = new System.Windows.Forms.CheckBox();
             this.btn_delete = new System.Windows.Forms.Button();
-            this.list_funcionalidades = new System.Windows.Forms.CheckedListBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -50,6 +50,7 @@
             this.btn_cancel.TabIndex = 23;
             this.btn_cancel.Text = "Cancelar";
             this.btn_cancel.UseVisualStyleBackColor = true;
+            this.btn_cancel.Click += new System.EventHandler(this.btn_cancel_Click);
             // 
             // btn_guardar
             // 
@@ -63,6 +64,7 @@
             this.btn_guardar.TabIndex = 22;
             this.btn_guardar.Text = "Guardar";
             this.btn_guardar.UseVisualStyleBackColor = false;
+            this.btn_guardar.Click += new System.EventHandler(this.btn_guardar_Click);
             // 
             // label1
             // 
@@ -91,6 +93,17 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Funcionalidades";
             // 
+            // list_funcionalidades
+            // 
+            this.list_funcionalidades.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.list_funcionalidades.FormattingEnabled = true;
+            this.list_funcionalidades.HorizontalScrollbar = true;
+            this.list_funcionalidades.Location = new System.Drawing.Point(19, 23);
+            this.list_funcionalidades.Name = "list_funcionalidades";
+            this.list_funcionalidades.Size = new System.Drawing.Size(386, 195);
+            this.list_funcionalidades.Sorted = true;
+            this.list_funcionalidades.TabIndex = 0;
+            // 
             // habilitado
             // 
             this.habilitado.AutoSize = true;
@@ -113,22 +126,6 @@
             this.btn_delete.Text = "Eliminar";
             this.btn_delete.UseVisualStyleBackColor = true;
             // 
-            // list_funcionalidades
-            // 
-            this.list_funcionalidades.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.list_funcionalidades.FormattingEnabled = true;
-            this.list_funcionalidades.HorizontalScrollbar = true;
-            this.list_funcionalidades.Items.AddRange(new object[] {
-            "Lorem Ipsum",
-            "Lorem Ipsum",
-            "Lorem Ipsum",
-            "Lorem Ipsum"});
-            this.list_funcionalidades.Location = new System.Drawing.Point(19, 23);
-            this.list_funcionalidades.Name = "list_funcionalidades";
-            this.list_funcionalidades.Size = new System.Drawing.Size(386, 195);
-            this.list_funcionalidades.Sorted = true;
-            this.list_funcionalidades.TabIndex = 0;
-            // 
             // Rol_Detalle
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -143,6 +140,7 @@
             this.Controls.Add(this.btn_guardar);
             this.Name = "Rol_Detalle";
             this.Text = "Palco.NET - Detalle de Rol";
+            this.Load += new System.EventHandler(this.Rol_Detalle_Load);
             this.Controls.SetChildIndex(this.btn_guardar, 0);
             this.Controls.SetChildIndex(this.btn_cancel, 0);
             this.Controls.SetChildIndex(this.textBox_nombre, 0);

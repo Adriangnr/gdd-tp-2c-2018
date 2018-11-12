@@ -1,4 +1,5 @@
-﻿using PalcoNet.Src.Forms.Vistas.General;
+﻿using PalcoNet.Src.Forms.Vistas.Administrador;
+using PalcoNet.Src.Forms.Vistas.General;
 using System;
 using System.Windows.Forms;
 
