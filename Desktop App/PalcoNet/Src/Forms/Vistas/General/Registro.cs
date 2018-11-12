@@ -81,7 +81,8 @@ namespace PalcoNet.Src.Forms.Vistas.General
             }
             catch(ValidadorException exception)
             {
-
+                MessageBox.Show("Faltan campos en el formulario: "+exception.Message);
+                return;
             }
             catch (SqlException exception)
             {

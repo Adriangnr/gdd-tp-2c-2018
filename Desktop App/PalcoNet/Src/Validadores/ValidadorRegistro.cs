@@ -1,26 +1,30 @@
-﻿using System;
+﻿using PalcoNet.Src.Excepciones;
+using System;
 using System.Windows.Forms;
 
 namespace PalcoNet.Src.Validadores
 {
     class ValidadorRegistro : Validador
     {
-        public void textBox_usuario()
+        public void textBox_usuario(TextBox username)
         {
-            Console.WriteLine("Validando usuario");
+            if( username.Text == "")
+            {
+                throw new ValidadorException("Falta el usuario");
+            }
         }
 
-        public void textBox_contrasena()
+        public void textBox_contrasena(TextBox contrasena)
         {
             Console.WriteLine("Validando contrasenia");
         }
 
-        public void textBox_mail()
+        public void textBox_mail(TextBox mail)
         {
             Console.WriteLine("Validando mail");
         }
 
-        public void textBox_telefono()
+        public void textBox_telefono(TextBox telefono)
         {
             Console.WriteLine("Validando telefono");
         }

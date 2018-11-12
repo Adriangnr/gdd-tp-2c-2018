@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PalcoNet.Src.Excepciones;
+using System;
 using System.Reflection;
 using System.Windows.Forms;
 
@@ -11,23 +12,18 @@ namespace PalcoNet.Src.Validadores
             foreach (Control control in registro.Controls)
             {
                 MethodInfo theMethod = this.GetType().GetMethod(control.Name);
-
-                if (control.GetType() == typeof(GroupBox))
+ 
+                 if(theMethod != null)
                 {
-                    foreach(Control groupboxControl in control.Controls)
+                    Control[] methodParam = new Control[] { control };
+                    try
                     {
-
+                        theMethod.Invoke(this, methodParam);
                     }
-                }
-                 
-                 if(theMethod == null)
-                {
-                    Console.WriteLine("Tipo de control: " + control.GetType());
-                    Console.WriteLine("No existe este  metodo -> "+control.Name);
-                }
-                else
-                {
-                    theMethod.Invoke(this, null);
+                    catch(TargetInvocationException e)
+                    {
+                        throw e.InnerException;
+                    }
                 }
             }
         }
