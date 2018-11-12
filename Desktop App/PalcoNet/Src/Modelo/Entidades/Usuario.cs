@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 
-namespace PalcoNet.Modelo.Entidades
+namespace PalcoNet.Src.Modelo.Entidades
 {
     public class Usuario : DatabaseEntity
     {
@@ -11,6 +11,7 @@ namespace PalcoNet.Modelo.Entidades
 
         public int Id { get; set; }
         public string Username { get; set; }
+        public string Password { get; set; }
         public bool Habilitado { get; set; }
         public bool Nuevo { get; set; }
         public int Fallas { get; set; }
@@ -21,9 +22,10 @@ namespace PalcoNet.Modelo.Entidades
         public string Telefono { get; set; }
         public string CodigoPostal { get; set; }
 
-        //constructor por defecto
+        //constructor por defecto para crear nuevos usuarios
         public Usuario(){}
 
+        //constructor con parametros para traerme cierto usuario de la base
         public Usuario(String username)
         {
             List<List<object>> rows = this.Get("Usuario", new List<SqlParameter>
@@ -60,6 +62,27 @@ namespace PalcoNet.Modelo.Entidades
         public Rol ObtenerRolSeleccionado()
         {
             return this.Roles.Find(rol => rol.Seleccionado == true);
+        }
+
+        public void save()
+        {
+            try
+            {
+                this.spExecute("SaveUsuario", new List<SqlParameter>
+            {
+                    new SqlParameter("@usr_username", this.Username),
+                    new SqlParameter("@usr_pass", this.Password),
+                    new SqlParameter("@usr_tipo", this.Tipo),
+                    new SqlParameter("@usr_email", this.Email),
+                    new SqlParameter("@usr_telefono", this.Telefono),
+                    new SqlParameter("@usr_direccion", this.Direccion),
+                    new SqlParameter("@usr_codigo_postal", this.CodigoPostal),
+            });
+            }
+            catch(Exception e)
+            {
+                throw e;
+            }
         }
 
         private void LoadAttributes(List<object> row)

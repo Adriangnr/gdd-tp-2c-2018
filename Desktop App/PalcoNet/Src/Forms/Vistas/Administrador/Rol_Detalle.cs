@@ -1,7 +1,7 @@
-﻿using PalcoNet.Modelo.Entidades;
-using PalcoNet.Servicios;
-using PalcoNet.Servicios.ServiceFactory;
-using PalcoNet.Src.Forms.Layouts;
+﻿using PalcoNet.Src.Forms.Layouts;
+using PalcoNet.Src.Modelo.Entidades;
+using PalcoNet.Src.Servicios;
+using PalcoNet.Src.Servicios.ServiceFactory;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Windows.Forms;

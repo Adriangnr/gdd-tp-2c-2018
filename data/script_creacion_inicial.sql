@@ -729,6 +729,7 @@ as begin
 end
 go
 
+<<<<<<< HEAD
 create procedure ESECUELE.DeleteRol( @rol_id smallint)
 as begin
 	update ESECUELE.Rol set rol_estado = 0 where rol_id = @rol_id
@@ -738,5 +739,25 @@ go
 create procedure ESECUELE.HabilitarRol( @rol_id smallint)
 as begin
 	update ESECUELE.Rol set rol_estado = 1 where rol_id = @rol_id
+=======
+create procedure ESECUELE.SaveUsuario(@usr_username varchar(50), 
+								   @usr_pass varchar(50),
+								   @usr_tipo varchar(7),
+								   @usr_email varchar(50),
+								   @usr_telefono varchar(20),
+								   @usr_direccion varchar(150),
+								   @usr_codigo_postal varchar(10)) as
+begin 
+	begin try
+		declare @encryptedPass varbinary(8000);
+		set @encryptedPass = (SELECT HASHBYTES('SHA2_256', @usr_pass));  
+		insert into ESECUELE.Usuario
+		(usr_username, usr_pass, usr_estado, usr_nuevo, usr_fecha_creacion, usr_tipo, usr_email, usr_telefono, usr_direccion, usr_codigo_postal) 
+		values(@usr_username, @encryptedPass, 1, 0, getdate(), @usr_tipo, @usr_email, @usr_telefono, @usr_direccion, @usr_codigo_postal)
+	end try
+	begin catch
+		raiserror('Error insercion de usuario', 18, 10)
+	end catch
+>>>>>>> 7a29c86ff7f541e2951782964c595a68561116e4
 end
 go

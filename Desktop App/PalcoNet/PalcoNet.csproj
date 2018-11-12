@@ -178,7 +178,9 @@
     <Compile Include="Src\Forms\Vistas\General\Selector_Rol.Designer.cs">
       <DependentUpon>Selector_Rol.cs</DependentUpon>
     </Compile>
+    <Compile Include="Src\Modelo\Entidades\Cliente.cs" />
     <Compile Include="Src\Modelo\Entidades\DatabaseEntity.cs" />
+    <Compile Include="Src\Modelo\Entidades\Empresa.cs" />
     <Compile Include="Src\Modelo\Entidades\Funcionalidad.cs" />
     <Compile Include="Src\Modelo\Entidades\Login.cs" />
     <Compile Include="Src\Modelo\Entidades\Rol.cs" />

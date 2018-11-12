@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 
-namespace PalcoNet.Modelo.Entidades
+namespace PalcoNet.Src.Modelo.Entidades
 {
     public class Funcionalidad : DatabaseEntity
     {

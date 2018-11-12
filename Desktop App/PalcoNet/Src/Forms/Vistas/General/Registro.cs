@@ -1,7 +1,6 @@
-﻿using PalcoNet.Servicios;
-using PalcoNet.Servicios.ServiceFactory;
+﻿using PalcoNet.Src.Servicios;
+using PalcoNet.Src.Servicios.ServiceFactory;
 using PalcoNet.Src.Forms.Layouts;
-using PalcoNet.Src.Forms.Vistas.Administrador;
 using PalcoNet.Src.Utils;
 using System;
 using System.Collections.Generic;
@@ -41,6 +40,8 @@ namespace PalcoNet.Src.Forms.Vistas.General
                 + textBox_depto.Text + ", " + textBox_localidad.Text);
             userParams.Add("usr_codigo_postal", textBox_cp.Text);
 
+            this.loadUserTypeParams(userParams);
+
             return userParams;
         }
 
@@ -48,24 +49,39 @@ namespace PalcoNet.Src.Forms.Vistas.General
         {
             if(userParams["usr_tipo"] == "Cliente")
             {
-
+                userParams.Add("cliente_nombre", this.panel_roldata.Controls[0].Controls["nombre"].Text);
+                userParams.Add("cliente_apellido", this.panel_roldata.Controls[0].Controls["apellido"].Text);
+                userParams.Add("cliente_tipo_doc", this.panel_roldata.Controls[0].Controls["doc"].Text);
+                userParams.Add("cliente_num_doc", this.panel_roldata.Controls[0].Controls["nrodoc"].Text);
+                userParams.Add("cliente_cuil", this.panel_roldata.Controls[0].Controls["cuil"].Text);
+                userParams.Add("cliente_fecha_nacimiento", this.panel_roldata.Controls[0].Controls["nacimiento"].Text);
+                userParams.Add("cliente_datos_tarjeta", this.panel_roldata.Controls[0].Controls["tarjeta"].Text);
+                userParams.Add("cliente_usuario", this.textBox_usuario.Text);
             }
             else
             {
-
+                userParams.Add("empresa_razon_social", this.panel_roldata.Controls[0].Controls["razonSocial"].Text);
+                userParams.Add("empresa_ciudad", this.panel_roldata.Controls[0].Controls["cuit"].Text);
+                userParams.Add("empresa_cuit", this.panel_roldata.Controls[0].Controls["ciudad"].Text);
+                userParams.Add("empresa_usuario", this.textBox_usuario.Text);
             }
         }
 
         private void register_btn_registrar_Click(object sender, EventArgs e)
         {
             Dictionary<string, string> userParams = this.loadUserParams();
-            this.loadUserTypeParams(userParams);
 
             UserService usrService = (UserService)ServiceFactory.GetService("UserService");
-            //UserService.save(userParams);
 
-            MessageBox.Show("Crear la entidad Usuario. Crear la entidad tipo de usuario y metarla dentro de " +
-                "Usuario. Guardar usuario. Redireccionar a Login.");
+            try {
+                usrService.save(userParams);
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show("Error al guardar el usuario: "+ exception.Message);
+            }
+
+            
             this.Hide();
             this.previous.Show();
         }
@@ -77,11 +93,10 @@ namespace PalcoNet.Src.Forms.Vistas.General
 
         private void rolSelector_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Console.WriteLine("PalcoNet.Src.Forms.Vistas.Administrador." + (string)this.rolSelector.SelectedItem + "_Registro");
             this.panel_roldata.Controls.Clear();
             UserControl typeRegister =
                 Utilities.createInstance("PalcoNet.Src.Forms.Vistas.Administrador."+ (string)this.rolSelector.SelectedItem + "_Registro") as UserControl;
-            this.panel_roldata.Controls.Add(new Cliente_Registro());        
+            this.panel_roldata.Controls.Add(typeRegister);        
         }
     }
 }
