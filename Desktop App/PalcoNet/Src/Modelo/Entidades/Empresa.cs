@@ -21,7 +21,7 @@ namespace PalcoNet.Src.Modelo.Entidades
         {
             try
             {
-                this.spExecute("SaveEmpresa", new List<SqlParameter>
+                this.spExecute(this.schema+"SaveEmpresa", new List<SqlParameter>
             {
                     new SqlParameter("@empresa_razon_social", this.RazonSocial),
                     new SqlParameter("@empresa_ciudad", this.Ciudad),

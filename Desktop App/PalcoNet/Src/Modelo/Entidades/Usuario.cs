@@ -68,8 +68,8 @@ namespace PalcoNet.Src.Modelo.Entidades
         {
             try
             {
-                this.spExecute("SaveUsuario", new List<SqlParameter>
-            {
+                this.spExecute(this.schema+".SaveUsuario", new List<SqlParameter>
+                {
                     new SqlParameter("@usr_username", this.Username),
                     new SqlParameter("@usr_pass", this.Password),
                     new SqlParameter("@usr_tipo", this.Tipo),
@@ -77,7 +77,7 @@ namespace PalcoNet.Src.Modelo.Entidades
                     new SqlParameter("@usr_telefono", this.Telefono),
                     new SqlParameter("@usr_direccion", this.Direccion),
                     new SqlParameter("@usr_codigo_postal", this.CodigoPostal),
-            });
+                });
             }
             catch(Exception e)
             {

@@ -8,6 +8,7 @@ namespace PalcoNet.Src.Modelo.Entidades
 {
     public class DatabaseEntity
     {
+        protected string schema = "ESECUELE";
         protected Database dbconnector = Database.GetInstance();
 
         private SqlCommand prepareStoreProcedureCommand(String _spString, List<SqlParameter> _params)
@@ -29,7 +30,7 @@ namespace PalcoNet.Src.Modelo.Entidades
         */
         public List<List<object>> Get(String entityName, List<SqlParameter> _params)
         {
-            return this.spExecuteDataReader("ESECUELE.get" + entityName, _params);
+            return this.spExecuteDataReader(this.schema+".get" + entityName, _params);
         }
 
         /*

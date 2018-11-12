@@ -729,7 +729,7 @@ as begin
 end
 go
 
-create procedure ESECUELE.SaveUsuario(@usr_username varchar(50), 
+alter procedure ESECUELE.SaveUsuario(@usr_username varchar(50), 
 								   @usr_pass varchar(50),
 								   @usr_tipo varchar(7),
 								   @usr_email varchar(50),
@@ -745,7 +745,42 @@ begin
 		values(@usr_username, @encryptedPass, 1, 0, getdate(), @usr_tipo, @usr_email, @usr_telefono, @usr_direccion, @usr_codigo_postal)
 	end try
 	begin catch
-		raiserror('Error insercion de usuario', 18, 10)
+		throw
+	end catch
+end
+go
+
+create procedure ESECUELE.SaveEmpresa(@empresa_razon_social varchar(60), 
+								   @empresa_ciudad varchar(40),
+								   @empresa_cuit varchar(30),
+								   @empresa_usuario varchar(50)) as
+begin 
+	begin try
+		insert into ESECUELE.Empresa
+		(empresa_razon_social, empresa_ciudad, empresa_cuit, empresa_usuario) 
+		values(@empresa_razon_social, @empresa_ciudad, @empresa_cuit, @empresa_usuario)
+	end try
+	begin catch
+		throw
+	end catch
+end
+go
+
+create procedure ESECUELE.SaveCliente(@cliente_nombre varchar(50), 
+								   @cliente_apellido varchar(50),
+								   @cliente_tipo_doc varchar(10),
+								   @cliente_num_doc varchar(30),
+								   @cliente_cuil varchar(30),
+								   @cliente_fecha_nacimiento datetime,
+								   @cliente_usuario varchar(50)) as
+begin 
+	begin try
+		insert into ESECUELE.Cliente
+		(cliente_nombre, cliente_apellido, cliente_tipo_doc, cliente_num_doc, cliente_cuil, cliente_fecha_nacimiento, cliente_usuario) 
+		values(@cliente_nombre, @cliente_apellido, @cliente_tipo_doc, @cliente_num_doc, @cliente_cuil, @cliente_fecha_nacimiento, @cliente_usuario)
+	end try
+	begin catch
+		throw
 	end catch
 end
 go
