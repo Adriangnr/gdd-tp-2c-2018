@@ -668,9 +668,9 @@ as begin
 end
 go
 
-create procedure ESECUELE.ListarFuncionalidades(@role smallint)
+create procedure ESECUELE.getFuncionalidades(@role smallint)
 as begin
-	select F.func_id, F.func_nombre
+	select F.func_id, F.func_nombre, F.func_desc
 	from ESECUELE.Funcionalidad F join ESECUELE.Funcionalidad_Rol FR on FR.frol_func_id = F.func_id
 	where FR.frol_rol_id = @role
 end
@@ -726,5 +726,17 @@ as begin
 	begin catch
 		raiserror('Error insercion de funcionalidad_rol', 18, 10)
 	end catch
+end
+go
+
+create procedure ESECUELE.DeleteRol( @rol_id smallint)
+as begin
+	update ESECUELE.Rol set rol_estado = 0 where rol_id = @rol_id
+end
+go
+
+create procedure ESECUELE.HabilitarRol( @rol_id smallint)
+as begin
+	update ESECUELE.Rol set rol_estado = 1 where rol_id = @rol_id
 end
 go

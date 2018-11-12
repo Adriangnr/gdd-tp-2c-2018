@@ -60,5 +60,17 @@ namespace PalcoNet.Servicios
             dbEntity.spExecute("ESECUELE.SaveRolFuncionalidades", new List<SqlParameter> {  sqlParam });
 
         }
+
+        public void deleteRol(byte id)
+        {
+            DatabaseEntity dbEntity = new DatabaseEntity();
+            dbEntity.spExecute("ESECUELE.DeleteRol", new List<SqlParameter> { new SqlParameter("@rol_id", id) });
+        }
+
+        public void habilitarRol(byte id)
+        {
+            DatabaseEntity dbEntity = new DatabaseEntity();
+            dbEntity.spExecute("ESECUELE.HabilitarRol", new List<SqlParameter> { new SqlParameter("@rol_id", id) });
+        }
     }
 }

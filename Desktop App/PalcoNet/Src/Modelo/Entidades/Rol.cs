@@ -35,7 +35,7 @@ namespace PalcoNet.Modelo.Entidades
 
         private void CargarFuncionalidades()
         {
-            List<List<object>> rows = this.spExecuteDataReader("ESECUELE.ListarFuncionalidades",
+            List<List<object>> rows = this.spExecuteDataReader("ESECUELE.getFuncionalidades",
                 new List<SqlParameter> { new SqlParameter("@role", this.Id) });
             rows.ForEach(row =>
             {
@@ -46,6 +46,8 @@ namespace PalcoNet.Modelo.Entidades
 
         public List<Funcionalidad> GetFuncionalidades()
         {
+            if (Funcionalidades.Count == 0)
+                CargarFuncionalidades();
             return this.Funcionalidades;
         }
 

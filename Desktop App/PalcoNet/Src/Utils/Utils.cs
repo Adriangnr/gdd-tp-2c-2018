@@ -14,5 +14,6 @@ namespace PalcoNet.Src.Utils
             Assembly assembly = Assembly.GetExecutingAssembly();
             return assembly.CreateInstance(classFullName);
         }
+
     }
 }

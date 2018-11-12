@@ -10,7 +10,7 @@ namespace PalcoNet.Modelo.Entidades
         private readonly string nombre;
         private readonly string descripcion;
         // Este estado es para las funcionalidades en modificacion/creacion de roles
-        private EstadoFuncionalidad estado {get; set;}
+        private EstadoFuncionalidad estado;
 
         public Funcionalidad(byte id, String nombre, String descripcion)
         {
@@ -35,6 +35,16 @@ namespace PalcoNet.Modelo.Entidades
             return this.descripcion;
         }
 
+
+        public EstadoFuncionalidad GetEstado()
+        {
+            return this.estado;
+        }
+
+        public void SetEstado( EstadoFuncionalidad estado)
+        {
+            this.estado = estado;
+        }
 
         public enum EstadoFuncionalidad : short
         {
