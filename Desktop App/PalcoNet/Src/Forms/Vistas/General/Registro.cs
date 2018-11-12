@@ -5,6 +5,9 @@ using PalcoNet.Src.Utils;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using System.Data.SqlClient;
+using PalcoNet.Src.Excepciones;
+using PalcoNet.Src.Validadores;
 
 namespace PalcoNet.Src.Forms.Vistas.General
 {
@@ -69,14 +72,18 @@ namespace PalcoNet.Src.Forms.Vistas.General
 
         private void register_btn_registrar_Click(object sender, EventArgs e)
         {
-            Dictionary<string, string> userParams = this.loadUserParams();
-
-            UserService usrService = (UserService)ServiceFactory.GetService("UserService");
-
             try {
+                ValidadorRegistro validReg = new ValidadorRegistro();
+                validReg.validar(this);
+                Dictionary<string, string> userParams = this.loadUserParams();
+                UserService usrService = (UserService)ServiceFactory.GetService("UserService");
                 usrService.save(userParams);
             }
-            catch (Exception exception)
+            catch(ValidadorException exception)
+            {
+
+            }
+            catch (SqlException exception)
             {
                 MessageBox.Show("Error al guardar el usuario: "+ exception.Message);
             }
