@@ -36,7 +36,7 @@ namespace PalcoNet.Src.Forms.Vistas.General
                 newButton.Name = f.GetNombre();
 
                 i++;
-                if( i >= rol.GetFuncionalidades().Count / 2)
+                if( i > rol.GetFuncionalidades().Count / 2)
                 {
                     buttonTop = 10;
                     buttonLeft = 200;

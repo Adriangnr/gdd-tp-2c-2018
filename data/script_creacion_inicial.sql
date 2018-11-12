@@ -729,13 +729,14 @@ as begin
 end
 go
 
-alter procedure ESECUELE.SaveUsuario(@usr_username varchar(50), 
+create procedure ESECUELE.SaveUsuario(@usr_username varchar(50), 
 								   @usr_pass varchar(50),
 								   @usr_tipo varchar(7),
 								   @usr_email varchar(50),
 								   @usr_telefono varchar(20),
 								   @usr_direccion varchar(150),
-								   @usr_codigo_postal varchar(10)) as
+								   @usr_codigo_postal varchar(10), 
+								   @return_val int output) as
 begin 
 	begin try
 		declare @encryptedPass varbinary(8000);
@@ -743,6 +744,7 @@ begin
 		insert into ESECUELE.Usuario
 		(usr_username, usr_pass, usr_estado, usr_nuevo, usr_fecha_creacion, usr_tipo, usr_email, usr_telefono, usr_direccion, usr_codigo_postal) 
 		values(@usr_username, @encryptedPass, 1, 0, getdate(), @usr_tipo, @usr_email, @usr_telefono, @usr_direccion, @usr_codigo_postal)
+		set @return_val = (SELECT SCOPE_IDENTITY())
 	end try
 	begin catch
 		throw
@@ -779,6 +781,30 @@ begin
 		(cliente_nombre, cliente_apellido, cliente_tipo_doc, cliente_num_doc, cliente_cuil, cliente_fecha_nacimiento, cliente_usuario) 
 		values(@cliente_nombre, @cliente_apellido, @cliente_tipo_doc, @cliente_num_doc, @cliente_cuil, @cliente_fecha_nacimiento, @cliente_usuario)
 	end try
+	begin catch
+		throw
+	end catch
+end
+go
+
+create procedure ESECUELE.DeleteUsuario(@usr_id int) as
+begin
+	begin try
+		delete from ESECUELE.Usuario where usr_id = @usr_id
+	end try
+	begin catch
+		throw
+	end catch
+end
+go
+
+create procedure ESECUELE.SaveRolUsuario(@rolName varchar(20), @username varchar(40)) as
+begin
+	begin try
+		insert into ESECUELE.Rol_Usuario (rol_usr_rol_id, rol_usr_username, rol_usr_seleccionado)
+		values ((select rol_id from ESECUELE.Rol where rol_nombre = @rolName) , @username, 1)
+	end try
+	
 	begin catch
 		throw
 	end catch

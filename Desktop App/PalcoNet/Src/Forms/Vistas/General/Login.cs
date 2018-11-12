@@ -88,9 +88,8 @@ namespace PalcoNet.Src.Forms.Vistas.General
                         intentosFallidos = 0;
                         UserService usrService = (UserService)ServiceFactory.GetService("UserService");
                         Usuario usr = usrService.GetUser(username);
-                        //new MenuPrincipal.MainMenu(this, Usuario).Show();
-                        //this.Hide();
-                        MessageBox.Show(String.Format("El usuario tiene solo 1 rol"));
+                        new MenuPrincipal(this, usr).Show();
+                        this.Hide();
                         break;
                     }
             }

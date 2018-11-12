@@ -39,7 +39,7 @@ namespace PalcoNet.Src.Modelo.Entidades
                     this.LoadAttributes(row);
                     this.prepared = 1;
                 }
-                this.addRol((byte)row[12]);
+                this.addRol((byte)row[12], (bool)row[14]);
             });
         }
 
@@ -48,9 +48,10 @@ namespace PalcoNet.Src.Modelo.Entidades
             return this.Roles;
         }
 
-        public void addRol(byte rolId)
+        public void addRol(byte rolId, bool seleccionado)
         {
             Rol rol = new Rol(rolId);
+            rol.Seleccionado = seleccionado;
             this.Roles.Add(rol);
         }
 
@@ -64,11 +65,25 @@ namespace PalcoNet.Src.Modelo.Entidades
             return this.Roles.Find(rol => rol.Seleccionado == true);
         }
 
+        public void delete()
+        {
+            try
+            {
+                this.spExecute(this.schema + ".DeleteUsuario", new List<SqlParameter> {
+                    new SqlParameter("@usr_id", this.Id)
+                });
+            }
+            catch(Exception exception)
+            {
+                throw exception;
+            }
+        }
+
         public void save()
         {
             try
             {
-                this.spExecute(this.schema+".SaveUsuario", new List<SqlParameter>
+                this.Id = this.spExecuteScalar(this.schema+".SaveUsuario", new List<SqlParameter>
                 {
                     new SqlParameter("@usr_username", this.Username),
                     new SqlParameter("@usr_pass", this.Password),
@@ -79,9 +94,9 @@ namespace PalcoNet.Src.Modelo.Entidades
                     new SqlParameter("@usr_codigo_postal", this.CodigoPostal),
                 });
             }
-            catch(Exception e)
+            catch(Exception exception)
             {
-                throw e;
+                throw exception;
             }
         }
 
@@ -92,7 +107,6 @@ namespace PalcoNet.Src.Modelo.Entidades
             this.Habilitado = (bool)row[3];
             this.Nuevo = (bool)row[4];
             this.Fallas = (byte)row[5];
-            this.FechaCreacion = (row[6].GetType() != typeof(System.DBNull)) ? (string)row[6] : null;
             this.Tipo = (row[7].GetType() != typeof(System.DBNull)) ? (string)row[7] : null;
             this.Email = (row[8].GetType() != typeof(System.DBNull)) ? (string)row[8] : null;
             this.Telefono = (row[9].GetType() != typeof(System.DBNull)) ? (string)row[9] : null;

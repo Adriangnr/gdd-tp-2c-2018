@@ -25,7 +25,7 @@ namespace PalcoNet.Src.Modelo.Entidades
         {
             try
             {
-                this.spExecute(this.schema+"SaveCliente", new List<SqlParameter>
+                this.spExecute(this.schema+".SaveCliente", new List<SqlParameter>
             {
                     new SqlParameter("@cliente_nombre", this.Nombre),
                     new SqlParameter("@cliente_apellido", this.Apellido),

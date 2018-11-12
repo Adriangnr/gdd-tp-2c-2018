@@ -43,6 +43,12 @@ namespace PalcoNet.Src.Servicios
             }
         }
 
+        private void saveRoles(Dictionary<string, string> userParams)
+        {
+            Rol_Usuario rolUsuario = new Rol_Usuario(userParams["usr_tipo"], userParams["usr_username"]);
+            rolUsuario.save();
+        }
+
         private void saveUserData(Dictionary<string, string> userParams)
         {
             Usuario usuario = new Usuario();
@@ -52,14 +58,16 @@ namespace PalcoNet.Src.Servicios
             usuario.Email = userParams["usr_email"];
             usuario.Telefono = userParams["usr_telefono"];
             usuario.Direccion = userParams["usr_direccion"];
-            usuario.Direccion = userParams["usr_codigo_postal"];
+            usuario.CodigoPostal = userParams["usr_codigo_postal"];
             try
                 {
                 usuario.save();
                 this.saveType(userParams);
+                this.saveRoles(userParams);
                 }
                 catch(Exception e)
                 {
+                    usuario.delete();
                     throw e;
                 }
         }
