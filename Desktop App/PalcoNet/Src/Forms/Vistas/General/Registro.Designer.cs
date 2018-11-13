@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.GroupBox groupBoxDireccion;
             this.panel_roldata = new System.Windows.Forms.Panel();
             this.link_limpiar = new System.Windows.Forms.LinkLabel();
             this.register_btn_cancel = new System.Windows.Forms.Button();
@@ -43,7 +44,6 @@
             this.textBox_telefono = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.textBox_calle = new System.Windows.Forms.TextBox();
-            this.groupBoxDireccion = new System.Windows.Forms.GroupBox();
             this.textBox_cp = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.textBox_depto = new System.Windows.Forms.TextBox();
@@ -54,7 +54,8 @@
             this.label7 = new System.Windows.Forms.Label();
             this.groupBoxTipoUsuario = new System.Windows.Forms.GroupBox();
             this.rolSelector = new System.Windows.Forms.ComboBox();
-            this.groupBoxDireccion.SuspendLayout();
+            groupBoxDireccion = new System.Windows.Forms.GroupBox();
+            groupBoxDireccion.SuspendLayout();
             this.groupBoxTipoUsuario.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -219,25 +220,25 @@
             // 
             // groupBoxDireccion
             // 
-            this.groupBoxDireccion.Controls.Add(this.textBox_cp);
-            this.groupBoxDireccion.Controls.Add(this.label10);
-            this.groupBoxDireccion.Controls.Add(this.textBox_depto);
-            this.groupBoxDireccion.Controls.Add(this.label9);
-            this.groupBoxDireccion.Controls.Add(this.textBox_piso);
-            this.groupBoxDireccion.Controls.Add(this.label8);
-            this.groupBoxDireccion.Controls.Add(this.textBox_localidad);
-            this.groupBoxDireccion.Controls.Add(this.label7);
-            this.groupBoxDireccion.Controls.Add(this.textBox_calle);
-            this.groupBoxDireccion.Controls.Add(this.label6);
-            this.groupBoxDireccion.Location = new System.Drawing.Point(56, 389);
-            this.groupBoxDireccion.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.groupBoxDireccion.Name = "groupBoxDireccion";
-            this.groupBoxDireccion.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.groupBoxDireccion.Size = new System.Drawing.Size(594, 143);
-            this.groupBoxDireccion.TabIndex = 34;
-            this.groupBoxDireccion.TabStop = false;
-            this.groupBoxDireccion.Text = "Dirección";
-            this.groupBoxDireccion.Enter += new System.EventHandler(this.groupBox1_Enter);
+            groupBoxDireccion.Controls.Add(this.textBox_cp);
+            groupBoxDireccion.Controls.Add(this.label10);
+            groupBoxDireccion.Controls.Add(this.textBox_depto);
+            groupBoxDireccion.Controls.Add(this.label9);
+            groupBoxDireccion.Controls.Add(this.textBox_piso);
+            groupBoxDireccion.Controls.Add(this.label8);
+            groupBoxDireccion.Controls.Add(this.textBox_localidad);
+            groupBoxDireccion.Controls.Add(this.label7);
+            groupBoxDireccion.Controls.Add(this.textBox_calle);
+            groupBoxDireccion.Controls.Add(this.label6);
+            groupBoxDireccion.Location = new System.Drawing.Point(56, 389);
+            groupBoxDireccion.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            groupBoxDireccion.Name = "groupBoxDireccion";
+            groupBoxDireccion.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            groupBoxDireccion.Size = new System.Drawing.Size(594, 143);
+            groupBoxDireccion.TabIndex = 34;
+            groupBoxDireccion.TabStop = false;
+            groupBoxDireccion.Text = "Dirección";
+            groupBoxDireccion.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // textBox_cp
             // 
@@ -344,7 +345,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1176, 678);
             this.Controls.Add(this.groupBoxTipoUsuario);
-            this.Controls.Add(this.groupBoxDireccion);
+            this.Controls.Add(groupBoxDireccion);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.textBox_telefono);
             this.Controls.Add(this.label4);
@@ -375,10 +376,10 @@
             this.Controls.SetChildIndex(this.label4, 0);
             this.Controls.SetChildIndex(this.textBox_telefono, 0);
             this.Controls.SetChildIndex(this.label5, 0);
-            this.Controls.SetChildIndex(this.groupBoxDireccion, 0);
+            this.Controls.SetChildIndex(groupBoxDireccion, 0);
             this.Controls.SetChildIndex(this.groupBoxTipoUsuario, 0);
-            this.groupBoxDireccion.ResumeLayout(false);
-            this.groupBoxDireccion.PerformLayout();
+            groupBoxDireccion.ResumeLayout(false);
+            groupBoxDireccion.PerformLayout();
             this.groupBoxTipoUsuario.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -402,7 +403,6 @@
         private System.Windows.Forms.TextBox textBox_telefono;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox textBox_calle;
-        private System.Windows.Forms.GroupBox groupBoxDireccion;
         private System.Windows.Forms.TextBox textBox_cp;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox textBox_depto;

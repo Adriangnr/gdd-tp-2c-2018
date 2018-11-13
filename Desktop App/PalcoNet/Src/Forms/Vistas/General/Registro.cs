@@ -74,19 +74,22 @@ namespace PalcoNet.Src.Forms.Vistas.General
         {
             try {
                 ValidadorRegistro validReg = new ValidadorRegistro();
-                validReg.validar(this);
+                validReg.validar(this.Controls);
                 Dictionary<string, string> userParams = this.loadUserParams();
                 UserService usrService = (UserService)ServiceFactory.GetService("UserService");
                 usrService.save(userParams);
             }
             catch(ValidadorException exception)
             {
-                MessageBox.Show("Faltan campos en el formulario: "+exception.Message);
+                MessageBox.Show(exception.Message, "Error al registrar el usuario.",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            catch (SqlException exception)
+            catch (SqlException)
             {
-                MessageBox.Show("Error al guardar el usuario: "+ exception.Message);
+                MessageBox.Show("El usuario ya existe!", "Error al registrar el usuario.",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
 
             
