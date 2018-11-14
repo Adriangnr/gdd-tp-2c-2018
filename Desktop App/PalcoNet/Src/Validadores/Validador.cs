@@ -3,13 +3,12 @@ using System;
 using System.Reflection;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
-using static System.Windows.Forms.Control;
 
 namespace PalcoNet.Src.Validadores
 {
     abstract class Validador
     {
-        public void validar(ControlCollection campos)
+        public void validar(Control.ControlCollection campos)
         {
             foreach (Control control in campos)
             {
