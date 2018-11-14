@@ -61,7 +61,7 @@ namespace PalcoNet.Src.Validadores
 
         public void textBox_telefono(TextBox telefono)
         {
-            this.validarCampoTexto(telefono, "Telefono", new Regex(@"^\D?(\d{3})\D?\D?(\d{3})\D?(\d{4})$"));
+            this.validarCampoTexto(telefono, "Telefono", new Regex(@"^[0-9]{4,20}$"));
         }
 
         public void groupBoxDireccion(GroupBox direccion)
@@ -71,65 +71,65 @@ namespace PalcoNet.Src.Validadores
 
         public void panel_roldata(Panel roldata)
         {
-            this.validar(roldata.Controls);
+            this.validar(roldata.Controls[0].Controls);
         }
 
-        protected void textBox_calle(TextBox calle)
+        public void textBox_calle(TextBox calle)
         {
-            this.validarCampoTexto(calle, "Calle", new Regex("^[a-zA-Z0-9_.-]*$"));
+            this.validarCampoTexto(calle, "Calle", new Regex("^[a-zA-Z0-9_.- ]*$"));
         }
-        
-        protected void textBox_piso(TextBox piso)
+
+        public void textBox_piso(TextBox piso)
         {
             this.validarCampoTexto(piso, "Piso", new Regex("^[a-zA-Z0-9]{1,3}$"));
          }
 
-        protected void textBox_depto(TextBox depto)
+        public void textBox_depto(TextBox depto)
         {
             this.validarCampoTexto(depto, "Depto", new Regex("^[a-zA-Z0-9]{1,3}$"));
         }
 
-        protected void textBox_localidad(TextBox localidad)
+        public void textBox_localidad(TextBox localidad)
         {
-            this.validarCampoTexto(localidad, "Localdad", new Regex(@"^[a-zA-Z0-9\.,]*$"));
+            this.validarCampoTexto(localidad, "Localdad", new Regex(@"^[a-zA-Z0-9\., ]*$"));
         }
 
-        protected void textBox_cp(TextBox cp)
+        public void textBox_cp(TextBox cp)
         {
-            this.validarCampoTexto(cp, "CP", new Regex(@"^\d{5}$"));
+            this.validarCampoTexto(cp, "CP", new Regex(@"^\d{2,5}$"));
         }
 
-        protected void nombre(TextBox nombreCliente)
+        public void nombre(TextBox nombreCliente)
         {
             this.validarCampoTexto(nombreCliente, "Nombre", new Regex(@"^[a-zA-Z]+(([\'\,\.\-][a-zA-Z])?[a-zA-Z]*)*$"));
         }
 
-        protected void apellido(TextBox apellidoCliente)
+        public void apellido(TextBox apellidoCliente)
         {
             this.validarCampoTexto(apellidoCliente, "Apellido", new Regex(@"^[a-zA-Z]+(([\'\,\.\-][a-zA-Z])?[a-zA-Z]*)*$"));
         }
 
-        protected void nrodoc(TextBox nrodocCliente)
+        public void nrodoc(TextBox nrodocCliente)
         {
             this.validarCampoTexto(nrodocCliente, "Numero de documento", new Regex(@"^[0-9]{8,8}$"));
         }
 
-        protected void cuil(TextBox cuilCliente)
+        public void cuil(TextBox cuilCliente)
         {
             this.validarCampoTexto(cuilCliente, "Cuil", new Regex(@"^[0-9]{2}-[0-9]{8}-[0-9]$"));
         }
 
-        protected void razonSocial(TextBox razonSocial)
+        public void razonSocial(TextBox razonSocial)
         {
-            this.validarCampoTexto(razonSocial, "Razon Social", new Regex(@"^[a-zA-Z]+(([\'\,\.\-][a-zA-Z])?[a-zA-Z]*)*$"));
+            this.validarCampoTexto(razonSocial, "Razon Social", new Regex(@"^[a-zA-Z ]+(([\'\,\.\-][a-zA-Z ])?[a-zA-Z ]*)*$"));
         }
 
-        protected void cuit(TextBox cuitEmpresa)
+        public void cuit(TextBox cuitEmpresa)
         {
             this.validarCampoTexto(cuitEmpresa, "Cuit", new Regex(@"^[0-9]{2}-[0-9]{8}-[0-9]$"));
         }
 
-        protected void ciudad(TextBox ciudadEmpresa)
+        public void ciudad(TextBox ciudadEmpresa)
         {
             this.validarCampoTexto(ciudadEmpresa, "Ciudad", new Regex(@"^[a-zA-Z]+(([\'\,\.\-][a-zA-Z])?[a-zA-Z]*)*$"));
         }

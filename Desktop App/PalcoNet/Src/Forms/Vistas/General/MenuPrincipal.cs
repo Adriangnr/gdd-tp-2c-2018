@@ -39,7 +39,7 @@ namespace PalcoNet.Src.Forms.Vistas.General
                 if( i > rol.GetFuncionalidades().Count / 2)
                 {
                     buttonTop = 10;
-                    buttonLeft = 200;
+                    buttonLeft = 230;
                     i = 0;
                 }
 

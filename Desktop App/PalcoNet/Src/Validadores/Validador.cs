@@ -34,7 +34,7 @@ namespace PalcoNet.Src.Validadores
         {
             if (campo.Text == "")
             {
-                throw new ValidadorException("El campo " + descripcion + "es requerido!");
+                throw new ValidadorException("El campo " + descripcion + " es requerido!");
             }
             else
             {

@@ -78,6 +78,7 @@ namespace PalcoNet.Src.Forms.Vistas.General
                 Dictionary<string, string> userParams = this.loadUserParams();
                 UserService usrService = (UserService)ServiceFactory.GetService("UserService");
                 usrService.save(userParams);
+                MessageBox.Show("Usuario guardado con exito!", "Nuevo usuario", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch(ValidadorException exception)
             {
@@ -85,8 +86,9 @@ namespace PalcoNet.Src.Forms.Vistas.General
                                 MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            catch (SqlException)
+            catch (SqlException excep)
             {
+                MessageBox.Show(excep.Message);
                 MessageBox.Show("El usuario ya existe!", "Error al registrar el usuario.",
                                 MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
