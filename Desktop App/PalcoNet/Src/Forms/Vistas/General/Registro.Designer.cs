@@ -198,6 +198,7 @@
             this.link_limpiar.TabIndex = 22;
             this.link_limpiar.TabStop = true;
             this.link_limpiar.Text = "Limpiar Formulario";
+            this.link_limpiar.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.link_limpiar_LinkClicked);
             // 
             // register_btn_cancel
             // 

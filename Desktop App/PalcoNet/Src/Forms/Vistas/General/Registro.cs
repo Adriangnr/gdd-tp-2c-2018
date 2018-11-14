@@ -111,5 +111,29 @@ namespace PalcoNet.Src.Forms.Vistas.General
                 Utilities.createInstance("PalcoNet.Src.Forms.Vistas.Administrador."+ (string)this.rolSelector.SelectedItem + "_Registro") as UserControl;
             this.panel_roldata.Controls.Add(typeRegister);        
         }
+
+        private void limpiarFormulario(Control.ControlCollection campos)
+        {
+            foreach (Control control in campos)
+            {
+                if(control.GetType() == typeof(GroupBox))
+                {
+                    this.limpiarFormulario(control.Controls);
+                }
+                else if(control.GetType() == typeof(Panel))
+                {
+                    this.limpiarFormulario(control.Controls[0].Controls);
+                }
+                else if (control.GetType() == typeof(TextBox))
+                {
+                    control.Text = "";
+                }
+            }
+        }
+
+        private void link_limpiar_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            this.limpiarFormulario(this.Controls);
+        }
     }
 }
