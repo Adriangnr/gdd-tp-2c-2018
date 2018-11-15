@@ -36,7 +36,7 @@ namespace PalcoNet.Src.Forms.Vistas.Administrador
             {
                 List<Funcionalidad> funcionalidades_nuevas = list_funcionalidades.CheckedItems.OfType<Funcionalidad>().ToList();
 
-                RolService rolService = (RolService)ServiceFactory.GetService("RolService");
+                RolService rolService = (RolService)ServiceFactory.GetService("Rol");
 
                 Rol rol_nuevo = new Rol();
                 rol_nuevo.Nombre = nombre_rol;
@@ -59,7 +59,7 @@ namespace PalcoNet.Src.Forms.Vistas.Administrador
 
         private void Rol_Creacion_Load(object sender, EventArgs e)
         {
-            RolService rolService = (RolService)ServiceFactory.GetService("RolService");
+            RolService rolService = (RolService)ServiceFactory.GetService("Rol");
             list_funcionalidades.DataSource = rolService.getAllFuncionalidades();
             this.ActiveControl = textBox_nombre;
         }

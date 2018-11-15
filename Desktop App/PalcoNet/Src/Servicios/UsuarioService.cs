@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace PalcoNet.Src.Servicios
 {
-    class UserService : DatabaseService
+    class UsuarioService : DatabaseService
     {
         public Usuario GetUser(String username)
         {
@@ -14,6 +14,22 @@ namespace PalcoNet.Src.Servicios
         public void save(Dictionary<string, string> userParams)
         {
             this.saveUserData(userParams);
+        }
+
+        public Usuario LoadData(List<object> data)
+        {
+            Usuario usuarioObj = new Usuario();
+            usuarioObj.Id = (int)data[9];
+            usuarioObj.Username = (string)data[10];
+            usuarioObj.Password = System.Text.Encoding.UTF8.GetString((byte[])data[11]);
+            usuarioObj.Habilitado = (bool)data[12];
+            usuarioObj.Nuevo = (bool)data[13];
+            usuarioObj.Email = (string)data[17];
+            usuarioObj.Telefono = (data[18].GetType() != typeof(System.DBNull)) ? (string)data[18] : null;
+            usuarioObj.Direccion = (string)data[19];
+            usuarioObj.CodigoPostal = (string)data[20];
+
+            return usuarioObj;
         }
 
         private void saveType(Dictionary<string, string> userParams)

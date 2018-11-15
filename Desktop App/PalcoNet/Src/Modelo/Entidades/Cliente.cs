@@ -4,6 +4,8 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
+using static System.Windows.Forms.Control;
 
 namespace PalcoNet.Src.Modelo.Entidades
 {
@@ -18,6 +20,9 @@ namespace PalcoNet.Src.Modelo.Entidades
         public string FechaNacimiento { get; set; }
         public string DatosTarjeta { get; set; }
         public string Usuario { get; set; }
+        public string Habilitado { get; set; }
+        public Usuario UsuarioObj { get; set; }
+
 
         public Cliente() { }
 
@@ -37,6 +42,29 @@ namespace PalcoNet.Src.Modelo.Entidades
             });
             }
             catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        public List<List<object>> Search(ControlCollection filters)
+        {
+            try
+            {
+                List<SqlParameter> parameters = new List<SqlParameter>();
+
+                foreach(Control field in filters)
+                {
+                    if(field.GetType() == typeof(TextBox))
+                    {
+                        string value = null;
+                        if (field.Text != "") value = field.Text;
+                        parameters.Add(new SqlParameter("@" + field.Name, value));
+                    }
+                }
+                return this.spExecuteDataReader("searchClients", parameters);
+            }
+            catch(Exception e)
             {
                 throw e;
             }

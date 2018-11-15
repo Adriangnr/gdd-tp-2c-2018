@@ -76,7 +76,7 @@ namespace PalcoNet.Src.Forms.Vistas.General
                 ValidadorRegistro validReg = new ValidadorRegistro();
                 validReg.validar(this.Controls);
                 Dictionary<string, string> userParams = this.loadUserParams();
-                UserService usrService = (UserService)ServiceFactory.GetService("UserService");
+                UsuarioService usrService = (UsuarioService)ServiceFactory.GetService("Usuario");
                 usrService.save(userParams);
                 MessageBox.Show("Usuario guardado con exito!", "Nuevo usuario", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }

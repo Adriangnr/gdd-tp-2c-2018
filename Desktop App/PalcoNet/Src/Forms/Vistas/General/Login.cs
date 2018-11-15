@@ -49,7 +49,7 @@ namespace PalcoNet.Src.Forms.Vistas.General
              Aca llamo a ServiceFactory y le paso el nombre del servicio que quiero. Hay que castearlo, porque 
              la factory devuelve un servicio generico que se llama DatabaseService.
              */
-            LoginService loginService = (LoginService)ServiceFactory.GetService("LoginService");
+            LoginService loginService = (LoginService)ServiceFactory.GetService("Login");
             int result = loginService.GetLogin(username, password);
             
             switch (result)
@@ -77,7 +77,7 @@ namespace PalcoNet.Src.Forms.Vistas.General
                     }
                 case -5:
                     {
-                        UserService usrService = (UserService)ServiceFactory.GetService("UserService");
+                        UsuarioService usrService = (UsuarioService)ServiceFactory.GetService("Usuario");
                         Usuario usr = usrService.GetUser(username);
                         new Selector_Rol(this, usr).Show();
                         this.Hide();
@@ -86,7 +86,7 @@ namespace PalcoNet.Src.Forms.Vistas.General
                 default:
                     {
                         intentosFallidos = 0;
-                        UserService usrService = (UserService)ServiceFactory.GetService("UserService");
+                        UsuarioService usrService = (UsuarioService)ServiceFactory.GetService("User");
                         Usuario usr = usrService.GetUser(username);
                         new MenuPrincipal(this, usr).Show();
                         this.Hide();

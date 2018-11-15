@@ -820,3 +820,58 @@ begin
 	end catch
 end
 go
+
+create procedure searchClients(@nombre varchar(50) = null, 
+							  @apellido varchar(50) = null, 
+							  @dni varchar(30) = null, 
+							  @email varchar(50) = null)
+as
+begin
+	declare @where bit
+	set @where = 0
+	declare @query nvarchar(500);
+	set @query = N'select * from ESECUELE.Cliente c join ESECUELE.Usuario u on c.cliente_usuario = u.usr_username';
+
+	if @nombre is not null or  @apellido is not null or @dni is not null or @email is not null
+	begin
+		set @query = @query + ' where '
+		if @nombre is not null 
+		begin
+			set @query = @query + 'c.cliente_nombre like ''%'	+ @nombre + '%'''
+			set @where = 1
+		end
+
+		if @apellido is not null 
+		begin
+			if @where = 0
+				begin
+					set @query = @query + 'c.cliente_apellido like ''%'	+ @apellido + '%'''
+					set @where = 1
+				end
+			else set @query = @query + ' and c.cliente_apellido like ''%'	+ @apellido + '%'''
+		end
+
+		if @dni is not null 
+		begin
+			if @where = 0
+				begin
+					set @query = @query + 'c.cliente_num_doc like ''%'	+ @dni + '%'''
+					set @where = 1
+				end
+			else set @query = @query + ' and c.cliente_num_doc like ''%'	+ @dni + '%'''
+		end
+
+		if @email is not null 
+		begin
+			if @where = 0
+				begin
+					set @query = @query + 'u.usr_email like ''%'	+ @email + '%'''
+					set @where = 1
+				end
+			else set @query = @query + ' and u.usr_email like ''%' + @email + '%'''
+		end
+	end
+
+	exec sp_executesql @query
+end
+go

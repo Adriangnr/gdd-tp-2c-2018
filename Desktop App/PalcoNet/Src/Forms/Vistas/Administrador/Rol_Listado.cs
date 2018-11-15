@@ -34,7 +34,7 @@ namespace PalcoNet.Src.Forms.Vistas.Administrador
 
         public void actualizarListadoRoles()
         {
-            RolService rolService = (RolService)ServiceFactory.GetService("RolService");
+            RolService rolService = (RolService)ServiceFactory.GetService("Rol");
             list_Roles.DataSource = rolService.getAllRoles();
         }
 

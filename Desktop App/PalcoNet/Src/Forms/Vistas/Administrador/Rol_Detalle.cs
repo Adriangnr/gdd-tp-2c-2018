@@ -22,7 +22,7 @@ namespace PalcoNet.Src.Forms.Vistas.Administrador
 
         private void Rol_Detalle_Load(object sender, System.EventArgs e)
         {
-            RolService rolService = (RolService)ServiceFactory.GetService("RolService");
+            RolService rolService = (RolService)ServiceFactory.GetService("Rol");
 
             list_funcionalidades.DataSource = rolService.getAllFuncionalidades();
             textBox_nombre.Text = rol.Nombre;
@@ -52,7 +52,7 @@ namespace PalcoNet.Src.Forms.Vistas.Administrador
 
         private void btn_guardar_Click(object sender, System.EventArgs e)
         {
-            RolService rolService = (RolService)ServiceFactory.GetService("RolService");
+            RolService rolService = (RolService)ServiceFactory.GetService("Rol");
             if (!habilitado.Checked && rol.Estado)
             {
                 rolService.deleteRol(rol.Id);
