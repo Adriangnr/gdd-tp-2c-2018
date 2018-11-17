@@ -32,9 +32,6 @@
             this.login_btn_salir = new System.Windows.Forms.Button();
             this.login_tbox_usuario = new System.Windows.Forms.TextBox();
             this.login_tbox_password = new System.Windows.Forms.TextBox();
-            this.shapeContainer1 = new Microsoft.VisualBasic.PowerPacks.ShapeContainer();
-            this.rectangleShape2 = new Microsoft.VisualBasic.PowerPacks.RectangleShape();
-            this.rectangleShape1 = new Microsoft.VisualBasic.PowerPacks.RectangleShape();
             this.registerLink = new System.Windows.Forms.LinkLabel();
             this.login_label = new System.Windows.Forms.Label();
             this.titulo = new System.Windows.Forms.Label();
@@ -100,36 +97,6 @@
             this.login_tbox_password.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.login_tbox_password.Click += new System.EventHandler(this.login_tbox_password_Click);
             // 
-            // shapeContainer1
-            // 
-            this.shapeContainer1.Location = new System.Drawing.Point(0, 0);
-            this.shapeContainer1.Margin = new System.Windows.Forms.Padding(0);
-            this.shapeContainer1.Name = "shapeContainer1";
-            this.shapeContainer1.Shapes.AddRange(new Microsoft.VisualBasic.PowerPacks.Shape[] {
-            this.rectangleShape2,
-            this.rectangleShape1});
-            this.shapeContainer1.Size = new System.Drawing.Size(1176, 678);
-            this.shapeContainer1.TabIndex = 17;
-            this.shapeContainer1.TabStop = false;
-            // 
-            // rectangleShape2
-            // 
-            this.rectangleShape2.BackColor = System.Drawing.SystemColors.Control;
-            this.rectangleShape2.BackStyle = Microsoft.VisualBasic.PowerPacks.BackStyle.Opaque;
-            this.rectangleShape2.BorderColor = System.Drawing.SystemColors.ControlLightLight;
-            this.rectangleShape2.Location = new System.Drawing.Point(285, 133);
-            this.rectangleShape2.Name = "rectangleShape2";
-            this.rectangleShape2.Size = new System.Drawing.Size(275, 47);
-            // 
-            // rectangleShape1
-            // 
-            this.rectangleShape1.BackColor = System.Drawing.SystemColors.Control;
-            this.rectangleShape1.BackStyle = Microsoft.VisualBasic.PowerPacks.BackStyle.Opaque;
-            this.rectangleShape1.BorderColor = System.Drawing.SystemColors.ControlLightLight;
-            this.rectangleShape1.Location = new System.Drawing.Point(286, 208);
-            this.rectangleShape1.Name = "rectangleShape1";
-            this.rectangleShape1.Size = new System.Drawing.Size(275, 47);
-            // 
             // registerLink
             // 
             this.registerLink.ActiveLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
@@ -181,12 +148,10 @@
             this.Controls.Add(this.login_tbox_usuario);
             this.Controls.Add(this.login_btn_salir);
             this.Controls.Add(this.login_btn_entrar);
-            this.Controls.Add(this.shapeContainer1);
             this.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
             this.Name = "Login";
             this.Text = "Login";
             this.Load += new System.EventHandler(this.Login_Load);
-            this.Controls.SetChildIndex(this.shapeContainer1, 0);
             this.Controls.SetChildIndex(this.login_btn_entrar, 0);
             this.Controls.SetChildIndex(this.login_btn_salir, 0);
             this.Controls.SetChildIndex(this.login_tbox_usuario, 0);
@@ -205,11 +170,8 @@
         private System.Windows.Forms.Button login_btn_salir;
         private System.Windows.Forms.TextBox login_tbox_usuario;
         private System.Windows.Forms.TextBox login_tbox_password;
-        private Microsoft.VisualBasic.PowerPacks.ShapeContainer shapeContainer1;
-        private Microsoft.VisualBasic.PowerPacks.RectangleShape rectangleShape1;
         private System.Windows.Forms.LinkLabel registerLink;
         private System.Windows.Forms.Label login_label;
-        private Microsoft.VisualBasic.PowerPacks.RectangleShape rectangleShape2;
         private System.Windows.Forms.Label titulo;
     }
 }

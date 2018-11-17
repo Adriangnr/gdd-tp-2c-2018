@@ -1,14 +1,13 @@
 ﻿using PalcoNet.Src.Modelo.Entidades;
 using System;
 using System.Collections.Generic;
-using static System.Windows.Forms.Control;
 using PalcoNet.Src.Servicios.ServiceFactory;
 
 namespace PalcoNet.Src.Servicios
 {
     class ClienteService : DatabaseService
     {
-        public List<Cliente> Search(ControlCollection filtros)
+        public List<Cliente> Search(System.Windows.Forms.Control.ControlCollection filtros)
         {
             Cliente clienteSearchEntity = new Cliente();
             try
