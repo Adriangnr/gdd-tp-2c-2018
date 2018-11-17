@@ -281,7 +281,7 @@ go
 */
 
 insert into ESECUELE.Rol (rol_nombre) values
-  ('Admin'),
+  ('Administrador'),
   ('Cliente'),
   ('Empresa')
 
