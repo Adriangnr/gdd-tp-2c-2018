@@ -5,7 +5,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.Control;
 
 namespace PalcoNet.Src.Modelo.Entidades
 {
@@ -47,7 +46,7 @@ namespace PalcoNet.Src.Modelo.Entidades
             }
         }
 
-        public List<List<object>> Search(ControlCollection filters)
+        public List<List<object>> Search(System.Windows.Forms.Control.ControlCollection filters)
         {
             try
             {
