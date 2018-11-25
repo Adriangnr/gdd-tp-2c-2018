@@ -13,6 +13,8 @@ namespace PalcoNet.Src.Forms.Vistas.Administrador
         private Rol_Listado rol_listado;
         private Rol rol;
 
+        public Rol_Detalle() { }
+
         public Rol_Detalle(Rol_Listado rol_listado, Rol rol)
         {
             this.rol = rol;

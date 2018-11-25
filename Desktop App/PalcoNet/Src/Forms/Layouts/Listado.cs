@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PalcoNet.Src.Utils;
+using System;
 using System.Windows.Forms;
 
 namespace PalcoNet.Src.Forms.Layouts
@@ -15,24 +16,15 @@ namespace PalcoNet.Src.Forms.Layouts
 
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label5_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
+            Utilities.clearForm(this.Controls);
+        }
 
+        private void btn_cancel_Click(object sender, EventArgs e)
+        {
+            this.previous.Show();
+            this.Hide();
         }
     }
 }

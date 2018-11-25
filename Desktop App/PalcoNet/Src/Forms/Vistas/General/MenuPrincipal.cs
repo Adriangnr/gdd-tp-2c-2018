@@ -48,12 +48,20 @@ namespace PalcoNet.Src.Forms.Vistas.General
                 newButton.AutoSize = true;
                 newButton.Click += (s, e) =>
                 {
-                    
-                    Master funcForm = Utilities.createInstance("PalcoNet.Src.Forms.Vistas."+
+                    if (f.GetNombre() == "Empresa_Registro" || f.GetNombre() == "Cliente_Registro")
+                    {
+                        Registro registro = new Registro(this);
+                        registro.Show();
+                        this.Hide();
+                    }
+                    else
+                    {
+                        Master funcForm = Utilities.createInstance("PalcoNet.Src.Forms.Vistas." +
                         rol.Nombre + "." + f.GetNombre()) as Master;
-                    funcForm.setPrevious(this);
-                    funcForm.Show();
-                    this.Hide();
+                        funcForm.setPrevious(this);
+                        funcForm.Show();
+                        this.Hide();
+                    }
                 };
 
                 buttonTop += (newButton.Height + 15);

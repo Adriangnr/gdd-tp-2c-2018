@@ -297,7 +297,6 @@ insert into ESECUELE.Funcionalidad (func_nombre, func_desc) values
   ('Empresa_Listado', 'Listado de Empresas.'),
   ('Empresa_Registro', 'Registro de Empresas.'),
   ('Estadisticas', 'Estadisticas.'),
-  ('Rol_Detalle', 'Detalle de Roles.'),
   ('Rol_Listado', 'Listado de Roles.'),
   ('Canje_Puntos', 'Canje de Puntos.'),
   ('Compra', 'Compras.'),

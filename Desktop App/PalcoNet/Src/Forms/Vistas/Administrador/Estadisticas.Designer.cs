@@ -49,10 +49,10 @@
             this.btn_search.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_search.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_search.ForeColor = System.Drawing.SystemColors.Window;
-            this.btn_search.Location = new System.Drawing.Point(19, 267);
+            this.btn_search.Location = new System.Drawing.Point(28, 411);
             this.btn_search.Margin = new System.Windows.Forms.Padding(0);
             this.btn_search.Name = "btn_search";
-            this.btn_search.Size = new System.Drawing.Size(145, 45);
+            this.btn_search.Size = new System.Drawing.Size(218, 69);
             this.btn_search.TabIndex = 5;
             this.btn_search.Text = "Buscar";
             this.btn_search.UseVisualStyleBackColor = false;
@@ -64,9 +64,10 @@
             this.linkLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.linkLabel1.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
             this.linkLabel1.LinkColor = System.Drawing.SystemColors.MenuHighlight;
-            this.linkLabel1.Location = new System.Drawing.Point(49, 241);
+            this.linkLabel1.Location = new System.Drawing.Point(74, 371);
+            this.linkLabel1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(86, 16);
+            this.linkLabel1.Size = new System.Drawing.Size(125, 25);
             this.linkLabel1.TabIndex = 14;
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "Limpiar filtros";
@@ -75,9 +76,10 @@
             // 
             this.label_cuit.AutoSize = true;
             this.label_cuit.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_cuit.Location = new System.Drawing.Point(16, 82);
+            this.label_cuit.Location = new System.Drawing.Point(24, 126);
+            this.label_cuit.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_cuit.Name = "label_cuit";
-            this.label_cuit.Size = new System.Drawing.Size(59, 15);
+            this.label_cuit.Size = new System.Drawing.Size(86, 22);
             this.label_cuit.TabIndex = 84;
             this.label_cuit.Text = "Trimestre";
             // 
@@ -85,9 +87,10 @@
             // 
             this.label_razon_social.AutoSize = true;
             this.label_razon_social.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_razon_social.Location = new System.Drawing.Point(16, 29);
+            this.label_razon_social.Location = new System.Drawing.Point(24, 45);
+            this.label_razon_social.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_razon_social.Name = "label_razon_social";
-            this.label_razon_social.Size = new System.Drawing.Size(28, 15);
+            this.label_razon_social.Size = new System.Drawing.Size(42, 22);
             this.label_razon_social.TabIndex = 82;
             this.label_razon_social.Text = "Año";
             // 
@@ -95,26 +98,29 @@
             // 
             this.label_email.AutoSize = true;
             this.label_email.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_email.Location = new System.Drawing.Point(16, 136);
+            this.label_email.Location = new System.Drawing.Point(24, 209);
+            this.label_email.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_email.Name = "label_email";
-            this.label_email.Size = new System.Drawing.Size(66, 15);
+            this.label_email.Size = new System.Drawing.Size(97, 22);
             this.label_email.TabIndex = 81;
             this.label_email.Text = "Estadística";
             // 
             // cb_anio
             // 
             this.cb_anio.FormattingEnabled = true;
-            this.cb_anio.Location = new System.Drawing.Point(16, 48);
+            this.cb_anio.Location = new System.Drawing.Point(24, 74);
+            this.cb_anio.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cb_anio.Name = "cb_anio";
-            this.cb_anio.Size = new System.Drawing.Size(145, 24);
+            this.cb_anio.Size = new System.Drawing.Size(216, 33);
             this.cb_anio.TabIndex = 6;
             // 
             // cb_trimestre
             // 
             this.cb_trimestre.FormattingEnabled = true;
-            this.cb_trimestre.Location = new System.Drawing.Point(16, 102);
+            this.cb_trimestre.Location = new System.Drawing.Point(24, 157);
+            this.cb_trimestre.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cb_trimestre.Name = "cb_trimestre";
-            this.cb_trimestre.Size = new System.Drawing.Size(145, 24);
+            this.cb_trimestre.Size = new System.Drawing.Size(216, 33);
             this.cb_trimestre.TabIndex = 86;
             // 
             // cb_estadistica
@@ -124,9 +130,10 @@
             "Empresas con mayor cantidad de localidades no vendidas",
             "Clientes con mayores puntos vencidos",
             "Clientes con mayor cantidad de compras"});
-            this.cb_estadistica.Location = new System.Drawing.Point(16, 155);
+            this.cb_estadistica.Location = new System.Drawing.Point(24, 238);
+            this.cb_estadistica.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cb_estadistica.Name = "cb_estadistica";
-            this.cb_estadistica.Size = new System.Drawing.Size(145, 24);
+            this.cb_estadistica.Size = new System.Drawing.Size(216, 33);
             this.cb_estadistica.TabIndex = 87;
             // 
             // groupBox1
@@ -141,9 +148,11 @@
             this.groupBox1.Controls.Add(this.btn_search);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.ForeColor = System.Drawing.Color.DimGray;
-            this.groupBox1.Location = new System.Drawing.Point(32, 78);
+            this.groupBox1.Location = new System.Drawing.Point(48, 120);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(189, 328);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.groupBox1.Size = new System.Drawing.Size(284, 505);
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Filtros";
@@ -153,41 +162,47 @@
             this.btn_cancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_cancel.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_cancel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.btn_cancel.Location = new System.Drawing.Point(632, 354);
+            this.btn_cancel.Location = new System.Drawing.Point(948, 545);
+            this.btn_cancel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btn_cancel.Name = "btn_cancel";
-            this.btn_cancel.Size = new System.Drawing.Size(129, 45);
+            this.btn_cancel.Size = new System.Drawing.Size(194, 69);
             this.btn_cancel.TabIndex = 59;
             this.btn_cancel.Text = "Cancelar";
             this.btn_cancel.UseVisualStyleBackColor = true;
+            this.btn_cancel.Click += new System.EventHandler(this.btn_cancel_Click);
             // 
             // Entidad
             // 
             this.Entidad.AutoSize = true;
             this.Entidad.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Entidad.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.Entidad.Location = new System.Drawing.Point(242, 40);
+            this.Entidad.Location = new System.Drawing.Point(363, 62);
+            this.Entidad.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Entidad.Name = "Entidad";
-            this.Entidad.Size = new System.Drawing.Size(88, 18);
+            this.Entidad.Size = new System.Drawing.Size(141, 29);
             this.Entidad.TabIndex = 58;
             this.Entidad.Text = "Estadísticas";
             // 
             // listBox1
             // 
             this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(245, 83);
+            this.listBox1.ItemHeight = 20;
+            this.listBox1.Location = new System.Drawing.Point(368, 128);
+            this.listBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(366, 316);
+            this.listBox1.Size = new System.Drawing.Size(547, 484);
             this.listBox1.TabIndex = 57;
             // 
             // Estadisticas
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(784, 441);
+            this.ClientSize = new System.Drawing.Size(1176, 678);
             this.Controls.Add(this.btn_cancel);
             this.Controls.Add(this.Entidad);
             this.Controls.Add(this.listBox1);
             this.Controls.Add(this.groupBox1);
+            this.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
             this.Name = "Estadisticas";
             this.Text = "Estadisticas";
             this.Load += new System.EventHandler(this.Estadisticas_Load);

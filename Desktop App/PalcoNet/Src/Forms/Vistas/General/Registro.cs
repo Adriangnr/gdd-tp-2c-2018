@@ -13,6 +13,8 @@ namespace PalcoNet.Src.Forms.Vistas.General
 {
     public partial class Registro : Master
     {
+        public Registro() { }
+
         public Registro(Form previous)
         {
             this.previous = previous;
@@ -114,21 +116,7 @@ namespace PalcoNet.Src.Forms.Vistas.General
 
         private void limpiarFormulario(Control.ControlCollection campos)
         {
-            foreach (Control control in campos)
-            {
-                if(control.GetType() == typeof(GroupBox))
-                {
-                    this.limpiarFormulario(control.Controls);
-                }
-                else if(control.GetType() == typeof(Panel))
-                {
-                    this.limpiarFormulario(control.Controls[0].Controls);
-                }
-                else if (control.GetType() == typeof(TextBox))
-                {
-                    control.Text = "";
-                }
-            }
+            Utilities.clearForm(campos);
         }
 
         private void link_limpiar_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

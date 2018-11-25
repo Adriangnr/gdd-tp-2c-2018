@@ -3,6 +3,7 @@ using PalcoNet.Src.Servicios.ServiceFactory;
 using PalcoNet.Src.Servicios;
 using System;
 using System.Windows.Forms;
+using System.Data;
 
 namespace PalcoNet.Src.Forms.Vistas.Administrador
 {
@@ -24,6 +25,10 @@ namespace PalcoNet.Src.Forms.Vistas.Administrador
             try
             {
                 this.dataGridClientes.DataSource = clienteService.Search(this.groupBox1.Controls);
+                
+                if ( this.dataGridClientes.Rows.Count == 0)
+                    MessageBox.Show("No se encontraron clientes!", "Listado de clientes.",
+                                MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 for (int i = 0; i < this.dataGridClientes.Columns.Count; i++)
                     this.dataGridClientes.Columns[i].Visible = false;
@@ -36,8 +41,9 @@ namespace PalcoNet.Src.Forms.Vistas.Administrador
 
                 this.dataGridClientes.AutoGenerateColumns = false;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Console.WriteLine(ex.Message);
                 MessageBox.Show("Error al buscar clientes!", "Error!",
                                 MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
