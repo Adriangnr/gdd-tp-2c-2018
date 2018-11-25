@@ -17,6 +17,7 @@ namespace PalcoNet.Src.Forms.Vistas.Administrador
         {
             this.rol = rol;
             this.rol_listado = rol_listado;
+            rol.CargarFuncionalidades();
             InitializeComponent();
         }
 
@@ -38,7 +39,7 @@ namespace PalcoNet.Src.Forms.Vistas.Administrador
                     if(fun_rol.GetId().Equals(fun.GetId()))
                     {
                         list_funcionalidades.SetItemChecked(i, true);
-                        fun_rol.SetEstado(Funcionalidad.EstadoFuncionalidad.SIN_CAMBIOS);
+                        fun.SetEstado(Funcionalidad.EstadoFuncionalidad.SIN_CAMBIOS);
                     }
                 }
             }
@@ -53,16 +54,56 @@ namespace PalcoNet.Src.Forms.Vistas.Administrador
         private void btn_guardar_Click(object sender, System.EventArgs e)
         {
             RolService rolService = (RolService)ServiceFactory.GetService("Rol");
+
+            List<Funcionalidad> funcionalidades_cambiadas = new List<Funcionalidad>();
+
+            bool huboCambios = false;
+
             if (!habilitado.Checked && rol.Estado)
             {
                 rolService.deleteRol(rol.Id);
                 rol.Estado = false;
+                huboCambios = true;
             } 
             else if ( habilitado.Checked && !rol.Estado)
             {
                 rolService.habilitarRol(rol.Id);
                 rol.Estado = true;
+                huboCambios = true;
             }
+
+            foreach (object item in list_funcionalidades.Items)
+            {
+
+                Funcionalidad fun = (Funcionalidad)item;
+
+                if (list_funcionalidades.CheckedItems.Contains(item))
+                {
+                    if (fun.GetEstado().Equals(Funcionalidad.EstadoFuncionalidad.SIN_ESTADO))
+                    {
+                        fun.SetEstado(Funcionalidad.EstadoFuncionalidad.NUEVO);
+                        funcionalidades_cambiadas.Add(fun);
+                    }
+
+                }
+                else
+                {
+                    if (fun.GetEstado().Equals(Funcionalidad.EstadoFuncionalidad.SIN_CAMBIOS))
+                    {
+                        fun.SetEstado(Funcionalidad.EstadoFuncionalidad.BORRADO);
+                        funcionalidades_cambiadas.Add(fun);
+                    }
+                }
+            }
+
+            if (funcionalidades_cambiadas.Count != 0)
+            {
+                rolService.administrarCambiosFuncionalidades(rol.Id, funcionalidades_cambiadas);
+                huboCambios = true;
+            }
+
+            if (huboCambios) MessageBox.Show("Modificación del rol correcta");
+
         }
     }
 }

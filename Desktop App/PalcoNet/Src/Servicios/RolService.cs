@@ -72,5 +72,25 @@ namespace PalcoNet.Src.Servicios
             DatabaseEntity dbEntity = new DatabaseEntity();
             dbEntity.spExecute("ESECUELE.HabilitarRol", new List<SqlParameter> { new SqlParameter("@rol_id", id) });
         }
+
+        public void administrarCambiosFuncionalidades(byte id, List<Funcionalidad> lista)
+        {
+            DatabaseEntity dbEntity = new DatabaseEntity();
+           
+            DataTable dt = new DataTable("FunConCambios");
+            dt.Columns.Add("frol_rol_id", typeof(int));
+            dt.Columns.Add("frol_func_id", typeof(int));
+            dt.Columns.Add("fun_estado", typeof(int));
+
+            foreach (Funcionalidad funcionalidad in lista)
+            {
+                dt.Rows.Add(id, funcionalidad.GetId(), (int) funcionalidad.GetEstado());
+            }
+
+            var sqlParam = new SqlParameter("@funs_con_cambios", SqlDbType.Structured);
+
+            sqlParam.Value = dt;
+            dbEntity.spExecute("ESECUELE.ActualizarFuncionalidades", new List<SqlParameter> { sqlParam });
+        }
     }
 }

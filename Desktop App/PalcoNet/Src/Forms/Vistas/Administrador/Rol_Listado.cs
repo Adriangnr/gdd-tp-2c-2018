@@ -40,6 +40,7 @@ namespace PalcoNet.Src.Forms.Vistas.Administrador
 
         private void btn_cancel_Click(object sender, EventArgs e)
         {
+            this.previous.Show();
             Close();
         }
 

@@ -7,7 +7,7 @@ namespace PalcoNet.Src.Modelo.Entidades
     public class Rol : DatabaseEntity
     {
         //attributes
-        private List<Funcionalidad> Funcionalidades = new List<Funcionalidad>();
+        private List<Funcionalidad> Funcionalidades;
         public byte Id { get; set; }
         public bool Estado { get; set; }
         public string Nombre { get; set; }
@@ -33,13 +33,15 @@ namespace PalcoNet.Src.Modelo.Entidades
             this.Estado = estado;
         }
 
-        private void CargarFuncionalidades()
+        public void CargarFuncionalidades()
         {
+            this.Funcionalidades = new List<Funcionalidad>();
             List<List<object>> rows = this.spExecuteDataReader("ESECUELE.getFuncionalidades",
                 new List<SqlParameter> { new SqlParameter("@role", this.Id) });
             rows.ForEach(row =>
             {
                 Funcionalidad func = new Funcionalidad((byte)row[0], (string)row[1], (string)row[2]);
+                func.SetEstado(Funcionalidad.EstadoFuncionalidad.SIN_CAMBIOS);
                 this.Funcionalidades.Add(func);
             });
         }

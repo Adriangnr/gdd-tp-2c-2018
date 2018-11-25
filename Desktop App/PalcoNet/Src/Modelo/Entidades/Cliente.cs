@@ -61,7 +61,7 @@ namespace PalcoNet.Src.Modelo.Entidades
                         parameters.Add(new SqlParameter("@" + field.Name, value));
                     }
                 }
-                return this.spExecuteDataReader("searchClients", parameters);
+                return this.spExecuteDataReader(this.schema + ".SearchClients", parameters);
             }
             catch(Exception e)
             {

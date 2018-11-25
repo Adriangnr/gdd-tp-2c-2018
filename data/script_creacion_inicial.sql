@@ -738,6 +738,8 @@ go
 create procedure ESECUELE.HabilitarRol( @rol_id smallint)
 as begin
 	update ESECUELE.Rol set rol_estado = 1 where rol_id = @rol_id
+end
+go
 
 create procedure ESECUELE.SaveUsuario(@usr_username varchar(50), 
 								   @usr_pass varchar(50),
@@ -812,7 +814,7 @@ create procedure ESECUELE.SaveRolUsuario(@rolName varchar(20), @username varchar
 begin
 	begin try
 		insert into ESECUELE.Rol_Usuario (rol_usr_rol_id, rol_usr_username, rol_usr_seleccionado)
-		values ((select rol_id from ESECUELE.Rol where rol_nombre = @rolName) , @username, 1)
+		select rol_id , @username, 1 from ESECUELE.Rol where rol_nombre = @rolName
 	end try
 	
 	begin catch
@@ -821,7 +823,7 @@ begin
 end
 go
 
-create procedure searchClients(@nombre varchar(50) = null, 
+create procedure ESECUELE.SearchClients(@nombre varchar(50) = null, 
 							  @apellido varchar(50) = null, 
 							  @dni varchar(30) = null, 
 							  @email varchar(50) = null)
@@ -873,5 +875,42 @@ begin
 	end
 
 	exec sp_executesql @query
+end
+go
+
+CREATE TYPE ESECUELE.FunConCamnbios AS TABLE
+(
+    frol_rol_id tinyint,
+    frol_func_id tinyint,
+	fun_estado tinyint
+);
+go
+
+create procedure ESECUELE.ActualizarFuncionalidades( @funs_con_cambios as ESECUELE.FunConCamnbios readonly)
+as begin
+	declare @Nuevo tinyint
+	declare @rol_id tinyint
+    declare @func_id tinyint
+	declare @estado tinyint
+	set @Nuevo = 2
+	declare funcionalidades cursor for(  select N.frol_rol_id, N.frol_func_id, N.fun_estado from @funs_con_cambios N )
+	begin try
+		open funcionalidades
+		fetch next from funcionalidades into @rol_id, @func_id, @estado
+		while @@FETCH_STATUS = 0
+			begin
+				if(@estado = @Nuevo)
+					insert into Funcionalidad_Rol values( @rol_id, @func_id )
+				else
+					delete from Funcionalidad_Rol where frol_rol_id = @rol_id and frol_func_id = @func_id
+
+				fetch next from funcionalidades into @rol_id, @func_id, @estado
+			end
+		close funcionalidades
+		deallocate funcionalidades
+	end try
+	begin catch
+		raiserror('Error actualizacion de funcionalidades', 18, 10)
+	end catch
 end
 go

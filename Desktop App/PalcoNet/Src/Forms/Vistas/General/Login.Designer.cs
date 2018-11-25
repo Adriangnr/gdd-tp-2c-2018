@@ -43,10 +43,9 @@
             this.login_btn_entrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.login_btn_entrar.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.login_btn_entrar.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.login_btn_entrar.Location = new System.Drawing.Point(428, 442);
-            this.login_btn_entrar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.login_btn_entrar.Location = new System.Drawing.Point(240, 284);
             this.login_btn_entrar.Name = "login_btn_entrar";
-            this.login_btn_entrar.Size = new System.Drawing.Size(194, 69);
+            this.login_btn_entrar.Size = new System.Drawing.Size(129, 45);
             this.login_btn_entrar.TabIndex = 0;
             this.login_btn_entrar.Text = "Entrar";
             this.login_btn_entrar.UseVisualStyleBackColor = false;
@@ -57,10 +56,9 @@
             this.login_btn_salir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.login_btn_salir.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.login_btn_salir.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.login_btn_salir.Location = new System.Drawing.Point(648, 442);
-            this.login_btn_salir.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.login_btn_salir.Location = new System.Drawing.Point(387, 284);
             this.login_btn_salir.Name = "login_btn_salir";
-            this.login_btn_salir.Size = new System.Drawing.Size(194, 69);
+            this.login_btn_salir.Size = new System.Drawing.Size(129, 45);
             this.login_btn_salir.TabIndex = 1;
             this.login_btn_salir.Text = "Salir";
             this.login_btn_salir.UseVisualStyleBackColor = true;
@@ -72,10 +70,9 @@
             this.login_tbox_usuario.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.login_tbox_usuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.login_tbox_usuario.ForeColor = System.Drawing.Color.DarkGray;
-            this.login_tbox_usuario.Location = new System.Drawing.Point(444, 225);
-            this.login_tbox_usuario.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.login_tbox_usuario.Location = new System.Drawing.Point(251, 143);
             this.login_tbox_usuario.Name = "login_tbox_usuario";
-            this.login_tbox_usuario.Size = new System.Drawing.Size(380, 26);
+            this.login_tbox_usuario.Size = new System.Drawing.Size(253, 17);
             this.login_tbox_usuario.TabIndex = 6;
             this.login_tbox_usuario.Text = "usuario";
             this.login_tbox_usuario.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -88,10 +85,10 @@
             this.login_tbox_password.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.login_tbox_password.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.login_tbox_password.ForeColor = System.Drawing.Color.DarkGray;
-            this.login_tbox_password.Location = new System.Drawing.Point(444, 342);
-            this.login_tbox_password.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.login_tbox_password.Location = new System.Drawing.Point(251, 219);
             this.login_tbox_password.Name = "login_tbox_password";
-            this.login_tbox_password.Size = new System.Drawing.Size(380, 26);
+            this.login_tbox_password.PasswordChar = '*';
+            this.login_tbox_password.Size = new System.Drawing.Size(253, 17);
             this.login_tbox_password.TabIndex = 7;
             this.login_tbox_password.Text = "contraseña";
             this.login_tbox_password.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -104,10 +101,9 @@
             this.registerLink.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.registerLink.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
             this.registerLink.LinkColor = System.Drawing.SystemColors.MenuHighlight;
-            this.registerLink.Location = new System.Drawing.Point(663, 534);
-            this.registerLink.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.registerLink.Location = new System.Drawing.Point(397, 344);
             this.registerLink.Name = "registerLink";
-            this.registerLink.Size = new System.Drawing.Size(105, 25);
+            this.registerLink.Size = new System.Drawing.Size(73, 16);
             this.registerLink.TabIndex = 18;
             this.registerLink.TabStop = true;
             this.registerLink.Text = "Registrate!";
@@ -117,10 +113,9 @@
             // 
             this.login_label.AutoSize = true;
             this.login_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
-            this.login_label.Location = new System.Drawing.Point(489, 534);
-            this.login_label.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.login_label.Location = new System.Drawing.Point(281, 344);
             this.login_label.Name = "login_label";
-            this.login_label.Size = new System.Drawing.Size(177, 25);
+            this.login_label.Size = new System.Drawing.Size(119, 16);
             this.login_label.TabIndex = 19;
             this.login_label.Text = "¿No tenes cuenta?";
             // 
@@ -129,18 +124,17 @@
             this.titulo.AutoSize = true;
             this.titulo.Font = new System.Drawing.Font("Verdana", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.titulo.ForeColor = System.Drawing.SystemColors.ControlDark;
-            this.titulo.Location = new System.Drawing.Point(516, 111);
-            this.titulo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.titulo.Location = new System.Drawing.Point(299, 69);
             this.titulo.Name = "titulo";
-            this.titulo.Size = new System.Drawing.Size(264, 44);
+            this.titulo.Size = new System.Drawing.Size(174, 29);
             this.titulo.TabIndex = 20;
             this.titulo.Text = "Iniciar Sesión";
             // 
             // Login
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1176, 678);
+            this.ClientSize = new System.Drawing.Size(784, 441);
             this.Controls.Add(this.titulo);
             this.Controls.Add(this.login_label);
             this.Controls.Add(this.registerLink);
@@ -148,7 +142,7 @@
             this.Controls.Add(this.login_tbox_usuario);
             this.Controls.Add(this.login_btn_salir);
             this.Controls.Add(this.login_btn_entrar);
-            this.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "Login";
             this.Text = "Login";
             this.Load += new System.EventHandler(this.Login_Load);
