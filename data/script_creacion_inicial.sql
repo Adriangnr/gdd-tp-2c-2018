@@ -877,6 +877,30 @@ begin
 end
 go
 
+create procedure ESECUELE.ChangeClientStatus(@id int) as
+begin
+	begin try
+		declare @currentStatus bit
+		declare @username varchar(50)
+		
+		select @currentStatus = u.usr_estado, @username = u.usr_username 
+		from ESECUELE.Usuario u join ESECUELE.Cliente c 
+		on u.usr_username = c.cliente_usuario where c.cliente_id = @id
+		
+		declare @newStatus bit
+		
+		if @currentStatus = 1 
+			set @newStatus = 0
+		else 
+			set @newStatus = 1
+
+		update ESECUELE.Usuario set usr_estado = @newStatus where usr_username = @username
+	end try
+	begin catch
+		throw
+	end catch
+end
+
 CREATE TYPE ESECUELE.FunConCamnbios AS TABLE
 (
     frol_rol_id tinyint,

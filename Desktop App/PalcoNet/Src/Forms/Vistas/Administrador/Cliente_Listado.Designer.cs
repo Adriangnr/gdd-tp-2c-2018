@@ -76,7 +76,6 @@
             // 
             // listBox1
             // 
-            this.listBox1.ItemHeight = 20;
             this.listBox1.Location = new System.Drawing.Point(358, 128);
             this.listBox1.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
             this.listBox1.Size = new System.Drawing.Size(26, 24);
@@ -180,8 +179,9 @@
             this.btn_habilitar.Name = "btn_habilitar";
             this.btn_habilitar.Size = new System.Drawing.Size(194, 69);
             this.btn_habilitar.TabIndex = 59;
-            this.btn_habilitar.Text = "Deshabilitar";
+            this.btn_habilitar.Text = "Cambiar Estado";
             this.btn_habilitar.UseVisualStyleBackColor = false;
+            this.btn_habilitar.Click += new System.EventHandler(this.btn_habilitar_Click);
             // 
             // btn_edit
             // 

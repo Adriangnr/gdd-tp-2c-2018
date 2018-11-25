@@ -37,6 +37,19 @@ namespace PalcoNet.Src.Servicios
             clienteObj.Habilitado = (clienteObj.UsuarioObj.Habilitado) ? "Si" : "No";
         }
 
+        public void modifyStatus(int clientId)
+        {
+            try
+            {
+                Cliente clienteObj = new Cliente();
+                clienteObj.modifyStatus(clientId);
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         private void loadCliente(Cliente clienteObj, List<object> row)
         {
             clienteObj.Id = (int)row[0];

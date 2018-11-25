@@ -40,6 +40,7 @@ namespace PalcoNet.Src.Forms.Vistas.Administrador
                 this.dataGridClientes.Columns[9].Visible = true;
 
                 this.dataGridClientes.AutoGenerateColumns = false;
+                this.dataGridClientes.ClearSelection();
             }
             catch (Exception ex)
             {
@@ -47,6 +48,46 @@ namespace PalcoNet.Src.Forms.Vistas.Administrador
                 MessageBox.Show("Error al buscar clientes!", "Error!",
                                 MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
+            }
+        }
+
+        private void btn_habilitar_Click(object sender, EventArgs e)
+        {
+            if (this.dataGridClientes.CurrentRow == null)
+            {
+                MessageBox.Show("No se seleccionó ningún cliente!", "Cambiar estado del cliente.",
+                                MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                try
+                {
+                    ClienteService clienteService = (ClienteService)ServiceFactory.GetService("Cliente");
+                    clienteService.modifyStatus((int)this.dataGridClientes.CurrentRow.Cells[0].Value);
+
+                    this.dataGridClientes.ReadOnly = false;
+                    if ((string)this.dataGridClientes.CurrentRow.Cells[9].Value == "Si")
+                    {
+                        this.dataGridClientes.CurrentRow.Cells[9].Value = "No";
+                    }
+                    else
+                    {
+                        this.dataGridClientes.CurrentRow.Cells[9].Value = "Si";
+                    }
+                        
+                    this.dataGridClientes.Refresh();
+                    this.dataGridClientes.ReadOnly = true;
+
+                    MessageBox.Show("Se cambio el estado del cliente con exito!", "Cambiar estado del cliente.",
+                                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch(Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    MessageBox.Show("Error al deshabilitar el cliente!", "Error!",
+                                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
             }
         }
     }

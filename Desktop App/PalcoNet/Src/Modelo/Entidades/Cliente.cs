@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace PalcoNet.Src.Modelo.Entidades
@@ -66,6 +63,18 @@ namespace PalcoNet.Src.Modelo.Entidades
             catch(Exception e)
             {
                 throw e;
+            }
+        }
+
+        public void modifyStatus(int clientId)
+        {
+            try
+            {
+                this.spExecute(this.schema+".ChangeClientStatus", new List<SqlParameter>() { new SqlParameter("@id", clientId) });
+            }
+            catch(Exception ex)
+            {
+                throw ex;
             }
         }
     }
