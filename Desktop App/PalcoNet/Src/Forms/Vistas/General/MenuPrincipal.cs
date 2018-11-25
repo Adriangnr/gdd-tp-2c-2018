@@ -34,6 +34,13 @@ namespace PalcoNet.Src.Forms.Vistas.General
                 Button newButton = new Button();
                 newButton.Text = f.GetDescripcion();
                 newButton.Name = f.GetNombre();
+                newButton.BackColor = System.Drawing.SystemColors.Highlight;
+                newButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+                newButton.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                newButton.ForeColor = System.Drawing.SystemColors.Window;
+                newButton.Margin = new System.Windows.Forms.Padding(0);
+                newButton.Size = new System.Drawing.Size(218, 69);
+                newButton.UseVisualStyleBackColor = false;
 
                 i++;
                 if( i > rol.GetFuncionalidades().Count / 2)
