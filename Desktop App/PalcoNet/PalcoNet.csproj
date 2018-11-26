@@ -46,6 +46,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Src\Excepciones\ValidadorException.cs" />
+    <Compile Include="Src\Forms\Vistas\Administrador\Cliente_Edicion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Src\Forms\Vistas\Administrador\Cliente_Edicion.Designer.cs">
+      <DependentUpon>Cliente_Edicion.cs</DependentUpon>
+    </Compile>
     <Compile Include="Src\Forms\Vistas\Administrador\Cliente_Listado.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -201,6 +207,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Src\Forms\Layouts\Master.resx">
       <DependentUpon>Master.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Src\Forms\Vistas\Administrador\Cliente_Edicion.resx">
+      <DependentUpon>Cliente_Edicion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Src\Forms\Vistas\Administrador\Cliente_Listado.resx">
       <DependentUpon>Cliente_Listado.cs</DependentUpon>

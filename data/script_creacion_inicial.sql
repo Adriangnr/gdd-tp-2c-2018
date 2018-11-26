@@ -689,6 +689,13 @@ as begin
 end
 go 
 
+create procedure ESECUELE.getCliente(@id int)
+as begin
+	select * from ESECUELE.Cliente c join ESECUELE.Usuario u on u.usr_username = c.cliente_usuario
+	where c.cliente_id = @id
+end
+go 
+
 create procedure ESECUELE.getRol(@id tinyint)
 as begin
 	select * from ESECUELE.Rol r where r.rol_id = @id

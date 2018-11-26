@@ -3,7 +3,7 @@ using PalcoNet.Src.Servicios.ServiceFactory;
 using PalcoNet.Src.Servicios;
 using System;
 using System.Windows.Forms;
-using System.Data;
+using PalcoNet.Src.Forms.Vistas.General;
 
 namespace PalcoNet.Src.Forms.Vistas.Administrador
 {
@@ -16,17 +16,17 @@ namespace PalcoNet.Src.Forms.Vistas.Administrador
 
         private void Cliente_Listado_Load(object sender, EventArgs e)
         {
-
+           this.loadClientList();
         }
 
-        private void btn_search_Click(object sender, EventArgs e)
+        private void loadClientList()
         {
             ClienteService clienteService = (ClienteService)ServiceFactory.GetService("Cliente");
             try
             {
                 this.dataGridClientes.DataSource = clienteService.Search(this.groupBox1.Controls);
-                
-                if ( this.dataGridClientes.Rows.Count == 0)
+
+                if (this.dataGridClientes.Rows.Count == 0)
                     MessageBox.Show("No se encontraron clientes!", "Listado de clientes.",
                                 MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -49,6 +49,11 @@ namespace PalcoNet.Src.Forms.Vistas.Administrador
                                 MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+        }
+
+        private void btn_search_Click(object sender, EventArgs e)
+        {
+            this.loadClientList();
         }
 
         private void btn_habilitar_Click(object sender, EventArgs e)
@@ -85,6 +90,35 @@ namespace PalcoNet.Src.Forms.Vistas.Administrador
                 {
                     Console.WriteLine(ex.Message);
                     MessageBox.Show("Error al deshabilitar el cliente!", "Error!",
+                                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+            }
+        }
+
+        private void btn_edit_Click(object sender, EventArgs e)
+        {
+            if (this.dataGridClientes.CurrentRow == null)
+            {
+                MessageBox.Show("No se seleccionó ningún cliente!", "Cambiar estado del cliente.",
+                                MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                try
+                {
+                    ClienteService clienteService = (ClienteService)ServiceFactory.GetService("Cliente");
+                    PalcoNet.Src.Modelo.Entidades.Cliente client = clienteService.GetCliente((int)this.dataGridClientes.CurrentRow.Cells[0].Value);
+                    Cliente_Edicion editForm = new Cliente_Edicion();
+                    editForm.setPrevious(this);
+                    editForm.loadData(client);
+                    editForm.Show();
+                    this.Hide();
+                }
+                catch(Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    MessageBox.Show("Error al editar el cliente!", "Error!",
                                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }

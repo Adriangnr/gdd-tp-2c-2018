@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using PalcoNet.Src.Servicios.ServiceFactory;
+using System.Data.SqlClient;
 
 namespace PalcoNet.Src.Servicios
 {
@@ -48,6 +49,17 @@ namespace PalcoNet.Src.Servicios
             {
                 throw ex;
             }
+        }
+
+        public Cliente GetCliente(int id)
+        {
+            List<object> clientData = this.Get("Cliente", new List<SqlParameter> { new SqlParameter("@id", id) })[0];
+
+            Cliente cliente = new Cliente();
+
+            this.loadCliente(cliente, clientData);
+            
+            return cliente;
         }
 
         private void loadCliente(Cliente clienteObj, List<object> row)

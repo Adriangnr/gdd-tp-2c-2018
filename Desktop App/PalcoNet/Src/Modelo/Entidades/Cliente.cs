@@ -5,7 +5,7 @@ using System.Windows.Forms;
 
 namespace PalcoNet.Src.Modelo.Entidades
 {
-    class Cliente : DatabaseEntity
+    public class Cliente : DatabaseEntity
     {
         public int Id { get; set; }
         public string Nombre { get; set; }
