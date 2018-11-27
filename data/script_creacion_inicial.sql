@@ -883,6 +883,35 @@ begin
 end
 go
 
+create procedure ESECUELE.UpdateCLient(@id int, @nombre varchar(50), @apellido varchar(50), @tipoDoc varchar(10),
+@numDoc varchar(30), @cuil varchar(30), @fechaNac datetime, @usuario varchar(50)) as
+begin
+	update ESECUELE.Cliente set 
+		cliente_nombre=@nombre, 
+		cliente_apellido=@apellido, 
+		cliente_tipo_doc=@tipoDoc,
+		cliente_num_doc=@numDoc,
+		cliente_cuil=@cuil,
+		cliente_fecha_nacimiento=@fechaNac,
+		cliente_usuario=@usuario
+		where cliente_id=@id
+end
+go
+
+create procedure ESECUELE.UpdateUser(@id int, @username varchar(50), @estado bit, @email varchar(50),
+@telefono varchar(20), @direccion varchar(150), @cp varchar(10)) as
+begin
+	update ESECUELE.Usuario set 
+		usr_username=@username, 
+		usr_estado=@estado, 
+		usr_email=@email,
+		usr_telefono=@telefono,
+		usr_direccion=@direccion,
+		usr_codigo_postal=@cp
+		where usr_id=@id
+end
+go
+
 create procedure ESECUELE.ChangeClientStatus(@id int) as
 begin
 	begin try
