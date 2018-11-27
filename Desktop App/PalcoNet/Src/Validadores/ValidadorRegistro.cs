@@ -76,7 +76,7 @@ namespace PalcoNet.Src.Validadores
 
         public void textBox_calle(TextBox calle)
         {
-            this.validarCampoTexto(calle, "Calle", new Regex("^[a-zA-Z0-9_.- ]*$"));
+            this.validarCampoTexto(calle, "Calle", new Regex(@"^[a-zA-Z0-9_.\- ]$*"));
         }
 
         public void textBox_piso(TextBox piso)
@@ -91,7 +91,7 @@ namespace PalcoNet.Src.Validadores
 
         public void textBox_localidad(TextBox localidad)
         {
-            this.validarCampoTexto(localidad, "Localdad", new Regex(@"^[a-zA-Z0-9\., ]*$"));
+            this.validarCampoTexto(localidad, "Localidad", new Regex(@"^[a-zA-Z0-9\., ]*$"));
         }
 
         public void textBox_cp(TextBox cp)

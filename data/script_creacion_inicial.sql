@@ -78,8 +78,8 @@ go
 
 --Funcionalidad_Rol
 create table ESECUELE.Funcionalidad_Rol(
-	frol_rol_id tinyint,
-	frol_func_id tinyint
+	frol_rol_id tinyint not null,
+	frol_func_id tinyint not null
 )
 go
 
@@ -313,12 +313,11 @@ insert into ESECUELE.Funcionalidad_Rol (frol_rol_id, frol_func_id) values (1,4)
 insert into ESECUELE.Funcionalidad_Rol (frol_rol_id, frol_func_id) values (1,5)
 insert into ESECUELE.Funcionalidad_Rol (frol_rol_id, frol_func_id) values (1,6)
 insert into ESECUELE.Funcionalidad_Rol (frol_rol_id, frol_func_id) values (1,7)
-insert into ESECUELE.Funcionalidad_Rol (frol_rol_id, frol_func_id) values (1,8)
+insert into ESECUELE.Funcionalidad_Rol (frol_rol_id, frol_func_id) values (2,8)
 insert into ESECUELE.Funcionalidad_Rol (frol_rol_id, frol_func_id) values (2,9)
 insert into ESECUELE.Funcionalidad_Rol (frol_rol_id, frol_func_id) values (2,10)
-insert into ESECUELE.Funcionalidad_Rol (frol_rol_id, frol_func_id) values (2,11)
+insert into ESECUELE.Funcionalidad_Rol (frol_rol_id, frol_func_id) values (3,11)
 insert into ESECUELE.Funcionalidad_Rol (frol_rol_id, frol_func_id) values (3,12)
-insert into ESECUELE.Funcionalidad_Rol (frol_rol_id, frol_func_id) values (3,13)
 
 -- Ingreso valores para el administrador greneral
 insert into ESECUELE.Rol_Usuario (rol_usr_rol_id, rol_usr_username) values (1,'admin')
@@ -361,7 +360,7 @@ CONCAT('usr_', Espec_Empresa_Cuit),
 (SELECT HASHBYTES('SHA2_256', Espec_Empresa_Cuit)),
 'Empresa',
 Espec_Empresa_Mail,
-CONCAT(Espec_Empresa_Dom_Calle, ' ', Espec_Empresa_Nro_Calle, ', piso ',Espec_Empresa_Piso, ', dpto ', Espec_Empresa_Depto),
+CONCAT(Espec_Empresa_Dom_Calle, ' ', Espec_Empresa_Nro_Calle, ',piso ',Espec_Empresa_Piso, ',dpto ', Espec_Empresa_Depto),
 Espec_Empresa_Cod_Postal,
 Espec_Empresa_Fecha_Creacion
 from gd_esquema.Maestra
@@ -426,7 +425,7 @@ concat('cli_', Cli_Dni),
 (SELECT HASHBYTES('SHA2_256', concat('cli_', Cli_Dni))),
 'Cliente',
 Cli_Mail,
-concat(Cli_Dom_Calle, ', ', Cli_Nro_Calle, ', piso ', Cli_Piso, ', ', Cli_Depto),
+concat(Cli_Dom_Calle, ' ', Cli_Nro_Calle, ', ', Cli_Piso, ', ', Cli_Depto, ', '),
 Cli_Cod_Postal
 from gd_esquema.Maestra where Cli_Dni is not null
 
@@ -523,7 +522,7 @@ alter table ESECUELE.Rol_Usuario add constraint FK_RU_RolId foreign key(rol_usr_
 alter table ESECUELE.Rol_Usuario add constraint FK_UsrId foreign key(rol_usr_username) references ESECUELE.Usuario(usr_username)
 
 -- Relacion Funcionalidad_Rol
-alter table ESECUELE.Funcionalidad_Rol add constraint FK_FuncId foreign key(frol_func_id) references ESECUELE.Funcionalidad(func_id)
+alter table ESECUELE.Funcionalidad_Rol add constraint FK_FR_FuncId foreign key(frol_func_id) references ESECUELE.Funcionalidad(func_id)
 alter table ESECUELE.Funcionalidad_Rol add constraint FK_FR_RolId foreign key(frol_rol_id) references ESECUELE.Rol(rol_id)
 
 -- Relacion Empresa - Usuario
@@ -907,8 +906,9 @@ begin
 		throw
 	end catch
 end
+go
 
-CREATE TYPE ESECUELE.FunConCamnbios AS TABLE
+CREATE TYPE ESECUELE.FunConCambios AS TABLE
 (
     frol_rol_id tinyint,
     frol_func_id tinyint,
@@ -916,7 +916,7 @@ CREATE TYPE ESECUELE.FunConCamnbios AS TABLE
 );
 go
 
-create procedure ESECUELE.ActualizarFuncionalidades( @funs_con_cambios as ESECUELE.FunConCamnbios readonly)
+create procedure ESECUELE.ActualizarFuncionalidades( @funs_con_cambios as ESECUELE.FunConCambios readonly)
 as begin
 	declare @Nuevo tinyint
 	declare @rol_id tinyint
