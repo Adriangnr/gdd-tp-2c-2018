@@ -30,14 +30,8 @@ namespace PalcoNet.Src.Forms.Vistas.Administrador
                     MessageBox.Show("No se encontraron clientes!", "Listado de clientes.",
                                 MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                for (int i = 0; i < this.dataGridClientes.Columns.Count; i++)
+               for (int i = 7; i < this.dataGridClientes.Columns.Count; i++)
                     this.dataGridClientes.Columns[i].Visible = false;
-
-                this.dataGridClientes.Columns[0].Visible = true;
-                this.dataGridClientes.Columns[1].Visible = true;
-                this.dataGridClientes.Columns[2].Visible = true;
-                this.dataGridClientes.Columns[8].Visible = true;
-                this.dataGridClientes.Columns[9].Visible = true;
 
                 this.dataGridClientes.AutoGenerateColumns = false;
                 this.dataGridClientes.ClearSelection();
@@ -71,13 +65,13 @@ namespace PalcoNet.Src.Forms.Vistas.Administrador
                     clienteService.modifyStatus((int)this.dataGridClientes.CurrentRow.Cells[0].Value);
 
                     this.dataGridClientes.ReadOnly = false;
-                    if ((string)this.dataGridClientes.CurrentRow.Cells[9].Value == "Si")
+                    if ((string)this.dataGridClientes.CurrentRow.Cells[6].Value == "Si")
                     {
-                        this.dataGridClientes.CurrentRow.Cells[9].Value = "No";
+                        this.dataGridClientes.CurrentRow.Cells[6].Value = "No";
                     }
                     else
                     {
-                        this.dataGridClientes.CurrentRow.Cells[9].Value = "Si";
+                        this.dataGridClientes.CurrentRow.Cells[6].Value = "Si";
                     }
 
                     this.dataGridClientes.ClearSelection();
@@ -128,7 +122,7 @@ namespace PalcoNet.Src.Forms.Vistas.Administrador
        
         private void dataGridClientes_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if ((string)this.dataGridClientes.CurrentRow.Cells[9].Value == "Si")
+            if ((string)this.dataGridClientes.CurrentRow.Cells[6].Value == "Si")
             {
                 this.btn_habilitar.Text = "Deshabilitar";
             }

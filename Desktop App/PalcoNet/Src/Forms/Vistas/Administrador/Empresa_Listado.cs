@@ -30,8 +30,8 @@ namespace PalcoNet.Src.Forms.Vistas.Administrador
                     MessageBox.Show("No se encontraron empresas!", "Listado de empresas.",
                                 MessageBoxButtons.OK, MessageBoxIcon.Information);
                 
-                this.dataGridEmpresas.Columns[2].Visible = false;
                 this.dataGridEmpresas.Columns[6].Visible = false;
+                this.dataGridEmpresas.Columns[7].Visible = false;
 
                 this.dataGridEmpresas.AutoGenerateColumns = false;
                 this.dataGridEmpresas.ClearSelection();
@@ -65,13 +65,13 @@ namespace PalcoNet.Src.Forms.Vistas.Administrador
                     empresaService.modifyStatus((int)this.dataGridEmpresas.CurrentRow.Cells[0].Value);
 
                     this.dataGridEmpresas.ReadOnly = false;
-                    if ((string)this.dataGridEmpresas.CurrentRow.Cells[4].Value == "Si")
+                    if ((string)this.dataGridEmpresas.CurrentRow.Cells[5].Value == "Si")
                     {
-                        this.dataGridEmpresas.CurrentRow.Cells[4].Value = "No";
+                        this.dataGridEmpresas.CurrentRow.Cells[5].Value = "No";
                     }
                     else
                     {
-                        this.dataGridEmpresas.CurrentRow.Cells[4].Value = "Si";
+                        this.dataGridEmpresas.CurrentRow.Cells[5].Value = "Si";
                     }
                     this.dataGridEmpresas.ClearSelection();
                     this.dataGridEmpresas.Refresh();
@@ -92,7 +92,7 @@ namespace PalcoNet.Src.Forms.Vistas.Administrador
 
         private void dataGridEmpresas_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if ((string)this.dataGridEmpresas.CurrentRow.Cells[4].Value == "Si")
+            if ((string)this.dataGridEmpresas.CurrentRow.Cells[5].Value == "Si")
             {
                 this.btn_habilitar.Text = "Deshabilitar";
             }

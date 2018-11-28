@@ -72,6 +72,7 @@ namespace PalcoNet.Src.Servicios
             clienteObj.Cuil = (string)row[5];
             clienteObj.FechaNacimiento = ((DateTime)row[6]).ToString();
             clienteObj.Usuario = (string)row[8];
+            clienteObj.Email = (string)row[17];
             this.loadUsuarioOfClient(clienteObj, row);
         }
     }

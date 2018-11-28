@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data.SqlClient;
 using System.Windows.Forms;
 
@@ -8,11 +9,15 @@ namespace PalcoNet.Src.Modelo.Entidades
     class Empresa : DatabaseEntity
     {
         public int Id { get; set; }
+
+        [DisplayName("Razon Social")]
         public string RazonSocial { get; set; }
-        public string Ciudad { get; set; }
+
         public string Cuit { get; set; }
-        public string Habilitado { get; set; }
+        public string Email { get; set; }
         public string Usuario { get; set; }
+        public string Habilitado { get; set; }
+        public string Ciudad { get; set; }
         public Usuario UsuarioObj { get; set; }
 
         public Empresa() {}
