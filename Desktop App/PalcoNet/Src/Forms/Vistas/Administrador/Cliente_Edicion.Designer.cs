@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.GroupBox groupBoxDireccion;
+            System.Windows.Forms.TextBox textBox_pass;
             this.textBox_cp = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.textBox_depto = new System.Windows.Forms.TextBox();
@@ -48,10 +49,10 @@
             this.label4 = new System.Windows.Forms.Label();
             this.textBox_mail = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox_contrasena = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.textBox_usuario = new System.Windows.Forms.TextBox();
             groupBoxDireccion = new System.Windows.Forms.GroupBox();
+            textBox_pass = new System.Windows.Forms.TextBox();
             groupBoxDireccion.SuspendLayout();
             this.panel_datausuario.SuspendLayout();
             this.SuspendLayout();
@@ -216,7 +217,7 @@
             this.panel_datausuario.Controls.Add(this.label4);
             this.panel_datausuario.Controls.Add(this.textBox_mail);
             this.panel_datausuario.Controls.Add(this.label2);
-            this.panel_datausuario.Controls.Add(this.textBox_contrasena);
+            this.panel_datausuario.Controls.Add(textBox_pass);
             this.panel_datausuario.Controls.Add(this.label1);
             this.panel_datausuario.Controls.Add(this.textBox_usuario);
             this.panel_datausuario.Location = new System.Drawing.Point(13, 179);
@@ -274,13 +275,13 @@
             this.label2.TabIndex = 37;
             this.label2.Text = "Contraseña:";
             // 
-            // textBox_contrasena
+            // textBox_pass
             // 
-            this.textBox_contrasena.Location = new System.Drawing.Point(122, 89);
-            this.textBox_contrasena.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.textBox_contrasena.Name = "textBox_contrasena";
-            this.textBox_contrasena.Size = new System.Drawing.Size(204, 26);
-            this.textBox_contrasena.TabIndex = 33;
+            textBox_pass.Location = new System.Drawing.Point(122, 89);
+            textBox_pass.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            textBox_pass.Name = "textBox_pass";
+            textBox_pass.Size = new System.Drawing.Size(204, 26);
+            textBox_pass.TabIndex = 33;
             // 
             // label1
             // 
@@ -348,7 +349,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox textBox_mail;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox_contrasena;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBox_usuario;
     }

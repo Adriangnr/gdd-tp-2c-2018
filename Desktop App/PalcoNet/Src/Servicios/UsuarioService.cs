@@ -21,7 +21,7 @@ namespace PalcoNet.Src.Servicios
             Usuario usuarioObj = new Usuario();
             usuarioObj.Id = (int)data[9];
             usuarioObj.Username = (string)data[10];
-            usuarioObj.Password = System.Text.Encoding.UTF8.GetString((byte[])data[11]);
+            usuarioObj.Password = (data[11].GetType() != typeof(DBNull)) ? System.Text.Encoding.UTF8.GetString((byte[])data[11]) : null;
             usuarioObj.Habilitado = (bool)data[12];
             usuarioObj.Nuevo = (bool)data[13];
             usuarioObj.Email = (string)data[17];

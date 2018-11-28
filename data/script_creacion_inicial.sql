@@ -425,7 +425,7 @@ concat('cli_', Cli_Dni),
 (SELECT HASHBYTES('SHA2_256', concat('cli_', Cli_Dni))),
 'Cliente',
 Cli_Mail,
-concat(Cli_Dom_Calle, ' ', Cli_Nro_Calle, ', ', Cli_Piso, ', ', Cli_Depto, ', '),
+concat(Cli_Dom_Calle, ' ', Cli_Nro_Calle, ',', Cli_Piso, ',', Cli_Depto, ','),
 Cli_Cod_Postal
 from gd_esquema.Maestra where Cli_Dni is not null
 
@@ -535,7 +535,7 @@ alter table ESECUELE.Publicacion add constraint FK_EmpId foreign key (publicacio
 alter table ESECUELE.Entrada add constraint FK_Tipo_Entrada foreign key(entrada_tipo) references ESECUELE.Tipo_Entrada(tipo_entrada_id)
 
 -- Relacion Cliente - Usuario
-alter table ESECUELE.Cliente add constraint FK_Cli_UserName foreign key (cliente_usuario) references ESECUELE.Usuario(usr_username)
+alter table ESECUELE.Cliente add constraint FK_Cli_UserName foreign key (cliente_usuario) references ESECUELE.Usuario(usr_username) ON UPDATE CASCADE 
 
 -- Relacion Compra - Cliente
 alter table ESECUELE.Compra add constraint FK_Comp_Clie foreign key (compra_cliente) references ESECUELE.Cliente(cliente_id)
@@ -883,7 +883,7 @@ begin
 end
 go
 
-create procedure ESECUELE.UpdateCLient(@id int, @nombre varchar(50), @apellido varchar(50), @tipoDoc varchar(10),
+create procedure ESECUELE.UpdateCliente(@id int, @nombre varchar(50), @apellido varchar(50), @tipoDoc varchar(10),
 @numDoc varchar(30), @cuil varchar(30), @fechaNac datetime, @usuario varchar(50)) as
 begin
 	update ESECUELE.Cliente set 
@@ -898,12 +898,19 @@ begin
 end
 go
 
-create procedure ESECUELE.UpdateUser(@id int, @username varchar(50), @estado bit, @email varchar(50),
+create procedure ESECUELE.updatePassUsuario(@id int, @usr_pass varchar(50)) as
+begin
+	declare @encryptedPass varbinary(8000);
+	set @encryptedPass = (SELECT HASHBYTES('SHA2_256', @usr_pass));
+	update ESECUELE.Usuario set usr_pass = @encryptedPass where usr_id = @id;
+end
+go
+
+create procedure ESECUELE.UpdateUsuario(@id int, @username varchar(50), @email varchar(50),
 @telefono varchar(20), @direccion varchar(150), @cp varchar(10)) as
 begin
 	update ESECUELE.Usuario set 
-		usr_username=@username, 
-		usr_estado=@estado, 
+		usr_username=@username,
 		usr_email=@email,
 		usr_telefono=@telefono,
 		usr_direccion=@direccion,

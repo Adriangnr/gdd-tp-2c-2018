@@ -47,26 +47,18 @@ namespace PalcoNet.Src.Modelo.Entidades
         {
             try
             {
+                this.UsuarioObj.update();
                 this.spExecute(this.schema + ".updateCliente", new List<SqlParameter>
-            {
-                    new SqlParameter("@cliente_nombre", this.Nombre),
-                    new SqlParameter("@cliente_apellido", this.Apellido),
-                    new SqlParameter("@cliente_tipo_doc", this.TipoDoc),
-                    new SqlParameter("@cliente_num_doc", this.NumDoc),
-                    new SqlParameter("@cliente_cuil", this.Cuil),
-                    new SqlParameter("@cliente_fecha_nacimiento", this.FechaNacimiento),
-                    new SqlParameter("@cliente_usuario", this.Usuario),
-            });
-                this.spExecute(this.schema + ".updateUsuario", new List<SqlParameter>
-            {
-                    new SqlParameter("@cliente_nombre", this.Nombre),
-                    new SqlParameter("@cliente_apellido", this.Apellido),
-                    new SqlParameter("@cliente_tipo_doc", this.TipoDoc),
-                    new SqlParameter("@cliente_num_doc", this.NumDoc),
-                    new SqlParameter("@cliente_cuil", this.Cuil),
-                    new SqlParameter("@cliente_fecha_nacimiento", this.FechaNacimiento),
-                    new SqlParameter("@cliente_usuario", this.Usuario),
-            });
+                {
+                    new SqlParameter("@id", this.Id),
+                    new SqlParameter("@nombre", this.Nombre),
+                    new SqlParameter("@apellido", this.Apellido),
+                    new SqlParameter("@tipoDoc", this.TipoDoc),
+                    new SqlParameter("@numDoc", this.NumDoc),
+                    new SqlParameter("@cuil", this.Cuil),
+                    new SqlParameter("@fechaNac", this.FechaNacimiento),
+                    new SqlParameter("@usuario", this.Usuario),
+                });
             }
             catch (Exception e)
             {

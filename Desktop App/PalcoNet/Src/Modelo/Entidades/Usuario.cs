@@ -100,6 +100,42 @@ namespace PalcoNet.Src.Modelo.Entidades
             }
         }
 
+        public void updatePassword()
+        {
+            try
+            {
+                this.spExecute(this.schema + ".updatePassUsuario", new List<SqlParameter>
+                {
+                    new SqlParameter("@id", this.Id),
+                    new SqlParameter("@usr_pass", this.Password)
+                });
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public void update()
+        {
+            try
+            {
+                this.spExecute(this.schema + ".updateUsuario", new List<SqlParameter>
+            {
+                    new SqlParameter("@id", this.Id),
+                    new SqlParameter("@username", this.Username),
+                    new SqlParameter("@email", this.Email),
+                    new SqlParameter("@telefono", this.Telefono),
+                    new SqlParameter("@direccion", this.Direccion),
+                    new SqlParameter("@cp", this.CodigoPostal)
+            });
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         private void LoadAttributes(List<object> row)
         {
             this.Id = (int)row[0];

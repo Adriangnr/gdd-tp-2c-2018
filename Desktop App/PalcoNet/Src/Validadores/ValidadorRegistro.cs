@@ -81,12 +81,12 @@ namespace PalcoNet.Src.Validadores
 
         public void textBox_piso(TextBox piso)
         {
-            this.validarCampoTexto(piso, "Piso", new Regex("^[a-zA-Z0-9]{1,3}$"));
+            this.validarCampoTexto(piso, "Piso", new Regex("^[a-zA-Z0-9 ]{1,3}$"));
          }
 
         public void textBox_depto(TextBox depto)
         {
-            this.validarCampoTexto(depto, "Depto", new Regex("^[a-zA-Z0-9]{1,3}$"));
+            this.validarCampoTexto(depto, "Depto", new Regex("^[a-zA-Z0-9 ]{1,3}$"));
         }
 
         public void textBox_localidad(TextBox localidad)
