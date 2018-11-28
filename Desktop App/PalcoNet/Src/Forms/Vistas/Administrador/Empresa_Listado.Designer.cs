@@ -181,6 +181,7 @@
             this.btn_crear.TabIndex = 62;
             this.btn_crear.Text = "Cargar Nuevo";
             this.btn_crear.UseVisualStyleBackColor = false;
+            this.btn_crear.Click += new System.EventHandler(this.btn_crear_Click);
             // 
             // btn_comisionar
             // 
@@ -205,6 +206,7 @@
             this.dataGridEmpresas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridEmpresas.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dataGridEmpresas.Location = new System.Drawing.Point(368, 128);
+            this.dataGridEmpresas.MultiSelect = false;
             this.dataGridEmpresas.Name = "dataGridEmpresas";
             this.dataGridEmpresas.ReadOnly = true;
             this.dataGridEmpresas.RowHeadersVisible = false;

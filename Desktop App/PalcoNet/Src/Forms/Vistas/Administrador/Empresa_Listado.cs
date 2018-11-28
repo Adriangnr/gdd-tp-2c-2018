@@ -1,4 +1,5 @@
 ﻿using PalcoNet.Src.Forms.Layouts;
+using PalcoNet.Src.Forms.Vistas.General;
 using PalcoNet.Src.Servicios;
 using PalcoNet.Src.Servicios.ServiceFactory;
 using System;
@@ -51,9 +52,9 @@ namespace PalcoNet.Src.Forms.Vistas.Administrador
 
         private void btn_habilitar_Click(object sender, EventArgs e)
         {
-            if (this.dataGridEmpresas.CurrentRow == null)
+            if (this.dataGridEmpresas.SelectedRows.Count == 0)
             {
-                MessageBox.Show("No se seleccionó ningún cliente!", "Cambiar estado del cliente.",
+                MessageBox.Show("No se seleccionó ninguna empresa!", "Cambiar estado de empresa.",
                                 MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
@@ -100,6 +101,14 @@ namespace PalcoNet.Src.Forms.Vistas.Administrador
                 this.btn_habilitar.Text = "Habilitar";
             }
             this.btn_habilitar.Refresh();
+        }
+
+        private void btn_crear_Click(object sender, EventArgs e)
+        {
+            Registro formRegistro = new Registro(this);
+            formRegistro.setearTipoUsuario("Empresa");
+            formRegistro.Show();
+            this.Hide();
         }
     }
 }

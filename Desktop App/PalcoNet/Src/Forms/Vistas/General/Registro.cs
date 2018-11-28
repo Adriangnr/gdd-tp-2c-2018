@@ -22,6 +22,12 @@ namespace PalcoNet.Src.Forms.Vistas.General
             this.rolSelector.DataSource = new List<string> { "Cliente", "Empresa" };
         }
 
+        public void setearTipoUsuario(string tipo)
+        {
+            this.rolSelector.SelectedItem = tipo;
+            this.rolSelector.Enabled = false;
+        }
+
         private void Registro_Load(object sender, EventArgs e)
         {
 

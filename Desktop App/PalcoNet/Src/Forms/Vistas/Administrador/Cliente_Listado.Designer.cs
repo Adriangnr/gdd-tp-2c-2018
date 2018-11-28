@@ -211,6 +211,7 @@
             this.btn_crear.TabIndex = 61;
             this.btn_crear.Text = "Cargar Nuevo";
             this.btn_crear.UseVisualStyleBackColor = false;
+            this.btn_crear.Click += new System.EventHandler(this.btn_crear_Click);
             // 
             // dataGridClientes
             // 
@@ -219,6 +220,7 @@
             this.dataGridClientes.AllowUserToOrderColumns = true;
             this.dataGridClientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridClientes.Location = new System.Drawing.Point(358, 128);
+            this.dataGridClientes.MultiSelect = false;
             this.dataGridClientes.Name = "dataGridClientes";
             this.dataGridClientes.ReadOnly = true;
             this.dataGridClientes.RowHeadersVisible = false;

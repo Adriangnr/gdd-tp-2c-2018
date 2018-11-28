@@ -58,7 +58,7 @@ namespace PalcoNet.Src.Forms.Vistas.Administrador
 
         private void btn_habilitar_Click(object sender, EventArgs e)
         {
-            if (this.dataGridClientes.CurrentRow == null)
+            if (this.dataGridClientes.SelectedRows.Count == 0)
             {
                 MessageBox.Show("No se seleccionó ningún cliente!", "Cambiar estado del cliente.",
                                 MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -99,7 +99,7 @@ namespace PalcoNet.Src.Forms.Vistas.Administrador
 
         private void btn_edit_Click(object sender, EventArgs e)
         {
-            if (this.dataGridClientes.CurrentRow == null)
+            if (this.dataGridClientes.SelectedRows.Count == 0)
             {
                 MessageBox.Show("No se seleccionó ningún cliente!", "Cambiar estado del cliente.",
                                 MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -137,6 +137,14 @@ namespace PalcoNet.Src.Forms.Vistas.Administrador
                 this.btn_habilitar.Text = "Habilitar";
             }
             this.btn_habilitar.Refresh();
+        }
+
+        private void btn_crear_Click(object sender, EventArgs e)
+        {
+            Registro formRegistro = new Registro(this);
+            formRegistro.setearTipoUsuario("Cliente");
+            formRegistro.Show();
+            this.Hide();
         }
     }
 }
