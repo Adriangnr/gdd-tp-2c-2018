@@ -447,6 +447,14 @@ concat('cli_', Cli_Dni)
 from gd_esquema.Maestra where Cli_Dni is not null
 -- Fin de Carga de Cliente
 
+-- Asignacion de funcionalidades para los usuarios cargados
+insert into ESECUELE.Rol_Usuario (rol_usr_rol_id, rol_usr_username)
+select 2, u.usr_username from ESECUELE.Cliente c join ESECUELE.Usuario u on c.cliente_usuario = u.usr_username
+
+insert into ESECUELE.Rol_Usuario (rol_usr_rol_id, rol_usr_username)
+select 3, u.usr_username from ESECUELE.Empresa e join ESECUELE.Usuario u on e.empresa_usuario = u.usr_username
+-- Fin de asignacion de funcionalidades
+
 -- Carga de Compras
 insert into ESECUELE.Compra
 (compra_entrada,

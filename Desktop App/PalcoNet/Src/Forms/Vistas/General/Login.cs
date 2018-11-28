@@ -86,7 +86,7 @@ namespace PalcoNet.Src.Forms.Vistas.General
                 default:
                     {
                         intentosFallidos = 0;
-                        UsuarioService usrService = (UsuarioService)ServiceFactory.GetService("User");
+                        UsuarioService usrService = (UsuarioService)ServiceFactory.GetService("Usuario");
                         Usuario usr = usrService.GetUser(username);
                         new MenuPrincipal(this, usr).Show();
                         this.Hide();
