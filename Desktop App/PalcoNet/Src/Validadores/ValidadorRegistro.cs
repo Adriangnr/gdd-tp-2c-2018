@@ -101,37 +101,57 @@ namespace PalcoNet.Src.Validadores
 
         public void nombre(TextBox nombreCliente)
         {
-            this.validarCampoTexto(nombreCliente, "Nombre", new Regex(@"^[a-zA-Z]+(([\'\,\.\-][a-zA-Z])?[a-zA-Z]*)*$"));
+            if (nombreCliente.Text == "")
+            {
+                throw new ValidadorException("El campo Nombre es requerido!");
+            }
+            this.validarCampoTexto(nombreCliente, "Nombre", new Regex(@"^[a-zA-Z ]+(([\'\,\.\- ][a-zA-Z ])?[a-zA-Z ]*)*$"));
         }
 
         public void apellido(TextBox apellidoCliente)
         {
-            this.validarCampoTexto(apellidoCliente, "Apellido", new Regex(@"^[a-zA-Z]+(([\'\,\.\-][a-zA-Z])?[a-zA-Z]*)*$"));
+            this.validarCampoTexto(apellidoCliente, "Apellido", new Regex(@"^[a-zA-Z ]+(([\'\,\.\- ][a-zA-Z ])?[a-zA-Z ]*)*$"));
         }
 
         public void nrodoc(TextBox nrodocCliente)
         {
-            this.validarCampoTexto(nrodocCliente, "Numero de documento", new Regex(@"^[0-9]{8,8}$"));
+            if (nrodocCliente.Text == "")
+            {
+                throw new ValidadorException("El campo Numero de documento es requerido!");
+            }
+            this.validarCampoTexto(nrodocCliente, "Numero de documento", new Regex(@"^[0-9]{6,8}$"));
         }
 
         public void cuil(TextBox cuilCliente)
         {
-            this.validarCampoTexto(cuilCliente, "Cuil", new Regex(@"^[0-9]{2}-[0-9]{8}-[0-9]$"));
+            if (cuilCliente.Text == "")
+            {
+                throw new ValidadorException("El campo Cuil es requerido!");
+            }
+            this.validarCampoTexto(cuilCliente, "Cuil", new Regex(@"^[0-9]{1,2}-[0-9]{6,8}-[0-9]$"));
         }
 
         public void razonSocial(TextBox razonSocial)
         {
+            if (razonSocial.Text == "")
+            {
+                throw new ValidadorException("El campo Razon Social es requerido!");
+            }
             this.validarCampoTexto(razonSocial, "Razon Social", new Regex(@"^[a-zA-Z ]+(([\'\,\.\-][a-zA-Z ])?[a-zA-Z ]*)*$"));
         }
 
         public void cuit(TextBox cuitEmpresa)
         {
-            this.validarCampoTexto(cuitEmpresa, "Cuit", new Regex(@"^[0-9]{2}-[0-9]{8}-[0-9]$"));
+            if (cuitEmpresa.Text == "")
+            {
+                throw new ValidadorException("El campo Cuit es requerido!");
+            }
+            this.validarCampoTexto(cuitEmpresa, "Cuit", new Regex(@"^[0-9]{1,2}-[0-9]{6,8}-[0-9]$"));
         }
 
         public void ciudad(TextBox ciudadEmpresa)
         {
-            this.validarCampoTexto(ciudadEmpresa, "Ciudad", new Regex(@"^[a-zA-Z]+(([\'\,\.\-][a-zA-Z])?[a-zA-Z]*)*$"));
+            this.validarCampoTexto(ciudadEmpresa, "Ciudad", new Regex(@"^[a-zA-Z ]+(([\'\,\.\- ][a-zA-Z ])?[a-zA-Z ]*)*$"));
         }
     }
 }

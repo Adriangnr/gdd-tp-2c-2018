@@ -31,16 +31,9 @@ namespace PalcoNet.Src.Validadores
 
         protected void validarCampoTexto(TextBox campo, string descripcion, Regex patron)
         {
-            if (campo.Text == "")
+            if (!patron.IsMatch(campo.Text))
             {
-                throw new ValidadorException("El campo " + descripcion + " es requerido!");
-            }
-            else
-            {
-                if (!patron.IsMatch(campo.Text))
-                {
-                    throw new ValidadorException("El campo "+ descripcion +" posee caracteres invalidos!");
-                }
+                throw new ValidadorException("El campo " + descripcion + " posee caracteres invalidos!");
             }
         }
     }
