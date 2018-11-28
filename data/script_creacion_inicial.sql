@@ -703,6 +703,13 @@ as begin
 end
 go 
 
+create procedure ESECUELE.getEmpresa(@id int)
+as begin
+	select * from ESECUELE.Empresa e join ESECUELE.Usuario u on u.usr_username = e.empresa_usuario
+	where e.empresa_id = @id
+end
+go 
+
 create procedure ESECUELE.getRol(@id tinyint)
 as begin
 	select * from ESECUELE.Rol r where r.rol_id = @id
@@ -891,6 +898,50 @@ begin
 end
 go
 
+create procedure ESECUELE.SearchEmpresas(@razon_social varchar(60) = null,
+							  @cuit varchar(30) = null, 
+							  @email varchar(50) = null)
+as
+begin
+	declare @where bit
+	set @where = 0
+	declare @query nvarchar(500);
+	set @query = N'select * from ESECUELE.Empresa e join ESECUELE.Usuario u on e.empresa_usuario = u.usr_username';
+
+	if @razon_social is not null or  @cuit is not null or @email is not null
+	begin
+		set @query = @query + ' where '
+		if @razon_social is not null 
+		begin
+			set @query = @query + 'e.empresa_razon_social like ''%'	+ @razon_social + '%'''
+			set @where = 1
+		end
+
+		if @cuit is not null 
+		begin
+			if @where = 0
+				begin
+					set @query = @query + 'e.empresa_cuit like ''%'	+ @cuit + '%'''
+					set @where = 1
+				end
+			else set @query = @query + ' and e.empresa_cuit like ''%'	+ @cuit + '%'''
+		end
+
+		if @email is not null 
+		begin
+			if @where = 0
+				begin
+					set @query = @query + 'u.usr_email like ''%'	+ @email + '%'''
+					set @where = 1
+				end
+			else set @query = @query + ' and u.usr_email like ''%' + @email + '%'''
+		end
+	end
+	exec sp_executesql @query
+end
+go
+
+
 create procedure ESECUELE.UpdateCliente(@id int, @nombre varchar(50), @apellido varchar(50), @tipoDoc varchar(10),
 @numDoc varchar(30), @cuil varchar(30), @fechaNac datetime, @usuario varchar(50)) as
 begin
@@ -936,6 +987,31 @@ begin
 		select @currentStatus = u.usr_estado, @username = u.usr_username 
 		from ESECUELE.Usuario u join ESECUELE.Cliente c 
 		on u.usr_username = c.cliente_usuario where c.cliente_id = @id
+		
+		declare @newStatus bit
+		
+		if @currentStatus = 1 
+			set @newStatus = 0
+		else 
+			set @newStatus = 1
+
+		update ESECUELE.Usuario set usr_estado = @newStatus where usr_username = @username
+	end try
+	begin catch
+		throw
+	end catch
+end
+go
+
+create procedure ESECUELE.ChangeEmpresaStatus(@id int) as
+begin
+	begin try
+		declare @currentStatus bit
+		declare @username varchar(50)
+		
+		select @currentStatus = u.usr_estado, @username = u.usr_username 
+		from ESECUELE.Usuario u join ESECUELE.Empresa e 
+		on u.usr_username = e.empresa_usuario where e.empresa_id = @id
 		
 		declare @newStatus bit
 		

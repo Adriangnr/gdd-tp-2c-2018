@@ -34,7 +34,7 @@ namespace PalcoNet.Src.Servicios
         public void loadUsuarioOfClient(Cliente clienteObj, List<object> row)
         {
             UsuarioService usuarioService = (UsuarioService)ServiceFactory.ServiceFactory.GetService("Usuario");
-            clienteObj.UsuarioObj = usuarioService.LoadData(row);
+            clienteObj.UsuarioObj = usuarioService.LoadData(row,9);
             clienteObj.Habilitado = (clienteObj.UsuarioObj.Habilitado) ? "Si" : "No";
         }
 

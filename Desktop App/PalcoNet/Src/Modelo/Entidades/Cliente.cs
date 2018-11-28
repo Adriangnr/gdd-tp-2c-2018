@@ -19,9 +19,6 @@ namespace PalcoNet.Src.Modelo.Entidades
         public string Habilitado { get; set; }
         public Usuario UsuarioObj { get; set; }
 
-
-        public Cliente() { }
-
         public void save()
         {
             try

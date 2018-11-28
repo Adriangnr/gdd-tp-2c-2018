@@ -79,7 +79,8 @@ namespace PalcoNet.Src.Forms.Vistas.Administrador
                     {
                         this.dataGridClientes.CurrentRow.Cells[9].Value = "Si";
                     }
-                        
+
+                    this.dataGridClientes.ClearSelection();
                     this.dataGridClientes.Refresh();
                     this.dataGridClientes.ReadOnly = true;
 
@@ -123,6 +124,19 @@ namespace PalcoNet.Src.Forms.Vistas.Administrador
                     return;
                 }
             }
+        }
+       
+        private void dataGridClientes_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if ((string)this.dataGridClientes.CurrentRow.Cells[9].Value == "Si")
+            {
+                this.btn_habilitar.Text = "Deshabilitar";
+            }
+            else
+            {
+                this.btn_habilitar.Text = "Habilitar";
+            }
+            this.btn_habilitar.Refresh();
         }
     }
 }

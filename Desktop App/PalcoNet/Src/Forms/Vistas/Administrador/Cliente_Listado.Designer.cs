@@ -179,7 +179,7 @@
             this.btn_habilitar.Name = "btn_habilitar";
             this.btn_habilitar.Size = new System.Drawing.Size(194, 69);
             this.btn_habilitar.TabIndex = 59;
-            this.btn_habilitar.Text = "Cambiar Estado";
+            this.btn_habilitar.Text = "Deshabilitar";
             this.btn_habilitar.UseVisualStyleBackColor = false;
             this.btn_habilitar.Click += new System.EventHandler(this.btn_habilitar_Click);
             // 
@@ -214,12 +214,19 @@
             // 
             // dataGridClientes
             // 
+            this.dataGridClientes.AllowUserToAddRows = false;
+            this.dataGridClientes.AllowUserToDeleteRows = false;
+            this.dataGridClientes.AllowUserToOrderColumns = true;
             this.dataGridClientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridClientes.Location = new System.Drawing.Point(358, 128);
             this.dataGridClientes.Name = "dataGridClientes";
+            this.dataGridClientes.ReadOnly = true;
+            this.dataGridClientes.RowHeadersVisible = false;
             this.dataGridClientes.RowTemplate.Height = 28;
+            this.dataGridClientes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridClientes.Size = new System.Drawing.Size(547, 472);
             this.dataGridClientes.TabIndex = 62;
+            this.dataGridClientes.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridClientes_CellContentClick);
             // 
             // Cliente_Listado
             // 

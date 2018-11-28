@@ -16,18 +16,18 @@ namespace PalcoNet.Src.Servicios
             this.saveUserData(userParams);
         }
 
-        public Usuario LoadData(List<object> data)
+        public Usuario LoadData(List<object> data, int start)
         {
             Usuario usuarioObj = new Usuario();
-            usuarioObj.Id = (int)data[9];
-            usuarioObj.Username = (string)data[10];
-            usuarioObj.Password = (data[11].GetType() != typeof(DBNull)) ? System.Text.Encoding.UTF8.GetString((byte[])data[11]) : null;
-            usuarioObj.Habilitado = (bool)data[12];
-            usuarioObj.Nuevo = (bool)data[13];
-            usuarioObj.Email = (string)data[17];
-            usuarioObj.Telefono = (data[18].GetType() != typeof(System.DBNull)) ? (string)data[18] : null;
-            usuarioObj.Direccion = (string)data[19];
-            usuarioObj.CodigoPostal = (string)data[20];
+            usuarioObj.Id = (int)data[start];
+            usuarioObj.Username = (string)data[start+1];
+            usuarioObj.Password = (data[start+2].GetType() != typeof(DBNull)) ? System.Text.Encoding.UTF8.GetString((byte[])data[start+2]) : null;
+            usuarioObj.Habilitado = (bool)data[start+3];
+            usuarioObj.Nuevo = (bool)data[start+4];
+            usuarioObj.Email = (string)data[start+8];
+            usuarioObj.Telefono = (data[start+9].GetType() != typeof(System.DBNull)) ? (string)data[start+9] : null;
+            usuarioObj.Direccion = (string)data[start+10];
+            usuarioObj.CodigoPostal = (string)data[start+11];
 
             return usuarioObj;
         }
