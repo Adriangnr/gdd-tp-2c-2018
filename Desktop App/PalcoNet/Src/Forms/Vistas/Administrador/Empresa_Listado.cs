@@ -19,7 +19,7 @@ namespace PalcoNet.Src.Forms.Vistas.Administrador
             this.cargarListadoEmpresas();
         }
 
-        private void cargarListadoEmpresas()
+        public void cargarListadoEmpresas()
         {
             EmpresaService empresaService = (EmpresaService)ServiceFactory.GetService("Empresa");
             try

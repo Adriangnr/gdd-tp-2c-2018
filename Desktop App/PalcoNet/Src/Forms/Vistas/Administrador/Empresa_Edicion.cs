@@ -62,6 +62,7 @@ namespace PalcoNet.Src.Forms.Vistas.Administrador
                 this.empresa.update();
                 MessageBox.Show("Empresa actualizada con éxito!", "Actualizar empresa.",
                                 MessageBoxButtons.OK, MessageBoxIcon.Information);
+                ((Empresa_Listado)this.previous).cargarListadoEmpresas();
                 this.previous.Show();
                 this.Hide();
             }

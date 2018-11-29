@@ -83,6 +83,7 @@ namespace PalcoNet.Src.Forms.Vistas.Administrador
                 this.client.update();
                 MessageBox.Show("Cliente actualizado con éxito!", "Actualizar cliente.",
                                 MessageBoxButtons.OK, MessageBoxIcon.Information);
+                ((Cliente_Listado)this.previous).loadClientList();
                 this.previous.Show();
                 this.Hide();
             }

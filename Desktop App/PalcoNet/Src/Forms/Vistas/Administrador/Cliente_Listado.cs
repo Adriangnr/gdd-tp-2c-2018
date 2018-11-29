@@ -19,7 +19,7 @@ namespace PalcoNet.Src.Forms.Vistas.Administrador
            this.loadClientList();
         }
 
-        private void loadClientList()
+        public void loadClientList()
         {
             ClienteService clienteService = (ClienteService)ServiceFactory.GetService("Cliente");
             try
