@@ -563,7 +563,7 @@ alter table ESECUELE.Cliente add constraint FK_TarjId foreign key(cliente_datos_
 alter table ESECUELE.Punto add constraint FK_P_ClieId foreign key(punto_cliente) references ESECUELE.Cliente(cliente_id)
 
 -- Relacion Factura - Empresa
-alter table ESECUELE.Factura add constraint FK_F_EmpId foreign key(fact_empresa) references ESECUELE.Empresa(empresa_id) ON DELETE NO ACTION ON UPDATE CASCADE
+alter table ESECUELE.Factura add constraint FK_F_EmpId foreign key(fact_empresa) references ESECUELE.Empresa(empresa_id) ON DELETE SET NULL ON UPDATE CASCADE
 
 
 
