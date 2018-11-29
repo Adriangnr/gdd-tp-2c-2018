@@ -91,6 +91,18 @@ namespace PalcoNet.Src.Modelo.Entidades
             }
         }
 
+        public void borrar(int id)
+        {
+            try
+            {
+                this.spExecute(this.schema + ".borrarCliente", new List<SqlParameter>() { new SqlParameter("@id", id) });
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public void modifyStatus(int clientId)
         {
             try

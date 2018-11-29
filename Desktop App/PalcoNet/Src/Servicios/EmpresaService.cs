@@ -62,6 +62,12 @@ namespace PalcoNet.Src.Servicios
             return empresa;
         }
 
+        public void borrar(int id)
+        {
+            Empresa empresaObj = new Empresa();
+            empresaObj.borrar(id);
+        }
+
         private void loadEmpresa(Empresa empresaObj, List<object> row)
         {
             empresaObj.Id = (int)row[0];

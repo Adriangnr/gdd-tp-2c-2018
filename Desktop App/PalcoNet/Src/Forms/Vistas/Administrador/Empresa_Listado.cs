@@ -139,5 +139,24 @@ namespace PalcoNet.Src.Forms.Vistas.Administrador
                 }
             }
         }
+
+        private void btn_eliminar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                EmpresaService empresaService = (EmpresaService)ServiceFactory.GetService("Empresa");
+                empresaService.borrar((int)this.dataGridEmpresas.CurrentRow.Cells[0].Value);
+                MessageBox.Show("Empresa eliminada con exito!", "Borrar empresa.",
+                                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.cargarListadoEmpresas();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                MessageBox.Show("Error al borrar la empresa!", "Error!",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+        }
     }
 }

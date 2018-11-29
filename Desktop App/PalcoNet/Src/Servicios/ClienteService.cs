@@ -62,6 +62,20 @@ namespace PalcoNet.Src.Servicios
             return cliente;
         }
 
+        public void borrar(int id)
+        {
+            Cliente clienteObj = new Cliente();
+            try
+            {
+                clienteObj.borrar(id);
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+            
+        }
+
         private void loadCliente(Cliente clienteObj, List<object> row)
         {
             clienteObj.Id = (int)row[0];
