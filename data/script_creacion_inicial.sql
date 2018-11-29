@@ -525,7 +525,7 @@ create unique index index_empresa_id on ESECUELE.Empresa(empresa_id)
 create unique index index_entrada_id on ESECUELE.Entrada(entrada_id)
 
 -- Relacion Rol_Usuario
-alter table ESECUELE.Rol_Usuario add constraint FK_RU_RolId foreign key(rol_usr_rol_id) references ESECUELE.Rol(rol_id)
+alter table ESECUELE.Rol_Usuario add constraint FK_RU_RolId foreign key(rol_usr_rol_id) references ESECUELE.Rol(rol_id) ON UPDATE CASCADE ON DELETE CASCADE
 alter table ESECUELE.Rol_Usuario add constraint FK_UsrId foreign key(rol_usr_username) references ESECUELE.Usuario(usr_username) ON UPDATE CASCADE ON DELETE CASCADE
 
 -- Relacion Funcionalidad_Rol
@@ -536,7 +536,7 @@ alter table ESECUELE.Funcionalidad_Rol add constraint FK_FR_RolId foreign key(fr
 alter table ESECUELE.Empresa add constraint FK_Emp_UserName foreign key (empresa_usuario) references ESECUELE.Usuario(usr_username) ON UPDATE CASCADE ON DELETE CASCADE
 
 -- Relacion Publicacion -Empresa
-alter table ESECUELE.Publicacion add constraint FK_EmpId foreign key (publicacion_empresa) references ESECUELE.Empresa(empresa_id)
+alter table ESECUELE.Publicacion add constraint FK_EmpId foreign key (publicacion_empresa) references ESECUELE.Empresa(empresa_id) ON UPDATE CASCADE ON DELETE NO ACTION
 
 -- Relacion Entrada - Tipo_Entrada
 alter table ESECUELE.Entrada add constraint FK_Tipo_Entrada foreign key(entrada_tipo) references ESECUELE.Tipo_Entrada(tipo_entrada_id)
@@ -545,7 +545,7 @@ alter table ESECUELE.Entrada add constraint FK_Tipo_Entrada foreign key(entrada_
 alter table ESECUELE.Cliente add constraint FK_Cli_UserName foreign key (cliente_usuario) references ESECUELE.Usuario(usr_username) ON UPDATE CASCADE ON DELETE CASCADE 
 
 -- Relacion Compra - Cliente
-alter table ESECUELE.Compra add constraint FK_Comp_Clie foreign key (compra_cliente) references ESECUELE.Cliente(cliente_id) ON UPDATE CASCADE ON DELETE CASCADE
+alter table ESECUELE.Compra add constraint FK_Comp_Clie foreign key (compra_cliente) references ESECUELE.Cliente(cliente_id) ON UPDATE CASCADE ON DELETE NO ACTION
 
 -- Relacion Compra - Entrada
 alter table ESECUELE.Compra add constraint FK_Comp_Entrada foreign key (compra_entrada) references ESECUELE.Entrada(entrada_id)
@@ -563,7 +563,7 @@ alter table ESECUELE.Cliente add constraint FK_TarjId foreign key(cliente_datos_
 alter table ESECUELE.Punto add constraint FK_P_ClieId foreign key(punto_cliente) references ESECUELE.Cliente(cliente_id)
 
 -- Relacion Factura - Empresa
-alter table ESECUELE.Factura add constraint FK_F_EmpId foreign key(fact_empresa) references ESECUELE.Empresa(empresa_id)
+alter table ESECUELE.Factura add constraint FK_F_EmpId foreign key(fact_empresa) references ESECUELE.Empresa(empresa_id) ON DELETE NO ACTION ON UPDATE CASCADE
 
 
 
