@@ -192,6 +192,7 @@
     <Compile Include="Src\Modelo\Entidades\Empresa.cs" />
     <Compile Include="Src\Modelo\Entidades\Funcionalidad.cs" />
     <Compile Include="Src\Modelo\Entidades\Login.cs" />
+    <Compile Include="Src\Modelo\Entidades\Publicacion.cs" />
     <Compile Include="Src\Modelo\Entidades\Rol.cs" />
     <Compile Include="Src\Modelo\Entidades\Rol_Usuario.cs" />
     <Compile Include="Src\Modelo\Entidades\Titulo.cs" />

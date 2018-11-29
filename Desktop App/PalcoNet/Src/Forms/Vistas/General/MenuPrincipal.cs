@@ -66,6 +66,7 @@ namespace PalcoNet.Src.Forms.Vistas.General
                         Master funcForm = Utilities.createInstance("PalcoNet.Src.Forms.Vistas." +
                         rol.Nombre + "." + f.GetNombre()) as Master;
                         funcForm.setPrevious(this);
+                        funcForm.setUsuario(this.user);
                         funcForm.Show();
                         this.Hide();
                     }

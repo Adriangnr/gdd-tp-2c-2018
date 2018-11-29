@@ -709,6 +709,19 @@ as begin
 end
 go 
 
+create procedure ESECUELE.getEmpresaFromUsername(@username varchar(50))
+as begin
+	select * from ESECUELE.Empresa e join ESECUELE.Usuario u on u.usr_username = e.empresa_usuario
+	where e.empresa_usuario = @username
+end
+go
+
+create procedure ESECUELE.getPublicacionesFromEmpresa(@id int)
+as begin
+	select * from ESECUELE.Publicacion where publicacion_empresa = @id
+end
+go
+
 create procedure ESECUELE.getRol(@id tinyint)
 as begin
 	select * from ESECUELE.Rol r where r.rol_id = @id

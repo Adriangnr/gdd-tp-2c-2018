@@ -1,11 +1,13 @@
-﻿using System;
+﻿using PalcoNet.Src.Modelo.Entidades;
+using System;
 using System.Windows.Forms;
 
 namespace PalcoNet.Src.Forms.Layouts
 {
     public partial class Master : Form
     {
-        protected Form previous;
+        public Form previous;
+        public Usuario usuario;
 
         public Master()
         {
@@ -15,6 +17,11 @@ namespace PalcoNet.Src.Forms.Layouts
         public void setPrevious(Form previous)
         {
             this.previous = previous;
+        }
+
+        public void setUsuario(Usuario usuario)
+        {
+            this.usuario = usuario;
         }
 
         private void label1_Click(object sender, EventArgs e)

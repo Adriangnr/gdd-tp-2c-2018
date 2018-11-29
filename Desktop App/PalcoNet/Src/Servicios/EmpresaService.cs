@@ -62,6 +62,26 @@ namespace PalcoNet.Src.Servicios
             return empresa;
         }
 
+        public Empresa GetEmpresaFromUsername(string username)
+        {
+            List<object> empresaData = this.Get("EmpresaFromUsername", new List<SqlParameter> { new SqlParameter("@username", username) })[0];
+
+            Empresa empresa = new Empresa();
+
+            this.loadEmpresa(empresa, empresaData);
+
+            return empresa;
+        }
+
+        public List<Publicacion> GetPublicaciones(string username)
+        {
+            Empresa empresaEntity = this.GetEmpresaFromUsername(username);
+            List<Publicacion> publicaciones = new List<Publicacion>();
+            List<List<object>> publicacionesData = empresaEntity.GetPublicaciones();
+
+            return publicaciones;
+        }
+
         public void borrar(int id)
         {
             Empresa empresaObj = new Empresa();
