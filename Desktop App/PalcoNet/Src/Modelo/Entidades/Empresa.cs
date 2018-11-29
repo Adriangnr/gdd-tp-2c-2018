@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace PalcoNet.Src.Modelo.Entidades
 {
-    class Empresa : DatabaseEntity
+    public class Empresa : DatabaseEntity
     {
         public int Id { get; set; }
 
@@ -33,6 +33,26 @@ namespace PalcoNet.Src.Modelo.Entidades
                     new SqlParameter("@empresa_cuit", this.Cuit),
                     new SqlParameter("@empresa_usuario", this.Usuario)
             });
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        public void update()
+        {
+            try
+            {
+                this.UsuarioObj.update();
+                this.spExecute(this.schema + ".updateEmpresa", new List<SqlParameter>
+                {
+                    new SqlParameter("@id", this.Id),
+                    new SqlParameter("@razonSocial", this.RazonSocial),
+                    new SqlParameter("@cuit", this.Cuit),
+                    new SqlParameter("@ciudad", this.Ciudad),
+                    new SqlParameter("@usuario", this.Usuario)
+                });
             }
             catch (Exception e)
             {

@@ -53,11 +53,11 @@ namespace PalcoNet.Src.Servicios
 
         public Empresa GetEmpresa(int id)
         {
-            List<object> clientData = this.Get("Empresa", new List<SqlParameter> { new SqlParameter("@id", id) })[0];
+            List<object> empresaData = this.Get("Empresa", new List<SqlParameter> { new SqlParameter("@id", id) })[0];
 
             Empresa empresa = new Empresa();
 
-            this.loadEmpresa(empresa, clientData);
+            this.loadEmpresa(empresa, empresaData);
 
             return empresa;
         }

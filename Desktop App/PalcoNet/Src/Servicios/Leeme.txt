@@ -1,8 +1,0 @@
-Aca irian los servicios.
-
-Una clase padre Service, que va a tener los metodos generales,
-como save, delete, update, get y tambien la clase que se conecta con la Db.
-La idea de estos "servicios" es que tomen la info de la vista, armen los 
-modelos necesarios, y le den la orden de guardarse.
-De la clase Service, van a extender los servicios con metodos particulares,
-como reportes o acciones particulares sobre ciertas tablas. 

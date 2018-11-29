@@ -97,7 +97,6 @@ create table ESECUELE.Usuario(
 	usr_fallas tinyint default 0,
 	usr_fecha_creacion datetime default null,
 	usr_tipo varchar(7) default null,
-
 	usr_email varchar(50) default null,
 	usr_telefono varchar(20) default null,
 	usr_direccion varchar(150) default null,
@@ -360,7 +359,7 @@ CONCAT('usr_', Espec_Empresa_Cuit),
 (SELECT HASHBYTES('SHA2_256', Espec_Empresa_Cuit)),
 'Empresa',
 Espec_Empresa_Mail,
-CONCAT(Espec_Empresa_Dom_Calle, ' ', Espec_Empresa_Nro_Calle, ',piso ',Espec_Empresa_Piso, ',dpto ', Espec_Empresa_Depto),
+CONCAT(Espec_Empresa_Dom_Calle, ' ', Espec_Empresa_Nro_Calle, ',',Espec_Empresa_Piso, ',', Espec_Empresa_Depto, ','),
 Espec_Empresa_Cod_Postal,
 Espec_Empresa_Fecha_Creacion
 from gd_esquema.Maestra
@@ -527,14 +526,14 @@ create unique index index_entrada_id on ESECUELE.Entrada(entrada_id)
 
 -- Relacion Rol_Usuario
 alter table ESECUELE.Rol_Usuario add constraint FK_RU_RolId foreign key(rol_usr_rol_id) references ESECUELE.Rol(rol_id)
-alter table ESECUELE.Rol_Usuario add constraint FK_UsrId foreign key(rol_usr_username) references ESECUELE.Usuario(usr_username)
+alter table ESECUELE.Rol_Usuario add constraint FK_UsrId foreign key(rol_usr_username) references ESECUELE.Usuario(usr_username) ON UPDATE CASCADE
 
 -- Relacion Funcionalidad_Rol
 alter table ESECUELE.Funcionalidad_Rol add constraint FK_FR_FuncId foreign key(frol_func_id) references ESECUELE.Funcionalidad(func_id)
 alter table ESECUELE.Funcionalidad_Rol add constraint FK_FR_RolId foreign key(frol_rol_id) references ESECUELE.Rol(rol_id)
 
 -- Relacion Empresa - Usuario
-alter table ESECUELE.Empresa add constraint FK_Emp_UserName foreign key (empresa_usuario) references ESECUELE.Usuario(usr_username)
+alter table ESECUELE.Empresa add constraint FK_Emp_UserName foreign key (empresa_usuario) references ESECUELE.Usuario(usr_username) ON UPDATE CASCADE
 
 -- Relacion Publicacion -Empresa
 alter table ESECUELE.Publicacion add constraint FK_EmpId foreign key (publicacion_empresa) references ESECUELE.Empresa(empresa_id)
@@ -954,6 +953,18 @@ begin
 		cliente_fecha_nacimiento=@fechaNac,
 		cliente_usuario=@usuario
 		where cliente_id=@id
+end
+go
+
+create procedure ESECUELE.UpdateEmpresa(@id int, @razonSocial varchar(60), @ciudad varchar(40), @cuit varchar(30),
+	@usuario varchar(50)) as
+begin
+	update ESECUELE.Empresa set 
+		empresa_ciudad=@ciudad,
+		empresa_cuit=@cuit,
+		empresa_razon_social=@razonSocial,
+		empresa_usuario=@usuario
+		where empresa_id=@id
 end
 go
 

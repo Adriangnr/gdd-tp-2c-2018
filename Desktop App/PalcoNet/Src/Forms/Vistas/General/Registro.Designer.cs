@@ -47,7 +47,6 @@
             this.textBox_contrasena = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.textBox_usuario = new System.Windows.Forms.TextBox();
-            this.register_title = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.textBox_mail = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -267,18 +266,6 @@
             this.textBox_usuario.Size = new System.Drawing.Size(204, 26);
             this.textBox_usuario.TabIndex = 0;
             // 
-            // register_title
-            // 
-            this.register_title.AutoSize = true;
-            this.register_title.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.register_title.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.register_title.Location = new System.Drawing.Point(48, 112);
-            this.register_title.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.register_title.Name = "register_title";
-            this.register_title.Size = new System.Drawing.Size(169, 22);
-            this.register_title.TabIndex = 27;
-            this.register_title.Text = "Registro de Usuario";
-            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -351,7 +338,6 @@
             this.Controls.Add(this.textBox_telefono);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.textBox_mail);
-            this.Controls.Add(this.register_title);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.textBox_contrasena);
             this.Controls.Add(this.label1);
@@ -372,7 +358,6 @@
             this.Controls.SetChildIndex(this.label1, 0);
             this.Controls.SetChildIndex(this.textBox_contrasena, 0);
             this.Controls.SetChildIndex(this.label2, 0);
-            this.Controls.SetChildIndex(this.register_title, 0);
             this.Controls.SetChildIndex(this.textBox_mail, 0);
             this.Controls.SetChildIndex(this.label4, 0);
             this.Controls.SetChildIndex(this.textBox_telefono, 0);
@@ -397,7 +382,6 @@
         private System.Windows.Forms.TextBox textBox_contrasena;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBox_usuario;
-        private System.Windows.Forms.Label register_title;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox textBox_mail;
         private System.Windows.Forms.Label label5;

@@ -110,5 +110,34 @@ namespace PalcoNet.Src.Forms.Vistas.Administrador
             formRegistro.Show();
             this.Hide();
         }
+
+        private void btn_edit_Click(object sender, EventArgs e)
+        {
+            if (this.dataGridEmpresas.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("No se seleccionó ninguna empresa!", "Editar empresa.",
+                                MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                try
+                {
+                    EmpresaService empresaService = (EmpresaService)ServiceFactory.GetService("Empresa");
+                    PalcoNet.Src.Modelo.Entidades.Empresa empresa = empresaService.GetEmpresa((int)this.dataGridEmpresas.CurrentRow.Cells[0].Value);
+                    Empresa_Edicion editForm = new Empresa_Edicion();
+                    editForm.setPrevious(this);
+                    editForm.loadData(empresa);
+                    editForm.Show();
+                    this.Hide();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    MessageBox.Show("Error al editar la empresa!", "Error!",
+                                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+            }
+        }
     }
 }

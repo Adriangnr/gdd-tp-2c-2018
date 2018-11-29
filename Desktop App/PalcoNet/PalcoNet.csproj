@@ -58,6 +58,12 @@
     <Compile Include="Src\Forms\Vistas\Administrador\Cliente_Listado.Designer.cs">
       <DependentUpon>Cliente_Listado.cs</DependentUpon>
     </Compile>
+    <Compile Include="Src\Forms\Vistas\Administrador\Empresa_Edicion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Src\Forms\Vistas\Administrador\Empresa_Edicion.Designer.cs">
+      <DependentUpon>Empresa_Edicion.cs</DependentUpon>
+    </Compile>
     <Compile Include="Src\Forms\Vistas\Administrador\Empresa_Registro.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -218,6 +224,9 @@
     <EmbeddedResource Include="Src\Forms\Vistas\Administrador\Cliente_Registro.resx">
       <DependentUpon>Cliente_Registro.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Src\Forms\Vistas\Administrador\Empresa_Edicion.resx">
+      <DependentUpon>Empresa_Edicion.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Src\Forms\Vistas\Administrador\Empresa_Listado.resx">
       <DependentUpon>Empresa_Listado.cs</DependentUpon>
     </EmbeddedResource>
@@ -289,9 +298,6 @@
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Src\Servicios\Leeme.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

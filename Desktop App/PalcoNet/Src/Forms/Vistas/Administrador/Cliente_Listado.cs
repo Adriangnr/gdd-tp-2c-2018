@@ -95,7 +95,7 @@ namespace PalcoNet.Src.Forms.Vistas.Administrador
         {
             if (this.dataGridClientes.SelectedRows.Count == 0)
             {
-                MessageBox.Show("No se seleccionó ningún cliente!", "Cambiar estado del cliente.",
+                MessageBox.Show("No se seleccionó ningún cliente!", "Editar cliente.",
                                 MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
