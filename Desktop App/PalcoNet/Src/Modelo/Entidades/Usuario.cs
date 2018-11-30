@@ -39,7 +39,7 @@ namespace PalcoNet.Src.Modelo.Entidades
                     this.LoadAttributes(row);
                     this.prepared = 1;
                 }
-                this.addRol((byte)row[12], (bool)row[14]);
+                this.addRol((byte)row[12]);//, (bool)row[14]);
             });
         }
 
@@ -48,10 +48,10 @@ namespace PalcoNet.Src.Modelo.Entidades
             return this.Roles;
         }
 
-        public void addRol(byte rolId, bool seleccionado)
+        public void addRol(byte rolId)//, bool seleccionado)
         {
             Rol rol = new Rol(rolId);
-            rol.Seleccionado = seleccionado;
+            //rol.Seleccionado = seleccionado;
             this.Roles.Add(rol);
         }
 
