@@ -76,6 +76,7 @@
             this.btn_cancel.TabIndex = 60;
             this.btn_cancel.Text = "Cancelar";
             this.btn_cancel.UseVisualStyleBackColor = true;
+            this.btn_cancel.Click += new System.EventHandler(this.btn_cancel_Click);
             // 
             // Entidad
             // 
@@ -97,7 +98,9 @@
             this.dataGridPublicaciones.Location = new System.Drawing.Point(48, 128);
             this.dataGridPublicaciones.Name = "dataGridPublicaciones";
             this.dataGridPublicaciones.ReadOnly = true;
+            this.dataGridPublicaciones.RowHeadersVisible = false;
             this.dataGridPublicaciones.RowTemplate.Height = 28;
+            this.dataGridPublicaciones.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridPublicaciones.Size = new System.Drawing.Size(876, 486);
             this.dataGridPublicaciones.TabIndex = 62;
             // 
