@@ -130,6 +130,12 @@
     <Compile Include="Src\Forms\Vistas\Administrador\Comisiones_Detalle.Designer.cs">
       <DependentUpon>Comisiones_Detalle.cs</DependentUpon>
     </Compile>
+    <Compile Include="Src\Forms\Vistas\Empresa\Fecha_Hora.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Src\Forms\Vistas\Empresa\Fecha_Hora.Designer.cs">
+      <DependentUpon>Fecha_Hora.cs</DependentUpon>
+    </Compile>
     <Compile Include="Src\Forms\Vistas\Empresa\Publicacion_Detalle.cs">
       <SubType>Form</SubType>
     </Compile>

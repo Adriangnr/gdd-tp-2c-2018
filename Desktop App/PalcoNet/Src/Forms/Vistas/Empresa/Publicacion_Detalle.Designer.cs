@@ -46,7 +46,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.panelTiposEntradas = new System.Windows.Forms.Panel();
             this.btn_pub_cargarFechasHoras = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btn_pub_entradas = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -237,25 +237,25 @@
             this.btn_pub_cargarFechasHoras.Text = "Cargar Fechas y Horarios";
             this.btn_pub_cargarFechasHoras.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // btn_pub_entradas
             // 
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.button2.Location = new System.Drawing.Point(301, 437);
-            this.button2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(194, 69);
-            this.button2.TabIndex = 61;
-            this.button2.Text = "Cancelar";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btn_pub_entradas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_pub_entradas.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_pub_entradas.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.btn_pub_entradas.Location = new System.Drawing.Point(301, 437);
+            this.btn_pub_entradas.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btn_pub_entradas.Name = "btn_pub_entradas";
+            this.btn_pub_entradas.Size = new System.Drawing.Size(194, 69);
+            this.btn_pub_entradas.TabIndex = 61;
+            this.btn_pub_entradas.Text = "Cargar entradas y precios";
+            this.btn_pub_entradas.UseVisualStyleBackColor = true;
             // 
             // Publicacion_Detalle
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1176, 678);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.btn_pub_entradas);
             this.Controls.Add(this.btn_pub_cargarFechasHoras);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.panelTiposEntradas);
@@ -297,7 +297,7 @@
             this.Controls.SetChildIndex(this.panelTiposEntradas, 0);
             this.Controls.SetChildIndex(this.label3, 0);
             this.Controls.SetChildIndex(this.btn_pub_cargarFechasHoras, 0);
-            this.Controls.SetChildIndex(this.button2, 0);
+            this.Controls.SetChildIndex(this.btn_pub_entradas, 0);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -322,6 +322,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Panel panelTiposEntradas;
         private System.Windows.Forms.Button btn_pub_cargarFechasHoras;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btn_pub_entradas;
     }
 }
