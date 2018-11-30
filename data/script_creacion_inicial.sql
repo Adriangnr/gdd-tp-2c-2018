@@ -383,12 +383,7 @@ Espectaculo_Rubro_Descripcion,
 (select empresa_id from ESECUELE.Empresa where empresa_usuario = CONCAT('usr_', Espec_Empresa_Cuit)),
 Espectaculo_Estado
  from gd_esquema.Maestra
-<<<<<<< Updated upstream
  SET IDENTITY_INSERT ESECUELE.Publicacion OFF
-=======
-
-SET IDENTITY_INSERT ESECUELE.Publicacion OFF
->>>>>>> Stashed changes
 -- Fin de Carga de Espectaculos
 
 -- Carga de Entradas
