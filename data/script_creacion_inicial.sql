@@ -104,15 +104,10 @@ create table ESECUELE.Usuario(
 )
 go
 
-/*
-	Rol_Usuario
-	Seleccionado 0 - Este rol no esta siendo usado
-	Seleccionado 1 - El usuario esta usando este rol
-*/
+--Rol_Usuario
 create table ESECUELE.Rol_Usuario(
 	rol_usr_rol_id tinyint not null,
-	rol_usr_username varchar(50),
-	rol_usr_seleccionado bit default 0
+	rol_usr_username varchar(50)
 )
 go
 
@@ -190,16 +185,16 @@ go
 create table ESECUELE.Grado(
 	grado_id int identity(1,1) primary key,
 	grado_descripcion varchar(5) default null,
-	grado_comision decimal default null
+	grado_comision numeric(18,2) default null
 )
 go
 
 --Publicacion
 create table ESECUELE.Publicacion(
-	publicacion_codigo int,
+	publicacion_codigo int identity(1,1),
 	publicacion_fecha_inicio datetime default null,
 	publicacion_descripcion nvarchar(255) default null,
-	publicacion_fecha_publicacion datetime default null,
+	publicacion_fecha_evento datetime default null,
 	publicacion_rubro int default null,
 	publicacion_direccion varchar(50) default null,
 	publicacion_grado int default null,
@@ -224,7 +219,7 @@ create table ESECUELE.Entrada(
 	entrada_fila char default null,
 	entrada_asiento int default null,
 	entrada_sin_numerar bit default 0,
-	entrada_precio decimal not null,
+	entrada_precio numeric(18,2) not null,
 	entrada_tipo int default null
 	constraint PK_Entrada primary key (entrada_publicacion, entrada_fila, entrada_asiento, entrada_tipo)
 )
@@ -237,7 +232,8 @@ create table ESECUELE.Factura(
 	fact_fecha datetime default null,
 	fact_empresa int default null,
 	fact_estado bit default 0,
-	fact_total decimal default null
+	fact_total numeric(18,2) default null,
+	fact_forma_pago varchar(60) default null
 )
 go
 
@@ -246,7 +242,7 @@ create table ESECUELE.Item_Factura(
 	item_id int identity(1,1) primary key,
 	item_id_factura int default null,
 	item_cantidad int default null,
-	item_precio decimal default null,
+	item_precio numeric(18,2) default null,
 	item_descripcion varchar(50) default null,
 	item_entrada int default null
 )
@@ -256,7 +252,7 @@ go
 create table ESECUELE.Compra(
 	compra_id int identity(1,1) primary key,
 	compra_entrada int default null,
-	compra_total decimal not null,
+	compra_total numeric(18,2) not null,
 	compra_cliente int default null,
 	compra_fecha datetime default null,
 	compra_cantidad int default null,
@@ -368,11 +364,12 @@ from gd_esquema.Maestra
 
 
 -- Carga de Espectaculos
+SET IDENTITY_INSERT ESECUELE.Publicacion ON
 insert into ESECUELE.Publicacion
 (publicacion_codigo, 
 publicacion_fecha_inicio, 
 publicacion_descripcion, 
-publicacion_fecha_publicacion,
+publicacion_fecha_evento,
 publicacion_rubro,
 publicacion_empresa, 
 publicacion_estado)
@@ -386,6 +383,7 @@ Espectaculo_Rubro_Descripcion,
 (select empresa_id from ESECUELE.Empresa where empresa_usuario = CONCAT('usr_', Espec_Empresa_Cuit)),
 Espectaculo_Estado
  from gd_esquema.Maestra
+ SET IDENTITY_INSERT ESECUELE.Publicacion OFF
 -- Fin de Carga de Espectaculos
 
 -- Carga de Entradas
@@ -462,7 +460,7 @@ compra_cliente,
 compra_fecha,
 compra_cantidad)
 
-select 
+select distinct
 (select e.entrada_id from ESECUELE.Entrada e 
 where e.entrada_fila = m.Ubicacion_Fila and e.entrada_asiento = m.Ubicacion_Asiento
 and e.entrada_publicacion = m.Espectaculo_Cod and e.entrada_tipo = m.Ubicacion_Tipo_Codigo),
@@ -480,14 +478,16 @@ insert into ESECUELE.Factura
 (fact_nro,
 fact_fecha,
 fact_empresa,
-fact_total)
+fact_total,
+fact_forma_pago)
 
 select distinct
 m.Factura_Nro, 
 m.Factura_Fecha, 
 (select empresa_id from ESECUELE.Empresa where 
 empresa_razon_social = m.Espec_Empresa_Razon_Social and empresa_cuit = m.Espec_Empresa_Cuit),
-m.Factura_Total
+m.Factura_Total,
+m.Forma_Pago_Desc
  from gd_esquema.Maestra m
  where Factura_Nro is not null and Factura_Fecha is not null and Factura_Total is not null
 -- Fin de Carga de Facturas
@@ -500,8 +500,7 @@ item_precio,
 item_descripcion,
 item_entrada)
 
-select 
-distinct
+select distinct
 m.Factura_Nro, 
 m.Item_Factura_Cantidad, 
 m.Item_Factura_Monto, 
@@ -572,23 +571,6 @@ go
 
 
 /*--------------------------- Store procedures ----------------------------------*/
-
-create procedure ESECUELE.SeleccionarRol(@username varchar(50), @role tinyint)
-as begin
-  update ESECUELE.Rol_Usuario
-    set rol_usr_seleccionado = case when rol_usr_rol_id = @role then 1 else -1 end
-    where rol_usr_username = @username
-end
-go
-
-create procedure ESECUELE.DeseleccionarRol(@username varchar(50), @role tinyint)
-as
-begin
-  update ESECUELE.Rol_Usuario
-    set rol_usr_seleccionado = case when rol_usr_rol_id = @role then 0 else -1 end
-    where rol_usr_username = @username
-end
-go
 
 create procedure ESECUELE.LimpiarHabilitarUsuario(@username varchar(50))
 as
@@ -666,7 +648,6 @@ as begin
     else if @count < 1
 		select @return_val = @usuario_no_tiene_roles
 	else begin
-      exec ESECUELE.SeleccionarRol @username, @role
       set @return_val = @role -- Retorno el unico rol disponible
     end
   end
@@ -845,8 +826,8 @@ go
 create procedure ESECUELE.SaveRolUsuario(@rolName varchar(20), @username varchar(40)) as
 begin
 	begin try
-		insert into ESECUELE.Rol_Usuario (rol_usr_rol_id, rol_usr_username, rol_usr_seleccionado)
-		select rol_id , @username, 1 from ESECUELE.Rol where rol_nombre = @rolName
+		insert into ESECUELE.Rol_Usuario (rol_usr_rol_id, rol_usr_username)
+		select rol_id , @username from ESECUELE.Rol where rol_nombre = @rolName
 	end try
 	
 	begin catch
