@@ -49,6 +49,7 @@
             this.btn_edit.TabIndex = 57;
             this.btn_edit.Text = "Editar";
             this.btn_edit.UseVisualStyleBackColor = false;
+            this.btn_edit.Click += new System.EventHandler(this.btn_edit_Click);
             // 
             // btn_create
             // 
@@ -63,6 +64,7 @@
             this.btn_create.TabIndex = 58;
             this.btn_create.Text = "Crear Nueva";
             this.btn_create.UseVisualStyleBackColor = false;
+            this.btn_create.Click += new System.EventHandler(this.btn_create_Click);
             // 
             // btn_cancel
             // 
@@ -118,6 +120,7 @@
             this.Name = "Publicacion_Listado";
             this.Text = "Palco.NET - Publicaciones";
             this.Load += new System.EventHandler(this.Pulicacion_Listado_Load);
+            this.Controls.SetChildIndex(this.footer, 0);
             this.Controls.SetChildIndex(this.btn_edit, 0);
             this.Controls.SetChildIndex(this.btn_create, 0);
             this.Controls.SetChildIndex(this.btn_cancel, 0);
