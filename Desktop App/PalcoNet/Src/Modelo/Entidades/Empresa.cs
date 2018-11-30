@@ -122,5 +122,22 @@ namespace PalcoNet.Src.Modelo.Entidades
                 throw e;
             }
         }
+
+        public List<List<object>> GetPublicacion(int code)
+        {
+            try
+            {
+                List<SqlParameter> parameters = new List<SqlParameter>() {
+                    new SqlParameter("@idEmpresa", this.Id),
+                    new SqlParameter("@codPub", code)
+                };
+
+                return this.spExecuteDataReader(this.schema + ".getPublicacion", parameters);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
     }
 }

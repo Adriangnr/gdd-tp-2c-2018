@@ -191,7 +191,7 @@ go
 
 --Publicacion
 create table ESECUELE.Publicacion(
-	publicacion_codigo int identity(1,1),
+	publicacion_codigo int identity(1,1) primary key,
 	publicacion_fecha_inicio datetime default null,
 	publicacion_descripcion nvarchar(255) default null,
 	publicacion_fecha_evento datetime default null,
@@ -383,7 +383,12 @@ Espectaculo_Rubro_Descripcion,
 (select empresa_id from ESECUELE.Empresa where empresa_usuario = CONCAT('usr_', Espec_Empresa_Cuit)),
 Espectaculo_Estado
  from gd_esquema.Maestra
+<<<<<<< Updated upstream
  SET IDENTITY_INSERT ESECUELE.Publicacion OFF
+=======
+
+SET IDENTITY_INSERT ESECUELE.Publicacion OFF
+>>>>>>> Stashed changes
 -- Fin de Carga de Espectaculos
 
 -- Carga de Entradas
@@ -700,6 +705,12 @@ go
 create procedure ESECUELE.getPublicacionesFromEmpresa(@id int)
 as begin
 	select * from ESECUELE.Publicacion where publicacion_empresa = @id
+end
+go
+
+create procedure ESECUELE.getPublicacion(@idEmpresa int, @codPub int)
+as begin
+	select * from ESECUELE.Publicacion where publicacion_codigo=@codPub and publicacion_empresa = @idEmpresa
 end
 go
 

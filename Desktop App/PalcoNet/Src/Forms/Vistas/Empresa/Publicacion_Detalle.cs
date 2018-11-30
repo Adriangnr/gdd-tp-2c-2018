@@ -1,5 +1,6 @@
 ﻿using PalcoNet.Src.Forms.Layouts;
 using System;
+using System.Windows.Forms;
 
 namespace PalcoNet.Src.Forms.Vistas.Empresa
 {
@@ -7,6 +8,12 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
     {
         public Publicacion_Detalle()
         {
+            InitializeComponent();
+        }
+
+        public Publicacion_Detalle(Form previous)
+        {
+            this.previous = previous;
             InitializeComponent();
         }
 
@@ -18,6 +25,22 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
         private void label3_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btn_cancel_Click(object sender, EventArgs e)
+        {
+            this.previous.Show();
+            this.Hide();
+        }
+
+        private void registerLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Utils.Utilities.clearForm(this.Controls);
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }

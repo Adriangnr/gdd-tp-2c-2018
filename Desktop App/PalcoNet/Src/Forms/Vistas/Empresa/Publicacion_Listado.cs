@@ -1,8 +1,10 @@
 ﻿using PalcoNet.Src.Forms.Layouts;
+using PalcoNet.Src.Modelo.Entidades;
 using PalcoNet.Src.Servicios;
 using PalcoNet.Src.Servicios.ServiceFactory;
 using System;
 using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace PalcoNet.Src.Forms.Vistas.Empresa
 {
@@ -15,11 +17,20 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
 
         private void Pulicacion_Listado_Load(object sender, EventArgs e)
         {
-           Console.WriteLine("Buscando Publicaciones del usuario " + this.usuario);
-           EmpresaService empresaService = (EmpresaService)ServiceFactory.GetService("Empresa");
-           
-           this.dataGridPublicaciones.DataSource = empresaService.GetPublicaciones(this.usuario.Username);
-           this.dataGridPublicaciones.ClearSelection();
+            try
+            {
+                EmpresaService empresaService = (EmpresaService)ServiceFactory.GetService("Empresa");
+
+                this.dataGridPublicaciones.DataSource = empresaService.GetPublicaciones(this.usuario.Username);
+                this.dataGridPublicaciones.ClearSelection();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                MessageBox.Show("Error al buscar Publicaciones!", "Error!",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
         }
 
         private void Entidad_Click(object sender, EventArgs e)
@@ -31,6 +42,38 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
         {
             this.previous.Show();
             this.Hide();
+        }
+
+        private void btn_create_Click(object sender, EventArgs e)
+        {
+            Publicacion_Detalle createForm = new Publicacion_Detalle(this);
+            createForm.Show();
+            this.Hide();
+        }
+
+        private void btn_edit_Click(object sender, EventArgs e)
+        {
+            if (this.dataGridPublicaciones.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("No se seleccionó ninguna publicación!", "Editar publicación.",
+                                MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            try
+            {
+                Publicacion_Detalle createForm = new Publicacion_Detalle(this);
+                EmpresaService empresaService = (EmpresaService)ServiceFactory.GetService("Empresa");
+                Publicacion publicacion = empresaService.GetPublicacion(this.usuario.Username,
+                    (int)this.dataGridPublicaciones.CurrentRow.Cells[0].Value);
+                createForm.Show();
+                this.Hide();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                MessageBox.Show("Error al editar publicación!", "Error!",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
         }
     }
 }
