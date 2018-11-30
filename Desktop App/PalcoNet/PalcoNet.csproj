@@ -130,6 +130,12 @@
     <Compile Include="Src\Forms\Vistas\Administrador\Comisiones_Detalle.Designer.cs">
       <DependentUpon>Comisiones_Detalle.cs</DependentUpon>
     </Compile>
+    <Compile Include="Src\Forms\Vistas\Empresa\Entradas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Src\Forms\Vistas\Empresa\Entradas.Designer.cs">
+      <DependentUpon>Entradas.cs</DependentUpon>
+    </Compile>
     <Compile Include="Src\Forms\Vistas\Empresa\Fecha_Hora.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -263,6 +269,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Src\Forms\Vistas\Cliente\Historial.resx">
       <DependentUpon>Historial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Src\Forms\Vistas\Empresa\Entradas.resx">
+      <DependentUpon>Entradas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Src\Forms\Vistas\Empresa\Publicacion_Detalle.resx">
       <DependentUpon>Publicacion_Detalle.cs</DependentUpon>
