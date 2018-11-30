@@ -19,11 +19,18 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
            EmpresaService empresaService = (EmpresaService)ServiceFactory.GetService("Empresa");
            
            this.dataGridPublicaciones.DataSource = empresaService.GetPublicaciones(this.usuario.Username);
+           this.dataGridPublicaciones.ClearSelection();
         }
 
         private void Entidad_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btn_cancel_Click(object sender, EventArgs e)
+        {
+            this.previous.Show();
+            this.Hide();
         }
     }
 }
