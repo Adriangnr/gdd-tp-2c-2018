@@ -60,6 +60,11 @@ namespace PalcoNet.Src.Modelo.Entidades
             (this.Roles.Find(rol => rol.Id == id)).Seleccionado = true;
         }
 
+        public void deseleccionarRol()
+        {
+            (this.Roles.Find(rol => rol.Seleccionado == true)).Seleccionado = false;
+        }
+
         public Rol ObtenerRolSeleccionado()
         {
             return this.Roles.Find(rol => rol.Seleccionado == true);

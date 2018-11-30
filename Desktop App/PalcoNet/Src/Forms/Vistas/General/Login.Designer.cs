@@ -37,6 +37,10 @@
             this.titulo = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
+            // footer
+            // 
+            this.footer.TabIndex = 4;
+            // 
             // login_btn_entrar
             // 
             this.login_btn_entrar.BackColor = System.Drawing.SystemColors.MenuHighlight;
@@ -46,7 +50,7 @@
             this.login_btn_entrar.Location = new System.Drawing.Point(240, 284);
             this.login_btn_entrar.Name = "login_btn_entrar";
             this.login_btn_entrar.Size = new System.Drawing.Size(129, 45);
-            this.login_btn_entrar.TabIndex = 0;
+            this.login_btn_entrar.TabIndex = 2;
             this.login_btn_entrar.Text = "Entrar";
             this.login_btn_entrar.UseVisualStyleBackColor = false;
             this.login_btn_entrar.Click += new System.EventHandler(this.login_btn_entrar_Click);
@@ -59,7 +63,7 @@
             this.login_btn_salir.Location = new System.Drawing.Point(387, 284);
             this.login_btn_salir.Name = "login_btn_salir";
             this.login_btn_salir.Size = new System.Drawing.Size(129, 45);
-            this.login_btn_salir.TabIndex = 1;
+            this.login_btn_salir.TabIndex = 4;
             this.login_btn_salir.Text = "Salir";
             this.login_btn_salir.UseVisualStyleBackColor = true;
             this.login_btn_salir.Click += new System.EventHandler(this.login_btn_salir_Click);
@@ -73,11 +77,10 @@
             this.login_tbox_usuario.Location = new System.Drawing.Point(251, 143);
             this.login_tbox_usuario.Name = "login_tbox_usuario";
             this.login_tbox_usuario.Size = new System.Drawing.Size(253, 17);
-            this.login_tbox_usuario.TabIndex = 6;
-            this.login_tbox_usuario.Text = "usuario";
+            this.login_tbox_usuario.TabIndex = 0;
+            this.login_tbox_usuario.Text = "Usuario";
             this.login_tbox_usuario.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.login_tbox_usuario.Click += new System.EventHandler(this.login_tbox_usuario_Click);
-            this.login_tbox_usuario.TextChanged += new System.EventHandler(this.login_tbox_usuario_TextChanged);
             // 
             // login_tbox_password
             // 
@@ -89,8 +92,8 @@
             this.login_tbox_password.Name = "login_tbox_password";
             this.login_tbox_password.PasswordChar = '*';
             this.login_tbox_password.Size = new System.Drawing.Size(253, 17);
-            this.login_tbox_password.TabIndex = 7;
-            this.login_tbox_password.Text = "contraseña";
+            this.login_tbox_password.TabIndex = 1;
+            this.login_tbox_password.Text = "password";
             this.login_tbox_password.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.login_tbox_password.Click += new System.EventHandler(this.login_tbox_password_Click);
             // 
@@ -104,7 +107,7 @@
             this.registerLink.Location = new System.Drawing.Point(397, 344);
             this.registerLink.Name = "registerLink";
             this.registerLink.Size = new System.Drawing.Size(73, 16);
-            this.registerLink.TabIndex = 18;
+            this.registerLink.TabIndex = 3;
             this.registerLink.TabStop = true;
             this.registerLink.Text = "Registrate!";
             this.registerLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
@@ -127,7 +130,7 @@
             this.titulo.Location = new System.Drawing.Point(299, 69);
             this.titulo.Name = "titulo";
             this.titulo.Size = new System.Drawing.Size(174, 29);
-            this.titulo.TabIndex = 20;
+            this.titulo.TabIndex = 0;
             this.titulo.Text = "Iniciar Sesión";
             // 
             // Login
@@ -153,6 +156,7 @@
             this.Controls.SetChildIndex(this.registerLink, 0);
             this.Controls.SetChildIndex(this.login_label, 0);
             this.Controls.SetChildIndex(this.titulo, 0);
+            this.Controls.SetChildIndex(this.footer, 0);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -31,10 +31,16 @@ namespace PalcoNet.Src.Forms.Vistas.General
         {
             this.user.seleccionarRol(((Rol)this.combo_rol.SelectedItem).Id);
 
-            MenuPrincipal loginMenu = new MenuPrincipal(this.previous, this.user);
+            MenuPrincipal menuPrincipal = new MenuPrincipal(this, this.user);
 
             this.Hide();
-            loginMenu.Show();
+            menuPrincipal.Show();
+            //this.previous.Close();
+        }
+
+        public void deseleccionarRol()
+        {
+            this.user.deseleccionarRol();
         }
     }
 }

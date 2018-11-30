@@ -14,6 +14,7 @@ namespace PalcoNet.Src.Forms.Layouts
             InitializeComponent();
         }
 
+
         public void setPrevious(Form previous)
         {
             this.previous = previous;
@@ -38,5 +39,7 @@ namespace PalcoNet.Src.Forms.Layouts
         {
 
         }
+
+
     }
 }

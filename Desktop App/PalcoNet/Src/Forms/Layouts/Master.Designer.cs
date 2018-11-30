@@ -75,6 +75,6 @@
         #endregion
 
         private System.Windows.Forms.Label title;
-        private System.Windows.Forms.Label footer;
+        protected System.Windows.Forms.Label footer;
     }
 }

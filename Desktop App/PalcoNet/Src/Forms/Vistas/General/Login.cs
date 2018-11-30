@@ -9,13 +9,86 @@ namespace PalcoNet.Src.Forms.Vistas.General
 {
     public partial class Login : Master
     {
-        int intentosFallidos;
+        private int intentosFallidos;
+        private bool cambioUsuario = false;
+        private bool cambioPass = false;
+        private bool ingresoUsuario = false;
+        private bool ingresoPass = false;
 
         public Login()
         {
             InitializeComponent();
-            this.AcceptButton = login_btn_entrar;
             this.intentosFallidos = 0;
+            login_tbox_usuario.LostFocus += login_tbox_usuario_LostFocus;
+            login_tbox_usuario.GotFocus += login_tbox_usuario_GotFocus;
+            login_tbox_usuario.KeyDown += login_tbox_usuario_KeyDown;
+            login_tbox_usuario.TextChanged += login_tbox_usuario_TextChanged;
+            login_tbox_password.LostFocus += login_tbox_password_LostFocus;
+            login_tbox_password.GotFocus += login_tbox_password_GotFocus;
+            login_tbox_password.KeyDown += login_tbox_password_KeyDown;
+            login_tbox_password.TextChanged += login_tbox_password_TextChanged;
+        }
+
+        void login_tbox_password_GotFocus(object sender, EventArgs e)
+        {
+            login_tbox_password_Click(sender, e);
+        }
+
+        void login_tbox_usuario_GotFocus(object sender, EventArgs e)
+        {
+            login_tbox_usuario_Click(sender, e);
+        }
+
+        void login_tbox_usuario_TextChanged(object sender, EventArgs e)
+        {
+            cambioUsuario = true;
+        }
+
+        void login_tbox_password_TextChanged(object sender, EventArgs e)
+        {
+            cambioPass = true;
+        }
+
+        void login_tbox_password_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                if (login_tbox_password.Text != "" && cambioPass)
+                    ingresoPass = true;
+                login_btn_entrar_Click(sender, new EventArgs());
+            }
+        }
+
+        void login_tbox_usuario_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                if (login_tbox_usuario.Text != "" && cambioUsuario)
+                    ingresoUsuario = true;
+                login_btn_entrar_Click(sender, new EventArgs());
+            }
+        }
+
+        void login_tbox_password_LostFocus(object sender, EventArgs e)
+        {
+            if (login_tbox_password.Text == "")
+            {
+                login_tbox_password.Text = "password";
+                this.ingresoPass = false;
+            }
+            else
+                this.ingresoPass = true;
+        }
+
+        void login_tbox_usuario_LostFocus(object sender, EventArgs e)
+        {
+            if (login_tbox_usuario.Text == "")
+            {
+                login_tbox_usuario.Text = "Usuario";
+                this.ingresoUsuario = false;
+            }
+            else
+                this.ingresoUsuario = true;
         }
 
         private void login_btn_salir_Click(object sender, EventArgs e)
@@ -28,18 +101,17 @@ namespace PalcoNet.Src.Forms.Vistas.General
             var username = login_tbox_usuario.Text;
             var password = login_tbox_password.Text;
 
-            if (username == "" && password == "")
+            if ( !ingresoUsuario && !ingresoPass )
             {
                 MessageBox.Show("Debe ingresar valores.", "Error al inicio de sesión.", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
                 return;
             }
-            else if (username == "")
+            else if (!ingresoUsuario)
             {
                 MessageBox.Show("Debe ingresar usuario.", "Error al inicio de sesión.", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            else if (password == "")
+            else if (!ingresoPass)
             {
                 MessageBox.Show("Debe ingresar contraseña.", "Error al inicio de sesión.", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -97,16 +169,6 @@ namespace PalcoNet.Src.Forms.Vistas.General
 
         private void Login_Load(object sender, EventArgs e)
         {
-            this.ActiveControl = login_tbox_usuario;
-        }
-
-        private void login_label_titulo_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void login_btn_registrar_Click(object sender, EventArgs e)
-        {
 
         }
 
@@ -119,18 +181,17 @@ namespace PalcoNet.Src.Forms.Vistas.General
 
         private void login_tbox_password_Click(object sender, EventArgs e)
         {
-            login_tbox_password.UseSystemPasswordChar = true;
-            login_tbox_password.Text = "";
+            if(!ingresoPass)
+                login_tbox_password.Text = "";
         }
 
         private void login_tbox_usuario_Click(object sender, EventArgs e)
         {
-            login_tbox_usuario.Text = "";
+            if (!ingresoUsuario)
+            {
+                login_tbox_usuario.Text = "";
+            }
         }
 
-        private void login_tbox_usuario_TextChanged(object sender, EventArgs e)
-        {
-
-        }
     }
 }

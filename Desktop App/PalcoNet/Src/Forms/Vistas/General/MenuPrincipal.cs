@@ -46,7 +46,7 @@ namespace PalcoNet.Src.Forms.Vistas.General
                 if( i > rol.GetFuncionalidades().Count / 2)
                 {
                     buttonTop = 10;
-                    buttonLeft = 230;
+                    buttonLeft = 500;
                     i = 0;
                 }
 
@@ -81,10 +81,11 @@ namespace PalcoNet.Src.Forms.Vistas.General
 
         private void menuPrincipalSalir_Click(object sender, System.EventArgs e)
         {
-            this.previous.Controls["login_tbox_usuario"].Text = "";
-            this.previous.Controls["login_tbox_password"].Text = "";
+            //Login login = new Login();
+            //login.Show();
+            ((Selector_Rol)this.previous).deseleccionarRol();
             this.previous.Show();
-            this.Hide();
+            this.Close();
         }
     }
 }

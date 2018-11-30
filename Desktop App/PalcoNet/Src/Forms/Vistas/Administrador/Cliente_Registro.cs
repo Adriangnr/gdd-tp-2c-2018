@@ -8,6 +8,9 @@ namespace PalcoNet.Src.Forms.Vistas.Administrador
         public Cliente_Registro()
         {
             InitializeComponent();
+            doc.Items.Add("DNI");
+            doc.Items.Add("LC");
+            doc.Items.Add("LE");
         }
 
         private void Cliente_Registro_Load(object sender, EventArgs e)
