@@ -18,6 +18,11 @@ declare @drop_statement nvarchar(max)
 /*
 	Borramos todo, se concatenan los alter table en un string y se ejecutan con sp_executesql
 */
+  select @drop_statement = isnull(@drop_statement, '') +
+  ' drop trigger ['  + @schema_name + '].[' + name + '];' + char(13)
+  from sys.objects
+  where schema_id = @schema_id
+  and type in ('TR')
 select @drop_statement = isnull(@drop_statement, '') +
   ' alter table ['    + @schema_name + '].[' + object_name(parent_object_id) + '] drop constraint [' + name + '];' + char(13)
   from sys.check_constraints
@@ -807,11 +812,30 @@ create procedure ESECUELE.SaveCliente(@cliente_nombre varchar(50),
 								   @cliente_cuil varchar(30),
 								   @cliente_fecha_nacimiento datetime,
 								   @cliente_usuario varchar(50)) as
-begin 
+begin
+
+	if exists( select 1 from ESECUELE.Cliente where cliente_tipo_doc = @cliente_tipo_doc and cliente_num_doc = @cliente_num_doc)
+	begin
+		raiserror('Ya existe un clinte con ese documento.',18,10)
+		return
+	end
+
+	if exists( select 1 from ESECUELE.Cliente where cliente_cuil = @cliente_cuil)
+	begin
+		raiserror('Ya existe un clinte con ese CUIL.',18,10)
+		return
+	end
+
+	if @cliente_cuil not like '%' + @cliente_num_doc + '%'
+	begin
+		raiserror('El CUIL no coincide con el documento.',18,10)
+		return
+	end
+
 	begin try
-		insert into ESECUELE.Cliente
-		(cliente_nombre, cliente_apellido, cliente_tipo_doc, cliente_num_doc, cliente_cuil, cliente_fecha_nacimiento, cliente_usuario) 
-		values(@cliente_nombre, @cliente_apellido, @cliente_tipo_doc, @cliente_num_doc, @cliente_cuil, @cliente_fecha_nacimiento, @cliente_usuario)
+	insert into ESECUELE.Cliente
+	(cliente_nombre, cliente_apellido, cliente_tipo_doc, cliente_num_doc, cliente_cuil, cliente_fecha_nacimiento, cliente_usuario) 
+	values(@cliente_nombre, @cliente_apellido, @cliente_tipo_doc, @cliente_num_doc, @cliente_cuil, @cliente_fecha_nacimiento, @cliente_usuario)
 	end try
 	begin catch
 		throw

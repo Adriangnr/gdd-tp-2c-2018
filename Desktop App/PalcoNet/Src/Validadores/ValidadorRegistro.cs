@@ -128,7 +128,7 @@ namespace PalcoNet.Src.Validadores
             {
                 throw new ValidadorException("El campo Cuil es requerido!");
             }
-            this.validarCampoTexto(cuilCliente, "Cuil", new Regex(@"^[0-9]{1,2}-[0-9]{6,8}-[0-9]$"));
+            this.validarCampoTexto(cuilCliente, "Cuil", new Regex(@"^(20|23)-[0-9]{6,8}-[0-9]$"));
         }
 
         public void razonSocial(TextBox razonSocial)
@@ -146,7 +146,7 @@ namespace PalcoNet.Src.Validadores
             {
                 throw new ValidadorException("El campo Cuit es requerido!");
             }
-            this.validarCampoTexto(cuitEmpresa, "Cuit", new Regex(@"^[0-9]{1,2}-[0-9]{6,8}-[0-9]$"));
+            this.validarCampoTexto(cuitEmpresa, "Cuit", new Regex(@"^30-[0-9]{6,8}-[0-9]$"));
         }
 
         public void ciudad(TextBox ciudadEmpresa)
