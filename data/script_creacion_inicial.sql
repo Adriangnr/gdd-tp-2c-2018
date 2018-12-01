@@ -788,6 +788,7 @@ begin
 end
 go
 
+
 create procedure ESECUELE.SaveEmpresa(@empresa_razon_social varchar(60), 
 								   @empresa_ciudad varchar(40),
 								   @empresa_cuit varchar(30),
