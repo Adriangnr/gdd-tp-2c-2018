@@ -100,8 +100,8 @@ namespace PalcoNet.Src.Modelo.Entidades
                     new SqlParameter("@usr_email", this.Email),
                     new SqlParameter("@usr_telefono", this.Telefono),
                     new SqlParameter("@usr_direccion", this.Direccion),
+                    new SqlParameter("@usr_creacion", Utils.Utilities.getCurrentDate()),
                     new SqlParameter("@usr_codigo_postal", this.CodigoPostal),
-                    new SqlParameter("@usr_creacion", Utils.Utilities.getCurrentDate())
                 });
             }
             catch(Exception exception)

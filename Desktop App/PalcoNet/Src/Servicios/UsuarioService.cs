@@ -76,16 +76,16 @@ namespace PalcoNet.Src.Servicios
             usuario.Direccion = userParams["usr_direccion"];
             usuario.CodigoPostal = userParams["usr_codigo_postal"];
             try
-                {
+            {
                 usuario.save();
                 this.saveType(userParams);
                 this.saveRoles(userParams);
-                }
-                catch(Exception e)
-                {
-                    usuario.delete();
-                    throw e;
-                }
+            }
+            catch(Exception e)
+            {
+                usuario.delete();
+                throw e;
+            }
         }
     }
 }

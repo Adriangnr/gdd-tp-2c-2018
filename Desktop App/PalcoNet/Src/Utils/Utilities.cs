@@ -36,9 +36,9 @@ namespace PalcoNet.Src.Utils
             }
         }
 
-        public static string getCurrentDate()
+        public static DateTime getCurrentDate()
         {
-            return ConfigurationManager.AppSettings["FechaActual"];
+            return DateTime.Parse(ConfigurationManager.AppSettings["FechaActual"]);
         }
     }
 }
