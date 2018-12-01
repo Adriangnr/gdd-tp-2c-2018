@@ -205,6 +205,7 @@
     <Compile Include="Src\Modelo\Entidades\Cliente.cs" />
     <Compile Include="Src\Modelo\Entidades\DatabaseEntity.cs" />
     <Compile Include="Src\Modelo\Entidades\Empresa.cs" />
+    <Compile Include="Src\Modelo\Entidades\Entrada.cs" />
     <Compile Include="Src\Modelo\Entidades\Funcionalidad.cs" />
     <Compile Include="Src\Modelo\Entidades\Login.cs" />
     <Compile Include="Src\Modelo\Entidades\Publicacion.cs" />
