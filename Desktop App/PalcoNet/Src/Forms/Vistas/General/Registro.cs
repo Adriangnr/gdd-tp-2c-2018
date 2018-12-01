@@ -72,8 +72,8 @@ namespace PalcoNet.Src.Forms.Vistas.General
             else
             {
                 userParams.Add("empresa_razon_social", this.panel_roldata.Controls[0].Controls["razonSocial"].Text);
-                userParams.Add("empresa_ciudad", this.panel_roldata.Controls[0].Controls["cuit"].Text);
-                userParams.Add("empresa_cuit", this.panel_roldata.Controls[0].Controls["ciudad"].Text);
+                userParams.Add("empresa_ciudad", this.panel_roldata.Controls[0].Controls["ciudad"].Text);
+                userParams.Add("empresa_cuit", this.panel_roldata.Controls[0].Controls["cuit"].Text);
                 userParams.Add("empresa_usuario", this.textBox_usuario.Text);
             }
         }
