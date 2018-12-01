@@ -47,8 +47,8 @@ namespace PalcoNet.Src.Forms.Vistas.General
             userParams.Add("usr_tipo", (string)this.rolSelector.SelectedItem);
             userParams.Add("usr_email", this.textBox_mail.Text);
             userParams.Add("usr_telefono", textBox_telefono.Text);
-            userParams.Add("usr_direccion", textBox_calle.Text + ", piso " + textBox_piso.Text + ", depto "
-                + textBox_depto.Text + ", " + textBox_localidad.Text);
+            userParams.Add("usr_direccion", textBox_calle.Text + "," + textBox_piso.Text + ","
+                + textBox_depto.Text + "," + textBox_localidad.Text);
             userParams.Add("usr_codigo_postal", textBox_cp.Text);
 
             this.loadUserTypeParams(userParams);
@@ -96,9 +96,13 @@ namespace PalcoNet.Src.Forms.Vistas.General
             }
             catch (SqlException excep)
             {
-                MessageBox.Show(excep.Message);
-                MessageBox.Show("El usuario ya existe!", "Error al registrar el usuario.",
-                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Console.WriteLine(excep.Message);
+                if(excep.Message.Contains("Usuario"))
+                    MessageBox.Show("El usuario ya existe!", "Error al registrar el usuario."
+                        , MessageBoxButtons.OK, MessageBoxIcon.Error);
+                else
+                    MessageBox.Show(excep.Message, "Error al registrar el usuario."
+                        , MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 

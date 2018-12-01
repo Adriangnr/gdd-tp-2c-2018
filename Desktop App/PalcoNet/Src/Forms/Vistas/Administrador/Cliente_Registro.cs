@@ -11,6 +11,7 @@ namespace PalcoNet.Src.Forms.Vistas.Administrador
             doc.Items.Add("DNI");
             doc.Items.Add("LC");
             doc.Items.Add("LE");
+            doc.SelectedIndex = 0;
         }
 
         private void Cliente_Registro_Load(object sender, EventArgs e)
