@@ -4,6 +4,8 @@ using System.Windows.Forms;
 using PalcoNet.Src.Servicios.ServiceFactory;
 using PalcoNet.Src.Modelo.Entidades;
 using PalcoNet.Src.Forms.Layouts;
+using System.Configuration;
+using PalcoNet.Properties;
 
 namespace PalcoNet.Src.Forms.Vistas.General
 {
@@ -20,7 +22,7 @@ namespace PalcoNet.Src.Forms.Vistas.General
             InitializeComponent();
             this.intentosFallidos = 0;
             this.ActiveControl = titulo;
-
+            
             login_tbox_usuario.LostFocus += login_tbox_usuario_LostFocus;
             login_tbox_usuario.GotFocus += login_tbox_usuario_GotFocus;
             login_tbox_usuario.KeyDown += login_tbox_usuario_KeyDown;
