@@ -31,6 +31,11 @@ namespace PalcoNet.Src.Forms.Vistas.General
             login_tbox_password.TextChanged += login_tbox_password_TextChanged;
         }
 
+        public void clearFields()
+        {
+            Utils.Utilities.clearForm(this.Controls);
+        }
+
         void login_tbox_password_GotFocus(object sender, EventArgs e)
         {
             login_tbox_password_Click(sender, e);
