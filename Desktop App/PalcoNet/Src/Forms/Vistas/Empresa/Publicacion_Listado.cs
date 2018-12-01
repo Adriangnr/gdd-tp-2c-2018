@@ -20,8 +20,11 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
             try
             {
                 EmpresaService empresaService = (EmpresaService)ServiceFactory.GetService("Empresa");
-
-                this.dataGridPublicaciones.DataSource = empresaService.GetPublicaciones(this.usuario.Username);
+                List<Publicacion> publicaciones = empresaService.GetPublicaciones(this.usuario.Username);
+                if(publicaciones.Count == 0)
+                    MessageBox.Show("No se encontraron publicaciones cargadas para este usuario!", "Alerta!",
+                                MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                this.dataGridPublicaciones.DataSource = publicaciones;
                 this.dataGridPublicaciones.ClearSelection();
             }
             catch (Exception ex)

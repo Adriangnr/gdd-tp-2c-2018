@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -33,6 +34,11 @@ namespace PalcoNet.Src.Utils
                     control.Text = "";
                 }
             }
+        }
+
+        public static string getCurrentDate()
+        {
+            return ConfigurationManager.AppSettings["FechaActual"];
         }
     }
 }

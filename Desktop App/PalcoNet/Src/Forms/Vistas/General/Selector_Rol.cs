@@ -42,5 +42,12 @@ namespace PalcoNet.Src.Forms.Vistas.General
         {
             this.user.deseleccionarRol();
         }
+
+        private void btn_selctRol_salir_Click(object sender, EventArgs e)
+        {
+            ((Login)this.previous).clearFields();
+            this.previous.Show();
+            this.Hide();
+        }
     }
 }

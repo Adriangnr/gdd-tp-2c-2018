@@ -274,6 +274,9 @@
     <EmbeddedResource Include="Src\Forms\Vistas\Empresa\Entradas.resx">
       <DependentUpon>Entradas.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Src\Forms\Vistas\Empresa\Fecha_Hora.resx">
+      <DependentUpon>Fecha_Hora.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Src\Forms\Vistas\Empresa\Publicacion_Detalle.resx">
       <DependentUpon>Publicacion_Detalle.cs</DependentUpon>
     </EmbeddedResource>

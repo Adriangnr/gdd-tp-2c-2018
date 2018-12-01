@@ -236,6 +236,7 @@
             this.btn_pub_cargarFechasHoras.TabIndex = 60;
             this.btn_pub_cargarFechasHoras.Text = "Cargar Fechas y Horarios";
             this.btn_pub_cargarFechasHoras.UseVisualStyleBackColor = true;
+            this.btn_pub_cargarFechasHoras.Click += new System.EventHandler(this.btn_pub_cargarFechasHoras_Click);
             // 
             // btn_pub_entradas
             // 

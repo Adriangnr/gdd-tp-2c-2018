@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data.SqlClient;
 
 namespace PalcoNet.Src.Modelo.Entidades
@@ -67,7 +68,10 @@ namespace PalcoNet.Src.Modelo.Entidades
 
         public Rol ObtenerRolSeleccionado()
         {
-            return this.Roles.Find(rol => rol.Seleccionado == true);
+            if (this.Roles.Count > 1)
+                return this.Roles.Find(rol => rol.Seleccionado == true);
+            else
+                return this.Roles[0];
         }
 
         public void delete()
@@ -97,6 +101,7 @@ namespace PalcoNet.Src.Modelo.Entidades
                     new SqlParameter("@usr_telefono", this.Telefono),
                     new SqlParameter("@usr_direccion", this.Direccion),
                     new SqlParameter("@usr_codigo_postal", this.CodigoPostal),
+                    new SqlParameter("@usr_creacion", Utils.Utilities.getCurrentDate())
                 });
             }
             catch(Exception exception)

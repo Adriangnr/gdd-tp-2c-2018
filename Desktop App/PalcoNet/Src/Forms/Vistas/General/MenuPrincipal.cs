@@ -81,9 +81,10 @@ namespace PalcoNet.Src.Forms.Vistas.General
 
         private void menuPrincipalSalir_Click(object sender, System.EventArgs e)
         {
-            //Login login = new Login();
-            //login.Show();
-            ((Selector_Rol)this.previous).deseleccionarRol();
+            if(this.user.GetRoles().Count > 1)
+                ((Selector_Rol)this.previous).deseleccionarRol();
+            else
+                ((Login)this.previous).clearFields();
             this.previous.Show();
             this.Close();
         }
