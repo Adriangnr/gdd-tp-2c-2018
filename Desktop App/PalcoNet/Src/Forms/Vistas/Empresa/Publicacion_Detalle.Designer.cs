@@ -41,12 +41,12 @@
             this.registerLink = new System.Windows.Forms.LinkLabel();
             this.btn_cancel = new System.Windows.Forms.Button();
             this.btn_guardar = new System.Windows.Forms.Button();
-            this.panelFechasHorarios = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.panelTiposEntradas = new System.Windows.Forms.Panel();
             this.btn_pub_cargarFechasHoras = new System.Windows.Forms.Button();
             this.btn_pub_entradas = new System.Windows.Forms.Button();
+            this.listView1 = new System.Windows.Forms.ListView();
+            this.listView2 = new System.Windows.Forms.ListView();
             this.SuspendLayout();
             // 
             // label1
@@ -191,13 +191,6 @@
             this.btn_guardar.Text = "Guardar";
             this.btn_guardar.UseVisualStyleBackColor = false;
             // 
-            // panelFechasHorarios
-            // 
-            this.panelFechasHorarios.Location = new System.Drawing.Point(627, 150);
-            this.panelFechasHorarios.Name = "panelFechasHorarios";
-            this.panelFechasHorarios.Size = new System.Drawing.Size(508, 170);
-            this.panelFechasHorarios.TabIndex = 56;
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -216,13 +209,6 @@
             this.label3.Size = new System.Drawing.Size(136, 20);
             this.label3.TabIndex = 59;
             this.label3.Text = "Tipos de entradas";
-            // 
-            // panelTiposEntradas
-            // 
-            this.panelTiposEntradas.Location = new System.Drawing.Point(627, 365);
-            this.panelTiposEntradas.Name = "panelTiposEntradas";
-            this.panelTiposEntradas.Size = new System.Drawing.Size(508, 154);
-            this.panelTiposEntradas.TabIndex = 58;
             // 
             // btn_pub_cargarFechasHoras
             // 
@@ -251,17 +237,33 @@
             this.btn_pub_entradas.Text = "Cargar entradas y precios";
             this.btn_pub_entradas.UseVisualStyleBackColor = true;
             // 
+            // listView1
+            // 
+            this.listView1.Location = new System.Drawing.Point(631, 144);
+            this.listView1.Name = "listView1";
+            this.listView1.Size = new System.Drawing.Size(504, 177);
+            this.listView1.TabIndex = 62;
+            this.listView1.UseCompatibleStateImageBehavior = false;
+            // 
+            // listView2
+            // 
+            this.listView2.Location = new System.Drawing.Point(631, 358);
+            this.listView2.Name = "listView2";
+            this.listView2.Size = new System.Drawing.Size(504, 161);
+            this.listView2.TabIndex = 63;
+            this.listView2.UseCompatibleStateImageBehavior = false;
+            // 
             // Publicacion_Detalle
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1176, 678);
+            this.Controls.Add(this.listView2);
+            this.Controls.Add(this.listView1);
             this.Controls.Add(this.btn_pub_entradas);
             this.Controls.Add(this.btn_pub_cargarFechasHoras);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.panelTiposEntradas);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.panelFechasHorarios);
             this.Controls.Add(this.registerLink);
             this.Controls.Add(this.btn_cancel);
             this.Controls.Add(this.btn_guardar);
@@ -293,12 +295,12 @@
             this.Controls.SetChildIndex(this.btn_guardar, 0);
             this.Controls.SetChildIndex(this.btn_cancel, 0);
             this.Controls.SetChildIndex(this.registerLink, 0);
-            this.Controls.SetChildIndex(this.panelFechasHorarios, 0);
             this.Controls.SetChildIndex(this.label2, 0);
-            this.Controls.SetChildIndex(this.panelTiposEntradas, 0);
             this.Controls.SetChildIndex(this.label3, 0);
             this.Controls.SetChildIndex(this.btn_pub_cargarFechasHoras, 0);
             this.Controls.SetChildIndex(this.btn_pub_entradas, 0);
+            this.Controls.SetChildIndex(this.listView1, 0);
+            this.Controls.SetChildIndex(this.listView2, 0);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -318,11 +320,11 @@
         private System.Windows.Forms.LinkLabel registerLink;
         private System.Windows.Forms.Button btn_cancel;
         private System.Windows.Forms.Button btn_guardar;
-        private System.Windows.Forms.Panel panelFechasHorarios;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Panel panelTiposEntradas;
         private System.Windows.Forms.Button btn_pub_cargarFechasHoras;
         private System.Windows.Forms.Button btn_pub_entradas;
+        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ListView listView2;
     }
 }
