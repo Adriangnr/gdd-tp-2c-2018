@@ -815,13 +815,6 @@ create procedure ESECUELE.SaveCliente(@cliente_nombre varchar(50),
 								   @cliente_fecha_nacimiento datetime,
 								   @cliente_usuario varchar(50)) as
 begin
-/*
-	if exists( select 1 from ESECUELE.Cliente where cliente_tipo_doc = @cliente_tipo_doc and cliente_num_doc = @cliente_num_doc or cliente_cuil = @cliente_cuil)
-	begin
-		raiserror('Ya existe un cliente con ese documento/CUIL.',18,10)
-		return
-	end
-	*/
 	if @cliente_cuil not like '%' + @cliente_num_doc + '%'
 	begin
 		raiserror('El CUIL no coincide con el documento.',18,10)
