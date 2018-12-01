@@ -19,7 +19,24 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
             }
         }
 
+        class EntradaString
+        {
+            public string Descripcion { get; set; }
+            public string RangoFilas { get; set; }
+            public string RangoAsientos { get; set; }
+            public string Precio { get; set; }
+
+            public EntradaString(string desc, string filas, string asientos, string precio)
+            {
+                this.Descripcion = desc;
+                this.RangoAsientos = asientos;
+                this.RangoFilas = filas;
+                this.Precio = precio;
+            }
+        }
+
         private List<FechaHoraString> fechasHorarios = new List<FechaHoraString>();
+        private List<EntradaString> entradas = new List<EntradaString>();
 
         public Publicacion_Detalle()
         {
@@ -41,6 +58,16 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
             this.dataGridView_fechaHora.DataSource = null;
             this.dataGridView_fechaHora.DataSource = this.fechasHorarios;
             this.dataGridView_fechaHora.ClearSelection();
+        }
+
+        public void AddEntrada(string desc, string filas, string asientos, string precio)
+        {
+            EntradaString entrada = new EntradaString(desc, filas, asientos, precio);
+
+            this.entradas.Add(entrada);
+            this.dataGridView_tipoEntradas.DataSource = null;
+            this.dataGridView_tipoEntradas.DataSource = this.entradas;
+            this.dataGridView_tipoEntradas.ClearSelection();
         }
 
         private void Publicacion_Detalle_Load(object sender, EventArgs e)
@@ -89,6 +116,7 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
         private void btn_pub_entradas_Click(object sender, EventArgs e)
         {
             Entradas entradas = new Entradas();
+            entradas.parent = this;
             entradas.Show();
         }
     }

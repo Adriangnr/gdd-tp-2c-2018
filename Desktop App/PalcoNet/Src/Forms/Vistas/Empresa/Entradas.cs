@@ -12,6 +12,8 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
 {
     public partial class Entradas : Form
     {
+        public Publicacion_Detalle parent { get; set; }
+
         public Entradas()
         {
             InitializeComponent();
@@ -29,6 +31,7 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
 
         private void btn_cargar_Click(object sender, EventArgs e)
         {
+            
             this.Hide();
         }
     }
