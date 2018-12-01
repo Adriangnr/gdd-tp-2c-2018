@@ -771,8 +771,7 @@ create procedure ESECUELE.SaveUsuario(@usr_username varchar(50),
 								   @usr_email varchar(50),
 								   @usr_telefono varchar(20),
 								   @usr_direccion varchar(150),
-								   @usr_codigo_postal varchar(10),
-								   @usr_creacion datetime, 
+								   @usr_codigo_postal varchar(10), 
 								   @return_val int output) as
 begin 
 	begin try
@@ -780,7 +779,7 @@ begin
 		set @encryptedPass = (SELECT HASHBYTES('SHA2_256', @usr_pass));  
 		insert into ESECUELE.Usuario
 		(usr_username, usr_pass, usr_estado, usr_nuevo, usr_fecha_creacion, usr_tipo, usr_email, usr_telefono, usr_direccion, usr_codigo_postal) 
-		values(@usr_username, @encryptedPass, 1, 0, @usr_creacion, @usr_tipo, @usr_email, @usr_telefono, @usr_direccion, @usr_codigo_postal)
+		values(@usr_username, @encryptedPass, 1, 0, getdate(), @usr_tipo, @usr_email, @usr_telefono, @usr_direccion, @usr_codigo_postal)
 		set @return_val = (SELECT SCOPE_IDENTITY())
 	end try
 	begin catch
@@ -828,7 +827,7 @@ begin
 
 	if @cliente_cuil not like '%' + @cliente_num_doc + '%'
 	begin
-		raiserror('El CUIL no coincide con el documento.',18,10)
+		raiserror('El CUIL no coincide con el documento',18,10)
 		return
 	end
 
