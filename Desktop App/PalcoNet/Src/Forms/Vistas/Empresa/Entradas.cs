@@ -31,7 +31,7 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
 
         private void btn_cargar_Click(object sender, EventArgs e)
         {
-            
+            this.parent.AddEntrada(this.txt_desc.Text, this.txt_filas.Text, this.txt_asientos.Text, this.txt_precio.Text, this.chk_sinNumerar.Checked);
             this.Hide();
         }
     }

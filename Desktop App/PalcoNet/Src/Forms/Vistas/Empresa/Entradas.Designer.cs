@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.txt_desc = new System.Windows.Forms.TextBox();
+            this.txt_filas = new System.Windows.Forms.TextBox();
+            this.txt_asientos = new System.Windows.Forms.TextBox();
+            this.txt_precio = new System.Windows.Forms.TextBox();
             this.chk_sinNumerar = new System.Windows.Forms.CheckBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -43,33 +43,33 @@
             this.label6 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // textBox1
+            // txt_desc
             // 
-            this.textBox1.Location = new System.Drawing.Point(191, 29);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(174, 26);
-            this.textBox1.TabIndex = 0;
+            this.txt_desc.Location = new System.Drawing.Point(191, 29);
+            this.txt_desc.Name = "txt_desc";
+            this.txt_desc.Size = new System.Drawing.Size(174, 26);
+            this.txt_desc.TabIndex = 0;
             // 
-            // textBox2
+            // txt_filas
             // 
-            this.textBox2.Location = new System.Drawing.Point(191, 90);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(174, 26);
-            this.textBox2.TabIndex = 1;
+            this.txt_filas.Location = new System.Drawing.Point(191, 90);
+            this.txt_filas.Name = "txt_filas";
+            this.txt_filas.Size = new System.Drawing.Size(174, 26);
+            this.txt_filas.TabIndex = 1;
             // 
-            // textBox3
+            // txt_asientos
             // 
-            this.textBox3.Location = new System.Drawing.Point(191, 148);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(174, 26);
-            this.textBox3.TabIndex = 2;
+            this.txt_asientos.Location = new System.Drawing.Point(191, 148);
+            this.txt_asientos.Name = "txt_asientos";
+            this.txt_asientos.Size = new System.Drawing.Size(174, 26);
+            this.txt_asientos.TabIndex = 2;
             // 
-            // textBox4
+            // txt_precio
             // 
-            this.textBox4.Location = new System.Drawing.Point(191, 209);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(174, 26);
-            this.textBox4.TabIndex = 3;
+            this.txt_precio.Location = new System.Drawing.Point(191, 209);
+            this.txt_precio.Name = "txt_precio";
+            this.txt_precio.Size = new System.Drawing.Size(174, 26);
+            this.txt_precio.TabIndex = 3;
             // 
             // chk_sinNumerar
             // 
@@ -182,10 +182,10 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.chk_sinNumerar);
-            this.Controls.Add(this.textBox4);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txt_precio);
+            this.Controls.Add(this.txt_asientos);
+            this.Controls.Add(this.txt_filas);
+            this.Controls.Add(this.txt_desc);
             this.HelpButton = true;
             this.Name = "Entradas";
             this.Text = "Entradas";
@@ -196,10 +196,10 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox txt_desc;
+        private System.Windows.Forms.TextBox txt_filas;
+        private System.Windows.Forms.TextBox txt_asientos;
+        private System.Windows.Forms.TextBox txt_precio;
         private System.Windows.Forms.CheckBox chk_sinNumerar;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;

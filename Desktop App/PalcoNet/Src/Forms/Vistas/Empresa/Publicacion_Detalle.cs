@@ -1,6 +1,7 @@
 ﻿using PalcoNet.Src.Forms.Layouts;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Windows.Forms;
 
 namespace PalcoNet.Src.Forms.Vistas.Empresa
@@ -22,16 +23,29 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
         class EntradaString
         {
             public string Descripcion { get; set; }
+
+            [DisplayName("Rango de Filas")]
             public string RangoFilas { get; set; }
+
+            [DisplayName("Rango de Asientos")]
             public string RangoAsientos { get; set; }
+
             public string Precio { get; set; }
 
-            public EntradaString(string desc, string filas, string asientos, string precio)
+            [DisplayName("Sin Numerar")]
+            public bool SinNumerar { get; set; }
+
+            [DisplayName(" ")]
+            public string deleteButton { get; set; }
+
+            public EntradaString(string desc, string filas, string asientos, string precio, bool sinNumerar)
             {
                 this.Descripcion = desc;
                 this.RangoAsientos = asientos;
                 this.RangoFilas = filas;
                 this.Precio = precio;
+                this.SinNumerar = sinNumerar;
+                this.deleteButton = "Eliminar";
             }
         }
 
@@ -60,9 +74,9 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
             this.dataGridView_fechaHora.ClearSelection();
         }
 
-        public void AddEntrada(string desc, string filas, string asientos, string precio)
+        public void AddEntrada(string desc, string filas, string asientos, string precio, bool sinNumerar)
         {
-            EntradaString entrada = new EntradaString(desc, filas, asientos, precio);
+            EntradaString entrada = new EntradaString(desc, filas, asientos, precio, sinNumerar);
 
             this.entradas.Add(entrada);
             this.dataGridView_tipoEntradas.DataSource = null;
@@ -118,6 +132,16 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
             Entradas entradas = new Entradas();
             entradas.parent = this;
             entradas.Show();
+        }
+
+        private void dataGridView_tipoEntradas_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == 5)
+            {
+                this.entradas.RemoveAt(e.RowIndex);
+                this.dataGridView_tipoEntradas.DataSource = null;
+                this.dataGridView_tipoEntradas.DataSource = this.entradas;
+            }
         }
     }
 }

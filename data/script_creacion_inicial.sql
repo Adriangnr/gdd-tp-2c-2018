@@ -330,6 +330,13 @@ insert into ESECUELE.Medio_de_Pago (medio_pago_descripcion) values('EFECTIVO')
 insert into ESECUELE.Medio_de_Pago (medio_pago_descripcion) values('T_CREDITO')
 go
 
+-- Ingreso Rubros
+insert into ESECUELE.Rubro (rubro_descripcion) values 
+('Teatro'),('Cine'), ('Musical'), ('Deportivo'), ('Conferencia'), ('Festival'), ('Otro')
+
+-- Ingreso Grados
+insert into ESECUELE.Grado (grado_descripcion, grado_comision) values
+('Alta', 0.30), ('Media', 0.2), ('Baja', 0.1)
 /*
 * --------------------- Fin ingreso valores default ------------------------------
 */
