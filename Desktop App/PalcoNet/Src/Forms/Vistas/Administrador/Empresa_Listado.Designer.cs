@@ -72,7 +72,6 @@
             // 
             // listBox1
             // 
-            this.listBox1.ItemHeight = 20;
             this.listBox1.Margin = new System.Windows.Forms.Padding(3);
             this.listBox1.Size = new System.Drawing.Size(10, 4);
             // 
@@ -251,7 +250,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1701, 711);
+            this.ClientSize = new System.Drawing.Size(1801, 711);
             this.Controls.Add(this.btn_eliminar);
             this.Controls.Add(this.dataGridEmpresas);
             this.Controls.Add(this.btn_comisionar);
