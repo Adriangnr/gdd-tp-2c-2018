@@ -42,5 +42,11 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
         {
             
         }
+
+        private void btn_pub_cargarFechasHoras_Click(object sender, EventArgs e)
+        {
+            Fecha_Hora fechaHoraForm = new Fecha_Hora();
+            fechaHoraForm.Show();
+        }
     }
 }

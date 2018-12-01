@@ -65,13 +65,19 @@ namespace PalcoNet.Src.Servicios
 
         public Empresa GetEmpresaFromUsername(string username)
         {
-            List<object> empresaData = this.Get("EmpresaFromUsername", new List<SqlParameter> { new SqlParameter("@username", username) })[0];
+            try
+            {
+                List<object> empresaData = this.Get("EmpresaFromUsername", new List<SqlParameter> { new SqlParameter("@username", username) })[0];
+                Empresa empresa = new Empresa();
+                this.loadEmpresa(empresa, empresaData);
 
-            Empresa empresa = new Empresa();
-
-            this.loadEmpresa(empresa, empresaData);
-
-            return empresa;
+                return empresa;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+            
         }
 
         public List<Publicacion> GetPublicaciones(string username)
@@ -80,24 +86,26 @@ namespace PalcoNet.Src.Servicios
             {
                 Empresa empresaEntity = this.GetEmpresaFromUsername(username);
                 List<Publicacion> publicaciones = new List<Publicacion>();
-                List<List<object>> publicacionesData = empresaEntity.GetPublicaciones();
-
-                foreach (List<object> row in publicacionesData)
+                if(empresaEntity != null)
                 {
-                    Publicacion publicacion = new Publicacion();
-                    publicacion.Codigo = (int)row[0];
-                    publicacion.FechaInicio = (DateTime)row[1];
-                    publicacion.Descripcion = (string)row[2];
-                    publicacion.FechaPublicacion = (DateTime)row[3];
-                    publicacion.Rubro = (int)row[4];
-                    publicacion.Direccion = (row[5].GetType() != typeof(DBNull)) ? (string)row[5] : "";
-                    publicacion.Grado = (row[6].GetType() != typeof(DBNull)) ? (int)row[6] : -1;
-                    publicacion.Empresa = (int)row[7];
-                    publicacion.Estado = (string)row[8];
+                    List<List<object>> publicacionesData = empresaEntity.GetPublicaciones();
 
-                    publicaciones.Add(publicacion);
+                    foreach (List<object> row in publicacionesData)
+                    {
+                        Publicacion publicacion = new Publicacion();
+                        publicacion.Codigo = (int)row[0];
+                        publicacion.FechaInicio = (DateTime)row[1];
+                        publicacion.Descripcion = (string)row[2];
+                        publicacion.FechaPublicacion = (DateTime)row[3];
+                        publicacion.Rubro = (int)row[4];
+                        publicacion.Direccion = (row[5].GetType() != typeof(DBNull)) ? (string)row[5] : "";
+                        publicacion.Grado = (row[6].GetType() != typeof(DBNull)) ? (int)row[6] : -1;
+                        publicacion.Empresa = (int)row[7];
+                        publicacion.Estado = (string)row[8];
+
+                        publicaciones.Add(publicacion);
+                    }
                 }
-
                 return publicaciones;
             }
             catch (Exception ex)
