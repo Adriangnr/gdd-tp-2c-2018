@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.descripcion = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -45,8 +47,10 @@
             this.label3 = new System.Windows.Forms.Label();
             this.btn_pub_cargarFechasHoras = new System.Windows.Forms.Button();
             this.btn_pub_entradas = new System.Windows.Forms.Button();
-            this.listView1 = new System.Windows.Forms.ListView();
-            this.listView2 = new System.Windows.Forms.ListView();
+            this.dataGridView_fechaHora = new System.Windows.Forms.DataGridView();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_fechaHora)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -237,29 +241,74 @@
             this.btn_pub_entradas.Text = "Cargar entradas y precios";
             this.btn_pub_entradas.UseVisualStyleBackColor = true;
             // 
-            // listView1
+            // dataGridView_fechaHora
             // 
-            this.listView1.Location = new System.Drawing.Point(631, 144);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(504, 177);
-            this.listView1.TabIndex = 62;
-            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.dataGridView_fechaHora.AllowUserToAddRows = false;
+            this.dataGridView_fechaHora.AllowUserToResizeColumns = false;
+            this.dataGridView_fechaHora.AllowUserToResizeRows = false;
+            this.dataGridView_fechaHora.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dataGridView_fechaHora.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.dataGridView_fechaHora.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView_fechaHora.ColumnHeadersVisible = false;
+            this.dataGridView_fechaHora.Cursor = System.Windows.Forms.Cursors.No;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Transparent;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Transparent;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView_fechaHora.DefaultCellStyle = dataGridViewCellStyle1;
+            this.dataGridView_fechaHora.EnableHeadersVisualStyles = false;
+            this.dataGridView_fechaHora.Location = new System.Drawing.Point(631, 155);
+            this.dataGridView_fechaHora.MultiSelect = false;
+            this.dataGridView_fechaHora.Name = "dataGridView_fechaHora";
+            this.dataGridView_fechaHora.ReadOnly = true;
+            this.dataGridView_fechaHora.RowHeadersVisible = false;
+            this.dataGridView_fechaHora.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.dataGridView_fechaHora.RowTemplate.Height = 28;
+            this.dataGridView_fechaHora.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.dataGridView_fechaHora.Size = new System.Drawing.Size(504, 150);
+            this.dataGridView_fechaHora.TabIndex = 64;
+            this.dataGridView_fechaHora.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_fechaHora_CellContentClick);
             // 
-            // listView2
+            // dataGridView1
             // 
-            this.listView2.Location = new System.Drawing.Point(631, 358);
-            this.listView2.Name = "listView2";
-            this.listView2.Size = new System.Drawing.Size(504, 161);
-            this.listView2.TabIndex = 63;
-            this.listView2.UseCompatibleStateImageBehavior = false;
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToResizeColumns = false;
+            this.dataGridView1.AllowUserToResizeRows = false;
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.ColumnHeadersVisible = false;
+            this.dataGridView1.Cursor = System.Windows.Forms.Cursors.No;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Transparent;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Transparent;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dataGridView1.EnableHeadersVisualStyles = false;
+            this.dataGridView1.Location = new System.Drawing.Point(631, 369);
+            this.dataGridView1.MultiSelect = false;
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.RowHeadersVisible = false;
+            this.dataGridView1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.dataGridView1.RowTemplate.Height = 28;
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.dataGridView1.Size = new System.Drawing.Size(504, 150);
+            this.dataGridView1.TabIndex = 65;
             // 
             // Publicacion_Detalle
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1176, 678);
-            this.Controls.Add(this.listView2);
-            this.Controls.Add(this.listView1);
+            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dataGridView_fechaHora);
             this.Controls.Add(this.btn_pub_entradas);
             this.Controls.Add(this.btn_pub_cargarFechasHoras);
             this.Controls.Add(this.label3);
@@ -299,8 +348,10 @@
             this.Controls.SetChildIndex(this.label3, 0);
             this.Controls.SetChildIndex(this.btn_pub_cargarFechasHoras, 0);
             this.Controls.SetChildIndex(this.btn_pub_entradas, 0);
-            this.Controls.SetChildIndex(this.listView1, 0);
-            this.Controls.SetChildIndex(this.listView2, 0);
+            this.Controls.SetChildIndex(this.dataGridView_fechaHora, 0);
+            this.Controls.SetChildIndex(this.dataGridView1, 0);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_fechaHora)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -324,7 +375,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btn_pub_cargarFechasHoras;
         private System.Windows.Forms.Button btn_pub_entradas;
-        private System.Windows.Forms.ListView listView1;
-        private System.Windows.Forms.ListView listView2;
+        private System.Windows.Forms.DataGridView dataGridView_fechaHora;
+        private System.Windows.Forms.DataGridView dataGridView1;
     }
 }
