@@ -19,6 +19,8 @@ namespace PalcoNet.Src.Forms.Vistas.General
         {
             InitializeComponent();
             this.intentosFallidos = 0;
+            this.ActiveControl = titulo;
+
             login_tbox_usuario.LostFocus += login_tbox_usuario_LostFocus;
             login_tbox_usuario.GotFocus += login_tbox_usuario_GotFocus;
             login_tbox_usuario.KeyDown += login_tbox_usuario_KeyDown;

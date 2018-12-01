@@ -216,6 +216,7 @@
     <Compile Include="Src\Servicios\RolService.cs" />
     <Compile Include="Src\Servicios\ServiceFactory\ServiceFactory.cs" />
     <Compile Include="Src\Servicios\UsuarioService.cs" />
+    <Compile Include="Src\Utils\SortableBindingList.cs" />
     <Compile Include="Src\Utils\Utilities.cs" />
     <Compile Include="Src\Validadores\Validador.cs" />
     <Compile Include="Src\Validadores\ValidadorRegistro.cs" />

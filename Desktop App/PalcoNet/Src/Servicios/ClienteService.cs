@@ -3,17 +3,18 @@ using System;
 using System.Collections.Generic;
 using PalcoNet.Src.Servicios.ServiceFactory;
 using System.Data.SqlClient;
+using PalcoNet.Src.Utils;
 
 namespace PalcoNet.Src.Servicios
 {
     class ClienteService : DatabaseService
     {
-        public List<Cliente> Search(System.Windows.Forms.Control.ControlCollection filtros)
+        public SortableBindingList<Cliente> Search(System.Windows.Forms.Control.ControlCollection filtros)
         {
             Cliente clienteSearchEntity = new Cliente();
             try
             {
-                List<Cliente> clientes = new List<Cliente>();
+                SortableBindingList<Cliente> clientes = new SortableBindingList<Cliente>();
 
                 List <List<object>> results = clienteSearchEntity.Search(filtros);
              

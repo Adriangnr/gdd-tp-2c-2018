@@ -3,6 +3,7 @@ using PalcoNet.Src.Forms.Vistas.General;
 using PalcoNet.Src.Servicios;
 using PalcoNet.Src.Servicios.ServiceFactory;
 using System;
+using System.ComponentModel;
 using System.Windows.Forms;
 
 namespace PalcoNet.Src.Forms.Vistas.Administrador
@@ -29,9 +30,23 @@ namespace PalcoNet.Src.Forms.Vistas.Administrador
                 if (this.dataGridEmpresas.Rows.Count == 0)
                     MessageBox.Show("No se encontraron empresas!", "Listado de empresas.",
                                 MessageBoxButtons.OK, MessageBoxIcon.Information);
-                
-                this.dataGridEmpresas.Columns[6].Visible = false;
-                this.dataGridEmpresas.Columns[7].Visible = false;
+
+
+                foreach (DataGridViewColumn column in this.dataGridEmpresas.Columns)
+                {
+                    // La columna 0 es el id de la empresa
+                    if (column.Index == 0 || column.Index > 5)
+                        column.Visible = false;
+                    if (column.HeaderText == "Habilitado")
+                        column.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                    // Para que empiece ordenado de menor a mayor: razon social
+                    if (column.Index == 1)
+                    {
+                        this.dataGridEmpresas.Sort(column, ListSortDirection.Ascending);
+                        column.HeaderCell.SortGlyphDirection = System.Windows.Forms.SortOrder.Ascending;
+                    }
+                    column.SortMode = DataGridViewColumnSortMode.Automatic;
+                }
 
                 this.dataGridEmpresas.AutoGenerateColumns = false;
                 this.dataGridEmpresas.ClearSelection();

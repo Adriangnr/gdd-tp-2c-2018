@@ -1,4 +1,5 @@
 ﻿using PalcoNet.Src.Modelo.Entidades;
+using PalcoNet.Src.Utils;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -7,12 +8,12 @@ namespace PalcoNet.Src.Servicios
 {
     class EmpresaService : DatabaseService
     {
-        public List<Empresa> Search(System.Windows.Forms.Control.ControlCollection filtros)
+        public SortableBindingList<Empresa> Search(System.Windows.Forms.Control.ControlCollection filtros)
         {
             Empresa empresaSearchEntity = new Empresa();
             try
             {
-                List<Empresa> empresas = new List<Empresa>();
+                SortableBindingList<Empresa> empresas = new SortableBindingList<Empresa>();
 
                 List<List<object>> results = empresaSearchEntity.Search(filtros);
 

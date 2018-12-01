@@ -4,6 +4,7 @@ using PalcoNet.Src.Servicios;
 using System;
 using System.Windows.Forms;
 using PalcoNet.Src.Forms.Vistas.General;
+using System.ComponentModel;
 
 namespace PalcoNet.Src.Forms.Vistas.Administrador
 {
@@ -30,8 +31,21 @@ namespace PalcoNet.Src.Forms.Vistas.Administrador
                     MessageBox.Show("No se encontraron clientes!", "Listado de clientes.",
                                 MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-               for (int i = 7; i < this.dataGridClientes.Columns.Count; i++)
-                    this.dataGridClientes.Columns[i].Visible = false;
+               foreach (DataGridViewColumn column in this.dataGridClientes.Columns)
+               {
+                   // La columna 0 es el id del cliente
+                   if (column.Index == 0 || column.Index > 6)
+                       column.Visible = false;
+                   if (column.HeaderText == "Habilitado")
+                       column.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                   // Para que empiece ordenado de menor a mayor: nro de documento
+                   if (column.Index == 3)
+                   {
+                       this.dataGridClientes.Sort(column, ListSortDirection.Ascending);
+                       column.HeaderCell.SortGlyphDirection = System.Windows.Forms.SortOrder.Ascending;
+                   }
+                   column.SortMode = DataGridViewColumnSortMode.Automatic;
+               }
 
                 this.dataGridClientes.AutoGenerateColumns = false;
                 this.dataGridClientes.ClearSelection();
