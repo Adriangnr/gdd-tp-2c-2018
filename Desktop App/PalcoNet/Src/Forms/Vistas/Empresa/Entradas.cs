@@ -21,5 +21,15 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
         {
 
         }
+
+        private void btn_cancel_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+        }
+
+        private void btn_cargar_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+        }
     }
 }
