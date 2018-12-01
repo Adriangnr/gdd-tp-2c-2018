@@ -40,6 +40,7 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
             this.fechasHorarios.Add(fechahora);
             this.dataGridView_fechaHora.DataSource = null;
             this.dataGridView_fechaHora.DataSource = this.fechasHorarios;
+            this.dataGridView_fechaHora.ClearSelection();
         }
 
         private void Publicacion_Detalle_Load(object sender, EventArgs e)
@@ -83,6 +84,12 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
                 this.dataGridView_fechaHora.DataSource = null;
                 this.dataGridView_fechaHora.DataSource = this.fechasHorarios;
             }
+        }
+
+        private void btn_pub_entradas_Click(object sender, EventArgs e)
+        {
+            Entradas entradas = new Entradas();
+            entradas.Show();
         }
     }
 }

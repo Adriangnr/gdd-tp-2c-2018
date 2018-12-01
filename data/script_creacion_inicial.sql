@@ -225,6 +225,7 @@ create table ESECUELE.Entrada(
 	entrada_asiento int default null,
 	entrada_sin_numerar bit default 0,
 	entrada_precio numeric(18,2) not null,
+	entrada_disponible bit default 1,
 	entrada_tipo int default null
 	constraint PK_Entrada primary key (entrada_publicacion, entrada_fila, entrada_asiento, entrada_tipo)
 )
