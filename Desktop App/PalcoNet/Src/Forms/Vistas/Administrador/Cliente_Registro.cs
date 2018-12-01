@@ -12,6 +12,7 @@ namespace PalcoNet.Src.Forms.Vistas.Administrador
             doc.Items.Add("LC");
             doc.Items.Add("LE");
             doc.SelectedIndex = 0;
+            nacimiento.Value = Utils.Utilities.getCurrentDate();
         }
 
         private void Cliente_Registro_Load(object sender, EventArgs e)

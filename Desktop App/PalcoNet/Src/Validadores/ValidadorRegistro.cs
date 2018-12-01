@@ -131,6 +131,14 @@ namespace PalcoNet.Src.Validadores
             this.validarCampoTexto(cuilCliente, "Cuil", new Regex(@"^(20|23)-[0-9]{6,8}-[0-9]$"));
         }
 
+        public void nacimiento(DateTimePicker nacimiento)
+        {
+            if (DateTime.Compare(nacimiento.Value, Utils.Utilities.getCurrentDate()) > 0)
+            {
+                throw new ValidadorException("Fecha de nacimiento invalida!");
+            }
+        }
+
         public void razonSocial(TextBox razonSocial)
         {
             if (razonSocial.Text == "")

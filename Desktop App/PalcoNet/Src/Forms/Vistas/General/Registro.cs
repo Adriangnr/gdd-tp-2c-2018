@@ -100,6 +100,12 @@ namespace PalcoNet.Src.Forms.Vistas.General
                 if(excep.Message.Contains("Usuario"))
                     MessageBox.Show("El usuario ya existe!", "Error al registrar el usuario."
                         , MessageBoxButtons.OK, MessageBoxIcon.Error);
+                else if (excep.Message.Contains("Cliente"))
+                    MessageBox.Show("Ya existe un cliente con ese documento/CUIL!", "Error al registrar el usuario."
+                        , MessageBoxButtons.OK, MessageBoxIcon.Error);
+                else if (excep.Message.Contains("Empresa"))
+                    MessageBox.Show("Ya existe una empresa con ese CUIT!", "Error al registrar el usuario."
+                        , MessageBoxButtons.OK, MessageBoxIcon.Error);
                 else
                     MessageBox.Show(excep.Message, "Error al registrar el usuario."
                         , MessageBoxButtons.OK, MessageBoxIcon.Error);
