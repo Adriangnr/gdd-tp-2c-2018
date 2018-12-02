@@ -1108,3 +1108,16 @@ as begin
 	end catch
 end
 go
+
+create procedure ESECUELE.getRubro as
+begin
+	select * from ESECUELE.Rubro
+end
+go
+
+create procedure ESECUELE.getGrado as
+begin
+	select * from ESECUELE.Grado
+end
+go
+

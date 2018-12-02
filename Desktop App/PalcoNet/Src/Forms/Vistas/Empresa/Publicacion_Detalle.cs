@@ -1,4 +1,6 @@
 ﻿using PalcoNet.Src.Forms.Layouts;
+using PalcoNet.Src.Servicios;
+using PalcoNet.Src.Servicios.ServiceFactory;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -84,9 +86,23 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
             this.dataGridView_tipoEntradas.ClearSelection();
         }
 
+        private void GetRubros()
+        {
+            RubroService rubroService = (RubroService)ServiceFactory.GetService("Rubro");
+            this.rubro.Items.AddRange(rubroService.GetRubros().ToArray());
+
+        }
+
+        private void GetGrados()
+        {
+            GradoService gradoService = (GradoService)ServiceFactory.GetService("Grado");
+            this.grado.Items.AddRange(gradoService.GetGrados().ToArray());
+        }
+
         private void Publicacion_Detalle_Load(object sender, EventArgs e)
         {
-
+            this.GetRubros();
+            this.GetGrados();
         }
 
         private void label3_Click(object sender, EventArgs e)
