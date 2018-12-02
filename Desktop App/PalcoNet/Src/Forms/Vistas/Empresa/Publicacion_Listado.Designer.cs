@@ -37,6 +37,9 @@
             this.btn_nextPage = new System.Windows.Forms.Button();
             this.btn_firstPage = new System.Windows.Forms.Button();
             this.btn_lastPage = new System.Windows.Forms.Button();
+            this.paginaActual = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.totalPaginas = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridPublicaciones)).BeginInit();
             this.SuspendLayout();
             // 
@@ -150,11 +153,41 @@
             this.btn_lastPage.UseVisualStyleBackColor = true;
             this.btn_lastPage.Click += new System.EventHandler(this.btn_lastPage_Click);
             // 
+            // paginaActual
+            // 
+            this.paginaActual.AutoSize = true;
+            this.paginaActual.Location = new System.Drawing.Point(458, 557);
+            this.paginaActual.Name = "paginaActual";
+            this.paginaActual.Size = new System.Drawing.Size(18, 20);
+            this.paginaActual.TabIndex = 67;
+            this.paginaActual.Text = "0";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(505, 556);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(27, 20);
+            this.label1.TabIndex = 68;
+            this.label1.Text = "de";
+            // 
+            // totalPaginas
+            // 
+            this.totalPaginas.AutoSize = true;
+            this.totalPaginas.Location = new System.Drawing.Point(557, 556);
+            this.totalPaginas.Name = "totalPaginas";
+            this.totalPaginas.Size = new System.Drawing.Size(18, 20);
+            this.totalPaginas.TabIndex = 69;
+            this.totalPaginas.Text = "0";
+            // 
             // Publicacion_Listado
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1176, 678);
+            this.Controls.Add(this.totalPaginas);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.paginaActual);
             this.Controls.Add(this.btn_lastPage);
             this.Controls.Add(this.btn_firstPage);
             this.Controls.Add(this.btn_nextPage);
@@ -178,6 +211,9 @@
             this.Controls.SetChildIndex(this.btn_nextPage, 0);
             this.Controls.SetChildIndex(this.btn_firstPage, 0);
             this.Controls.SetChildIndex(this.btn_lastPage, 0);
+            this.Controls.SetChildIndex(this.paginaActual, 0);
+            this.Controls.SetChildIndex(this.label1, 0);
+            this.Controls.SetChildIndex(this.totalPaginas, 0);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridPublicaciones)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -195,5 +231,8 @@
         private System.Windows.Forms.Button btn_nextPage;
         private System.Windows.Forms.Button btn_firstPage;
         private System.Windows.Forms.Button btn_lastPage;
+        private System.Windows.Forms.Label paginaActual;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label totalPaginas;
     }
 }

@@ -30,6 +30,9 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
 
                 Page currentPage = this.paginator.NextPage();
 
+                this.totalPaginas.Text = this.paginator.TotalPages.ToString();
+                this.paginaActual.Text = "1";
+
                 this.btn_previousPage.Enabled = false;
                 this.btn_firstPage.Enabled = false;
 
@@ -118,6 +121,7 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
 
             this.dataGridPublicaciones.DataSource = null;
             this.dataGridPublicaciones.DataSource = publicaciones;
+            this.changeCount();
             this.dataGridPublicaciones.ClearSelection();
         }
 
@@ -136,6 +140,7 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
 
             this.dataGridPublicaciones.DataSource = null;
             this.dataGridPublicaciones.DataSource = publicaciones;
+            this.changeCount();
             this.dataGridPublicaciones.ClearSelection();
         }
 
@@ -157,6 +162,7 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
 
             this.dataGridPublicaciones.DataSource = null;
             this.dataGridPublicaciones.DataSource = publicaciones;
+            this.changeCount();
             this.dataGridPublicaciones.ClearSelection();
         }
 
@@ -174,7 +180,13 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
 
             this.dataGridPublicaciones.DataSource = null;
             this.dataGridPublicaciones.DataSource = publicaciones;
+            this.changeCount();
             this.dataGridPublicaciones.ClearSelection();
+        }
+
+        private void changeCount()
+        {
+            this.paginaActual.Text = ((this.paginator.PageNumber + 1)).ToString();
         }
     }
 }

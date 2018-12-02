@@ -14,7 +14,7 @@ namespace PalcoNet.Src.Forms.Vistas.Paginador
 
         public DatabaseEntity Entity { get; set; }
 
-        private List<Page> Pages;
+        private Dictionary<int, Page> Pages;
         
         public Paginator()
         {
@@ -22,7 +22,7 @@ namespace PalcoNet.Src.Forms.Vistas.Paginador
             this.ItemsPerPage = 0;
             this.TotalPages = 0;
             this.TotalRecords = 0;
-            this.Pages = new List<Page>();
+            this.Pages = new Dictionary<int, Page>();
         }
 
         public Page NextPage()
@@ -35,7 +35,7 @@ namespace PalcoNet.Src.Forms.Vistas.Paginador
                 currentPage = this.SearchPaged(offset, this.ItemsPerPage);
                 this.TotalRecords = currentPage.TotalItems;
                 this.TotalPages = (int)Math.Ceiling((decimal)this.TotalRecords / (decimal)this.ItemsPerPage);
-                this.Pages.Add(currentPage);
+                this.Pages.Add(this.PageNumber, currentPage);
             }
             else
             {
@@ -47,7 +47,7 @@ namespace PalcoNet.Src.Forms.Vistas.Paginador
                 {
                     int offset = this.PageNumber * this.ItemsPerPage;
                     currentPage = this.SearchPaged(offset, this.ItemsPerPage);
-                    this.Pages.Add(currentPage);
+                    this.Pages.Add(this.PageNumber, currentPage);
                 }
             }
             
@@ -66,9 +66,9 @@ namespace PalcoNet.Src.Forms.Vistas.Paginador
             {
                 int offset = (this.PageNumber) * this.ItemsPerPage;
                 currentPage = this.SearchPaged(offset, this.ItemsPerPage);
-                this.Pages.Insert(this.PageNumber, currentPage);
-                currentPage = this.Pages[this.PageNumber];
+                this.Pages.Add(this.PageNumber, currentPage);
             }
+            
 
             return currentPage;
         }
@@ -76,7 +76,18 @@ namespace PalcoNet.Src.Forms.Vistas.Paginador
         public Page PreviousPage()
         {
             this.PageNumber -= 1;
-            return this.Pages[this.PageNumber];
+            Page currentPage = null;
+            try
+            {
+                currentPage = this.Pages[this.PageNumber];
+            }
+            catch (Exception)
+            {
+                int offset = (this.PageNumber) * this.ItemsPerPage;
+                currentPage = this.SearchPaged(offset, this.ItemsPerPage);
+                this.Pages.Add(this.PageNumber, currentPage);
+            }
+            return currentPage;
         }
 
         public Page FirstPage()
