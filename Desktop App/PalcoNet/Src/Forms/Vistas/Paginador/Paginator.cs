@@ -27,7 +27,8 @@ namespace PalcoNet.Src.Forms.Vistas.Paginador
 
         public Page nextPage()
         {
-            if(this.Pages.Count == 0)
+            this.PageNumber += 1;
+            if (this.Pages.Count == 0)
             {
                 int offset = this.PageNumber * this.ItemsPerPage;
                 this.Pages.Add(this.SearchPaged(offset, this.ItemsPerPage));
@@ -35,14 +36,13 @@ namespace PalcoNet.Src.Forms.Vistas.Paginador
 
             Page currentPage = this.Pages[this.PageNumber];
             
-            this.PageNumber += 1;
             return currentPage;
         }
 
         public Page previousPage()
         {
             this.PageNumber -= 1;
-            return null;
+            return this.Pages[this.PageNumber];
         }
 
         public abstract Page SearchPaged(int offset, int itemsPerPage);

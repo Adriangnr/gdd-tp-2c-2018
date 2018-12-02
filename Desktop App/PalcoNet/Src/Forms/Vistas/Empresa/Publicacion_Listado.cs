@@ -5,6 +5,7 @@ using PalcoNet.Src.Servicios;
 using PalcoNet.Src.Servicios.ServiceFactory;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace PalcoNet.Src.Forms.Vistas.Empresa
@@ -27,9 +28,10 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
                 EmpresaService empresaService = ((EmpresaService)ServiceFactory.GetService("Empresa"));
                 this.paginator.Entity = empresaService.GetEmpresaFromUsername(this.usuario.Username);
 
-                this.paginator.nextPage();
-                
-                List<Publicacion> publicaciones = empresaService.GetPublicaciones(this.usuario.Username);
+                Page currentPage = this.paginator.nextPage();
+
+                List<object> objects = currentPage.GetItems();
+                List<Publicacion> publicaciones = objects.Cast<Publicacion>().ToList();
                 if(publicaciones.Count == 0)
                     MessageBox.Show("No se encontraron publicaciones cargadas para este usuario!", "Alerta!",
                                 MessageBoxButtons.OK, MessageBoxIcon.Warning);
