@@ -3,7 +3,7 @@ using System.Windows.Forms;
 
 namespace PalcoNet.Src.Modelo.Estados
 {
-    class Publicada : Estado
+    public class Publicada : Estado
     {
         public Publicada()
         {

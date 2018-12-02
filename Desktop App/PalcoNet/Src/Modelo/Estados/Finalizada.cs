@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace PalcoNet.Src.Modelo.Estados
 {
-    class Finalizada : Estado
+    public class Finalizada : Estado
     {
         public Finalizada()
         {

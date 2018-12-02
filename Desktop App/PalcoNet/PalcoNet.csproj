@@ -225,7 +225,7 @@
     <Compile Include="Src\Servicios\EmpresaService.cs" />
     <Compile Include="Src\Servicios\LoginService.cs" />
     <Compile Include="Src\Servicios\RolService.cs" />
-    <Compile Include="Src\Servicios\ServiceFactory\RubroService.cs" />
+    <Compile Include="Src\Servicios\RubroService.cs" />
     <Compile Include="Src\Servicios\ServiceFactory\ServiceFactory.cs" />
     <Compile Include="Src\Servicios\UsuarioService.cs" />
     <Compile Include="Src\Utils\SortableBindingList.cs" />

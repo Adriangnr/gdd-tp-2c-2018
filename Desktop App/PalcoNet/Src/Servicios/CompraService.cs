@@ -41,7 +41,6 @@ namespace PalcoNet.Src.Servicios
             publicacion.FechaInicio = (DateTime)row[1];
             publicacion.Descripcion = (string)row[2];
             publicacion.FechaEvento = (DateTime)row[3];
-            publicacion
         }
     }
 }
