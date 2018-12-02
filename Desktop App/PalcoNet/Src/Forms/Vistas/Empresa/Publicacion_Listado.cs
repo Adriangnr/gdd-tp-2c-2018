@@ -1,4 +1,5 @@
 ﻿using PalcoNet.Src.Forms.Layouts;
+using PalcoNet.Src.Forms.Vistas.Paginador;
 using PalcoNet.Src.Modelo.Entidades;
 using PalcoNet.Src.Servicios;
 using PalcoNet.Src.Servicios.ServiceFactory;
@@ -10,6 +11,8 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
 {
     public partial class Publicacion_Listado : Master
     {
+        public Paginator paginator { get; set; }
+
         public Publicacion_Listado()
         {
             InitializeComponent();
@@ -19,7 +22,13 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
         {
             try
             {
-                EmpresaService empresaService = (EmpresaService)ServiceFactory.GetService("Empresa");
+                this.paginator = new EmpresaPublicacionPaginator();
+                this.paginator.ItemsPerPage = 10;
+                EmpresaService empresaService = ((EmpresaService)ServiceFactory.GetService("Empresa"));
+                this.paginator.Entity = empresaService.GetEmpresaFromUsername(this.usuario.Username);
+
+                this.paginator.nextPage();
+                
                 List<Publicacion> publicaciones = empresaService.GetPublicaciones(this.usuario.Username);
                 if(publicaciones.Count == 0)
                     MessageBox.Show("No se encontraron publicaciones cargadas para este usuario!", "Alerta!",
@@ -77,6 +86,11 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
                                 MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

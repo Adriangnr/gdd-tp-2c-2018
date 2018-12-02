@@ -193,6 +193,9 @@
     <Compile Include="Src\Forms\Vistas\General\Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
+    <Compile Include="Src\Forms\Vistas\Paginador\EmpresaPublicacionPaginator.cs" />
+    <Compile Include="Src\Forms\Vistas\Paginador\Page.cs" />
+    <Compile Include="Src\Forms\Vistas\Paginador\Paginator.cs" />
     <Compile Include="Src\Modelo\DBConector\Database.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

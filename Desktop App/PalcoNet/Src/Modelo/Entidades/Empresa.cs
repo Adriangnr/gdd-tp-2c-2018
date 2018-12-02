@@ -121,5 +121,23 @@ namespace PalcoNet.Src.Modelo.Entidades
                 throw e;
             }
         }
+
+        public List<List<object>> SearchPagedPublicacionByEmpresa(int idEmpresa, int offset, int itemsPerPage)
+        {
+            try
+            {
+                List<SqlParameter> parameters = new List<SqlParameter>() {
+                    new SqlParameter("@idEmpresa", idEmpresa),
+                    new SqlParameter("@offset", offset),
+                    new SqlParameter("@items", itemsPerPage)
+                };
+
+                return this.spExecuteDataReader(this.schema + ".SearchPagedPublicacionByEmpresa", parameters);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
     }
 }

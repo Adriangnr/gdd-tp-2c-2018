@@ -1121,3 +1121,9 @@ begin
 end
 go
 
+create procedure ESECUELE.SearchPagedPublicacionByEmpresa(@idEmpresa int, @offset int, @items int) as
+begin
+	select *, COUNT(*) OVER() from ESECUELE.Publicacion where publicacion_empresa = @idEmpresa 
+	order by publicacion_codigo DESC
+	offset @offset rows fetch next @items rows only
+end
