@@ -18,7 +18,7 @@ namespace PalcoNet.Src.Forms.Vistas.Paginador
                 publicacion.Codigo = (int)row[0];
                 publicacion.FechaPublicacion = (DateTime)row[1];
                 publicacion.Descripcion = (string)row[2];
-                publicacion.FechaInicio = (DateTime)row[3];
+                publicacion.FechaEvento = (DateTime)row[3];
                 publicacion.Rubro = (int)row[4];
                 publicacion.Direccion = (row[5].GetType() != typeof(DBNull)) ? (string)row[5] : "";
                 publicacion.Grado = (row[6].GetType() != typeof(DBNull)) ? (int)row[6] : -1;

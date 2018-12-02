@@ -26,7 +26,7 @@ namespace PalcoNet.Src.Servicios.ServiceFactory
             return rubros;
         }
 		
-		public List<Rubro> GetRubros()
+		/*public List<Rubro> GetRubros()
         {
             List<List<object>> rubros = this.Get("Rubro", new List<SqlParameter>());
             List<Rubro> rubrosList = new List<Rubro>();
@@ -36,6 +36,6 @@ namespace PalcoNet.Src.Servicios.ServiceFactory
                 rubrosList.Add(rubro);
             }
             return rubrosList;
-		}
+		}*/
     }
 }

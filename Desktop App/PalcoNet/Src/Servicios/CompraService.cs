@@ -38,7 +38,7 @@ namespace PalcoNet.Src.Servicios
         public void loadPublicacionCompra(Publicacion publicacion, List<object> row)
         {
             publicacion.Codigo = (int)row[0];
-            publicacion.FechaInicio = (DateTime)row[1];
+            publicacion.FechaEvento = (DateTime)row[1];
             publicacion.Descripcion = (string)row[2];
             publicacion.FechaEvento = (DateTime)row[3];
         }

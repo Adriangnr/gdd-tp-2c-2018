@@ -89,7 +89,7 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
         private void GetRubros()
         {
             RubroService rubroService = (RubroService)ServiceFactory.GetService("Rubro");
-            this.rubro.Items.AddRange(rubroService.GetRubros().ToArray());
+            this.rubro.Items.AddRange(rubroService.getAllRubros().ToArray());
 
         }
 
