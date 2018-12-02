@@ -40,5 +40,10 @@ namespace PalcoNet.Src.Utils
         {
             return DateTime.Parse(ConfigurationManager.AppSettings["FechaActual"]);
         }
+
+        public static int getTamPagina()
+        {
+            return int.Parse(ConfigurationManager.AppSettings["TamPagina"]);
+        }
     }
 }

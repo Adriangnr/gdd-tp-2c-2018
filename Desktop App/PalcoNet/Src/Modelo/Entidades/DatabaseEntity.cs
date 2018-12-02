@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace PalcoNet.Src.Modelo.Entidades
 {
@@ -140,6 +141,29 @@ namespace PalcoNet.Src.Modelo.Entidades
             finally
             {
                 command.Connection.Close();
+            }
+        }
+
+        public List<List<object>> Search(System.Windows.Forms.Control.ControlCollection filters, String entidad)
+        {
+            try
+            {
+                List<SqlParameter> parameters = new List<SqlParameter>();
+
+                foreach (Control field in filters)
+                {
+                    if (field.GetType() == typeof(TextBox))
+                    {
+                        string value = null;
+                        if (field.Text != "") value = field.Text;
+                        parameters.Add(new SqlParameter("@" + field.Name, value));
+                    }
+                }
+                return spExecuteDataReader(this.schema + ".SearchAll" + entidad, parameters);
+            }
+            catch (Exception e)
+            {
+                throw e;
             }
         }
     }

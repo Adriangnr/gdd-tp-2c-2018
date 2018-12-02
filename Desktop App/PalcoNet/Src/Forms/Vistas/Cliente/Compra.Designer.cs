@@ -37,7 +37,9 @@
             this.descripcion = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
+            this.dataGridPublicaciones = new System.Windows.Forms.DataGridView();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridPublicaciones)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -65,6 +67,10 @@
             this.Entidad.Size = new System.Drawing.Size(67, 18);
             this.Entidad.Text = "Comprar";
             // 
+            // btn_cancel
+            // 
+            this.btn_cancel.Location = new System.Drawing.Point(964, 349);
+            // 
             // dateFrom
             // 
             this.dateFrom.Format = System.Windows.Forms.DateTimePickerFormat.Short;
@@ -87,7 +93,7 @@
             this.btn_buy.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_buy.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_buy.ForeColor = System.Drawing.SystemColors.Window;
-            this.btn_buy.Location = new System.Drawing.Point(632, 83);
+            this.btn_buy.Location = new System.Drawing.Point(964, 78);
             this.btn_buy.Margin = new System.Windows.Forms.Padding(0);
             this.btn_buy.Name = "btn_buy";
             this.btn_buy.Size = new System.Drawing.Size(129, 45);
@@ -155,21 +161,46 @@
             this.label8.TabIndex = 60;
             this.label8.Text = "Fecha Hasta";
             // 
+            // dataGridPublicaciones
+            // 
+            this.dataGridPublicaciones.AllowUserToAddRows = false;
+            this.dataGridPublicaciones.AllowUserToDeleteRows = false;
+            this.dataGridPublicaciones.AllowUserToOrderColumns = true;
+            this.dataGridPublicaciones.AllowUserToResizeRows = false;
+            this.dataGridPublicaciones.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridPublicaciones.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridPublicaciones.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridPublicaciones.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.dataGridPublicaciones.Location = new System.Drawing.Point(239, 83);
+            this.dataGridPublicaciones.Margin = new System.Windows.Forms.Padding(2);
+            this.dataGridPublicaciones.MultiSelect = false;
+            this.dataGridPublicaciones.Name = "dataGridPublicaciones";
+            this.dataGridPublicaciones.ReadOnly = true;
+            this.dataGridPublicaciones.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridPublicaciones.Size = new System.Drawing.Size(694, 307);
+            this.dataGridPublicaciones.TabIndex = 59;
+            // 
             // Compra
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(784, 441);
+            this.ClientSize = new System.Drawing.Size(1201, 462);
+            this.Controls.Add(this.dataGridPublicaciones);
             this.Controls.Add(this.btn_buy);
             this.Name = "Compra";
             this.Text = "Palco.NET - Comprar";
             this.Load += new System.EventHandler(this.Compra_Load);
             this.Controls.SetChildIndex(this.btn_buy, 0);
+            this.Controls.SetChildIndex(this.footer, 0);
+            this.Controls.SetChildIndex(this.btn_cancel, 0);
             this.Controls.SetChildIndex(this.groupBox1, 0);
-            this.Controls.SetChildIndex(this.listBox1, 0);
             this.Controls.SetChildIndex(this.Entidad, 0);
+            this.Controls.SetChildIndex(this.dataGridPublicaciones, 0);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridPublicaciones)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -186,5 +217,6 @@
         public System.Windows.Forms.TextBox descripcion;
         public System.Windows.Forms.Label label5;
         public System.Windows.Forms.TextBox categoria;
+        private System.Windows.Forms.DataGridView dataGridPublicaciones;
     }
 }

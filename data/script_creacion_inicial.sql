@@ -863,7 +863,7 @@ begin
 end
 go
 
-create procedure ESECUELE.SearchClients(@nombre varchar(50) = null, 
+create procedure ESECUELE.SearchAllCliente(@nombre varchar(50) = null, 
 							  @apellido varchar(50) = null, 
 							  @dni varchar(30) = null, 
 							  @email varchar(50) = null)
@@ -918,7 +918,7 @@ begin
 end
 go
 
-create procedure ESECUELE.SearchEmpresas(@razon_social varchar(60) = null,
+create procedure ESECUELE.SearchAllEmpresa(@razon_social varchar(60) = null,
 							  @cuit varchar(30) = null, 
 							  @email varchar(50) = null)
 as

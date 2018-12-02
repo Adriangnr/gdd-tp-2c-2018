@@ -70,21 +70,15 @@
             this.Entidad.Size = new System.Drawing.Size(76, 18);
             this.Entidad.Text = "Empresas";
             // 
-            // listBox1
-            // 
-            this.listBox1.Margin = new System.Windows.Forms.Padding(2);
-            this.listBox1.Size = new System.Drawing.Size(8, 4);
-            // 
             // btn_cancel
             // 
             this.btn_cancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_cancel.Location = new System.Drawing.Point(964, 349);
+            this.btn_cancel.Location = new System.Drawing.Point(964, 354);
             this.btn_cancel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             // 
             // footer
             // 
             this.footer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.footer.Location = new System.Drawing.Point(855, 424);
             this.footer.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             // 
             // email
@@ -154,7 +148,7 @@
             this.btn_habilitar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_habilitar.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_habilitar.ForeColor = System.Drawing.SystemColors.Window;
-            this.btn_habilitar.Location = new System.Drawing.Point(964, 78);
+            this.btn_habilitar.Location = new System.Drawing.Point(964, 83);
             this.btn_habilitar.Margin = new System.Windows.Forms.Padding(0);
             this.btn_habilitar.Name = "btn_habilitar";
             this.btn_habilitar.Size = new System.Drawing.Size(129, 45);
@@ -170,7 +164,7 @@
             this.btn_edit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_edit.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_edit.ForeColor = System.Drawing.SystemColors.Window;
-            this.btn_edit.Location = new System.Drawing.Point(964, 129);
+            this.btn_edit.Location = new System.Drawing.Point(964, 134);
             this.btn_edit.Margin = new System.Windows.Forms.Padding(0);
             this.btn_edit.Name = "btn_edit";
             this.btn_edit.Size = new System.Drawing.Size(129, 45);
@@ -186,7 +180,7 @@
             this.btn_crear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_crear.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_crear.ForeColor = System.Drawing.SystemColors.Window;
-            this.btn_crear.Location = new System.Drawing.Point(964, 232);
+            this.btn_crear.Location = new System.Drawing.Point(964, 237);
             this.btn_crear.Margin = new System.Windows.Forms.Padding(0);
             this.btn_crear.Name = "btn_crear";
             this.btn_crear.Size = new System.Drawing.Size(129, 45);
@@ -202,7 +196,7 @@
             this.btn_comisionar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_comisionar.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_comisionar.ForeColor = System.Drawing.SystemColors.Window;
-            this.btn_comisionar.Location = new System.Drawing.Point(964, 286);
+            this.btn_comisionar.Location = new System.Drawing.Point(964, 291);
             this.btn_comisionar.Margin = new System.Windows.Forms.Padding(0);
             this.btn_comisionar.Name = "btn_comisionar";
             this.btn_comisionar.Size = new System.Drawing.Size(129, 45);
@@ -222,7 +216,7 @@
             this.dataGridEmpresas.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridEmpresas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridEmpresas.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.dataGridEmpresas.Location = new System.Drawing.Point(245, 83);
+            this.dataGridEmpresas.Location = new System.Drawing.Point(239, 83);
             this.dataGridEmpresas.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridEmpresas.MultiSelect = false;
             this.dataGridEmpresas.Name = "dataGridEmpresas";
@@ -241,7 +235,7 @@
             this.btn_eliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_eliminar.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_eliminar.ForeColor = System.Drawing.SystemColors.Window;
-            this.btn_eliminar.Location = new System.Drawing.Point(964, 180);
+            this.btn_eliminar.Location = new System.Drawing.Point(964, 185);
             this.btn_eliminar.Margin = new System.Windows.Forms.Padding(0);
             this.btn_eliminar.Name = "btn_eliminar";
             this.btn_eliminar.Size = new System.Drawing.Size(129, 45);
@@ -255,7 +249,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1201, 462);
+            this.ClientSize = new System.Drawing.Size(1134, 462);
             this.Controls.Add(this.btn_eliminar);
             this.Controls.Add(this.dataGridEmpresas);
             this.Controls.Add(this.btn_comisionar);
@@ -268,7 +262,6 @@
             this.Controls.SetChildIndex(this.footer, 0);
             this.Controls.SetChildIndex(this.btn_cancel, 0);
             this.Controls.SetChildIndex(this.groupBox1, 0);
-            this.Controls.SetChildIndex(this.listBox1, 0);
             this.Controls.SetChildIndex(this.Entidad, 0);
             this.Controls.SetChildIndex(this.btn_habilitar, 0);
             this.Controls.SetChildIndex(this.btn_edit, 0);

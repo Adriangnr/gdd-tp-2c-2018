@@ -97,8 +97,9 @@
             this.Controls.Add(this.btn_edit);
             this.Controls.Add(this.list_Roles);
             this.Name = "Rol_Listado";
-            this.Text = "Rol_Listado";
+            this.Text = "Roles";
             this.Load += new System.EventHandler(this.Rol_Listado_Load);
+            this.Controls.SetChildIndex(this.footer, 0);
             this.Controls.SetChildIndex(this.list_Roles, 0);
             this.Controls.SetChildIndex(this.btn_edit, 0);
             this.Controls.SetChildIndex(this.btn_create, 0);

@@ -70,25 +70,8 @@ namespace PalcoNet.Src.Modelo.Entidades
 
         public List<List<object>> Search(System.Windows.Forms.Control.ControlCollection filters)
         {
-            try
-            {
-                List<SqlParameter> parameters = new List<SqlParameter>();
 
-                foreach(Control field in filters)
-                {
-                    if(field.GetType() == typeof(TextBox))
-                    {
-                        string value = null;
-                        if (field.Text != "") value = field.Text;
-                        parameters.Add(new SqlParameter("@" + field.Name, value));
-                    }
-                }
-                return this.spExecuteDataReader(this.schema + ".SearchClients", parameters);
-            }
-            catch(Exception e)
-            {
-                throw e;
-            }
+            return Search(filters, this.GetType().Name);
         }
 
         public void borrar(int id)
