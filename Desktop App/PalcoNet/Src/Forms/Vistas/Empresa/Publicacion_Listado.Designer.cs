@@ -33,10 +33,10 @@
             this.btn_cancel = new System.Windows.Forms.Button();
             this.Entidad = new System.Windows.Forms.Label();
             this.dataGridPublicaciones = new System.Windows.Forms.DataGridView();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
+            this.btn_previousPage = new System.Windows.Forms.Button();
+            this.btn_nextPage = new System.Windows.Forms.Button();
+            this.btn_firstPage = new System.Windows.Forms.Button();
+            this.btn_lastPage = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridPublicaciones)).BeginInit();
             this.SuspendLayout();
             // 
@@ -110,52 +110,55 @@
             this.dataGridPublicaciones.Size = new System.Drawing.Size(876, 387);
             this.dataGridPublicaciones.TabIndex = 62;
             // 
-            // button1
+            // btn_previousPage
             // 
-            this.button1.Location = new System.Drawing.Point(359, 545);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 32);
-            this.button1.TabIndex = 63;
-            this.button1.Text = "<";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btn_previousPage.Location = new System.Drawing.Point(359, 545);
+            this.btn_previousPage.Name = "btn_previousPage";
+            this.btn_previousPage.Size = new System.Drawing.Size(75, 32);
+            this.btn_previousPage.TabIndex = 63;
+            this.btn_previousPage.Text = "<";
+            this.btn_previousPage.UseVisualStyleBackColor = true;
+            this.btn_previousPage.Click += new System.EventHandler(this.btn_previousPage_Click);
             // 
-            // button2
+            // btn_nextPage
             // 
-            this.button2.Location = new System.Drawing.Point(612, 545);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 32);
-            this.button2.TabIndex = 64;
-            this.button2.Text = ">";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.btn_nextPage.Location = new System.Drawing.Point(612, 545);
+            this.btn_nextPage.Name = "btn_nextPage";
+            this.btn_nextPage.Size = new System.Drawing.Size(75, 32);
+            this.btn_nextPage.TabIndex = 64;
+            this.btn_nextPage.Text = ">";
+            this.btn_nextPage.UseVisualStyleBackColor = true;
+            this.btn_nextPage.Click += new System.EventHandler(this.btn_nextPage_Click);
             // 
-            // button3
+            // btn_firstPage
             // 
-            this.button3.Location = new System.Drawing.Point(278, 545);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 32);
-            this.button3.TabIndex = 65;
-            this.button3.Text = "<<";
-            this.button3.UseVisualStyleBackColor = true;
+            this.btn_firstPage.Location = new System.Drawing.Point(278, 545);
+            this.btn_firstPage.Name = "btn_firstPage";
+            this.btn_firstPage.Size = new System.Drawing.Size(75, 32);
+            this.btn_firstPage.TabIndex = 65;
+            this.btn_firstPage.Text = "<<";
+            this.btn_firstPage.UseVisualStyleBackColor = true;
+            this.btn_firstPage.Click += new System.EventHandler(this.btn_firstPage_Click);
             // 
-            // button4
+            // btn_lastPage
             // 
-            this.button4.Location = new System.Drawing.Point(693, 545);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 32);
-            this.button4.TabIndex = 66;
-            this.button4.Text = ">>";
-            this.button4.UseVisualStyleBackColor = true;
+            this.btn_lastPage.Location = new System.Drawing.Point(693, 545);
+            this.btn_lastPage.Name = "btn_lastPage";
+            this.btn_lastPage.Size = new System.Drawing.Size(75, 32);
+            this.btn_lastPage.TabIndex = 66;
+            this.btn_lastPage.Text = ">>";
+            this.btn_lastPage.UseVisualStyleBackColor = true;
+            this.btn_lastPage.Click += new System.EventHandler(this.btn_lastPage_Click);
             // 
             // Publicacion_Listado
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1176, 678);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btn_lastPage);
+            this.Controls.Add(this.btn_firstPage);
+            this.Controls.Add(this.btn_nextPage);
+            this.Controls.Add(this.btn_previousPage);
             this.Controls.Add(this.dataGridPublicaciones);
             this.Controls.Add(this.Entidad);
             this.Controls.Add(this.btn_cancel);
@@ -171,10 +174,10 @@
             this.Controls.SetChildIndex(this.btn_cancel, 0);
             this.Controls.SetChildIndex(this.Entidad, 0);
             this.Controls.SetChildIndex(this.dataGridPublicaciones, 0);
-            this.Controls.SetChildIndex(this.button1, 0);
-            this.Controls.SetChildIndex(this.button2, 0);
-            this.Controls.SetChildIndex(this.button3, 0);
-            this.Controls.SetChildIndex(this.button4, 0);
+            this.Controls.SetChildIndex(this.btn_previousPage, 0);
+            this.Controls.SetChildIndex(this.btn_nextPage, 0);
+            this.Controls.SetChildIndex(this.btn_firstPage, 0);
+            this.Controls.SetChildIndex(this.btn_lastPage, 0);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridPublicaciones)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -188,9 +191,9 @@
         private System.Windows.Forms.Button btn_cancel;
         public System.Windows.Forms.Label Entidad;
         private System.Windows.Forms.DataGridView dataGridPublicaciones;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button btn_previousPage;
+        private System.Windows.Forms.Button btn_nextPage;
+        private System.Windows.Forms.Button btn_firstPage;
+        private System.Windows.Forms.Button btn_lastPage;
     }
 }

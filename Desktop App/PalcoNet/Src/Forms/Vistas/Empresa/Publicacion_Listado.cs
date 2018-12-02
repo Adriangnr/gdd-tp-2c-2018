@@ -28,15 +28,26 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
                 EmpresaService empresaService = ((EmpresaService)ServiceFactory.GetService("Empresa"));
                 this.paginator.Entity = empresaService.GetEmpresaFromUsername(this.usuario.Username);
 
-                Page currentPage = this.paginator.nextPage();
+                Page currentPage = this.paginator.NextPage();
+
+                this.btn_previousPage.Enabled = false;
+                this.btn_firstPage.Enabled = false;
 
                 List<object> objects = currentPage.GetItems();
                 List<Publicacion> publicaciones = objects.Cast<Publicacion>().ToList();
-                if(publicaciones.Count == 0)
+
+                if (publicaciones.Count == 0)
+                {
                     MessageBox.Show("No se encontraron publicaciones cargadas para este usuario!", "Alerta!",
                                 MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                this.dataGridPublicaciones.DataSource = publicaciones;
-                this.dataGridPublicaciones.ClearSelection();
+                    this.btn_lastPage.Enabled = false;
+                    this.btn_nextPage.Enabled = false;
+                }
+                else
+                {
+                    this.dataGridPublicaciones.DataSource = publicaciones;
+                    this.dataGridPublicaciones.ClearSelection();
+                }
             }
             catch (Exception ex)
             {
@@ -90,9 +101,80 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void btn_nextPage_Click(object sender, EventArgs e)
         {
+            Page currentPage = this.paginator.NextPage();
+            this.btn_previousPage.Enabled = true;
+            this.btn_firstPage.Enabled = true;
 
+            if(this.paginator.PageNumber == (this.paginator.TotalPages - 1))
+            {
+                this.btn_nextPage.Enabled = false;
+                this.btn_lastPage.Enabled = false;
+            }
+
+            List<object> objects = currentPage.GetItems();
+            List<Publicacion> publicaciones = objects.Cast<Publicacion>().ToList();
+
+            this.dataGridPublicaciones.DataSource = null;
+            this.dataGridPublicaciones.DataSource = publicaciones;
+            this.dataGridPublicaciones.ClearSelection();
+        }
+
+        private void btn_firstPage_Click(object sender, EventArgs e)
+        {
+            Page currentPage = this.paginator.FirstPage();
+
+            this.btn_nextPage.Enabled = true;
+            this.btn_lastPage.Enabled = true;
+
+            this.btn_previousPage.Enabled = false;
+            this.btn_firstPage.Enabled = false;
+
+            List<object> objects = currentPage.GetItems();
+            List<Publicacion> publicaciones = objects.Cast<Publicacion>().ToList();
+
+            this.dataGridPublicaciones.DataSource = null;
+            this.dataGridPublicaciones.DataSource = publicaciones;
+            this.dataGridPublicaciones.ClearSelection();
+        }
+
+        private void btn_previousPage_Click(object sender, EventArgs e)
+        {
+            Page currentPage = this.paginator.PreviousPage();
+
+            this.btn_nextPage.Enabled = true;
+            this.btn_lastPage.Enabled = true;
+
+            if (this.paginator.PageNumber == 0)
+            {
+                this.btn_previousPage.Enabled = false;
+                this.btn_firstPage.Enabled = false;
+            }
+
+            List<object> objects = currentPage.GetItems();
+            List<Publicacion> publicaciones = objects.Cast<Publicacion>().ToList();
+
+            this.dataGridPublicaciones.DataSource = null;
+            this.dataGridPublicaciones.DataSource = publicaciones;
+            this.dataGridPublicaciones.ClearSelection();
+        }
+
+        private void btn_lastPage_Click(object sender, EventArgs e)
+        {
+            Page currentPage = this.paginator.LastPage();
+            this.btn_previousPage.Enabled = true;
+            this.btn_firstPage.Enabled = true;
+
+            this.btn_nextPage.Enabled = false;
+            this.btn_lastPage.Enabled = false;
+
+            List<object> objects = currentPage.GetItems();
+            List<Publicacion> publicaciones = objects.Cast<Publicacion>().ToList();
+
+            this.dataGridPublicaciones.DataSource = null;
+            this.dataGridPublicaciones.DataSource = publicaciones;
+            this.dataGridPublicaciones.ClearSelection();
         }
     }
 }
