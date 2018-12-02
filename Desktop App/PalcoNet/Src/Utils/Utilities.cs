@@ -45,5 +45,10 @@ namespace PalcoNet.Src.Utils
         {
             return int.Parse(ConfigurationManager.AppSettings["TamPagina"]);
         }
+
+        public bool fechaValida(DateTime fechaEvento)
+        {
+            return DateTime.Compare(fechaEvento, getCurrentDate()) >= 0;
+        }
     }
 }

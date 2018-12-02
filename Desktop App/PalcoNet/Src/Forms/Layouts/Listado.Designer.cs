@@ -134,7 +134,7 @@
         public System.Windows.Forms.GroupBox groupBox1;
         public System.Windows.Forms.Button btn_search;
         public System.Windows.Forms.Label Entidad;
-        private System.Windows.Forms.LinkLabel linkLabel1;
         protected System.Windows.Forms.Button btn_cancel;
+        protected System.Windows.Forms.LinkLabel linkLabel1;
     }
 }
