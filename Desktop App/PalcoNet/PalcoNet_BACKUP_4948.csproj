@@ -229,7 +229,11 @@
     <Compile Include="Src\Servicios\GradoService.cs" />
     <Compile Include="Src\Servicios\LoginService.cs" />
     <Compile Include="Src\Servicios\RolService.cs" />
+<<<<<<< HEAD
+    <Compile Include="Src\Servicios\ServiceFactory\RubroService.cs" />
+=======
     <Compile Include="Src\Servicios\RubroService.cs" />
+>>>>>>> 739270ae004025b36bdb9bedbfb7f46bbc8f2cea
     <Compile Include="Src\Servicios\ServiceFactory\ServiceFactory.cs" />
     <Compile Include="Src\Servicios\UsuarioService.cs" />
     <Compile Include="Src\Utils\SortableBindingList.cs" />
@@ -337,13 +341,15 @@
     </None>
   </ItemGroup>
   <ItemGroup />
+<<<<<<< HEAD
   <ItemGroup>
     <None Include="Resources\minus_icon.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\plus_icon.png" />
   </ItemGroup>
-  <ItemGroup />
+=======
+>>>>>>> 739270ae004025b36bdb9bedbfb7f46bbc8f2cea
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

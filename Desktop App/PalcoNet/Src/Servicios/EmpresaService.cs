@@ -141,19 +141,6 @@ namespace PalcoNet.Src.Servicios
             }
         }
 
-        public void borrar(int id)
-        {
-            try
-            {
-                Empresa empresaObj = new Empresa();
-                empresaObj.borrar(id);
-            }
-            catch(Exception ex)
-            {
-                throw ex;
-            }
-        }
-
         private void loadEmpresa(Empresa empresaObj, List<object> row)
         {
             empresaObj.Id = (int)row[0];

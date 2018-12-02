@@ -218,10 +218,6 @@
     <Compile Include="Src\Modelo\Entidades\Rubro.cs" />
     <Compile Include="Src\Modelo\Entidades\Titulo.cs" />
     <Compile Include="Src\Modelo\Entidades\Usuario.cs" />
-    <Compile Include="Src\Modelo\Estados\Borrador.cs" />
-    <Compile Include="Src\Modelo\Estados\Estado.cs" />
-    <Compile Include="Src\Modelo\Estados\Finalizada.cs" />
-    <Compile Include="Src\Modelo\Estados\Publicada.cs" />
     <Compile Include="Src\Servicios\ClienteService.cs" />
     <Compile Include="Src\Servicios\CompraService.cs" />
     <Compile Include="Src\Servicios\DatabaseService.cs" />
@@ -335,13 +331,6 @@
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
-  </ItemGroup>
-  <ItemGroup />
-  <ItemGroup>
-    <None Include="Resources\minus_icon.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\plus_icon.png" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

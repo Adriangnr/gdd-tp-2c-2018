@@ -33,6 +33,13 @@
             this.btn_cancel = new System.Windows.Forms.Button();
             this.Entidad = new System.Windows.Forms.Label();
             this.dataGridPublicaciones = new System.Windows.Forms.DataGridView();
+            this.btn_previousPage = new System.Windows.Forms.Button();
+            this.btn_nextPage = new System.Windows.Forms.Button();
+            this.btn_firstPage = new System.Windows.Forms.Button();
+            this.btn_lastPage = new System.Windows.Forms.Button();
+            this.paginaActual = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.totalPaginas = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridPublicaciones)).BeginInit();
             this.SuspendLayout();
             // 
@@ -103,14 +110,88 @@
             this.dataGridPublicaciones.RowHeadersVisible = false;
             this.dataGridPublicaciones.RowTemplate.Height = 28;
             this.dataGridPublicaciones.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridPublicaciones.Size = new System.Drawing.Size(876, 486);
+            this.dataGridPublicaciones.Size = new System.Drawing.Size(876, 387);
             this.dataGridPublicaciones.TabIndex = 62;
+            // 
+            // btn_previousPage
+            // 
+            this.btn_previousPage.Location = new System.Drawing.Point(359, 545);
+            this.btn_previousPage.Name = "btn_previousPage";
+            this.btn_previousPage.Size = new System.Drawing.Size(75, 32);
+            this.btn_previousPage.TabIndex = 63;
+            this.btn_previousPage.Text = "<";
+            this.btn_previousPage.UseVisualStyleBackColor = true;
+            this.btn_previousPage.Click += new System.EventHandler(this.btn_previousPage_Click);
+            // 
+            // btn_nextPage
+            // 
+            this.btn_nextPage.Location = new System.Drawing.Point(612, 545);
+            this.btn_nextPage.Name = "btn_nextPage";
+            this.btn_nextPage.Size = new System.Drawing.Size(75, 32);
+            this.btn_nextPage.TabIndex = 64;
+            this.btn_nextPage.Text = ">";
+            this.btn_nextPage.UseVisualStyleBackColor = true;
+            this.btn_nextPage.Click += new System.EventHandler(this.btn_nextPage_Click);
+            // 
+            // btn_firstPage
+            // 
+            this.btn_firstPage.Location = new System.Drawing.Point(278, 545);
+            this.btn_firstPage.Name = "btn_firstPage";
+            this.btn_firstPage.Size = new System.Drawing.Size(75, 32);
+            this.btn_firstPage.TabIndex = 65;
+            this.btn_firstPage.Text = "<<";
+            this.btn_firstPage.UseVisualStyleBackColor = true;
+            this.btn_firstPage.Click += new System.EventHandler(this.btn_firstPage_Click);
+            // 
+            // btn_lastPage
+            // 
+            this.btn_lastPage.Location = new System.Drawing.Point(693, 545);
+            this.btn_lastPage.Name = "btn_lastPage";
+            this.btn_lastPage.Size = new System.Drawing.Size(75, 32);
+            this.btn_lastPage.TabIndex = 66;
+            this.btn_lastPage.Text = ">>";
+            this.btn_lastPage.UseVisualStyleBackColor = true;
+            this.btn_lastPage.Click += new System.EventHandler(this.btn_lastPage_Click);
+            // 
+            // paginaActual
+            // 
+            this.paginaActual.AutoSize = true;
+            this.paginaActual.Location = new System.Drawing.Point(458, 557);
+            this.paginaActual.Name = "paginaActual";
+            this.paginaActual.Size = new System.Drawing.Size(18, 20);
+            this.paginaActual.TabIndex = 67;
+            this.paginaActual.Text = "0";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(505, 556);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(27, 20);
+            this.label1.TabIndex = 68;
+            this.label1.Text = "de";
+            // 
+            // totalPaginas
+            // 
+            this.totalPaginas.AutoSize = true;
+            this.totalPaginas.Location = new System.Drawing.Point(557, 556);
+            this.totalPaginas.Name = "totalPaginas";
+            this.totalPaginas.Size = new System.Drawing.Size(18, 20);
+            this.totalPaginas.TabIndex = 69;
+            this.totalPaginas.Text = "0";
             // 
             // Publicacion_Listado
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1176, 678);
+            this.Controls.Add(this.totalPaginas);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.paginaActual);
+            this.Controls.Add(this.btn_lastPage);
+            this.Controls.Add(this.btn_firstPage);
+            this.Controls.Add(this.btn_nextPage);
+            this.Controls.Add(this.btn_previousPage);
             this.Controls.Add(this.dataGridPublicaciones);
             this.Controls.Add(this.Entidad);
             this.Controls.Add(this.btn_cancel);
@@ -126,6 +207,13 @@
             this.Controls.SetChildIndex(this.btn_cancel, 0);
             this.Controls.SetChildIndex(this.Entidad, 0);
             this.Controls.SetChildIndex(this.dataGridPublicaciones, 0);
+            this.Controls.SetChildIndex(this.btn_previousPage, 0);
+            this.Controls.SetChildIndex(this.btn_nextPage, 0);
+            this.Controls.SetChildIndex(this.btn_firstPage, 0);
+            this.Controls.SetChildIndex(this.btn_lastPage, 0);
+            this.Controls.SetChildIndex(this.paginaActual, 0);
+            this.Controls.SetChildIndex(this.label1, 0);
+            this.Controls.SetChildIndex(this.totalPaginas, 0);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridPublicaciones)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -139,5 +227,12 @@
         private System.Windows.Forms.Button btn_cancel;
         public System.Windows.Forms.Label Entidad;
         private System.Windows.Forms.DataGridView dataGridPublicaciones;
+        private System.Windows.Forms.Button btn_previousPage;
+        private System.Windows.Forms.Button btn_nextPage;
+        private System.Windows.Forms.Button btn_firstPage;
+        private System.Windows.Forms.Button btn_lastPage;
+        private System.Windows.Forms.Label paginaActual;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label totalPaginas;
     }
 }

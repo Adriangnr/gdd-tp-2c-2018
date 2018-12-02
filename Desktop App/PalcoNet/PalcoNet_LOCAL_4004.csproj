@@ -193,9 +193,6 @@
     <Compile Include="Src\Forms\Vistas\General\Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
-    <Compile Include="Src\Forms\Vistas\Paginador\EmpresaPublicacionPaginator.cs" />
-    <Compile Include="Src\Forms\Vistas\Paginador\Page.cs" />
-    <Compile Include="Src\Forms\Vistas\Paginador\Paginator.cs" />
     <Compile Include="Src\Modelo\DBConector\Database.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -226,10 +223,9 @@
     <Compile Include="Src\Servicios\CompraService.cs" />
     <Compile Include="Src\Servicios\DatabaseService.cs" />
     <Compile Include="Src\Servicios\EmpresaService.cs" />
-    <Compile Include="Src\Servicios\GradoService.cs" />
     <Compile Include="Src\Servicios\LoginService.cs" />
     <Compile Include="Src\Servicios\RolService.cs" />
-    <Compile Include="Src\Servicios\RubroService.cs" />
+    <Compile Include="Src\Servicios\ServiceFactory\RubroService.cs" />
     <Compile Include="Src\Servicios\ServiceFactory\ServiceFactory.cs" />
     <Compile Include="Src\Servicios\UsuarioService.cs" />
     <Compile Include="Src\Utils\SortableBindingList.cs" />
@@ -343,7 +339,6 @@
   <ItemGroup>
     <None Include="Resources\plus_icon.png" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
