@@ -34,7 +34,7 @@ namespace PalcoNet.Src.Forms.Vistas.Cliente
                 System.Windows.Forms.Control.ControlCollection filtros = groupBox1.Controls;
 
                 DateTimePicker fechaActivaFilter = new DateTimePicker();
-
+                fechaActivaFilter.Visible = false;
                 fechaActivaFilter.Name = "fechaActual";
                 fechaActivaFilter.Value = Utils.Utilities.getCurrentDate();
                 filtros.Add(fechaActivaFilter);
@@ -42,7 +42,7 @@ namespace PalcoNet.Src.Forms.Vistas.Cliente
                 if (fechaInicioCheckBox.Checked)
                 {
                     DateTimePicker fechaInicio = new DateTimePicker();
-
+                    fechaInicio.Visible = false;
                     fechaInicio.Name = "fechaInicio";
                     fechaInicio.Value = fechaInicioVista.Value;
                     filtros.Add(fechaInicio);
@@ -51,7 +51,7 @@ namespace PalcoNet.Src.Forms.Vistas.Cliente
                 if (fechaInicioCheckBox.Checked)
                 {
                     DateTimePicker fechaFin = new DateTimePicker();
-
+                    fechaFin.Visible = false;
                     fechaFin.Name = "fechaFin";
                     fechaFin.Value = fechaFinVista.Value;
                     filtros.Add(fechaFin);
