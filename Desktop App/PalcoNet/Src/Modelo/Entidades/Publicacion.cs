@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PalcoNet.Src.Modelo.Entidades
 {
-    public class Publicacion
+    public class Publicacion : DatabaseEntity
     {
         /*int, date, string, date, int, string, int, int, string*/
         public int Codigo { get; set; }
@@ -19,9 +19,16 @@ namespace PalcoNet.Src.Modelo.Entidades
         public int Empresa { get; set; }
         public string Estado { get; set; }
 
-        public Publicacion()
-        {
+        public Publicacion() {}
 
+        public List<List<object>> Search(System.Windows.Forms.Control.ControlCollection filters)
+        {
+            return Search(filters, this.GetType().Name);
+        }
+
+        public List<List<object>> SearchActivasValidas(System.Windows.Forms.Control.ControlCollection filters)
+        {
+            return Search(filters, this.GetType().Name + "ActivaValida");
         }
     }
 }
