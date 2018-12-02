@@ -1,22 +1,22 @@
-﻿
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
 namespace PalcoNet.Src.Modelo.Entidades
 {
     public class Grado
     {
-        public int Id { get; set; }
-        public string Descripcion { get; set; }
-        public double Comision { get; set; }
+        private int id { get; set; }
+        private string descripcion { get; set; }
+        private double comision { get; set; }
 
-        public Grado(int id, string desc, double comision)
+        public Grado(int id, string descripcion, double comision)
         {
-            this.Id = id;
-            this.Descripcion = desc;
-            this.Comision = comision;
-        }
-
-        public override string ToString()
-        {
-            return this.Descripcion;
+            this.id = id;
+            this.descripcion = descripcion;
+            this.comision = comision;
         }
     }
 }

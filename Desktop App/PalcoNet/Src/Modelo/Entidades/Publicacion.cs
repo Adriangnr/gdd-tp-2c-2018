@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace PalcoNet.Src.Modelo.Entidades
 {
@@ -13,13 +14,13 @@ namespace PalcoNet.Src.Modelo.Entidades
         public int Codigo { get; set; }
 
         [DisplayName("Fecha de Evento")]
-        public DateTime FechaInicio { get; set; }
+        public DateTime FechaEvento { get; set; }
 
         public string Descripcion { get; set; }
 
         [DisplayName("Fecha de Publicación")]
         public DateTime FechaPublicacion { get; set; }
-
+		
         public int Rubro { get; set; }
         public string Direccion { get; set; }
         public int Grado { get; set; }
@@ -27,11 +28,6 @@ namespace PalcoNet.Src.Modelo.Entidades
         public string Estado { get; set; }
 
         public Publicacion() {}
-
-        public List<List<object>> Search(System.Windows.Forms.Control.ControlCollection filters)
-        {
-            return Search(filters, this.GetType().Name);
-        }
 
         public List<List<object>> SearchActivasValidas(System.Windows.Forms.Control.ControlCollection filters)
         {

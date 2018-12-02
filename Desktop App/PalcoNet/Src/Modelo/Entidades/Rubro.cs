@@ -1,21 +1,25 @@
-﻿
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
 namespace PalcoNet.Src.Modelo.Entidades
 {
     public class Rubro
     {
-        public int Codigo { get; set; }
-        public string Descripcion { get; set; }
+        private int codigo { get; set; }
+        private string descripcion { get; set; }
 
-        public Rubro() { }
-
-        public Rubro(int codigo, string desc)
+        public Rubro(int codigo, string descripcion)
         {
-            this.Codigo = codigo;
-            this.Descripcion = desc;
+            this.codigo = codigo;
+            this.descripcion = descripcion;
         }
 
-        public override string ToString() {
-            return this.Descripcion;
+        public override string ToString()
+        {
+            return this.descripcion;
         }
     }
 }

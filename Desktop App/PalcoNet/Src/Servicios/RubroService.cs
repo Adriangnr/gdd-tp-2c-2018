@@ -6,11 +6,27 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PalcoNet.Src.Servicios
+namespace PalcoNet.Src.Servicios.ServiceFactory
 {
-    public class RubroService : DatabaseService
+    class RubroService : DatabaseService
     {
-        public List<Rubro> GetRubros()
+        public List<Rubro> getAllRubros()
+        {
+            DatabaseEntity dbEntity = new DatabaseEntity();
+            List<List<Object>> listaDeListas = dbEntity.queryListExecute("SELECT * FROM ESECUELE.Rubro ORDER BY rubro_descripcion");
+            List<Rubro> rubros = new List<Rubro>();
+
+            listaDeListas.ForEach(lista =>
+            {
+                rubros.Add(new Rubro(
+                    (int)lista[0],
+                    (String)lista[1]));
+            });
+
+            return rubros;
+        }
+		
+		public List<Rubro> GetRubros()
         {
             List<List<object>> rubros = this.Get("Rubro", new List<SqlParameter>());
             List<Rubro> rubrosList = new List<Rubro>();
@@ -20,6 +36,6 @@ namespace PalcoNet.Src.Servicios
                 rubrosList.Add(rubro);
             }
             return rubrosList;
-        }
+		}
     }
 }

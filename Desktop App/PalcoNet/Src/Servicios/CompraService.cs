@@ -17,7 +17,7 @@ namespace PalcoNet.Src.Servicios
             {
                 SortableBindingList<Publicacion> publicaciones = new SortableBindingList<Publicacion>();
 
-                List<List<object>> results = publicacionSearchEntity.Search(filtros);
+                List<List<object>> results = publicacionSearchEntity.SearchActivasValidas(filtros);
 
                 foreach (List<object> row in results)
                 {
@@ -37,7 +37,10 @@ namespace PalcoNet.Src.Servicios
 
         public void loadPublicacionCompra(Publicacion publicacion, List<object> row)
         {
-
+            publicacion.Codigo = (int)row[0];
+            publicacion.FechaInicio = (DateTime)row[1];
+            publicacion.Descripcion = (string)row[2];
+            publicacion.FechaEvento = (DateTime)row[3];
         }
     }
 }

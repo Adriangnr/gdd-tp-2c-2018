@@ -158,6 +158,11 @@ namespace PalcoNet.Src.Modelo.Entidades
                         if (field.Text != "") value = field.Text;
                         parameters.Add(new SqlParameter("@" + field.Name, value));
                     }
+
+                    if (field.GetType() == typeof(DateTimePicker) && !field.Name.Contains("Vista"))
+                    {
+                        parameters.Add(new SqlParameter("@"+ field.Name, ((DateTimePicker) field).Value));
+                    }
                 }
                 return spExecuteDataReader(this.schema + ".SearchAll" + entidad, parameters);
             }
