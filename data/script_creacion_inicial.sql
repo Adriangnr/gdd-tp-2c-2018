@@ -1127,3 +1127,45 @@ begin
 	order by publicacion_codigo DESC
 	offset @offset rows fetch next @items rows only
 end
+
+create procedure ESECUELE.SearchAllPublicacionActivaValida(
+							@categorias varchar(255) = null,
+							@descripcion varchar(255) = null, 
+							@fechaInicio datetime = null,
+							@fechaFin datetime = null,
+							@fechaActual datetime = null)
+as
+begin
+	declare @query nvarchar(500);
+	set @query = N'select * from ESECUELE.Publicacion p left join ESECUELE.Rubro r on p.publicacion_rubro = r.rubro_codigo
+														left join ESECUELE.Grado g on p.publicacion_grado = g.grado_id';
+
+	if @categorias is not null or  @descripcion is not null or @fechaInicio is not null or @fechaFin is not null
+	begin
+		set @query = @query + ' where p.publicacion_estado = ''Publicada'' and cast(' + convert(varchar(25),@fechaActual,121) 
+							+ ') between(p.publicacion_fecha_inicio, p.publicacion_fecha_evento)'
+
+		if @descripcion is not null 
+		begin
+			set @query = @query + ' and p.publicacion_descripcion like ''%'	+ @descripcion + '%'''
+		end
+
+		if @categorias is not null 
+		begin
+			set @query = @query + ' and p.publicacion_rubro in ' + @categorias
+		end
+
+		if @fechaInicio is not null 
+		begin
+			 set @query = @query + ' and p.publicacion_fecha_inicio >= ' + @fechaInicio
+		end
+
+		if @fechaFin is not null 
+		begin
+			 set @query = @query + ' and p.publicacion_fecha_evento <=' + @fechaFin
+		end
+	end
+	set @query = @query + ' order by p.publicacion_grado asc, p.publicacion_descripcion desc'
+	exec sp_executesql @query
+end
+go
