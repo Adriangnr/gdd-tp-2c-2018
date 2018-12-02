@@ -14,13 +14,17 @@ namespace PalcoNet.Src.Modelo.Entidades
         public int Codigo { get; set; }
 
         [DisplayName("Fecha de Evento")]
-        public DateTime FechaEvento { get; set; }
+        public DateTime FechaInicio { get; set; }
 
         public string Descripcion { get; set; }
+<<<<<<< HEAD
+        public DateTime FechaEvento { get; set; }
+=======
 
         [DisplayName("Fecha de Publicación")]
         public DateTime FechaPublicacion { get; set; }
-		
+
+>>>>>>> 739270ae004025b36bdb9bedbfb7f46bbc8f2cea
         public int Rubro { get; set; }
         public string Direccion { get; set; }
         public int Grado { get; set; }

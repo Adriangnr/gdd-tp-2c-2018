@@ -1,11 +1,15 @@
 ﻿using PalcoNet.Src.Modelo.Entidades;
 using System;
 using System.Collections.Generic;
+<<<<<<< HEAD
+=======
 using System.Data.SqlClient;
+>>>>>>> 739270ae004025b36bdb9bedbfb7f46bbc8f2cea
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+<<<<<<< HEAD
 namespace PalcoNet.Src.Servicios.ServiceFactory
 {
     class RubroService : DatabaseService
@@ -24,9 +28,12 @@ namespace PalcoNet.Src.Servicios.ServiceFactory
             });
 
             return rubros;
-        }
-		
-		/*public List<Rubro> GetRubros()
+=======
+namespace PalcoNet.Src.Servicios
+{
+    public class RubroService : DatabaseService
+    {
+        public List<Rubro> GetRubros()
         {
             List<List<object>> rubros = this.Get("Rubro", new List<SqlParameter>());
             List<Rubro> rubrosList = new List<Rubro>();
@@ -36,6 +43,7 @@ namespace PalcoNet.Src.Servicios.ServiceFactory
                 rubrosList.Add(rubro);
             }
             return rubrosList;
-		}*/
+>>>>>>> 739270ae004025b36bdb9bedbfb7f46bbc8f2cea
+        }
     }
 }

@@ -1109,25 +1109,7 @@ as begin
 end
 go
 
-create procedure ESECUELE.getRubro as
-begin
-	select * from ESECUELE.Rubro
-end
-go
-
-create procedure ESECUELE.getGrado as
-begin
-	select * from ESECUELE.Grado
-end
-go
-
-create procedure ESECUELE.SearchPagedPublicacionByEmpresa(@idEmpresa int, @offset int, @items int) as
-begin
-	select *, COUNT(*) OVER() from ESECUELE.Publicacion where publicacion_empresa = @idEmpresa 
-	order by publicacion_codigo DESC
-	offset @offset rows fetch next @items rows only
-end
-
+<<<<<<< HEAD
 create procedure ESECUELE.SearchAllPublicacionActivaValida(
 							@categorias varchar(255) = null,
 							@descripcion varchar(255) = null, 
@@ -1169,3 +1151,23 @@ begin
 	exec sp_executesql @query
 end
 go
+=======
+create procedure ESECUELE.getRubro as
+begin
+	select * from ESECUELE.Rubro
+end
+go
+
+create procedure ESECUELE.getGrado as
+begin
+	select * from ESECUELE.Grado
+end
+go
+
+create procedure ESECUELE.SearchPagedPublicacionByEmpresa(@idEmpresa int, @offset int, @items int) as
+begin
+	select *, COUNT(*) OVER() from ESECUELE.Publicacion where publicacion_empresa = @idEmpresa 
+	order by publicacion_codigo DESC
+	offset @offset rows fetch next @items rows only
+end
+>>>>>>> 739270ae004025b36bdb9bedbfb7f46bbc8f2cea
