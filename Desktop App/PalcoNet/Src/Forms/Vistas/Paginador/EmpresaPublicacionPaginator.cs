@@ -38,5 +38,10 @@ namespace PalcoNet.Src.Forms.Vistas.Paginador
 
             return page;
         }
+
+        private List<List<object>> SearchPagedPublicacion(int offset, int itemsPerPage)
+        {
+            return new Publicacion().SearchPagedPublicacion(offset, itemsPerPage);
+        }
     }
 }
