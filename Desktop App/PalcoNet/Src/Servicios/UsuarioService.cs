@@ -23,7 +23,6 @@ namespace PalcoNet.Src.Servicios
             usuarioObj.Id = (int)data[start];
             usuarioObj.Username = (string)data[start+1];
             usuarioObj.Password = (string)data[start + 2];
-            Console.WriteLine(usuarioObj.Password);
             usuarioObj.Habilitado = (bool)data[start+3];
             usuarioObj.Nuevo = (bool)data[start+4];
             usuarioObj.Email = (string)data[start+8];

@@ -222,6 +222,7 @@
     <Compile Include="Src\Modelo\Entidades\Usuario.cs" />
     <Compile Include="Src\Modelo\Estados\Borrador.cs" />
     <Compile Include="Src\Modelo\Estados\Estado.cs" />
+    <Compile Include="Src\Modelo\Estados\EstadoFactory.cs" />
     <Compile Include="Src\Modelo\Estados\Finalizada.cs" />
     <Compile Include="Src\Modelo\Estados\Publicada.cs" />
     <Compile Include="Src\Servicios\ClienteService.cs" />

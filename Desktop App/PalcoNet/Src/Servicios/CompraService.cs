@@ -41,7 +41,7 @@ namespace PalcoNet.Src.Servicios
             publicacion.FechaPublicacion = (DateTime)row[1];
             publicacion.Descripcion = (string)row[2];
             publicacion.FechaEvento = (DateTime)row[3];
-            publicacion.Direccion = (string)row[5];
+            publicacion.Direccion = (row[5].GetType() != typeof(DBNull))? (string)row[5] : "Indeterminado";
 
             EmpresaService empresaService = new EmpresaService();
 

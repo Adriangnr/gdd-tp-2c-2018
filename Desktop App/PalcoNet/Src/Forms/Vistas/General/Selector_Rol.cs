@@ -15,7 +15,7 @@ namespace PalcoNet.Src.Forms.Vistas.General
             this.user = user;
             this.previous = previous;
             this.combo_rol.DataSource = this.user.GetRoles();
-            this.ActiveControl = title;
+            this.ActiveControl = btn_confirm;
             this.combo_rol.KeyDown += combo_rol_KeyDown;
         }
 
@@ -43,7 +43,6 @@ namespace PalcoNet.Src.Forms.Vistas.General
 
             this.Hide();
             menuPrincipal.Show();
-            //this.previous.Close();
         }
 
         public void deseleccionarRol()

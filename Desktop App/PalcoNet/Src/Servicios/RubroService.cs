@@ -26,16 +26,14 @@ namespace PalcoNet.Src.Servicios
             return rubros;
         }
 		
-		/*public List<Rubro> GetRubros()
+		public Rubro GetRubro(int id)
         {
-            List<List<object>> rubros = this.Get("Rubro", new List<SqlParameter>());
-            List<Rubro> rubrosList = new List<Rubro>();
-            foreach(List<object> row in rubros)
-            {
-                Rubro rubro = new Rubro((int)row[0], (string)row[1]);
-                rubrosList.Add(rubro);
-            }
-            return rubrosList;
-		}*/
+            DatabaseEntity dbEntity = new DatabaseEntity();
+            List<List<Object>> lista = dbEntity.queryListExecute(String.Format("SELECT * FROM ESECUELE.Rubro where rubro_codigo = {0}", id));
+
+            Rubro rubro = new Rubro((int)lista[0][0], (string)lista[0][1]);
+
+            return rubro;
+		}
     }
 }

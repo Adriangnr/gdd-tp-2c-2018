@@ -465,7 +465,7 @@ Espectaculo_Cod,
 Espectaculo_Fecha_Venc,
 Espectaculo_Descripcion, 
 Espectaculo_Fecha,  
-Espectaculo_Rubro_Descripcion,
+case when Espectaculo_Rubro_Descripcion = '' then 7 end,
 (select empresa_id from ESECUELE.Empresa where empresa_usuario = CONCAT('usr_', Espec_Empresa_Cuit)),
 Espectaculo_Estado
  from gd_esquema.Maestra
@@ -785,6 +785,13 @@ create procedure ESECUELE.getEmpresa(@id int)
 as begin
 	select * from ESECUELE.Empresa e join ESECUELE.Usuario u on u.usr_username = e.empresa_usuario
 	where e.empresa_id = @id
+end
+go
+
+create procedure ESECUELE.getGrado(@id int)
+as begin
+	select * from ESECUELE.Grado g
+	where g.grado_id = @id
 end
 go 
 
@@ -1196,7 +1203,7 @@ begin
 end
 go
 
-create procedure ESECUELE.getGrado as
+create procedure ESECUELE.getAllGrado as
 begin
 	select * from ESECUELE.Grado
 end

@@ -8,15 +8,22 @@ namespace PalcoNet.Src.Modelo.Entidades
 {
     public class Grado
     {
-        private int id { get; set; }
-        private string descripcion { get; set; }
-        private double comision { get; set; }
+        public int id { get; set; }
+        public string descripcion { get; set; }
+        public double comision { get; set; }
+
+        public Grado() { }
 
         public Grado(int id, string descripcion, double comision)
         {
             this.id = id;
             this.descripcion = descripcion;
             this.comision = comision;
+        }
+
+        public override string ToString()
+        {
+            return descripcion;
         }
     }
 }

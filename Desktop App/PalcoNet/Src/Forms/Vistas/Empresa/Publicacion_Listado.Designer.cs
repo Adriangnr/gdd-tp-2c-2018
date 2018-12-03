@@ -49,10 +49,10 @@
             this.btn_edit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_edit.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_edit.ForeColor = System.Drawing.SystemColors.Window;
-            this.btn_edit.Location = new System.Drawing.Point(948, 128);
+            this.btn_edit.Location = new System.Drawing.Point(632, 83);
             this.btn_edit.Margin = new System.Windows.Forms.Padding(0);
             this.btn_edit.Name = "btn_edit";
-            this.btn_edit.Size = new System.Drawing.Size(194, 69);
+            this.btn_edit.Size = new System.Drawing.Size(129, 45);
             this.btn_edit.TabIndex = 57;
             this.btn_edit.Text = "Editar";
             this.btn_edit.UseVisualStyleBackColor = false;
@@ -64,10 +64,10 @@
             this.btn_create.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_create.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_create.ForeColor = System.Drawing.SystemColors.Window;
-            this.btn_create.Location = new System.Drawing.Point(948, 446);
+            this.btn_create.Location = new System.Drawing.Point(632, 290);
             this.btn_create.Margin = new System.Windows.Forms.Padding(0);
             this.btn_create.Name = "btn_create";
-            this.btn_create.Size = new System.Drawing.Size(194, 69);
+            this.btn_create.Size = new System.Drawing.Size(129, 45);
             this.btn_create.TabIndex = 58;
             this.btn_create.Text = "Crear Nueva";
             this.btn_create.UseVisualStyleBackColor = false;
@@ -78,10 +78,9 @@
             this.btn_cancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_cancel.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_cancel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.btn_cancel.Location = new System.Drawing.Point(948, 545);
-            this.btn_cancel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btn_cancel.Location = new System.Drawing.Point(632, 354);
             this.btn_cancel.Name = "btn_cancel";
-            this.btn_cancel.Size = new System.Drawing.Size(194, 69);
+            this.btn_cancel.Size = new System.Drawing.Size(129, 45);
             this.btn_cancel.TabIndex = 60;
             this.btn_cancel.Text = "Cancelar";
             this.btn_cancel.UseVisualStyleBackColor = true;
@@ -92,10 +91,9 @@
             this.Entidad.AutoSize = true;
             this.Entidad.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Entidad.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.Entidad.Location = new System.Drawing.Point(322, 62);
-            this.Entidad.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.Entidad.Location = new System.Drawing.Point(215, 40);
             this.Entidad.Name = "Entidad";
-            this.Entidad.Size = new System.Drawing.Size(164, 29);
+            this.Entidad.Size = new System.Drawing.Size(100, 18);
             this.Entidad.TabIndex = 61;
             this.Entidad.Text = "Publicaciones";
             // 
@@ -103,21 +101,24 @@
             // 
             this.dataGridPublicaciones.AllowUserToAddRows = false;
             this.dataGridPublicaciones.AllowUserToDeleteRows = false;
+            this.dataGridPublicaciones.AllowUserToResizeRows = false;
             this.dataGridPublicaciones.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridPublicaciones.Location = new System.Drawing.Point(48, 128);
+            this.dataGridPublicaciones.Location = new System.Drawing.Point(32, 83);
+            this.dataGridPublicaciones.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dataGridPublicaciones.Name = "dataGridPublicaciones";
             this.dataGridPublicaciones.ReadOnly = true;
             this.dataGridPublicaciones.RowHeadersVisible = false;
             this.dataGridPublicaciones.RowTemplate.Height = 28;
             this.dataGridPublicaciones.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridPublicaciones.Size = new System.Drawing.Size(876, 387);
+            this.dataGridPublicaciones.Size = new System.Drawing.Size(584, 252);
             this.dataGridPublicaciones.TabIndex = 62;
             // 
             // btn_previousPage
             // 
-            this.btn_previousPage.Location = new System.Drawing.Point(359, 545);
+            this.btn_previousPage.Location = new System.Drawing.Point(239, 354);
+            this.btn_previousPage.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btn_previousPage.Name = "btn_previousPage";
-            this.btn_previousPage.Size = new System.Drawing.Size(75, 32);
+            this.btn_previousPage.Size = new System.Drawing.Size(50, 21);
             this.btn_previousPage.TabIndex = 63;
             this.btn_previousPage.Text = "<";
             this.btn_previousPage.UseVisualStyleBackColor = true;
@@ -125,9 +126,10 @@
             // 
             // btn_nextPage
             // 
-            this.btn_nextPage.Location = new System.Drawing.Point(612, 545);
+            this.btn_nextPage.Location = new System.Drawing.Point(408, 354);
+            this.btn_nextPage.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btn_nextPage.Name = "btn_nextPage";
-            this.btn_nextPage.Size = new System.Drawing.Size(75, 32);
+            this.btn_nextPage.Size = new System.Drawing.Size(50, 21);
             this.btn_nextPage.TabIndex = 64;
             this.btn_nextPage.Text = ">";
             this.btn_nextPage.UseVisualStyleBackColor = true;
@@ -135,9 +137,10 @@
             // 
             // btn_firstPage
             // 
-            this.btn_firstPage.Location = new System.Drawing.Point(278, 545);
+            this.btn_firstPage.Location = new System.Drawing.Point(185, 354);
+            this.btn_firstPage.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btn_firstPage.Name = "btn_firstPage";
-            this.btn_firstPage.Size = new System.Drawing.Size(75, 32);
+            this.btn_firstPage.Size = new System.Drawing.Size(50, 21);
             this.btn_firstPage.TabIndex = 65;
             this.btn_firstPage.Text = "<<";
             this.btn_firstPage.UseVisualStyleBackColor = true;
@@ -145,9 +148,10 @@
             // 
             // btn_lastPage
             // 
-            this.btn_lastPage.Location = new System.Drawing.Point(693, 545);
+            this.btn_lastPage.Location = new System.Drawing.Point(462, 354);
+            this.btn_lastPage.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btn_lastPage.Name = "btn_lastPage";
-            this.btn_lastPage.Size = new System.Drawing.Size(75, 32);
+            this.btn_lastPage.Size = new System.Drawing.Size(50, 21);
             this.btn_lastPage.TabIndex = 66;
             this.btn_lastPage.Text = ">>";
             this.btn_lastPage.UseVisualStyleBackColor = true;
@@ -156,35 +160,38 @@
             // paginaActual
             // 
             this.paginaActual.AutoSize = true;
-            this.paginaActual.Location = new System.Drawing.Point(458, 557);
+            this.paginaActual.Location = new System.Drawing.Point(305, 362);
+            this.paginaActual.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.paginaActual.Name = "paginaActual";
-            this.paginaActual.Size = new System.Drawing.Size(18, 20);
+            this.paginaActual.Size = new System.Drawing.Size(13, 13);
             this.paginaActual.TabIndex = 67;
             this.paginaActual.Text = "0";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(505, 556);
+            this.label1.Location = new System.Drawing.Point(337, 361);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(27, 20);
+            this.label1.Size = new System.Drawing.Size(19, 13);
             this.label1.TabIndex = 68;
             this.label1.Text = "de";
             // 
             // totalPaginas
             // 
             this.totalPaginas.AutoSize = true;
-            this.totalPaginas.Location = new System.Drawing.Point(557, 556);
+            this.totalPaginas.Location = new System.Drawing.Point(371, 361);
+            this.totalPaginas.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.totalPaginas.Name = "totalPaginas";
-            this.totalPaginas.Size = new System.Drawing.Size(18, 20);
+            this.totalPaginas.Size = new System.Drawing.Size(13, 13);
             this.totalPaginas.TabIndex = 69;
             this.totalPaginas.Text = "0";
             // 
             // Publicacion_Listado
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1176, 678);
+            this.ClientSize = new System.Drawing.Size(784, 441);
             this.Controls.Add(this.totalPaginas);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.paginaActual);
@@ -197,7 +204,7 @@
             this.Controls.Add(this.btn_cancel);
             this.Controls.Add(this.btn_create);
             this.Controls.Add(this.btn_edit);
-            this.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "Publicacion_Listado";
             this.Text = "Palco.NET - Publicaciones";
             this.Load += new System.EventHandler(this.Pulicacion_Listado_Load);

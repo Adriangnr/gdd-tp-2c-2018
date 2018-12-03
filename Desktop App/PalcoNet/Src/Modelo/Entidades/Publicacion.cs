@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PalcoNet.Src.Modelo.Estados;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data.SqlClient;
@@ -22,11 +23,11 @@ namespace PalcoNet.Src.Modelo.Entidades
         [DisplayName("Fecha de Publicación")]
         public DateTime FechaPublicacion { get; set; }
 		
-        public int Rubro { get; set; }
+        public Rubro Rubro { get; set; }
         public string Direccion { get; set; }
-        public int Grado { get; set; }
-        public int Empresa { get; set; }
-        public string Estado { get; set; }
+        public Grado Grado { get; set; }
+        public Empresa Empresa { get; set; }
+        public Estado Estado { get; set; }
 
         public Publicacion() {}
 

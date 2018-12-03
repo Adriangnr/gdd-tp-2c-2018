@@ -72,5 +72,10 @@ namespace PalcoNet.Src.Modelo.Entidades
                 throw e;
             }
         }
+
+        public override string ToString()
+        {
+            return this.RazonSocial;
+        }
     }
 }

@@ -1,4 +1,6 @@
 ﻿using PalcoNet.Src.Modelo.Entidades;
+using PalcoNet.Src.Modelo.Estados;
+using PalcoNet.Src.Servicios;
 using System;
 using System.Collections.Generic;
 
@@ -20,6 +22,9 @@ namespace PalcoNet.Src.Forms.Vistas.Paginador
                 items = empresa.SearchPagedPublicacionByEmpresa(empresa.Id, offset, itemsPerPage);
             }
 
+            EmpresaService empresaService = new EmpresaService();
+            GradoService gradoService = new GradoService();
+            RubroService rubroService = new RubroService();
             foreach(List<object> row in items)
             {
                 Publicacion publicacion = new Publicacion();
@@ -27,11 +32,11 @@ namespace PalcoNet.Src.Forms.Vistas.Paginador
                 publicacion.FechaPublicacion = (DateTime)row[1];
                 publicacion.Descripcion = (string)row[2];
                 publicacion.FechaEvento = (DateTime)row[3];
-                publicacion.Rubro = (int)row[4];
-                publicacion.Direccion = (row[5].GetType() != typeof(DBNull)) ? (string)row[5] : "";
-                publicacion.Grado = (row[6].GetType() != typeof(DBNull)) ? (int)row[6] : -1;
-                publicacion.Empresa = (int)row[7];
-                publicacion.Estado = (string)row[8];
+                publicacion.Rubro = rubroService.GetRubro( (int)row[4] );
+                publicacion.Direccion = (row[5].GetType() != typeof(DBNull)) ?  (string)row[5]: "Indeterminado";
+                publicacion.Grado = (row[6].GetType() != typeof(DBNull)) ? gradoService.GetGrado((int)row[6]) : null;
+                publicacion.Empresa = empresaService.GetEmpresa( (int)row[7]);
+                publicacion.Estado = EstadoFactory.getEstado((string)row[8]);
                 page.TotalItems = (int)row[9];
                 page.AddItem(publicacion);
             }

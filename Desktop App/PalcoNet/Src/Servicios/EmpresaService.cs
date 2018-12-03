@@ -1,5 +1,6 @@
 ﻿using PalcoNet.Src.Modelo.Daos;
 using PalcoNet.Src.Modelo.Entidades;
+using PalcoNet.Src.Modelo.Estados;
 using PalcoNet.Src.Utils;
 using System;
 using System.Collections.Generic;
@@ -90,7 +91,8 @@ namespace PalcoNet.Src.Servicios
                 if(empresaEntity != null)
                 {
                     List<List<object>> publicacionesData = empresaEntity.GetPublicaciones();
-
+                    GradoService gradoService = new GradoService();
+                    RubroService rubroService = new RubroService();
                     foreach (List<object> row in publicacionesData)
                     {
                         Publicacion publicacion = new Publicacion();
@@ -98,11 +100,11 @@ namespace PalcoNet.Src.Servicios
                         publicacion.FechaEvento = (DateTime)row[1];
                         publicacion.Descripcion = (string)row[2];
                         publicacion.FechaEvento = (DateTime)row[3];
-                        publicacion.Rubro = (int)row[4];
+                        publicacion.Rubro = rubroService.GetRubro( (int)row[4]);
                         publicacion.Direccion = (row[5].GetType() != typeof(DBNull)) ? (string)row[5] : "";
-                        publicacion.Grado = (row[6].GetType() != typeof(DBNull)) ? (int)row[6] : -1;
-                        publicacion.Empresa = (int)row[7];
-                        publicacion.Estado = (string)row[8];
+                        publicacion.Grado = (row[6].GetType() != typeof(DBNull)) ? gradoService.GetGrado((int)row[6]) : null;
+                        publicacion.Empresa = this.GetEmpresa( (int)row[7] );
+                        publicacion.Estado = EstadoFactory.getEstado( (string)row[8] );
 
                         publicaciones.Add(publicacion);
                     }
@@ -123,16 +125,18 @@ namespace PalcoNet.Src.Servicios
                 Empresa empresaEntity = this.GetEmpresaFromUsername(username);
                 List<object> row = empresaEntity.GetPublicacion(idPublicacion)[0];
 
+                GradoService gradoService = new GradoService();
+                RubroService rubroService = new RubroService();
                 Publicacion publicacion = new Publicacion();
                 publicacion.Codigo = (int)row[0];
                 publicacion.FechaEvento = (DateTime)row[1];
                 publicacion.Descripcion = (string)row[2];
                 publicacion.FechaEvento = (DateTime)row[3];
-                publicacion.Rubro = (int)row[4];
-                publicacion.Direccion = (row[5].GetType() != typeof(DBNull)) ? (string)row[5] : "";
-                publicacion.Grado = (row[6].GetType() != typeof(DBNull)) ? (int)row[6] : -1;
-                publicacion.Empresa = (int)row[7];
-                publicacion.Estado = (string)row[8];
+                publicacion.Rubro = rubroService.GetRubro( (int)row[4] );
+                publicacion.Direccion = (row[5].GetType() != typeof(DBNull)) ? (string)row[5] : "Indeterminado";
+                publicacion.Grado = (row[6].GetType() != typeof(DBNull)) ? gradoService.GetGrado((int)row[6]) : null;
+                publicacion.Empresa = this.GetEmpresa( (int)row[7] );
+                publicacion.Estado = EstadoFactory.getEstado((string)row[8]);
 
                 return publicacion;
             }
