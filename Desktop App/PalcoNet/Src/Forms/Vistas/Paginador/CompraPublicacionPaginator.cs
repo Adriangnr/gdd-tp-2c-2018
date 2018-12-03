@@ -43,7 +43,7 @@ namespace PalcoNet.Src.Forms.Vistas.Paginador
                 publicacion.Grado = (row[6].GetType() != typeof(DBNull)) ? gradoService.GetGrado((int)row[6]) : null;
                 publicacion.Empresa = empresaService.GetEmpresa((int)row[7]);
                 publicacion.Estado = EstadoFactory.getEstado((string)row[8]);
-                page.TotalItems = (int)row[9];
+                page.TotalItems = (int)row[14];
                 page.AddItem(publicacion);
             }
 

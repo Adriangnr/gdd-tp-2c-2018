@@ -1322,3 +1322,5 @@ begin
 	exec sp_executesql @query
 end
 go
+
+exec ESECUELE.SearchPagedPublicacionesParaCompra null, null, null, null, null, 0, 10

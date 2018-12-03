@@ -8,6 +8,7 @@ using System.Windows.Forms;
 using System.Collections.Generic;
 using PalcoNet.Src.Modelo.Entidades;
 using PalcoNet.Src.Forms.Vistas.Paginador;
+using PalcoNet.Src.Utils;
 
 namespace PalcoNet.Src.Forms.Vistas.Cliente
 {
@@ -90,9 +91,10 @@ namespace PalcoNet.Src.Forms.Vistas.Cliente
                 Page currentPage = this.paginator.NextPage();
                 List<object> objects = currentPage.GetItems();
                 List<Publicacion> publicaciones = objects.Cast<Publicacion>().ToList();
+                SortableBindingList<Publicacion> sorteablePublicaciones = new SortableBindingList<Publicacion>(publicaciones);
                 /*------------- Fin Paginador ----------*/
 
-                this.dataGridPublicaciones.DataSource = compraService.getAllPublicacionesParaCompra(filtros);
+                this.dataGridPublicaciones.DataSource = sorteablePublicaciones;//compraService.getAllPublicacionesParaCompra(filtros);
 
                 if (this.dataGridPublicaciones.Rows.Count == 0)
                     MessageBox.Show("No se encontraron publicaciones!", "Listado de publicaciones activas.",
@@ -172,22 +174,50 @@ namespace PalcoNet.Src.Forms.Vistas.Cliente
 
         public void btn_nextPage_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            Page currentPage = this.paginator.NextPage();
+
+            List<object> objects = currentPage.GetItems();
+            List<Publicacion> publicaciones = objects.Cast<Publicacion>().ToList();
+
+            this.dataGridPublicaciones.DataSource = null;
+            this.dataGridPublicaciones.DataSource = publicaciones;
+            this.dataGridPublicaciones.ClearSelection();
         }
 
         public void btn_firstPage_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            Page currentPage = this.paginator.FirstPage();
+
+            List<object> objects = currentPage.GetItems();
+            List<Publicacion> publicaciones = objects.Cast<Publicacion>().ToList();
+
+            this.dataGridPublicaciones.DataSource = null;
+            this.dataGridPublicaciones.DataSource = publicaciones;
+            this.dataGridPublicaciones.ClearSelection();
         }
 
         public void btn_previousPage_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            Page currentPage = this.paginator.PreviousPage();
+
+            List<object> objects = currentPage.GetItems();
+            List<Publicacion> publicaciones = objects.Cast<Publicacion>().ToList();
+
+            this.dataGridPublicaciones.DataSource = null;
+            this.dataGridPublicaciones.DataSource = publicaciones;
+            this.dataGridPublicaciones.ClearSelection();
         }
 
         public void btn_lastPage_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            Page currentPage = this.paginator.LastPage();
+
+            List<object> objects = currentPage.GetItems();
+            List<Publicacion> publicaciones = objects.Cast<Publicacion>().ToList();
+
+            this.dataGridPublicaciones.DataSource = null;
+            this.dataGridPublicaciones.DataSource = publicaciones;
+            this.dataGridPublicaciones.ClearSelection();
         }
     }
 }
