@@ -1,10 +1,11 @@
-﻿using System;
+﻿using PalcoNet.Src.Modelo.Entidades;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 
-namespace PalcoNet.Src.Modelo.Entidades
+namespace PalcoNet.Src.Modelo.Daos
 {
-    public class Login : DatabaseEntity
+    public class DaoLogin : DatabaseEntity
     {
        public int GetLogin(String username, String password)
         {

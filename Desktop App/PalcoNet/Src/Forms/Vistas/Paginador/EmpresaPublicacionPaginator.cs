@@ -1,4 +1,5 @@
-﻿using PalcoNet.Src.Modelo.Entidades;
+﻿using PalcoNet.Src.Modelo.Daos;
+using PalcoNet.Src.Modelo.Entidades;
 using PalcoNet.Src.Modelo.Estados;
 using PalcoNet.Src.Servicios;
 using System;
@@ -8,6 +9,11 @@ namespace PalcoNet.Src.Forms.Vistas.Paginador
 {
     public class EmpresaPublicacionPaginator : Paginator
     {
+        public EmpresaPublicacionPaginator(Pageable form)
+        {
+            this.initialize(form);
+        }
+
         public override Page SearchPaged(int offset, int itemsPerPage)
         {
             Page page = new Page();
@@ -46,7 +52,7 @@ namespace PalcoNet.Src.Forms.Vistas.Paginador
 
         private List<List<object>> SearchPagedPublicacion(int offset, int itemsPerPage)
         {
-            return new Publicacion().SearchPagedPublicacion(offset, itemsPerPage);
+            return new DaoPublicacion().SearchPagedPublicacion(offset, itemsPerPage);
         }
     }
 }

@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace PalcoNet.Src.Forms.Vistas.Empresa
 {
-    public partial class Publicacion_Listado : Master
+    public partial class Publicacion_Listado : Master, Pageable 
     {
         public Paginator paginator { get; set; }
 
@@ -23,7 +23,7 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
         {
             try
             {
-                this.paginator = new EmpresaPublicacionPaginator();
+                this.paginator = new EmpresaPublicacionPaginator(this);
                 this.paginator.ItemsPerPage = 10;
                 EmpresaService empresaService = ((EmpresaService)ServiceFactory.GetService("Empresa"));
 
@@ -31,12 +31,8 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
 
                 Page currentPage = this.paginator.NextPage();
 
-                this.totalPaginas.Text = this.paginator.TotalPages.ToString();
-                this.paginaActual.Text = "1";
-
-                this.btn_previousPage.Enabled = false;
-                this.btn_firstPage.Enabled = false;
-
+                this.panelPaginatorControls.Controls.Add(this.paginator.controls);
+                
                 List<object> objects = currentPage.GetItems();
                 List<Publicacion> publicaciones = objects.Cast<Publicacion>().ToList();
 
@@ -44,8 +40,6 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
                 {
                     MessageBox.Show("No se encontraron publicaciones cargadas para este usuario!", "Alerta!",
                                 MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    this.btn_lastPage.Enabled = false;
-                    this.btn_nextPage.Enabled = false;
                 }
                 else
                 {
@@ -105,89 +99,52 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
             }
         }
 
-        private void btn_nextPage_Click(object sender, EventArgs e)
+        public void btn_nextPage_Click(object sender, EventArgs e)
         {
             Page currentPage = this.paginator.NextPage();
-            this.btn_previousPage.Enabled = true;
-            this.btn_firstPage.Enabled = true;
-
-            if(this.paginator.PageNumber == (this.paginator.TotalPages - 1))
-            {
-                this.btn_nextPage.Enabled = false;
-                this.btn_lastPage.Enabled = false;
-            }
-
+            
             List<object> objects = currentPage.GetItems();
             List<Publicacion> publicaciones = objects.Cast<Publicacion>().ToList();
 
             this.dataGridPublicaciones.DataSource = null;
             this.dataGridPublicaciones.DataSource = publicaciones;
-            this.changeCount();
             this.dataGridPublicaciones.ClearSelection();
         }
 
-        private void btn_firstPage_Click(object sender, EventArgs e)
+        public void btn_firstPage_Click(object sender, EventArgs e)
         {
             Page currentPage = this.paginator.FirstPage();
-
-            this.btn_nextPage.Enabled = true;
-            this.btn_lastPage.Enabled = true;
-
-            this.btn_previousPage.Enabled = false;
-            this.btn_firstPage.Enabled = false;
-
+            
             List<object> objects = currentPage.GetItems();
             List<Publicacion> publicaciones = objects.Cast<Publicacion>().ToList();
 
             this.dataGridPublicaciones.DataSource = null;
             this.dataGridPublicaciones.DataSource = publicaciones;
-            this.changeCount();
             this.dataGridPublicaciones.ClearSelection();
         }
 
-        private void btn_previousPage_Click(object sender, EventArgs e)
+        public void btn_previousPage_Click(object sender, EventArgs e)
         {
             Page currentPage = this.paginator.PreviousPage();
-
-            this.btn_nextPage.Enabled = true;
-            this.btn_lastPage.Enabled = true;
-
-            if (this.paginator.PageNumber == 0)
-            {
-                this.btn_previousPage.Enabled = false;
-                this.btn_firstPage.Enabled = false;
-            }
-
+            
             List<object> objects = currentPage.GetItems();
             List<Publicacion> publicaciones = objects.Cast<Publicacion>().ToList();
 
             this.dataGridPublicaciones.DataSource = null;
             this.dataGridPublicaciones.DataSource = publicaciones;
-            this.changeCount();
             this.dataGridPublicaciones.ClearSelection();
         }
 
-        private void btn_lastPage_Click(object sender, EventArgs e)
+        public void btn_lastPage_Click(object sender, EventArgs e)
         {
             Page currentPage = this.paginator.LastPage();
-            this.btn_previousPage.Enabled = true;
-            this.btn_firstPage.Enabled = true;
-
-            this.btn_nextPage.Enabled = false;
-            this.btn_lastPage.Enabled = false;
-
+            
             List<object> objects = currentPage.GetItems();
             List<Publicacion> publicaciones = objects.Cast<Publicacion>().ToList();
 
             this.dataGridPublicaciones.DataSource = null;
             this.dataGridPublicaciones.DataSource = publicaciones;
-            this.changeCount();
             this.dataGridPublicaciones.ClearSelection();
-        }
-
-        private void changeCount()
-        {
-            this.paginaActual.Text = ((this.paginator.PageNumber + 1)).ToString();
         }
     }
 }

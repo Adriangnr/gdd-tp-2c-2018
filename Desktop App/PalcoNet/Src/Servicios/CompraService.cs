@@ -2,9 +2,6 @@
 using PalcoNet.Src.Utils;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PalcoNet.Src.Servicios
 {
@@ -12,12 +9,12 @@ namespace PalcoNet.Src.Servicios
     {
         public SortableBindingList<Publicacion> getAllPublicacionesParaCompra(System.Windows.Forms.Control.ControlCollection filtros)
         {
-            Publicacion publicacionSearchEntity = new Publicacion();
+            PublicacionService publicaiconService = (PublicacionService)ServiceFactory.ServiceFactory.GetService("Publicacion");
             try
             {
                 SortableBindingList<Publicacion> publicaciones = new SortableBindingList<Publicacion>();
-
-                List<List<object>> results = publicacionSearchEntity.SearchActivasValidas(filtros);
+                
+                List<List<object>> results = publicaiconService.SearchActivasValidas(filtros);
 
                 foreach (List<object> row in results)
                 {

@@ -7,6 +7,9 @@ namespace PalcoNet.Src.Servicios
 {
     class UsuarioService : DatabaseService
     {
+        private DaoUsuario daoUsuario = new DaoUsuario();
+        private DaoRol_Usuario daoRolUsuario = new DaoRol_Usuario();
+
         public Usuario GetUser(String username)
         {
             return new Usuario(username);
@@ -64,7 +67,7 @@ namespace PalcoNet.Src.Servicios
         private void saveRoles(Dictionary<string, string> userParams)
         {
             Rol_Usuario rolUsuario = new Rol_Usuario(userParams["usr_tipo"], userParams["usr_username"]);
-            rolUsuario.save();
+            this.daoRolUsuario.save(rolUsuario);
         }
 
         private void saveUserData(Dictionary<string, string> userParams)
@@ -79,15 +82,20 @@ namespace PalcoNet.Src.Servicios
             usuario.CodigoPostal = userParams["usr_codigo_postal"];
             try
             {
-                usuario.save();
+                this.daoUsuario.save(usuario);
                 this.saveType(userParams);
                 this.saveRoles(userParams);
             }
             catch(Exception e)
             {
-                usuario.delete();
+                this.daoUsuario.delete(usuario);
                 throw e;
             }
+        }
+
+        public void updatePassword(Usuario usuarioObj)
+        {
+            this.daoUsuario.updatePassword(usuarioObj);
         }
     }
 }

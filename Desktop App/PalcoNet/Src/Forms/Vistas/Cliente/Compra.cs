@@ -7,12 +7,14 @@ using System.ComponentModel;
 using System.Windows.Forms;
 using System.Collections.Generic;
 using PalcoNet.Src.Modelo.Entidades;
+using PalcoNet.Src.Forms.Vistas.Paginador;
 
 namespace PalcoNet.Src.Forms.Vistas.Cliente
 {
-    public partial class Compra : Listado
+    public partial class Compra : Listado, Pageable
     {
         private List<Rubro> categoriasElegidas = new List<Rubro>();
+        private Paginator paginator;
 
         public Compra()
         {
@@ -80,6 +82,15 @@ namespace PalcoNet.Src.Forms.Vistas.Cliente
                     categorias.Text = str;
                     filtros.Add(categorias);
                 }
+
+                /*------------ Paginador ---------------*/
+                this.paginator = new CompraPublicacionPaginator(this);
+                this.paginator.ItemsPerPage = 10;
+                this.panelPaginatorControls.Controls.Add(this.paginator.controls);
+                Page currentPage = this.paginator.NextPage();
+                List<object> objects = currentPage.GetItems();
+                List<Publicacion> publicaciones = objects.Cast<Publicacion>().ToList();
+                /*------------- Fin Paginador ----------*/
 
                 this.dataGridPublicaciones.DataSource = compraService.getAllPublicacionesParaCompra(filtros);
 
@@ -157,6 +168,26 @@ namespace PalcoNet.Src.Forms.Vistas.Cliente
         {
             base.linkLabel1_LinkClicked(sender, e);
             categoriasElegidas.Clear();
+        }
+
+        public void btn_nextPage_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void btn_firstPage_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void btn_previousPage_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void btn_lastPage_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -29,7 +29,8 @@ namespace PalcoNet.Src.Modelo.Daos
         {
             try
             {
-                empresa.UsuarioObj.update();
+                DaoUsuario daoUsuario = new DaoUsuario();
+                daoUsuario.update(empresa.UsuarioObj);
                 this.spExecute(this.schema + ".updateEmpresa", new List<SqlParameter>
                 {
                     new SqlParameter("@id", empresa.Id),

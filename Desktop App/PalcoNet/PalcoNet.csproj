@@ -193,11 +193,22 @@
     <Compile Include="Src\Forms\Vistas\General\Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
+    <Compile Include="Src\Forms\Vistas\Paginador\CompraPublicacionPaginator.cs" />
     <Compile Include="Src\Forms\Vistas\Paginador\EmpresaPublicacionPaginator.cs" />
     <Compile Include="Src\Forms\Vistas\Paginador\Page.cs" />
+    <Compile Include="Src\Forms\Vistas\Paginador\Pageable.cs" />
     <Compile Include="Src\Forms\Vistas\Paginador\Paginator.cs" />
+    <Compile Include="Src\Forms\Vistas\Paginador\PaginatorControls.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Src\Forms\Vistas\Paginador\PaginatorControls.Designer.cs">
+      <DependentUpon>PaginatorControls.cs</DependentUpon>
+    </Compile>
     <Compile Include="Src\Modelo\Daos\DaoCliente.cs" />
     <Compile Include="Src\Modelo\Daos\DaoEmpresa.cs" />
+    <Compile Include="Src\Modelo\Daos\DaoPublicacion.cs" />
+    <Compile Include="Src\Modelo\Daos\DaoRol_Usuario.cs" />
+    <Compile Include="Src\Modelo\Daos\DaoUsuario.cs" />
     <Compile Include="Src\Modelo\DBConector\Database.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -213,7 +224,7 @@
     <Compile Include="Src\Modelo\Entidades\Entrada.cs" />
     <Compile Include="Src\Modelo\Entidades\Funcionalidad.cs" />
     <Compile Include="Src\Modelo\Entidades\Grado.cs" />
-    <Compile Include="Src\Modelo\Entidades\Login.cs" />
+    <Compile Include="Src\Modelo\Daos\DaoLogin.cs" />
     <Compile Include="Src\Modelo\Entidades\Publicacion.cs" />
     <Compile Include="Src\Modelo\Entidades\Rol.cs" />
     <Compile Include="Src\Modelo\Entidades\Rol_Usuario.cs" />
@@ -231,6 +242,7 @@
     <Compile Include="Src\Servicios\EmpresaService.cs" />
     <Compile Include="Src\Servicios\GradoService.cs" />
     <Compile Include="Src\Servicios\LoginService.cs" />
+    <Compile Include="Src\Servicios\PublicacionService.cs" />
     <Compile Include="Src\Servicios\RolService.cs" />
     <Compile Include="Src\Servicios\RubroService.cs" />
     <Compile Include="Src\Servicios\ServiceFactory\ServiceFactory.cs" />
@@ -323,6 +335,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Src\Forms\Vistas\General\Selector_Rol.resx">
       <DependentUpon>Selector_Rol.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Src\Forms\Vistas\Paginador\PaginatorControls.resx">
+      <DependentUpon>PaginatorControls.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

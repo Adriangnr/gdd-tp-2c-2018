@@ -1,5 +1,5 @@
 ﻿using System;
-using PalcoNet.Src.Modelo.Entidades;
+using PalcoNet.Src.Modelo.Daos;
 
 namespace PalcoNet.Src.Servicios
 {
@@ -7,7 +7,7 @@ namespace PalcoNet.Src.Servicios
     {
         public int GetLogin(String username, String password)
         {
-           Login loginEntity = new Login();
+           DaoLogin loginEntity = new DaoLogin();
            return loginEntity.GetLogin(username, password);
         }
     }
