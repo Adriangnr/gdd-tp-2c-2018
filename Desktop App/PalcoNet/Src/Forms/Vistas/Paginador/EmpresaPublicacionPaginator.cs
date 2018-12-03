@@ -10,7 +10,15 @@ namespace PalcoNet.Src.Forms.Vistas.Paginador
         {
             Page page = new Page();
             PalcoNet.Src.Modelo.Entidades.Empresa empresa = (PalcoNet.Src.Modelo.Entidades.Empresa)this.Entity;
-            List<List<object>> items = empresa.SearchPagedPublicacionByEmpresa(empresa.Id, offset, itemsPerPage);
+            List<List<object>> items = null;
+            if(empresa == null)
+            {
+                items = this.SearchPagedPublicacion(offset, itemsPerPage);
+            }
+            else
+            {
+                items = empresa.SearchPagedPublicacionByEmpresa(empresa.Id, offset, itemsPerPage);
+            }
 
             foreach(List<object> row in items)
             {
