@@ -211,23 +211,45 @@ create table ESECUELE.Publicacion(
 go
 
 --Tipo_Entrada
-create table ESECUELE.Tipo_Entrada(
-	tipo_entrada_id int identity(1,1) primary key,
-	tipo_entrada_desc varchar(50) default null
+create table ESECUELE.Tipo_Ubicacion(
+	tipo_ubicacion_id int identity(1,1) primary key,
+	tipo_ubicacion_desc varchar(50) default null
+)
+go
+
+--Ubicacion numerada
+create table ESECUELE.UbicacionNumerada(
+	ubicacion_id int identity(1,1),
+	ubicacion_publicacion int default null,
+	ubicacion_fila char default null,
+	ubicacion_asiento int default null,
+	ubicacion_precio numeric(18,2) not null,
+	ubicacion_disponible bit default 1,
+	ubicacion_tipo int default null
+	constraint PK_Entrada primary key (ubicacion_publicacion, ubicacion_fila, ubicacion_asiento, ubicacion_tipo)
+)
+go
+
+--Ubicacion sin numerar
+create table ESECUELE.UbicacionSinNumerar(
+	ubicacionSN_id int identity(1,1) primary key,
+	ubicacionSN_publicacion int default null,
+	ubicacionSN_cant_total int default 0,
+	ubicacionSN_cant_disponibles int default 0,
+	ubicacionSN_precio numeric(18,2) not null,
+	ubicacionSN_tipo int default null
 )
 go
 
 --Entrada
 create table ESECUELE.Entrada(
-	entrada_id int identity(1,1),
-	entrada_publicacion int default null,
-	entrada_fila char default null,
-	entrada_asiento int default null,
+	entrada_id int identity(1,1) primary key,
+	entrada_compra int default null,
 	entrada_sin_numerar bit default 0,
-	entrada_precio numeric(18,2) not null,
-	entrada_disponible bit default 1,
-	entrada_tipo int default null
-	constraint PK_Entrada primary key (entrada_publicacion, entrada_fila, entrada_asiento, entrada_tipo)
+	entrada_ubicacion int default null,
+	entrada_publicacion int default null,
+	entrada_cantidad int default 1,
+	entrada_precio numeric(18,2) not null
 )
 go
 
@@ -257,21 +279,21 @@ go
 --Compra
 create table ESECUELE.Compra(
 	compra_id int identity(1,1) primary key,
-	compra_entrada int default null,
 	compra_total numeric(18,2) not null,
 	compra_cliente int default null,
 	compra_fecha datetime default null,
-	compra_cantidad int default null,
-	compra_medio_pago int default 1
+	compra_medio_pago tinyint default null
 )
 go
 
 --Medio de pago
 create table ESECUELE.Medio_de_Pago(
 	medio_pago_id tinyint identity(1,1) primary key,
-	medio_pago_descripcion varchar(40) default null
+	medio_pago_nro_tarjeta varchar(40) default null
 )
 go
+
+--alter table ESECUELE.Compra add constraint FK_Comp_MPago foreign key (compra_medio_pago) references ESECUELE.Medio_de_Pago(medio_pago_id)
 
 /*
 * --------------------- Fin Creacion de tablas. ----------------------------------
@@ -325,11 +347,11 @@ insert into ESECUELE.Rol_Usuario (rol_usr_rol_id, rol_usr_username) values (1,'a
 insert into ESECUELE.Rol_Usuario (rol_usr_rol_id, rol_usr_username) values (2,'admin')
 insert into ESECUELE.Rol_Usuario (rol_usr_rol_id, rol_usr_username) values (3,'admin')
 
--- Ingreso de medios de pago
+/*-- Ingreso de medios de pago
 insert into ESECUELE.Medio_de_Pago (medio_pago_descripcion) values('EFECTIVO')
 insert into ESECUELE.Medio_de_Pago (medio_pago_descripcion) values('T_CREDITO')
 go
-
+*/
 -- Ingreso Rubros
 insert into ESECUELE.Rubro (rubro_descripcion) values 
 ('Teatro'),('Cine'), ('Musical'), ('Deportivo'), ('Conferencia'), ('Festival'), ('Otro')
@@ -374,53 +396,6 @@ Espec_Empresa_Fecha_Creacion
 from gd_esquema.Maestra
 -- Fin de Carga de Empresas
 
-
-
--- Carga de Espectaculos
-SET IDENTITY_INSERT ESECUELE.Publicacion ON
-insert into ESECUELE.Publicacion
-(publicacion_codigo, 
-publicacion_fecha_inicio, 
-publicacion_descripcion, 
-publicacion_fecha_evento,
-publicacion_rubro,
-publicacion_empresa, 
-publicacion_estado)
-
-select distinct
-Espectaculo_Cod, 
-Espectaculo_Fecha_Venc,
-Espectaculo_Descripcion, 
-Espectaculo_Fecha,  
-Espectaculo_Rubro_Descripcion,
-(select empresa_id from ESECUELE.Empresa where empresa_usuario = CONCAT('usr_', Espec_Empresa_Cuit)),
-Espectaculo_Estado
- from gd_esquema.Maestra
- SET IDENTITY_INSERT ESECUELE.Publicacion OFF
--- Fin de Carga de Espectaculos
-
--- Carga de Entradas
-insert into ESECUELE.Entrada
-(entrada_publicacion,entrada_fila, entrada_asiento, entrada_sin_numerar, entrada_precio, entrada_tipo)
-select distinct
-Espectaculo_Cod,
-Ubicacion_Fila, 
-Ubicacion_Asiento, 
-Ubicacion_Sin_numerar, 
-Ubicacion_Precio, 
-Ubicacion_Tipo_Codigo
-from gd_esquema.Maestra
--- Fin de Carga de Entradas
-
--- Carga de Tipos de Entradas
-SET IDENTITY_INSERT ESECUELE.Tipo_Entrada ON;
-insert into ESECUELE.Tipo_Entrada
-(tipo_entrada_id, tipo_entrada_desc)
-select distinct Ubicacion_Tipo_Codigo, Ubicacion_Tipo_Descripcion
-from gd_esquema.Maestra
-SET IDENTITY_INSERT ESECUELE.Tipo_Entrada OFF;
--- Fin de Carga de Tipos de Entradas
-
 -- Carga de Cliente
 insert into ESECUELE.Usuario
 (usr_username,
@@ -457,6 +432,115 @@ concat('cli_', Cli_Dni)
 from gd_esquema.Maestra where Cli_Dni is not null
 -- Fin de Carga de Cliente
 
+-- Carga de Espectaculos
+SET IDENTITY_INSERT ESECUELE.Publicacion ON
+insert into ESECUELE.Publicacion
+(publicacion_codigo, 
+publicacion_fecha_inicio, 
+publicacion_descripcion, 
+publicacion_fecha_evento,
+publicacion_rubro,
+publicacion_empresa, 
+publicacion_estado)
+
+select distinct
+Espectaculo_Cod, 
+Espectaculo_Fecha_Venc,
+Espectaculo_Descripcion, 
+Espectaculo_Fecha,  
+Espectaculo_Rubro_Descripcion,
+(select empresa_id from ESECUELE.Empresa where empresa_usuario = CONCAT('usr_', Espec_Empresa_Cuit)),
+Espectaculo_Estado
+ from gd_esquema.Maestra
+ SET IDENTITY_INSERT ESECUELE.Publicacion OFF
+-- Fin de Carga de Espectaculos
+
+-- Carga de Ubicaciones
+insert into ESECUELE.UbicacionNumerada
+(ubicacion_publicacion,ubicacion_fila, ubicacion_asiento, ubicacion_precio, ubicacion_tipo)
+select distinct
+Espectaculo_Cod,
+Ubicacion_Fila, 
+Ubicacion_Asiento,  
+Ubicacion_Precio, 
+Ubicacion_Tipo_Codigo
+from gd_esquema.Maestra
+where Ubicacion_Sin_numerar = 0
+-- Fin de Carga de Ubicaciones
+
+-- Como no hay ubicaciones sin numerar en la tabla maestra, no migramos
+
+-- Tabla temporal para migracion de compras y entradas
+select distinct 
+ROW_NUMBER() OVER(order by Compra_Fecha ASC) [compra],
+Espectaculo_Cod [publicacion],
+Compra_Fecha [compra_fecha],
+Compra_Cantidad [compra_cantidad], 
+Cli_Dni [cliente_dni],
+Ubicacion_Asiento [asiento],
+Ubicacion_Fila [fila],
+Ubicacion_Sin_numerar [sin_numerar],
+Ubicacion_Precio [precio],
+Ubicacion_Tipo_Codigo [ubicacion_tipo]
+INTO #EntradasTemporales
+from gd_esquema.Maestra 
+where Cli_Dni is not null and Item_Factura_Monto is null
+group by Compra_Fecha,Compra_Cantidad, Ubicacion_Precio, Cli_Dni, Espectaculo_Cod,Ubicacion_Asiento,Ubicacion_Fila,Ubicacion_Sin_numerar,Ubicacion_Precio,Ubicacion_Tipo_Codigo
+order by 1 ASC
+
+-- Carga de Compras
+insert into ESECUELE.Compra
+(	compra_total,
+	compra_cliente,
+	compra_fecha
+)
+select
+precio * compra_cantidad,
+(
+	select c.cliente_id
+	from ESECUELE.Cliente c
+	where c.cliente_tipo_doc = 'DNI' and c.cliente_num_doc = cliente_dni
+),
+compra_fecha
+from #EntradasTemporales
+
+-- Fin de Carga de Compras
+
+-- Carga Entradas
+insert into ESECUELE.Entrada
+(entrada_compra,entrada_sin_numerar,entrada_ubicacion, entrada_publicacion, entrada_cantidad, entrada_precio)
+select 
+compra,
+sin_numerar,
+(case when sin_numerar = 0 then (select u.ubicacion_id 
+								from ESECUELE.UbicacionNumerada u
+								where u.ubicacion_publicacion = publicacion
+								and u.ubicacion_tipo = ubicacion_tipo
+								and u.ubicacion_fila = fila
+								and u.ubicacion_asiento = asiento)
+							else (select n.ubicacionSN_id
+									from ESECUELE.UbicacionSinNumerar n
+									where n.ubicacionSN_publicacion = publicacion)
+							end
+
+),
+publicacion,
+compra_cantidad,
+precio
+from #EntradasTemporales
+
+drop table #EntradasTemporales
+-- Fin de carga de Entradas
+
+-- Carga de Tipos de Ubicaciones
+SET IDENTITY_INSERT ESECUELE.Tipo_Ubicacion ON;
+insert into ESECUELE.Tipo_Ubicacion
+(tipo_ubicacion_id, tipo_ubicacion_desc)
+select distinct Ubicacion_Tipo_Codigo, Ubicacion_Tipo_Descripcion
+from gd_esquema.Maestra
+SET IDENTITY_INSERT ESECUELE.Tipo_Ubicacion OFF;
+-- Fin de Carga de Tipos de Ubicaciones
+
 -- Asignacion de funcionalidades para los usuarios cargados
 insert into ESECUELE.Rol_Usuario (rol_usr_rol_id, rol_usr_username)
 select 2, u.usr_username from ESECUELE.Cliente c join ESECUELE.Usuario u on c.cliente_usuario = u.usr_username
@@ -464,27 +548,6 @@ select 2, u.usr_username from ESECUELE.Cliente c join ESECUELE.Usuario u on c.cl
 insert into ESECUELE.Rol_Usuario (rol_usr_rol_id, rol_usr_username)
 select 3, u.usr_username from ESECUELE.Empresa e join ESECUELE.Usuario u on e.empresa_usuario = u.usr_username
 -- Fin de asignacion de funcionalidades
-
--- Carga de Compras
-insert into ESECUELE.Compra
-(compra_entrada,
-compra_total,
-compra_cliente,
-compra_fecha,
-compra_cantidad)
-
-select distinct
-(select e.entrada_id from ESECUELE.Entrada e 
-where e.entrada_fila = m.Ubicacion_Fila and e.entrada_asiento = m.Ubicacion_Asiento
-and e.entrada_publicacion = m.Espectaculo_Cod and e.entrada_tipo = m.Ubicacion_Tipo_Codigo),
-(m.Ubicacion_Precio*m.Compra_Cantidad),
-(select c.cliente_id from ESECUELE.Cliente c 
-where c.cliente_tipo_doc = 'DNI' and c.cliente_cuil = 'cuil' and c.cliente_num_doc = m.Cli_Dni),
-m.Compra_Fecha,
-m.Compra_Cantidad
-from gd_esquema.Maestra m 
-where m.Compra_Cantidad is not null and m.Compra_Fecha is not null
--- Fin de Carga de Compras
 
 -- Carga de Facturas
 insert into ESECUELE.Factura
@@ -518,11 +581,14 @@ m.Factura_Nro,
 m.Item_Factura_Cantidad, 
 m.Item_Factura_Monto, 
 Item_Factura_Descripcion,
-(select entrada_id from ESECUELE.Entrada where 
-entrada_asiento = m.Ubicacion_Asiento and entrada_fila = m.Ubicacion_Fila 
-and entrada_publicacion = m.Espectaculo_Cod and entrada_tipo = m.Ubicacion_Tipo_Codigo) from gd_esquema.Maestra m 
-where 
-m.Item_Factura_Monto is not null and 
+case when m.Ubicacion_Sin_numerar = 0 then (select entrada_id from ESECUELE.Entrada join ESECUELE.UbicacionNumerada on ubicacion_id = entrada_ubicacion
+											where ubicacion_asiento = m.Ubicacion_Asiento and ubicacion_fila = m.Ubicacion_Fila 
+											and entrada_publicacion = m.Espectaculo_Cod and ubicacion_tipo = m.Ubicacion_Tipo_Codigo)
+									  else (select entrada_id from ESECUELE.Entrada join ESECUELE.UbicacionSinNumerar on ubicacionSN_id = entrada_ubicacion
+											where ubicacionSN_publicacion = m.Espectaculo_Cod and ubicacionSN_tipo = m.Ubicacion_Tipo_Codigo) 
+end
+from gd_esquema.Maestra m 
+where m.Item_Factura_Monto is not null and 
 m.Item_Factura_Cantidad is not null and 
 m.Item_Factura_Descripcion is not null 
 -- Fin de Carga de Item_Factura
@@ -550,8 +616,11 @@ alter table ESECUELE.Empresa add constraint FK_Emp_UserName foreign key (empresa
 -- Relacion Publicacion -Empresa
 alter table ESECUELE.Publicacion add constraint FK_EmpId foreign key (publicacion_empresa) references ESECUELE.Empresa(empresa_id) ON UPDATE CASCADE ON DELETE NO ACTION
 
--- Relacion Entrada - Tipo_Entrada
-alter table ESECUELE.Entrada add constraint FK_Tipo_Entrada foreign key(entrada_tipo) references ESECUELE.Tipo_Entrada(tipo_entrada_id)
+-- Relacion Ubicacion - Tipo_Ubicacion
+alter table ESECUELE.UbicacionNumerada add constraint FK_Tipo_Ubicacion foreign key(ubicacion_tipo) references ESECUELE.Tipo_Ubicacion(tipo_ubicacion_id)
+
+-- Relacion UbicacionSinNumerar - Tipo_Ubicacion
+alter table ESECUELE.UbicacionSinNumerar add constraint FK_Tipo_UbicacionSN foreign key(ubicacionSN_tipo) references ESECUELE.Tipo_Ubicacion(tipo_ubicacion_id)
 
 -- Relacion Cliente - Usuario
 alter table ESECUELE.Cliente add constraint FK_Cli_UserName foreign key (cliente_usuario) references ESECUELE.Usuario(usr_username) ON UPDATE CASCADE ON DELETE CASCADE 
@@ -559,8 +628,11 @@ alter table ESECUELE.Cliente add constraint FK_Cli_UserName foreign key (cliente
 -- Relacion Compra - Cliente
 alter table ESECUELE.Compra add constraint FK_Comp_Clie foreign key (compra_cliente) references ESECUELE.Cliente(cliente_id) ON UPDATE CASCADE ON DELETE NO ACTION
 
--- Relacion Compra - Entrada
-alter table ESECUELE.Compra add constraint FK_Comp_Entrada foreign key (compra_entrada) references ESECUELE.Entrada(entrada_id)
+-- Relacion Entrada - Compra
+alter table ESECUELE.Entrada add constraint FK_Entrada_Compra foreign key (entrada_compra) references ESECUELE.Compra(compra_id)
+
+-- Relacion Compra - Medio de pago
+alter table ESECUELE.Compra add constraint FK_Comp_MPago foreign key (compra_medio_pago) references ESECUELE.Medio_de_Pago(medio_pago_id)
 
 -- Relacion Canje - Cliente
 alter table ESECUELE.Canje add constraint FK_ClieId foreign key(canje_cliente) references ESECUELE.Cliente(cliente_id)
@@ -577,11 +649,8 @@ alter table ESECUELE.Punto add constraint FK_P_ClieId foreign key(punto_cliente)
 -- Relacion Factura - Empresa
 alter table ESECUELE.Factura add constraint FK_F_EmpId foreign key(fact_empresa) references ESECUELE.Empresa(empresa_id) ON DELETE SET NULL ON UPDATE CASCADE
 
-
-
 go
 /*------------------------Fin Creacion de restricciones -------------------------*/
-
 
 /*--------------------------- Store procedures ----------------------------------*/
 
@@ -1127,6 +1196,7 @@ begin
 	order by publicacion_codigo DESC
 	offset @offset rows fetch next @items rows only
 end
+go
 
 create procedure ESECUELE.SearchAllPublicacionActivaValida(
 							@categorias varchar(255) = null,
