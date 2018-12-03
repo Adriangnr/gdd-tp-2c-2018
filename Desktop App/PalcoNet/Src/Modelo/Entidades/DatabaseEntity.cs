@@ -152,16 +152,19 @@ namespace PalcoNet.Src.Modelo.Entidades
 
                 foreach (Control field in filters)
                 {
-                    if (field.GetType() == typeof(TextBox))
+                    if (!field.Name.Contains("Vista"))
                     {
-                        string value = null;
-                        if (field.Text != "") value = field.Text;
-                        parameters.Add(new SqlParameter("@" + field.Name, value));
-                    }
+                        if (field.GetType() == typeof(TextBox))
+                        {
+                            string value = null;
+                            if (field.Text != "") value = field.Text;
+                            parameters.Add(new SqlParameter("@" + field.Name, value));
+                        }
 
-                    if (field.GetType() == typeof(DateTimePicker) && !field.Name.Contains("Vista"))
-                    {
-                        parameters.Add(new SqlParameter("@"+ field.Name, ((DateTimePicker) field).Value));
+                        if (field.GetType() == typeof(DateTimePicker))
+                        {
+                            parameters.Add(new SqlParameter("@" + field.Name, ((DateTimePicker)field).Value));
+                        }
                     }
                 }
                 return spExecuteDataReader(this.schema + ".SearchAll" + entidad, parameters);

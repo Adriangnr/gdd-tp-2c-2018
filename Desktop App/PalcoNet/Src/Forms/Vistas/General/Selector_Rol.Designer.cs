@@ -68,7 +68,7 @@
             this.btn_confirm.Margin = new System.Windows.Forms.Padding(0);
             this.btn_confirm.Name = "btn_confirm";
             this.btn_confirm.Size = new System.Drawing.Size(145, 45);
-            this.btn_confirm.TabIndex = 5;
+            this.btn_confirm.TabIndex = 1;
             this.btn_confirm.Text = "Continuar";
             this.btn_confirm.UseVisualStyleBackColor = false;
             this.btn_confirm.Click += new System.EventHandler(this.btn_confirm_Click);
@@ -80,10 +80,10 @@
             this.combo_rol.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.combo_rol.FormattingEnabled = true;
             this.combo_rol.Location = new System.Drawing.Point(121, 145);
-            this.combo_rol.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.combo_rol.Margin = new System.Windows.Forms.Padding(2);
             this.combo_rol.Name = "combo_rol";
             this.combo_rol.Size = new System.Drawing.Size(197, 21);
-            this.combo_rol.TabIndex = 6;
+            this.combo_rol.TabIndex = 0;
             this.combo_rol.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // btn_selctRol_salir
@@ -96,7 +96,7 @@
             this.btn_selctRol_salir.Margin = new System.Windows.Forms.Padding(0);
             this.btn_selctRol_salir.Name = "btn_selctRol_salir";
             this.btn_selctRol_salir.Size = new System.Drawing.Size(113, 34);
-            this.btn_selctRol_salir.TabIndex = 7;
+            this.btn_selctRol_salir.TabIndex = 2;
             this.btn_selctRol_salir.Text = "Salir";
             this.btn_selctRol_salir.UseVisualStyleBackColor = false;
             this.btn_selctRol_salir.Click += new System.EventHandler(this.btn_selctRol_salir_Click);

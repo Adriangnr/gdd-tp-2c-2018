@@ -6,12 +6,12 @@ using PalcoNet.Src.Modelo.Entidades;
 using PalcoNet.Src.Forms.Layouts;
 using System.Configuration;
 using PalcoNet.Properties;
+using System.Data.SqlClient;
 
 namespace PalcoNet.Src.Forms.Vistas.General
 {
     public partial class Login : Master
     {
-        private int intentosFallidos;
         private bool cambioUsuario = false;
         private bool cambioPass = false;
         private bool ingresoUsuario = false;
@@ -20,7 +20,6 @@ namespace PalcoNet.Src.Forms.Vistas.General
         public Login()
         {
             InitializeComponent();
-            this.intentosFallidos = 0;
             this.ActiveControl = titulo;
             
             login_tbox_usuario.LostFocus += login_tbox_usuario_LostFocus;
@@ -131,49 +130,33 @@ namespace PalcoNet.Src.Forms.Vistas.General
              la factory devuelve un servicio generico que se llama DatabaseService.
              */
             LoginService loginService = (LoginService)ServiceFactory.GetService("Login");
-            int result = loginService.GetLogin(username, password);
-            
-            switch (result)
+            int result;
+            try
             {
-                case -1:
-                    {
-                        MessageBox.Show(@"El usuario se encuentra deshabilitado.");
-                        break;
-                    }
-                case -2:
-                    {
-                        intentosFallidos++;
-                        MessageBox.Show(String.Format("Contraseña incorrecta. Tiene {0} intentos restantes.", 3 - intentosFallidos));
-                        break;
-                    }
-                case -3:
-                    {
-                        MessageBox.Show(@"El usuario no existe.");
-                        break;
-                    }
-                case -4:
-                    {
-                        MessageBox.Show(@"El usuario no tiene roles asignados.");
-                        break;
-                    }
-                case -5:
+                result = loginService.GetLogin(username, Utils.Utilities.Hash(password));
+
+                if(result == 4)
                     {
                         UsuarioService usrService = (UsuarioService)ServiceFactory.GetService("Usuario");
                         Usuario usr = usrService.GetUser(username);
                         new Selector_Rol(this, usr).Show();
                         this.Hide();
-                        break;
                     }
-                default:
+                else if(result > 0)
                     {
-                        intentosFallidos = 0;
                         UsuarioService usrService = (UsuarioService)ServiceFactory.GetService("Usuario");
                         Usuario usr = usrService.GetUser(username);
                         new MenuPrincipal(this, usr).Show();
                         this.Hide();
-                        break;
                     }
             }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.Message, "Error Login",
+                                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
+
         }
 
         private void Login_Load(object sender, EventArgs e)

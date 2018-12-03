@@ -32,7 +32,7 @@
             this.fechaFinVista = new System.Windows.Forms.DateTimePicker();
             this.btn_buy = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
-            this.categorias = new System.Windows.Forms.TextBox();
+            this.categoriasVista = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.descripcion = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -60,12 +60,12 @@
             this.groupBox1.Controls.Add(this.descripcion);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.fechaFinVista);
-            this.groupBox1.Controls.Add(this.categorias);
+            this.groupBox1.Controls.Add(this.categoriasVista);
             this.groupBox1.Controls.Add(this.fechaInicioVista);
             this.groupBox1.Size = new System.Drawing.Size(189, 359);
             this.groupBox1.Controls.SetChildIndex(this.linkLabel1, 0);
             this.groupBox1.Controls.SetChildIndex(this.fechaInicioVista, 0);
-            this.groupBox1.Controls.SetChildIndex(this.categorias, 0);
+            this.groupBox1.Controls.SetChildIndex(this.categoriasVista, 0);
             this.groupBox1.Controls.SetChildIndex(this.fechaFinVista, 0);
             this.groupBox1.Controls.SetChildIndex(this.label5, 0);
             this.groupBox1.Controls.SetChildIndex(this.descripcion, 0);
@@ -95,6 +95,7 @@
             // linkLabel1
             // 
             this.linkLabel1.Location = new System.Drawing.Point(56, 271);
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
             // fechaInicioVista
             // 
@@ -136,16 +137,16 @@
             this.label5.TabIndex = 60;
             this.label5.Text = "Categorías";
             // 
-            // categorias
+            // categoriasVista
             // 
-            this.categorias.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.categorias.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.categorias.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.categorias.Location = new System.Drawing.Point(19, 41);
-            this.categorias.Name = "categorias";
-            this.categorias.ReadOnly = true;
-            this.categorias.Size = new System.Drawing.Size(153, 24);
-            this.categorias.TabIndex = 59;
+            this.categoriasVista.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.categoriasVista.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.categoriasVista.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.categoriasVista.Location = new System.Drawing.Point(19, 41);
+            this.categoriasVista.Name = "categoriasVista";
+            this.categoriasVista.ReadOnly = true;
+            this.categoriasVista.Size = new System.Drawing.Size(153, 24);
+            this.categoriasVista.TabIndex = 59;
             // 
             // label6
             // 
@@ -231,6 +232,7 @@
             this.agregarCategoria.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.agregarCategoria.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.agregarCategoria.UseVisualStyleBackColor = true;
+            this.agregarCategoria.Click += new System.EventHandler(this.agregarCategoria_Click);
             // 
             // fechaInicioCheckBox
             // 
@@ -263,6 +265,7 @@
             this.quitarCategoria.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.quitarCategoria.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.quitarCategoria.UseVisualStyleBackColor = true;
+            this.quitarCategoria.Click += new System.EventHandler(this.quitarCategoria_Click);
             // 
             // Compra
             // 
@@ -298,7 +301,7 @@
         public System.Windows.Forms.Label label6;
         public System.Windows.Forms.TextBox descripcion;
         public System.Windows.Forms.Label label5;
-        public System.Windows.Forms.TextBox categorias;
+        public System.Windows.Forms.TextBox categoriasVista;
         private System.Windows.Forms.DataGridView dataGridPublicaciones;
         private System.Windows.Forms.ComboBox categoriasComboBox;
         private System.Windows.Forms.Button agregarCategoria;

@@ -5,11 +5,15 @@ using System;
 using System.Linq;
 using System.ComponentModel;
 using System.Windows.Forms;
+using System.Collections.Generic;
+using PalcoNet.Src.Modelo.Entidades;
 
 namespace PalcoNet.Src.Forms.Vistas.Cliente
 {
     public partial class Compra : Listado
     {
+        private List<Rubro> categoriasElegidas = new List<Rubro>();
+
         public Compra()
         {
             InitializeComponent();
@@ -19,6 +23,7 @@ namespace PalcoNet.Src.Forms.Vistas.Cliente
             fechaFinVista.Value = Utils.Utilities.getCurrentDate();
             RubroService rubroService = new RubroService();
             categoriasComboBox.DataSource = rubroService.getAllRubros();
+            categoriasVista.Text = "";
         }
 
         private void Compra_Load(object sender, EventArgs e)
@@ -57,6 +62,25 @@ namespace PalcoNet.Src.Forms.Vistas.Cliente
                     filtros.Add(fechaFin);
                 }
 
+                if( categoriasVista.Text != "" )
+                {
+                    TextBox categorias = new TextBox();
+                    categorias.Visible = false;
+
+                    string str = "";
+
+                    foreach (Rubro rubro in categoriasElegidas)
+                    {
+                        if (str == "")
+                            str = str + rubro.codigo;
+                        else
+                            str = str + ", " + rubro.codigo;
+                    }
+
+                    categorias.Text = str;
+                    filtros.Add(categorias);
+                }
+
                 this.dataGridPublicaciones.DataSource = compraService.getAllPublicacionesParaCompra(filtros);
 
                 if (this.dataGridPublicaciones.Rows.Count == 0)
@@ -90,6 +114,49 @@ namespace PalcoNet.Src.Forms.Vistas.Cliente
                                 MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+        }
+
+        private void agregarCategoria_Click(object sender, EventArgs e)
+        {
+            Rubro rubro = (Rubro)categoriasComboBox.SelectedItem;
+
+            if (!categoriasElegidas.Contains(rubro))
+            {
+                categoriasElegidas.Add(rubro);
+                mostrarCategorias();
+            }
+        }
+
+        private void mostrarCategorias()
+        {
+            string str = "";
+
+            foreach (Rubro rubro in categoriasElegidas)
+            {
+                if (str == "")
+                    str = rubro.ToString();
+                else
+                    str = str + ", " + rubro.ToString();
+            }
+
+            categoriasVista.Text = str;
+        }
+
+        private void quitarCategoria_Click(object sender, EventArgs e)
+        {
+            Rubro rubro = (Rubro)categoriasComboBox.SelectedItem;
+
+            if (categoriasElegidas.Contains(rubro))
+            {
+                categoriasElegidas.Remove(rubro);
+                mostrarCategorias();
+            }
+        }
+
+        private new void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            base.linkLabel1_LinkClicked(sender, e);
+            categoriasElegidas.Clear();
         }
     }
 }

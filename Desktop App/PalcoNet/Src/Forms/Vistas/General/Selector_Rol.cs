@@ -15,6 +15,14 @@ namespace PalcoNet.Src.Forms.Vistas.General
             this.user = user;
             this.previous = previous;
             this.combo_rol.DataSource = this.user.GetRoles();
+            this.ActiveControl = title;
+            this.combo_rol.KeyDown += combo_rol_KeyDown;
+        }
+
+        void combo_rol_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+                btn_confirm_Click(sender, new EventArgs());
         }
 
         private void label1_Click(object sender, EventArgs e)

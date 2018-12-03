@@ -11,7 +11,7 @@ namespace PalcoNet.Src.Modelo.Entidades
             return this.spExecuteScalar("ESECUELE.Login", new List<SqlParameter>
             {
                     new SqlParameter("@username", username),
-                    new SqlParameter("@plain_password", password)
+                    new SqlParameter("@password_input", password)
             });
         }
     }

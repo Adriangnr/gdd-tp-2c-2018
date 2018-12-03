@@ -43,7 +43,7 @@ namespace PalcoNet.Src.Forms.Vistas.General
         {
             Dictionary<string, string> userParams = new Dictionary<string, string>();
             userParams.Add("usr_username", this.textBox_usuario.Text);
-            userParams.Add("usr_pass", this.textBox_contrasena.Text);
+            userParams.Add("usr_pass", Utils.Utilities.Hash(this.textBox_contrasena.Text));
             userParams.Add("usr_tipo", (string)this.rolSelector.SelectedItem);
             userParams.Add("usr_email", this.textBox_mail.Text);
             userParams.Add("usr_telefono", textBox_telefono.Text);

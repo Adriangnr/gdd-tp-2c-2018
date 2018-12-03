@@ -77,7 +77,7 @@ namespace PalcoNet.Src.Forms.Vistas.Administrador
 
                 if (this.panel_datausuario.Controls["textBox_pass"].Text != "")
                 {
-                    this.client.UsuarioObj.Password = this.panel_datausuario.Controls["textBox_pass"].Text;
+                    this.client.UsuarioObj.Password = Utils.Utilities.Hash( this.panel_datausuario.Controls["textBox_pass"].Text);
                     this.client.UsuarioObj.updatePassword();
                 }
                 this.client.update();

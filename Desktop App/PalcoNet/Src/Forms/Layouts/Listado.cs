@@ -16,7 +16,7 @@ namespace PalcoNet.Src.Forms.Layouts
 
         }
 
-        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        protected void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Utilities.clearForm(this.Controls);
         }

@@ -38,9 +38,16 @@ namespace PalcoNet.Src.Servicios
         public void loadPublicacionCompra(Publicacion publicacion, List<object> row)
         {
             publicacion.Codigo = (int)row[0];
-            publicacion.FechaEvento = (DateTime)row[1];
+            publicacion.FechaPublicacion = (DateTime)row[1];
             publicacion.Descripcion = (string)row[2];
             publicacion.FechaEvento = (DateTime)row[3];
+            publicacion.Direccion = (string)row[5];
+
+            EmpresaService empresaService = new EmpresaService();
+
+        //    publicacion.Empresa = empresaService.GetEmpresa((int)row[8]);
+
+          //  Console.WriteLine(row.Count);
         }
     }
 }

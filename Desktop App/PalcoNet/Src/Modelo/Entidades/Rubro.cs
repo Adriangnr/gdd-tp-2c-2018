@@ -8,7 +8,7 @@ namespace PalcoNet.Src.Modelo.Entidades
 {
     public class Rubro
     {
-        private int codigo { get; set; }
+        public int codigo { get; set; }
         private string descripcion { get; set; }
 
         public Rubro(int codigo, string descripcion)

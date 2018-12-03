@@ -96,7 +96,7 @@ go
 create table ESECUELE.Usuario(
 	usr_id int identity(1,1),
 	usr_username varchar(50) primary key,
-	usr_pass varbinary(8000) default null,
+	usr_pass nvarchar(100) default null,
 	usr_estado bit default 1,
 	usr_nuevo bit default 1,
 	usr_fallas tinyint default 0,
@@ -300,6 +300,23 @@ go
 */
 
 /*
+* ------------------------- Creacion de funciones ----------------------------------
+*/
+create function ESECUELE.GetHash(@password nvarchar(100))
+returns nvarchar(100)
+as begin
+	declare @hash as varbinary(100) = HASHBYTES('SHA2_256', @password );
+
+	declare @result as nvarchar(100) = CONVERT(NVARCHAR(100), @hash, 2);
+
+	return @result;
+end
+go
+/*
+* --------------------- Fin Creacion de funciones. ----------------------------------
+*/
+
+/*
 * --------------------- Ingreso valores default ----------------------------------
 */
 
@@ -310,7 +327,7 @@ insert into ESECUELE.Rol (rol_nombre) values
 
 -- Ingreso de la cuenta para el administrador general
 insert into ESECUELE.Usuario (usr_username, usr_pass) values
-  ('admin', hashbytes('SHA2_256', 'w23e'))
+  ('admin', ESECUELE.GetHash('w23e'))
 
 -- Se ingresan todas las funcionalidades
 insert into ESECUELE.Funcionalidad (func_nombre, func_desc) values
@@ -387,7 +404,7 @@ usr_fecha_creacion)
 
 select distinct 
 CONCAT('usr_', Espec_Empresa_Cuit),
-(SELECT HASHBYTES('SHA2_256', Espec_Empresa_Cuit)),
+ESECUELE.GetHash(Espec_Empresa_Cuit),
 'Empresa',
 Espec_Empresa_Mail,
 CONCAT(Espec_Empresa_Dom_Calle, ' ', Espec_Empresa_Nro_Calle, ',',Espec_Empresa_Piso, ',', Espec_Empresa_Depto, ','),
@@ -407,7 +424,7 @@ usr_codigo_postal
 )
 select distinct
 concat('cli_', Cli_Dni),
-(SELECT HASHBYTES('SHA2_256', concat('cli_', Cli_Dni))),
+ESECUELE.GetHash(concat('cli_', Cli_Dni)),
 'Cliente',
 Cli_Mail,
 concat(Cli_Dom_Calle, ' ', Cli_Nro_Calle, ',', Cli_Piso, ',', Cli_Depto, ','),
@@ -664,56 +681,52 @@ end
 go
 
 -- Sproc para loguear
--- Returns -1 if login failed, the user is disabled
--- Returns -2 if password incorrect
--- Returns -3 if user doesnt exist
--- Returns -4 if no user has no roles assigned( dont know if can happen)
--- 0 if the login succeeded but there are many roles to choose from, or
--- positive integers if there was only one role and was automatically assigned
-create procedure ESECUELE.Login(@username varchar(50), @plain_password varchar(100), @return_val smallint output)
+-- Cualquier error devuelve SQLexception y -1
+-- Si el logueo es correcto y tiene un solo rol, devuelve ese rol
+-- Si el logueo es correcto y tiene mas de un rol, devuelve 4
+create procedure ESECUELE.Login(@username varchar(50), @password_input nvarchar(100), @return_val smallint output)
 as begin
   declare @estado bit = null
-  declare @password binary(32) = null
+  declare @password nvarchar(100) = null
   declare @fallos tinyint = null
 
-  declare @usuario_no_habilitado smallint
-  declare @password_incorrecto smallint
-  declare @usuario_no_existe smallint
-  declare @usuario_no_tiene_roles smallint
   declare @login_exitoso_muchos_roles smallint
 
-  set @usuario_no_habilitado = -1
-  set @password_incorrecto = -2
-  set @usuario_no_existe = -3
-  set @usuario_no_tiene_roles = -4
-  set @login_exitoso_muchos_roles = -5
+  set @login_exitoso_muchos_roles = 4
 
   select @estado = usr_estado, @fallos = usr_fallas, @password = usr_pass
   from ESECUELE.Usuario
   where usr_username = @username
 
-  if @estado = 0
+  if( @password is null)
   begin
-    select @return_val = @usuario_no_habilitado
+	raiserror('El usuario no existe.',18,10)
 	return
   end
-  if @password is null
+  
+  if @estado = 0
   begin
-	select @return_val = @usuario_no_existe
+    raiserror('El usuario se encuentra deshabilitado',18,10)
 	return
   end
 
   -- Si el usuario existe, checkeo passwords
-  if @password <> hashbytes('SHA2_256', @plain_password)
+  if @password <> @password_input
   begin
-    -- Si hay fallo, incremento
+    -- Si hay fallo, incremento contador
     set @fallos = @fallos + 1
     update ESECUELE.Usuario
       set usr_fallas = @fallos,
           usr_estado = case when @fallos >= 3  or usr_estado = 0 then 0
                           else 1 end
       where usr_username = @username
-    set @return_val = @password_incorrecto
+	declare @msg NVARCHAR(100)
+	if @fallos < 3
+		set @msg = formatmessage('Contraseña incorrecta. Tienes %d intentos restantes.', 3 - @fallos)
+	else
+		set @msg = 'Su usuario fue deshabilitado.'
+    raiserror(@msg, 18, 10)
+	return
   end
   else begin
     -- Como el login fue exitoso, limpiar los logueos fallidos
@@ -727,8 +740,11 @@ as begin
       where RU.rol_usr_username = @username and R.rol_estado = 1 -- Rol habilitado
     if @count > 1
       set @return_val = @login_exitoso_muchos_roles
-    else if @count < 1
-		select @return_val = @usuario_no_tiene_roles
+    else if @count = 0
+	begin
+		raiserror(N'Su usuario no tiene roles asignadoes, comunicarse con el administrador.', 18, 10)
+		return
+	end
 	else begin
       set @return_val = @role -- Retorno el unico rol disponible
     end
@@ -843,7 +859,7 @@ end
 go
 
 create procedure ESECUELE.SaveUsuario(@usr_username varchar(50), 
-								   @usr_pass varchar(50),
+								   @usr_pass nvarchar(100),
 								   @usr_tipo varchar(7),
 								   @usr_email varchar(50),
 								   @usr_telefono varchar(20),
@@ -853,11 +869,9 @@ create procedure ESECUELE.SaveUsuario(@usr_username varchar(50),
 								   @return_val int output) as
 begin 
 	begin try
-		declare @encryptedPass varbinary(8000);
-		set @encryptedPass = (SELECT HASHBYTES('SHA2_256', @usr_pass));  
 		insert into ESECUELE.Usuario
 		(usr_username, usr_pass, usr_estado, usr_nuevo, usr_fecha_creacion, usr_tipo, usr_email, usr_telefono, usr_direccion, usr_codigo_postal) 
-		values(@usr_username, @encryptedPass, 1, 0, @usr_creacion, @usr_tipo, @usr_email, @usr_telefono, @usr_direccion, @usr_codigo_postal)
+		values(@usr_username, @usr_pass, 1, 0, @usr_creacion, @usr_tipo, @usr_email, @usr_telefono, @usr_direccion, @usr_codigo_postal)
 		set @return_val = (SELECT SCOPE_IDENTITY())
 	end try
 	begin catch
@@ -1058,11 +1072,9 @@ begin
 end
 go
 
-create procedure ESECUELE.updatePassUsuario(@id int, @usr_pass varchar(50)) as
+create procedure ESECUELE.updatePassUsuario(@id int, @usr_pass nvarchar(100)) as
 begin
-	declare @encryptedPass varbinary(8000);
-	set @encryptedPass = (SELECT HASHBYTES('SHA2_256', @usr_pass));
-	update ESECUELE.Usuario set usr_pass = @encryptedPass where usr_id = @id;
+	update ESECUELE.Usuario set usr_pass = @usr_pass where usr_id = @id;
 end
 go
 
