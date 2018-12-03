@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PalcoNet.Src.Servicios.ServiceFactory
+namespace PalcoNet.Src.Servicios
 {
     class RubroService : DatabaseService
     {
