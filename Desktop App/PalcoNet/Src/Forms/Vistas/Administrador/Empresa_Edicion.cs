@@ -1,5 +1,7 @@
 ﻿using PalcoNet.Src.Excepciones;
 using PalcoNet.Src.Forms.Layouts;
+using PalcoNet.Src.Servicios;
+using PalcoNet.Src.Servicios.ServiceFactory;
 using PalcoNet.Src.Validadores;
 using System;
 using System.Windows.Forms;
@@ -9,6 +11,7 @@ namespace PalcoNet.Src.Forms.Vistas.Administrador
     public partial class Empresa_Edicion : Master
     {
         PalcoNet.Src.Modelo.Entidades.Empresa empresa;
+        EmpresaService empresaService = (EmpresaService)ServiceFactory.GetService("Empresa");
 
         public Empresa_Edicion()
         {
@@ -59,7 +62,9 @@ namespace PalcoNet.Src.Forms.Vistas.Administrador
                     this.empresa.UsuarioObj.Password = this.panel_datausuario.Controls["textBox_pass"].Text;
                     this.empresa.UsuarioObj.updatePassword();
                 }
-                this.empresa.update();
+
+                empresaService.update(this.empresa);
+                
                 MessageBox.Show("Empresa actualizada con éxito!", "Actualizar empresa.",
                                 MessageBoxButtons.OK, MessageBoxIcon.Information);
                 ((Empresa_Listado)this.previous).cargarListadoEmpresas();

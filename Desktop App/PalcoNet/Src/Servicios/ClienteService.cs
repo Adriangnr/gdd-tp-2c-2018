@@ -10,14 +10,16 @@ namespace PalcoNet.Src.Servicios
 {
     class ClienteService : DatabaseService
     {
+        DaoCliente daoCliente = new DaoCliente();
+
         public SortableBindingList<Cliente> Search(System.Windows.Forms.Control.ControlCollection filtros)
         {
-            DaoCliente daoCliente = new DaoCliente();
+            
             try
             {
                 SortableBindingList<Cliente> clientes = new SortableBindingList<Cliente>();
 
-                List <List<object>> results = daoCliente.Search(filtros);
+                List <List<object>> results = this.daoCliente.Search(filtros);
              
                 foreach (List<object> row in results){
                     Cliente clienteObj = new Cliente();
@@ -44,8 +46,7 @@ namespace PalcoNet.Src.Servicios
         {
             try
             {
-                DaoCliente clienteObj = new DaoCliente();
-                clienteObj.modifyStatus(clientId);
+                this.daoCliente.modifyStatus(clientId);
             }
             catch(Exception ex)
             {
@@ -64,6 +65,18 @@ namespace PalcoNet.Src.Servicios
             return cliente;
         }
         
+        public void update(Cliente cliente)
+        {
+            try
+            {
+                this.daoCliente.update(cliente);
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         private void loadCliente(Cliente clienteObj, List<object> row)
         {
             clienteObj.Id = (int)row[0];

@@ -42,11 +42,11 @@ namespace PalcoNet.Src.Servicios
                 empresa.Ciudad = userParams["empresa_ciudad"];
                 empresa.Cuit = userParams["empresa_cuit"];
                 empresa.Usuario = userParams["empresa_usuario"];
-                empresa.save();
+                DaoEmpresa daoEmpresa = new DaoEmpresa();
+                daoEmpresa.save(empresa);
             }
             else
             {
-                DaoCliente daoCliente = new DaoCliente();
                 Cliente cliente = new Cliente();
                 cliente.Nombre = userParams["cliente_nombre"];
                 cliente.Apellido = userParams["cliente_apellido"];
@@ -56,7 +56,7 @@ namespace PalcoNet.Src.Servicios
                 cliente.FechaNacimiento = userParams["cliente_fecha_nacimiento"];
                 cliente.DatosTarjeta = userParams["cliente_datos_tarjeta"];
                 cliente.Usuario = userParams["cliente_usuario"];
-
+                DaoCliente daoCliente = new DaoCliente();
                 daoCliente.save(cliente);
             }
         }
