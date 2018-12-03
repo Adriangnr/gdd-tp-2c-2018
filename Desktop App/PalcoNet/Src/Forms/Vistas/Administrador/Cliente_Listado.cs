@@ -157,22 +157,6 @@ namespace PalcoNet.Src.Forms.Vistas.Administrador
 
         private void btn_eliminar_Click(object sender, EventArgs e)
         {
-            try
-            {
-                ClienteService clienteService = (ClienteService)ServiceFactory.GetService("Cliente");
-                clienteService.borrar((int)this.dataGridClientes.CurrentRow.Cells[0].Value);
-                MessageBox.Show("Cliente borrado con exito!", "Borrar cliente.",
-                                    MessageBoxButtons.OK, MessageBoxIcon.Information);
-                this.loadClientList();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-                MessageBox.Show("Error al borrar el cliente!", "Error!",
-                                MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-            
         }
     }
 }

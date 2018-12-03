@@ -1,4 +1,5 @@
-﻿using PalcoNet.Src.Modelo.Entidades;
+﻿using PalcoNet.Src.Modelo.Daos;
+using PalcoNet.Src.Modelo.Entidades;
 using PalcoNet.Src.Utils;
 using System;
 using System.Collections.Generic;
@@ -8,14 +9,15 @@ namespace PalcoNet.Src.Servicios
 {
     class EmpresaService : DatabaseService
     {
+        DaoEmpresa daoEmpresa = new DaoEmpresa();
+
         public SortableBindingList<Empresa> Search(System.Windows.Forms.Control.ControlCollection filtros)
         {
-            Empresa empresaSearchEntity = new Empresa();
             try
             {
                 SortableBindingList<Empresa> empresas = new SortableBindingList<Empresa>();
 
-                List<List<object>> results = empresaSearchEntity.Search(filtros);
+                List<List<object>> results = this.daoEmpresa.Search(filtros);
 
                 foreach (List<object> row in results)
                 {
@@ -39,12 +41,11 @@ namespace PalcoNet.Src.Servicios
             empresaObj.Habilitado = (empresaObj.UsuarioObj.Habilitado) ? "Si" : "No";
         }
 
-        public void modifyStatus(int clientId)
+        public void modifyStatus(int empresaId)
         {
             try
             {
-                Empresa empresaObj = new Empresa();
-                empresaObj.modifyStatus(clientId);
+                this.daoEmpresa.modifyStatus(empresaId);
             }
             catch (Exception ex)
             {
@@ -134,6 +135,18 @@ namespace PalcoNet.Src.Servicios
                 publicacion.Estado = (string)row[8];
 
                 return publicacion;
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public void update(Empresa empresa)
+        {
+            try
+            {
+                daoEmpresa.update(empresa);
             }
             catch(Exception ex)
             {

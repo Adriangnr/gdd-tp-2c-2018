@@ -1,4 +1,5 @@
-﻿using PalcoNet.Src.Modelo.Entidades;
+﻿using PalcoNet.Src.Modelo.Daos;
+using PalcoNet.Src.Modelo.Entidades;
 using System;
 using System.Collections.Generic;
 
@@ -42,7 +43,8 @@ namespace PalcoNet.Src.Servicios
                 empresa.Ciudad = userParams["empresa_ciudad"];
                 empresa.Cuit = userParams["empresa_cuit"];
                 empresa.Usuario = userParams["empresa_usuario"];
-                empresa.save();
+                DaoEmpresa daoEmpresa = new DaoEmpresa();
+                daoEmpresa.save(empresa);
             }
             else
             {
@@ -55,8 +57,8 @@ namespace PalcoNet.Src.Servicios
                 cliente.FechaNacimiento = userParams["cliente_fecha_nacimiento"];
                 cliente.DatosTarjeta = userParams["cliente_datos_tarjeta"];
                 cliente.Usuario = userParams["cliente_usuario"];
-
-                cliente.save();
+                DaoCliente daoCliente = new DaoCliente();
+                daoCliente.save(cliente);
             }
         }
 

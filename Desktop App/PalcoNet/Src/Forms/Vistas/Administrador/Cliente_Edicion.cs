@@ -1,5 +1,8 @@
 ﻿using PalcoNet.Src.Excepciones;
 using PalcoNet.Src.Forms.Layouts;
+using PalcoNet.Src.Modelo.Daos;
+using PalcoNet.Src.Servicios;
+using PalcoNet.Src.Servicios.ServiceFactory;
 using PalcoNet.Src.Validadores;
 using System;
 using System.Windows.Forms;
@@ -9,6 +12,7 @@ namespace PalcoNet.Src.Forms.Vistas.Administrador
     public partial class Cliente_Edicion : Master
     {
         PalcoNet.Src.Modelo.Entidades.Cliente client;
+        ClienteService clienteService = (ClienteService)ServiceFactory.GetService("Cliente");
 
         public Cliente_Edicion()
         {
@@ -80,7 +84,8 @@ namespace PalcoNet.Src.Forms.Vistas.Administrador
                     this.client.UsuarioObj.Password = Utils.Utilities.Hash( this.panel_datausuario.Controls["textBox_pass"].Text);
                     this.client.UsuarioObj.updatePassword();
                 }
-                this.client.update();
+                
+                clienteService.update(this.client);
                 MessageBox.Show("Cliente actualizado con éxito!", "Actualizar cliente.",
                                 MessageBoxButtons.OK, MessageBoxIcon.Information);
                 ((Cliente_Listado)this.previous).loadClientList();
