@@ -1,5 +1,6 @@
 ﻿using PalcoNet.Src.Excepciones;
 using PalcoNet.Src.Forms.Layouts;
+using PalcoNet.Src.Modelo.Daos;
 using PalcoNet.Src.Validadores;
 using System;
 using System.Windows.Forms;
@@ -80,7 +81,8 @@ namespace PalcoNet.Src.Forms.Vistas.Administrador
                     this.client.UsuarioObj.Password = this.panel_datausuario.Controls["textBox_pass"].Text;
                     this.client.UsuarioObj.updatePassword();
                 }
-                this.client.update();
+                DaoCliente daoCliente = new DaoCliente();
+                daoCliente.update(this.client);
                 MessageBox.Show("Cliente actualizado con éxito!", "Actualizar cliente.",
                                 MessageBoxButtons.OK, MessageBoxIcon.Information);
                 ((Cliente_Listado)this.previous).loadClientList();

@@ -1,4 +1,5 @@
-﻿using PalcoNet.Src.Modelo.Entidades;
+﻿using PalcoNet.Src.Modelo.Daos;
+using PalcoNet.Src.Modelo.Entidades;
 using System;
 using System.Collections.Generic;
 
@@ -45,6 +46,7 @@ namespace PalcoNet.Src.Servicios
             }
             else
             {
+                DaoCliente daoCliente = new DaoCliente();
                 Cliente cliente = new Cliente();
                 cliente.Nombre = userParams["cliente_nombre"];
                 cliente.Apellido = userParams["cliente_apellido"];
@@ -55,7 +57,7 @@ namespace PalcoNet.Src.Servicios
                 cliente.DatosTarjeta = userParams["cliente_datos_tarjeta"];
                 cliente.Usuario = userParams["cliente_usuario"];
 
-                cliente.save();
+                daoCliente.save(cliente);
             }
         }
 
