@@ -21,6 +21,8 @@ namespace PalcoNet.Src.Forms.Vistas.General
         {
             InitializeComponent();
             this.ActiveControl = titulo;
+
+            Shown += Login_Shown;
             
             login_tbox_usuario.LostFocus += login_tbox_usuario_LostFocus;
             login_tbox_usuario.GotFocus += login_tbox_usuario_GotFocus;
@@ -30,6 +32,12 @@ namespace PalcoNet.Src.Forms.Vistas.General
             login_tbox_password.GotFocus += login_tbox_password_GotFocus;
             login_tbox_password.KeyDown += login_tbox_password_KeyDown;
             login_tbox_password.TextChanged += login_tbox_password_TextChanged;
+        }
+
+        void Login_Shown(object sender, EventArgs e)
+        {
+            login_tbox_usuario.Text = "Usuario";
+            this.ingresoUsuario = false;
         }
 
         public void clearFields()
@@ -135,14 +143,23 @@ namespace PalcoNet.Src.Forms.Vistas.General
             {
                 result = loginService.GetLogin(username, Utils.Utilities.Hash(password));
 
-                if(result == 4)
+                if (result < 0)
+                {
+                    MessageBox.Show("Debe cambiar su contraseña.", "Primer login",
+                    MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    Cambio_Password cambio_form = new Cambio_Password(username);
+                    cambio_form.ShowDialog();
+                }
+
+
+                if(Math.Abs(result) == 2)
                     {
                         UsuarioService usrService = (UsuarioService)ServiceFactory.GetService("Usuario");
                         Usuario usr = usrService.GetUser(username);
                         new Selector_Rol(this, usr).Show();
                         this.Hide();
                     }
-                else if(result > 0)
+                else
                     {
                         UsuarioService usrService = (UsuarioService)ServiceFactory.GetService("Usuario");
                         Usuario usr = usrService.GetUser(username);

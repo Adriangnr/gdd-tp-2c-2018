@@ -151,6 +151,12 @@
     <Compile Include="Src\Forms\Vistas\Empresa\Publicacion_Detalle.Designer.cs">
       <DependentUpon>Publicacion_Detalle.cs</DependentUpon>
     </Compile>
+    <Compile Include="Src\Forms\Vistas\General\Cambio_Password.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Src\Forms\Vistas\General\Cambio_Password.Designer.cs">
+      <DependentUpon>Cambio_Password.cs</DependentUpon>
+    </Compile>
     <Compile Include="Src\Forms\Vistas\General\MenuPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -313,6 +319,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Src\Forms\Vistas\Empresa\Publicacion_Listado.resx">
       <DependentUpon>Publicacion_Listado.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Src\Forms\Vistas\General\Cambio_Password.resx">
+      <DependentUpon>Cambio_Password.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Src\Forms\Vistas\General\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>

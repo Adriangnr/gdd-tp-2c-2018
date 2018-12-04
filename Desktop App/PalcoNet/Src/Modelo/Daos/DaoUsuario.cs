@@ -59,6 +59,22 @@ namespace PalcoNet.Src.Modelo.Daos
             }
         }
 
+        public void cambioPassword(string username, string password)
+        {
+            try
+            {
+                this.spExecute(this.schema + ".cambioPassword", new List<SqlParameter>
+                {
+                    new SqlParameter("@username", username),
+                    new SqlParameter("@new_password", Utils.Utilities.Hash(password))
+                });
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public void update(Usuario usuario)
         {
             try

@@ -97,5 +97,10 @@ namespace PalcoNet.Src.Servicios
         {
             this.daoUsuario.updatePassword(usuarioObj);
         }
+
+        public void cambioPassword(string username, string password)
+        {
+            this.daoUsuario.cambioPassword(username, password);
+        }
     }
 }

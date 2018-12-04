@@ -92,13 +92,14 @@ go
 	Usuario
 	Estado 0 - No habilitado
 	Estado 1 - Habilitado
+	Primer Login 1 --> Necesita cambiar su password
 */
 create table ESECUELE.Usuario(
 	usr_id int identity(1,1),
 	usr_username varchar(50) primary key,
 	usr_pass nvarchar(100) default null,
 	usr_estado bit default 1,
-	usr_nuevo bit default 1,
+	usr_primer_login bit default 1,
 	usr_fallas tinyint default 0,
 	usr_fecha_creacion datetime default null,
 	usr_tipo varchar(7) default null,
@@ -224,7 +225,7 @@ create table ESECUELE.UbicacionNumerada(
 	ubicacion_fila char default null,
 	ubicacion_asiento int default null,
 	ubicacion_precio numeric(18,2) not null,
-	ubicacion_disponible bit default 1,
+	ubicacion_disponible bit default 1, -- 1 Disponible , 0 no disponible
 	ubicacion_tipo int default null
 	constraint PK_Entrada primary key (ubicacion_publicacion, ubicacion_fila, ubicacion_asiento, ubicacion_tipo)
 )
@@ -326,8 +327,8 @@ insert into ESECUELE.Rol (rol_nombre) values
   ('Empresa')
 
 -- Ingreso de la cuenta para el administrador general
-insert into ESECUELE.Usuario (usr_username, usr_pass) values
-  ('admin', ESECUELE.GetHash('w23e'))
+insert into ESECUELE.Usuario (usr_username, usr_pass, usr_primer_login) values
+  ('admin', ESECUELE.GetHash('w23e'), 0)
 
 -- Se ingresan todas las funcionalidades
 insert into ESECUELE.Funcionalidad (func_nombre, func_desc) values
@@ -424,7 +425,7 @@ usr_codigo_postal
 )
 select distinct
 concat('cli_', Cli_Dni),
-ESECUELE.GetHash(concat('cli_', Cli_Dni)),
+ESECUELE.GetHash(Cli_Dni),
 'Cliente',
 Cli_Mail,
 concat(Cli_Dom_Calle, ' ', Cli_Nro_Calle, ',', Cli_Piso, ',', Cli_Depto, ','),
@@ -474,15 +475,17 @@ Espectaculo_Estado
 
 -- Carga de Ubicaciones
 insert into ESECUELE.UbicacionNumerada
-(ubicacion_publicacion,ubicacion_fila, ubicacion_asiento, ubicacion_precio, ubicacion_tipo)
+(ubicacion_publicacion,ubicacion_fila, ubicacion_asiento, ubicacion_precio, ubicacion_tipo, ubicacion_disponible)
 select distinct
 Espectaculo_Cod,
 Ubicacion_Fila, 
 Ubicacion_Asiento,  
 Ubicacion_Precio, 
-Ubicacion_Tipo_Codigo
+Ubicacion_Tipo_Codigo,
+0
 from gd_esquema.Maestra
 where Ubicacion_Sin_numerar = 0
+and Cli_Dni is null and Item_Factura_Cantidad is null
 -- Fin de Carga de Ubicaciones
 
 -- Como no hay ubicaciones sin numerar en la tabla maestra, no migramos
@@ -671,30 +674,27 @@ go
 
 /*--------------------------- Store procedures ----------------------------------*/
 
-create procedure ESECUELE.LimpiarHabilitarUsuario(@username varchar(50))
+create procedure ESECUELE.SetFallosEstadoUsuario(@username varchar(50), @estado bit, @fallos tinyint)
 as
 begin
 	  update ESECUELE.Usuario
-		set usr_fallas = 0, usr_estado= 1
+		set usr_fallas = @fallos, usr_estado= @estado
 		where usr_username = @username
 end
 go
 
 -- Sproc para loguear
 -- Cualquier error devuelve SQLexception y -1
--- Si el logueo es correcto y tiene un solo rol, devuelve ese rol
--- Si el logueo es correcto y tiene mas de un rol, devuelve 4
+-- Si el logueo es correcto y tiene un solo rol, devuelve ese 1, -1 si es primer logueo
+-- Si el logueo es correcto y tiene mas de un rol, devuelve 2, -2 si es primer logueo
 create procedure ESECUELE.Login(@username varchar(50), @password_input nvarchar(100), @return_val smallint output)
 as begin
   declare @estado bit = null
+  declare @primer_login bit = null
   declare @password nvarchar(100) = null
   declare @fallos tinyint = null
 
-  declare @login_exitoso_muchos_roles smallint
-
-  set @login_exitoso_muchos_roles = 4
-
-  select @estado = usr_estado, @fallos = usr_fallas, @password = usr_pass
+  select @estado = usr_estado, @fallos = usr_fallas, @password = usr_pass, @primer_login = usr_primer_login
   from ESECUELE.Usuario
   where usr_username = @username
 
@@ -729,26 +729,40 @@ as begin
 	return
   end
   else begin
-    -- Como el login fue exitoso, limpiar los logueos fallidos
-    exec ESECUELE.LimpiarHabilitarUsuario @username
-
     -- Obtener los roles del usuario
-    declare @role smallint
     declare @count smallint
-    select @count = count(R.rol_id), @role = max(R.rol_id)
-      from ESECUELE.Rol_Usuario RU left join ESECUELE.Rol R on R.rol_id = RU.rol_usr_rol_id
+    select @count = count(R.rol_id)
+      from ESECUELE.Rol_Usuario RU join ESECUELE.Rol R on R.rol_id = RU.rol_usr_rol_id
       where RU.rol_usr_username = @username and R.rol_estado = 1 -- Rol habilitado
-    if @count > 1
-      set @return_val = @login_exitoso_muchos_roles
-    else if @count = 0
+    if @count = 0
 	begin
 		raiserror(N'Su usuario no tiene roles asignadoes, comunicarse con el administrador.', 18, 10)
 		return
 	end
-	else begin
-      set @return_val = @role -- Retorno el unico rol disponible
+
+	if @primer_login = 1
+		 exec ESECUELE.SetFallosEstadoUsuario @username, 1, 1
+	else
+		 exec ESECUELE.SetFallosEstadoUsuario @username, 1, 3
+   
+    if @count > 1 and @primer_login = 1
+			set @return_val = -2
+		else
+			set @return_val = 2
+
+	if  @count = 1 and @primer_login = 1	
+		set @return_val = -1
+	else
+		set @return_val = 1
     end
-  end
+end
+go
+
+create procedure ESECUELE.cambioPassword(@username varchar(50),@new_password nvarchar(100))
+as begin
+	update ESECUELE.Usuario
+	set usr_pass = @new_password, usr_primer_login = 0
+	where usr_username = @username
 end
 go
 
@@ -877,7 +891,7 @@ create procedure ESECUELE.SaveUsuario(@usr_username varchar(50),
 begin 
 	begin try
 		insert into ESECUELE.Usuario
-		(usr_username, usr_pass, usr_estado, usr_nuevo, usr_fecha_creacion, usr_tipo, usr_email, usr_telefono, usr_direccion, usr_codigo_postal) 
+		(usr_username, usr_pass, usr_estado, usr_primer_login, usr_fecha_creacion, usr_tipo, usr_email, usr_telefono, usr_direccion, usr_codigo_postal) 
 		values(@usr_username, @usr_pass, 1, 0, @usr_creacion, @usr_tipo, @usr_email, @usr_telefono, @usr_direccion, @usr_codigo_postal)
 		set @return_val = (SELECT SCOPE_IDENTITY())
 	end try
@@ -1267,15 +1281,6 @@ begin
 end
 go
 
-create procedure ESECUELE.SearchPagedPublicacionesParaCompra(@idEmpresa int, @offset int, @items int) as
-begin
-	select *, COUNT(*) OVER() from ESECUELE.Publicacion where publicacion_empresa = @idEmpresa 
-	order by publicacion_codigo DESC
-	offset @offset rows fetch next @items rows only
-end
-go
-
-
 create procedure ESECUELE.SearchPagedPublicacionesParaCompra(
 							@categorias varchar(255) = null,
 							@descripcion varchar(255) = null, 
@@ -1323,4 +1328,4 @@ begin
 end
 go
 
-exec ESECUELE.SearchPagedPublicacionesParaCompra null, null, null, null, null, 0, 10
+--exec ESECUELE.SearchPagedPublicacionesParaCompra null, null, null, null, null, 0, 10
