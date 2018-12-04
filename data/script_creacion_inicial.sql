@@ -722,7 +722,7 @@ as begin
       where usr_username = @username
 	declare @msg NVARCHAR(100)
 	if @fallos < 3
-		set @msg = formatmessage('Contraseña incorrecta. Tienes %d intentos restantes.', 3 - @fallos)
+		set @msg = formatmessage('Contraseï¿½a incorrecta. Tienes %d intentos restantes.', 3 - @fallos)
 	else
 		set @msg = 'Su usuario fue deshabilitado.'
     raiserror(@msg, 18, 10)
@@ -1267,15 +1267,6 @@ begin
 end
 go
 
-create procedure ESECUELE.SearchPagedPublicacionesParaCompra(@idEmpresa int, @offset int, @items int) as
-begin
-	select *, COUNT(*) OVER() from ESECUELE.Publicacion where publicacion_empresa = @idEmpresa 
-	order by publicacion_codigo DESC
-	offset @offset rows fetch next @items rows only
-end
-go
-
-
 create procedure ESECUELE.SearchPagedPublicacionesParaCompra(
 							@categorias varchar(255) = null,
 							@descripcion varchar(255) = null, 
@@ -1322,5 +1313,3 @@ begin
 	exec sp_executesql @query
 end
 go
-
-exec ESECUELE.SearchPagedPublicacionesParaCompra null, null, null, null, null, 0, 10
