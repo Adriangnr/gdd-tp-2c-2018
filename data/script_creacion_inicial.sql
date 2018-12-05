@@ -731,7 +731,7 @@ as begin
   else begin
     -- Obtener los roles del usuario
     declare @count smallint
-    select @count = count(R.rol_id)
+    select @count = count(1)
       from ESECUELE.Rol_Usuario RU join ESECUELE.Rol R on R.rol_id = RU.rol_usr_rol_id
       where RU.rol_usr_username = @username and R.rol_estado = 1 -- Rol habilitado
     if @count = 0
@@ -745,22 +745,27 @@ as begin
 	else
 		 exec ESECUELE.SetFallosEstadoUsuario @username, 1, 3
    
-    if @count > 1 and @primer_login = 1
-		begin
-			set @return_val = -2
-			return
-		end
+   if @count > 1
+   begin
+		if @primer_login = 1
+			begin
+				set @return_val = -2
+				return
+			end
+		else
+			begin
+				set @return_val = 2
+				return
+			end
+	end
 	else
 		begin
-			set @return_val = 2
-			return
+			if  @primer_login = 1	
+				set @return_val = -1
+			else
+				set @return_val = 1
+			end
 		end
-
-	if  @count = 1 and @primer_login = 1	
-		set @return_val = -1
-	else
-		set @return_val = 1
-    end
 end
 go
 
