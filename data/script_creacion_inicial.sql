@@ -746,9 +746,15 @@ as begin
 		 exec ESECUELE.SetFallosEstadoUsuario @username, 1, 3
    
     if @count > 1 and @primer_login = 1
+		begin
 			set @return_val = -2
-		else
+			return
+		end
+	else
+		begin
 			set @return_val = 2
+			return
+		end
 
 	if  @count = 1 and @primer_login = 1	
 		set @return_val = -1
