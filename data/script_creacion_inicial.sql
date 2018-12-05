@@ -743,7 +743,7 @@ as begin
 	if @primer_login = 1
 		 exec ESECUELE.SetFallosEstadoUsuario @username, 1, 1
 	else
-		 exec ESECUELE.SetFallosEstadoUsuario @username, 1, 3
+		 exec ESECUELE.SetFallosEstadoUsuario @username, 1, 0
    
    if @count > 1
    begin
