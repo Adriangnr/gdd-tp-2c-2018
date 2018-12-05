@@ -40,6 +40,10 @@ namespace PalcoNet.Src.Forms.Layouts
 
         }
 
-
+        private void Form_Closed(object sender, FormClosedEventArgs e)
+        {
+            if (e.CloseReason == CloseReason.UserClosing || e.CloseReason == CloseReason.WindowsShutDown)
+                Application.Exit();
+        }
     }
 }

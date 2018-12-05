@@ -38,7 +38,8 @@
             // 
             // footer
             // 
-            this.footer.Location = new System.Drawing.Point(855, 424);
+            this.footer.Location = new System.Drawing.Point(1282, 652);
+            this.footer.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             // 
             // groupBox1
             // 
@@ -46,9 +47,11 @@
             this.groupBox1.Controls.Add(this.btn_search);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.ForeColor = System.Drawing.Color.DimGray;
-            this.groupBox1.Location = new System.Drawing.Point(32, 78);
+            this.groupBox1.Location = new System.Drawing.Point(48, 120);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(189, 328);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.groupBox1.Size = new System.Drawing.Size(284, 505);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Filtros";
@@ -60,9 +63,10 @@
             this.linkLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.linkLabel1.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
             this.linkLabel1.LinkColor = System.Drawing.SystemColors.MenuHighlight;
-            this.linkLabel1.Location = new System.Drawing.Point(49, 241);
+            this.linkLabel1.Location = new System.Drawing.Point(74, 371);
+            this.linkLabel1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(86, 16);
+            this.linkLabel1.Size = new System.Drawing.Size(125, 25);
             this.linkLabel1.TabIndex = 14;
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "Limpiar filtros";
@@ -74,10 +78,10 @@
             this.btn_search.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_search.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_search.ForeColor = System.Drawing.SystemColors.Window;
-            this.btn_search.Location = new System.Drawing.Point(19, 267);
+            this.btn_search.Location = new System.Drawing.Point(28, 411);
             this.btn_search.Margin = new System.Windows.Forms.Padding(0);
             this.btn_search.Name = "btn_search";
-            this.btn_search.Size = new System.Drawing.Size(145, 45);
+            this.btn_search.Size = new System.Drawing.Size(218, 69);
             this.btn_search.TabIndex = 5;
             this.btn_search.Text = "Buscar";
             this.btn_search.UseVisualStyleBackColor = false;
@@ -87,9 +91,10 @@
             this.Entidad.AutoSize = true;
             this.Entidad.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Entidad.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.Entidad.Location = new System.Drawing.Point(242, 40);
+            this.Entidad.Location = new System.Drawing.Point(363, 62);
+            this.Entidad.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Entidad.Name = "Entidad";
-            this.Entidad.Size = new System.Drawing.Size(65, 18);
+            this.Entidad.Size = new System.Drawing.Size(109, 29);
             this.Entidad.TabIndex = 17;
             this.Entidad.Text = "[Entidad]";
             // 
@@ -98,9 +103,10 @@
             this.btn_cancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_cancel.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_cancel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.btn_cancel.Location = new System.Drawing.Point(964, 350);
+            this.btn_cancel.Location = new System.Drawing.Point(1446, 538);
+            this.btn_cancel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btn_cancel.Name = "btn_cancel";
-            this.btn_cancel.Size = new System.Drawing.Size(129, 45);
+            this.btn_cancel.Size = new System.Drawing.Size(194, 69);
             this.btn_cancel.TabIndex = 56;
             this.btn_cancel.Text = "Cancelar";
             this.btn_cancel.UseVisualStyleBackColor = true;
@@ -108,13 +114,14 @@
             // 
             // Listado
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1134, 462);
+            this.ClientSize = new System.Drawing.Size(1701, 711);
             this.Controls.Add(this.btn_cancel);
             this.Controls.Add(this.Entidad);
             this.Controls.Add(this.groupBox1);
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
+            this.MaximizeBox = false;
             this.Name = "Listado";
             this.Text = "Listado";
             this.Load += new System.EventHandler(this.Listado_Load);

@@ -94,7 +94,8 @@
             // 
             // btn_cancel
             // 
-            this.btn_cancel.Location = new System.Drawing.Point(1446, 537);
+            this.btn_cancel.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btn_cancel.Location = new System.Drawing.Point(1057, 501);
             this.btn_cancel.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
             // 
             // linkLabel1
@@ -102,6 +103,11 @@
             this.linkLabel1.Location = new System.Drawing.Point(84, 417);
             this.linkLabel1.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
+            // 
+            // footer
+            // 
+            this.footer.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.footer.Location = new System.Drawing.Point(882, 649);
             // 
             // fechaInicioVista
             // 
@@ -123,11 +129,12 @@
             // 
             // btn_buy
             // 
+            this.btn_buy.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btn_buy.BackColor = System.Drawing.SystemColors.Highlight;
             this.btn_buy.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_buy.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_buy.ForeColor = System.Drawing.SystemColors.Window;
-            this.btn_buy.Location = new System.Drawing.Point(1446, 128);
+            this.btn_buy.Location = new System.Drawing.Point(1057, 139);
             this.btn_buy.Margin = new System.Windows.Forms.Padding(0);
             this.btn_buy.Name = "btn_buy";
             this.btn_buy.Size = new System.Drawing.Size(194, 69);
@@ -206,20 +213,18 @@
             // 
             this.dataGridPublicaciones.AllowUserToAddRows = false;
             this.dataGridPublicaciones.AllowUserToDeleteRows = false;
-            this.dataGridPublicaciones.AllowUserToOrderColumns = true;
+            this.dataGridPublicaciones.AllowUserToResizeColumns = false;
             this.dataGridPublicaciones.AllowUserToResizeRows = false;
-            this.dataGridPublicaciones.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridPublicaciones.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridPublicaciones.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridPublicaciones.Location = new System.Drawing.Point(358, 131);
+            this.dataGridPublicaciones.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.dataGridPublicaciones.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.dataGridPublicaciones.Location = new System.Drawing.Point(370, 139);
             this.dataGridPublicaciones.MultiSelect = false;
             this.dataGridPublicaciones.Name = "dataGridPublicaciones";
             this.dataGridPublicaciones.ReadOnly = true;
             this.dataGridPublicaciones.RowHeadersVisible = false;
+            this.dataGridPublicaciones.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dataGridPublicaciones.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridPublicaciones.Size = new System.Drawing.Size(1041, 431);
+            this.dataGridPublicaciones.Size = new System.Drawing.Size(662, 431);
             this.dataGridPublicaciones.TabIndex = 59;
             // 
             // categoriasComboBox
@@ -287,20 +292,22 @@
             // 
             // panelPaginatorControls
             // 
-            this.panelPaginatorControls.Location = new System.Drawing.Point(514, 578);
+            this.panelPaginatorControls.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.panelPaginatorControls.Location = new System.Drawing.Point(370, 578);
             this.panelPaginatorControls.Name = "panelPaginatorControls";
-            this.panelPaginatorControls.Size = new System.Drawing.Size(704, 63);
+            this.panelPaginatorControls.Size = new System.Drawing.Size(662, 63);
             this.panelPaginatorControls.TabIndex = 60;
             // 
             // Compra
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1701, 711);
+            this.ClientSize = new System.Drawing.Size(1701, 726);
             this.Controls.Add(this.panelPaginatorControls);
             this.Controls.Add(this.dataGridPublicaciones);
             this.Controls.Add(this.btn_buy);
             this.Margin = new System.Windows.Forms.Padding(9, 12, 9, 12);
+            this.MaximizeBox = false;
             this.Name = "Compra";
             this.Text = "Palco.NET - Comprar";
             this.Load += new System.EventHandler(this.Compra_Load);
