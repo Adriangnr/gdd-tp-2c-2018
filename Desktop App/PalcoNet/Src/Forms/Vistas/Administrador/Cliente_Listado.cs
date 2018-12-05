@@ -27,6 +27,9 @@ namespace PalcoNet.Src.Forms.Vistas.Administrador
             {
                 this.dataGridClientes.DataSource = clienteService.Search(this.groupBox1.Controls);
 
+                this.dataGridClientes.AutoSize = false;
+                this.dataGridClientes.ScrollBars = ScrollBars.Both;
+
                 if (this.dataGridClientes.Rows.Count == 0)
                     MessageBox.Show("No se encontraron clientes!", "Listado de clientes.",
                                 MessageBoxButtons.OK, MessageBoxIcon.Information);

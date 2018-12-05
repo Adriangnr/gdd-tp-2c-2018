@@ -219,7 +219,7 @@
             this.dataGridPublicaciones.ReadOnly = true;
             this.dataGridPublicaciones.RowHeadersVisible = false;
             this.dataGridPublicaciones.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridPublicaciones.Size = new System.Drawing.Size(1041, 472);
+            this.dataGridPublicaciones.Size = new System.Drawing.Size(1041, 431);
             this.dataGridPublicaciones.TabIndex = 59;
             // 
             // categoriasComboBox
@@ -287,7 +287,7 @@
             // 
             // panelPaginatorControls
             // 
-            this.panelPaginatorControls.Location = new System.Drawing.Point(538, 609);
+            this.panelPaginatorControls.Location = new System.Drawing.Point(514, 578);
             this.panelPaginatorControls.Name = "panelPaginatorControls";
             this.panelPaginatorControls.Size = new System.Drawing.Size(704, 63);
             this.panelPaginatorControls.TabIndex = 60;

@@ -1291,7 +1291,7 @@ begin
 			set @query = @query + ' and p.publicacion_descripcion like ''%'	+ @descripcion + '%'''
 		end
 
-		if @categorias is not null 
+		if @categorias is not null
 		begin
 			set @query = @query + ' and p.publicacion_rubro in ' + @categorias
 		end

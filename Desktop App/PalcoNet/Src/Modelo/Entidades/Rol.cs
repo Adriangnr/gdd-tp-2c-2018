@@ -22,7 +22,7 @@ namespace PalcoNet.Src.Modelo.Entidades
             this.Id = (byte)row[0];
             this.Estado = (bool)row[2];
             this.Nombre = (string)row[1];
-            this.Seleccionado = (rows.Count > 1) ? true : false;
+            this.Seleccionado = false;
             this.CargarFuncionalidades();
         }
 
