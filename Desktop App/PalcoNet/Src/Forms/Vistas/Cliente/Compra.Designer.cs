@@ -63,9 +63,9 @@
             this.groupBox1.Controls.Add(this.fechaFinVista);
             this.groupBox1.Controls.Add(this.categoriasVista);
             this.groupBox1.Controls.Add(this.fechaInicioVista);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(6, 8, 6, 8);
-            this.groupBox1.Size = new System.Drawing.Size(284, 552);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.groupBox1.Size = new System.Drawing.Size(189, 359);
             this.groupBox1.Controls.SetChildIndex(this.linkLabel1, 0);
             this.groupBox1.Controls.SetChildIndex(this.fechaInicioVista, 0);
             this.groupBox1.Controls.SetChildIndex(this.categoriasVista, 0);
@@ -84,24 +84,23 @@
             // 
             // btn_search
             // 
-            this.btn_search.Location = new System.Drawing.Point(28, 452);
+            this.btn_search.Location = new System.Drawing.Point(19, 294);
             // 
             // Entidad
             // 
-            this.Entidad.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            this.Entidad.Size = new System.Drawing.Size(107, 29);
+            this.Entidad.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.Entidad.Size = new System.Drawing.Size(67, 18);
             this.Entidad.Text = "Comprar";
             // 
             // btn_cancel
-            // 
-            this.btn_cancel.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btn_cancel.Location = new System.Drawing.Point(1057, 501);
-            this.btn_cancel.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
+            //
+            this.btn_cancel.Location = new System.Drawing.Point(964, 349);
+            this.btn_cancel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             // 
             // linkLabel1
             // 
-            this.linkLabel1.Location = new System.Drawing.Point(84, 417);
-            this.linkLabel1.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.linkLabel1.Location = new System.Drawing.Point(56, 271);
+            this.linkLabel1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
             // footer
@@ -112,19 +111,17 @@
             // fechaInicioVista
             // 
             this.fechaInicioVista.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.fechaInicioVista.Location = new System.Drawing.Point(28, 292);
-            this.fechaInicioVista.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.fechaInicioVista.Location = new System.Drawing.Point(19, 190);
             this.fechaInicioVista.Name = "fechaInicioVista";
-            this.fechaInicioVista.Size = new System.Drawing.Size(184, 30);
+            this.fechaInicioVista.Size = new System.Drawing.Size(124, 22);
             this.fechaInicioVista.TabIndex = 15;
             // 
             // fechaFinVista
             // 
             this.fechaFinVista.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.fechaFinVista.Location = new System.Drawing.Point(28, 375);
-            this.fechaFinVista.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.fechaFinVista.Location = new System.Drawing.Point(19, 244);
             this.fechaFinVista.Name = "fechaFinVista";
-            this.fechaFinVista.Size = new System.Drawing.Size(182, 30);
+            this.fechaFinVista.Size = new System.Drawing.Size(123, 22);
             this.fechaFinVista.TabIndex = 16;
             // 
             // btn_buy
@@ -134,10 +131,10 @@
             this.btn_buy.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_buy.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_buy.ForeColor = System.Drawing.SystemColors.Window;
-            this.btn_buy.Location = new System.Drawing.Point(1057, 139);
+            this.btn_buy.Location = new System.Drawing.Point(964, 83);
             this.btn_buy.Margin = new System.Windows.Forms.Padding(0);
             this.btn_buy.Name = "btn_buy";
-            this.btn_buy.Size = new System.Drawing.Size(194, 69);
+            this.btn_buy.Size = new System.Drawing.Size(129, 45);
             this.btn_buy.TabIndex = 58;
             this.btn_buy.Text = "Comprar";
             this.btn_buy.UseVisualStyleBackColor = false;
@@ -146,10 +143,9 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(28, 34);
-            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label5.Location = new System.Drawing.Point(19, 22);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(97, 22);
+            this.label5.Size = new System.Drawing.Size(66, 15);
             this.label5.TabIndex = 60;
             this.label5.Text = "Categorías";
             // 
@@ -158,21 +154,19 @@
             this.categoriasVista.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.categoriasVista.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.categoriasVista.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.categoriasVista.Location = new System.Drawing.Point(28, 63);
-            this.categoriasVista.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.categoriasVista.Location = new System.Drawing.Point(19, 41);
             this.categoriasVista.Name = "categoriasVista";
             this.categoriasVista.ReadOnly = true;
-            this.categoriasVista.Size = new System.Drawing.Size(228, 33);
+            this.categoriasVista.Size = new System.Drawing.Size(153, 24);
             this.categoriasVista.TabIndex = 59;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(28, 182);
-            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label6.Location = new System.Drawing.Point(19, 118);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(104, 22);
+            this.label6.Size = new System.Drawing.Size(72, 15);
             this.label6.TabIndex = 62;
             this.label6.Text = "Descripción";
             // 
@@ -181,20 +175,18 @@
             this.descripcion.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.descripcion.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.descripcion.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.descripcion.Location = new System.Drawing.Point(28, 211);
-            this.descripcion.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.descripcion.Location = new System.Drawing.Point(19, 137);
             this.descripcion.Name = "descripcion";
-            this.descripcion.Size = new System.Drawing.Size(228, 33);
+            this.descripcion.Size = new System.Drawing.Size(153, 24);
             this.descripcion.TabIndex = 61;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(28, 265);
-            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label7.Location = new System.Drawing.Point(19, 172);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(117, 22);
+            this.label7.Size = new System.Drawing.Size(80, 15);
             this.label7.TabIndex = 60;
             this.label7.Text = "Fecha Desde";
             // 
@@ -202,10 +194,9 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(28, 348);
-            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label8.Location = new System.Drawing.Point(19, 226);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(112, 22);
+            this.label8.Size = new System.Drawing.Size(76, 15);
             this.label8.TabIndex = 60;
             this.label8.Text = "Fecha Hasta";
             // 
@@ -215,16 +206,19 @@
             this.dataGridPublicaciones.AllowUserToDeleteRows = false;
             this.dataGridPublicaciones.AllowUserToResizeColumns = false;
             this.dataGridPublicaciones.AllowUserToResizeRows = false;
-            this.dataGridPublicaciones.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.dataGridPublicaciones.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.dataGridPublicaciones.Location = new System.Drawing.Point(370, 139);
+            this.dataGridPublicaciones.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridPublicaciones.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridPublicaciones.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridPublicaciones.Location = new System.Drawing.Point(239, 85);
+            this.dataGridPublicaciones.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridPublicaciones.MultiSelect = false;
             this.dataGridPublicaciones.Name = "dataGridPublicaciones";
             this.dataGridPublicaciones.ReadOnly = true;
             this.dataGridPublicaciones.RowHeadersVisible = false;
             this.dataGridPublicaciones.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dataGridPublicaciones.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridPublicaciones.Size = new System.Drawing.Size(662, 431);
+            this.dataGridPublicaciones.Size = new System.Drawing.Size(694, 280);
             this.dataGridPublicaciones.TabIndex = 59;
             // 
             // categoriasComboBox
@@ -232,10 +226,9 @@
             this.categoriasComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.categoriasComboBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.categoriasComboBox.FormattingEnabled = true;
-            this.categoriasComboBox.Location = new System.Drawing.Point(28, 126);
-            this.categoriasComboBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.categoriasComboBox.Location = new System.Drawing.Point(19, 82);
             this.categoriasComboBox.Name = "categoriasComboBox";
-            this.categoriasComboBox.Size = new System.Drawing.Size(144, 33);
+            this.categoriasComboBox.Size = new System.Drawing.Size(97, 24);
             this.categoriasComboBox.TabIndex = 63;
             // 
             // agregarCategoria
@@ -244,10 +237,9 @@
             this.agregarCategoria.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.agregarCategoria.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.agregarCategoria.ForeColor = System.Drawing.Color.Black;
-            this.agregarCategoria.Location = new System.Drawing.Point(182, 126);
-            this.agregarCategoria.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.agregarCategoria.Location = new System.Drawing.Point(121, 82);
             this.agregarCategoria.Name = "agregarCategoria";
-            this.agregarCategoria.Size = new System.Drawing.Size(36, 37);
+            this.agregarCategoria.Size = new System.Drawing.Size(24, 24);
             this.agregarCategoria.TabIndex = 60;
             this.agregarCategoria.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.agregarCategoria.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
@@ -257,20 +249,18 @@
             // fechaInicioCheckBox
             // 
             this.fechaInicioCheckBox.AutoSize = true;
-            this.fechaInicioCheckBox.Location = new System.Drawing.Point(224, 300);
-            this.fechaInicioCheckBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.fechaInicioCheckBox.Location = new System.Drawing.Point(149, 195);
             this.fechaInicioCheckBox.Name = "fechaInicioCheckBox";
-            this.fechaInicioCheckBox.Size = new System.Drawing.Size(22, 21);
+            this.fechaInicioCheckBox.Size = new System.Drawing.Size(15, 14);
             this.fechaInicioCheckBox.TabIndex = 60;
             this.fechaInicioCheckBox.UseVisualStyleBackColor = true;
             // 
             // fechaFinCheckBox
             // 
             this.fechaFinCheckBox.AutoSize = true;
-            this.fechaFinCheckBox.Location = new System.Drawing.Point(222, 383);
-            this.fechaFinCheckBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.fechaFinCheckBox.Location = new System.Drawing.Point(148, 249);
             this.fechaFinCheckBox.Name = "fechaFinCheckBox";
-            this.fechaFinCheckBox.Size = new System.Drawing.Size(22, 21);
+            this.fechaFinCheckBox.Size = new System.Drawing.Size(15, 14);
             this.fechaFinCheckBox.TabIndex = 64;
             this.fechaFinCheckBox.UseVisualStyleBackColor = true;
             // 
@@ -280,10 +270,9 @@
             this.quitarCategoria.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.quitarCategoria.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.quitarCategoria.ForeColor = System.Drawing.Color.Black;
-            this.quitarCategoria.Location = new System.Drawing.Point(222, 126);
-            this.quitarCategoria.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.quitarCategoria.Location = new System.Drawing.Point(148, 82);
             this.quitarCategoria.Name = "quitarCategoria";
-            this.quitarCategoria.Size = new System.Drawing.Size(36, 37);
+            this.quitarCategoria.Size = new System.Drawing.Size(24, 24);
             this.quitarCategoria.TabIndex = 65;
             this.quitarCategoria.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.quitarCategoria.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
@@ -292,22 +281,21 @@
             // 
             // panelPaginatorControls
             // 
-            this.panelPaginatorControls.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.panelPaginatorControls.Location = new System.Drawing.Point(370, 578);
+            this.panelPaginatorControls.Location = new System.Drawing.Point(343, 376);
+            this.panelPaginatorControls.Margin = new System.Windows.Forms.Padding(2);
             this.panelPaginatorControls.Name = "panelPaginatorControls";
-            this.panelPaginatorControls.Size = new System.Drawing.Size(662, 63);
+            this.panelPaginatorControls.Size = new System.Drawing.Size(469, 41);
             this.panelPaginatorControls.TabIndex = 60;
             // 
             // Compra
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1701, 726);
+            this.ClientSize = new System.Drawing.Size(1134, 462);
             this.Controls.Add(this.panelPaginatorControls);
             this.Controls.Add(this.dataGridPublicaciones);
             this.Controls.Add(this.btn_buy);
-            this.Margin = new System.Windows.Forms.Padding(9, 12, 9, 12);
-            this.MaximizeBox = false;
+            this.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
             this.Name = "Compra";
             this.Text = "Palco.NET - Comprar";
             this.Load += new System.EventHandler(this.Compra_Load);
