@@ -76,8 +76,13 @@
             this.Entidad.Size = new System.Drawing.Size(101, 29);
             this.Entidad.Text = "Clientes";
             // 
+            // btn_cancel
+            // 
+            this.btn_cancel.Location = new System.Drawing.Point(1057, 543);
+            // 
             // footer
             // 
+            this.footer.Location = new System.Drawing.Point(893, 657);
             this.footer.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             // 
             // label8
@@ -174,7 +179,7 @@
             this.btn_habilitar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_habilitar.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_habilitar.ForeColor = System.Drawing.SystemColors.Window;
-            this.btn_habilitar.Location = new System.Drawing.Point(1446, 123);
+            this.btn_habilitar.Location = new System.Drawing.Point(1057, 128);
             this.btn_habilitar.Margin = new System.Windows.Forms.Padding(0);
             this.btn_habilitar.Name = "btn_habilitar";
             this.btn_habilitar.Size = new System.Drawing.Size(194, 69);
@@ -189,7 +194,7 @@
             this.btn_edit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_edit.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_edit.ForeColor = System.Drawing.SystemColors.Window;
-            this.btn_edit.Location = new System.Drawing.Point(1446, 226);
+            this.btn_edit.Location = new System.Drawing.Point(1057, 231);
             this.btn_edit.Margin = new System.Windows.Forms.Padding(0);
             this.btn_edit.Name = "btn_edit";
             this.btn_edit.Size = new System.Drawing.Size(194, 69);
@@ -204,7 +209,7 @@
             this.btn_crear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_crear.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_crear.ForeColor = System.Drawing.SystemColors.Window;
-            this.btn_crear.Location = new System.Drawing.Point(1446, 442);
+            this.btn_crear.Location = new System.Drawing.Point(1057, 447);
             this.btn_crear.Margin = new System.Windows.Forms.Padding(0);
             this.btn_crear.Name = "btn_crear";
             this.btn_crear.Size = new System.Drawing.Size(194, 69);
@@ -231,7 +236,7 @@
             this.dataGridClientes.RowTemplate.ReadOnly = true;
             this.dataGridClientes.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridClientes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridClientes.Size = new System.Drawing.Size(1041, 472);
+            this.dataGridClientes.Size = new System.Drawing.Size(680, 472);
             this.dataGridClientes.TabIndex = 62;
             this.dataGridClientes.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridClientes_CellContentClick);
             // 
@@ -241,7 +246,7 @@
             this.btn_eliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_eliminar.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_eliminar.ForeColor = System.Drawing.SystemColors.Window;
-            this.btn_eliminar.Location = new System.Drawing.Point(1446, 334);
+            this.btn_eliminar.Location = new System.Drawing.Point(1057, 339);
             this.btn_eliminar.Margin = new System.Windows.Forms.Padding(0);
             this.btn_eliminar.Name = "btn_eliminar";
             this.btn_eliminar.Size = new System.Drawing.Size(194, 69);
@@ -255,7 +260,6 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(1701, 711);
             this.Controls.Add(this.btn_eliminar);
             this.Controls.Add(this.btn_crear);
@@ -263,7 +267,6 @@
             this.Controls.Add(this.btn_habilitar);
             this.Controls.Add(this.dataGridClientes);
             this.Margin = new System.Windows.Forms.Padding(9, 12, 9, 12);
-            this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Cliente_Listado";
             this.Text = "Clientes";
