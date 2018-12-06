@@ -50,17 +50,14 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
         public Publicacion_Detalle()
         {
             InitializeComponent();
-            this.GetRubros();
-            this.GetGrados();
+            this.loadLists();
         }
 
         public Publicacion_Detalle(Form previous)
         {
             this.previous = previous;
             InitializeComponent();
-            this.GetRubros();
-            this.GetGrados();
-            this.GetEstados();
+            this.loadLists();
         }
 
         public void AddFechaHora(string fechaHoraString)
@@ -123,12 +120,18 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
             }
         }
 
+        private void loadLists(){
+            this.GetRubros();
+            this.GetGrados();
+            this.GetEstados();
+        }
+
         private void configureDatagridFechaHorarios()
         {
             try
             {
-                  this.dataGridView_fechaHora.Columns[0].DefaultCellStyle.Format = "dd-MM-yyyy - HH:mm";
-                  this.dataGridView_fechaHora.Refresh();
+                this.dataGridView_fechaHora.Columns[0].DefaultCellStyle.Format = "dd-MM-yyyy - HH:mm";
+                this.dataGridView_fechaHora.Refresh();
                 this.addDeleteButton();
             }
             catch (Exception) { }
