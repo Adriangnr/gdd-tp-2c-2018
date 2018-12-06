@@ -40,5 +40,18 @@ namespace PalcoNet.Src.Modelo.Daos
                 throw e;
             }
         }
+
+        public List<List<object>> getFechas(int codigo)
+        {
+            try
+            {
+                return this.spExecuteDataReader(this.schema + ".GetFechasPublicacion", 
+                    new List<SqlParameter>() { new SqlParameter("@codigo", codigo) });
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
     }
 }

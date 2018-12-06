@@ -16,6 +16,8 @@ namespace PalcoNet.Src.Servicios
                 Grado grado = new Grado((int)row[0], (string)row[1], decimal.ToDouble((decimal)row[2]));
                 gradosList.Add(grado);
             }
+            Grado gradoIndef = new Grado(-1, "Indefinido", 0);
+            gradosList.Add(gradoIndef);
             return gradosList;
         }
 

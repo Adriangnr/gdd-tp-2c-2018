@@ -80,14 +80,14 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
             {
                 MessageBox.Show("No se seleccionó ninguna publicación!", "Editar publicación.",
                                 MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
             try
             {
-                Publicacion_Detalle createForm = new Publicacion_Detalle(this);
-                EmpresaService empresaService = (EmpresaService)ServiceFactory.GetService("Empresa");
-                Publicacion publicacion = empresaService.GetPublicacion(this.usuario.Username,
-                    (int)this.dataGridPublicaciones.CurrentRow.Cells[0].Value);
-                createForm.Show();
+                Publicacion_Detalle detailForm = new Publicacion_Detalle(this);
+                Publicacion publicacion = (Publicacion)this.dataGridPublicaciones.CurrentRow.DataBoundItem;
+                detailForm.loadFields(publicacion);
+                detailForm.Show();
                 this.Hide();
             }
             catch (Exception ex)

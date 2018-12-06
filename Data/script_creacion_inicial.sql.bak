@@ -92,14 +92,13 @@ go
 	Usuario
 	Estado 0 - No habilitado
 	Estado 1 - Habilitado
-	Primer Login 1 --> Necesita cambiar su password
 */
 create table ESECUELE.Usuario(
 	usr_id int identity(1,1),
 	usr_username varchar(50) primary key,
-	usr_pass nvarchar(100) default null,
+	usr_pass varbinary(8000) default null,
 	usr_estado bit default 1,
-	usr_primer_login bit default 1,
+	usr_nuevo bit default 1,
 	usr_fallas tinyint default 0,
 	usr_fecha_creacion datetime default null,
 	usr_tipo varchar(7) default null,
@@ -212,45 +211,23 @@ create table ESECUELE.Publicacion(
 go
 
 --Tipo_Entrada
-create table ESECUELE.Tipo_Ubicacion(
-	tipo_ubicacion_id int identity(1,1) primary key,
-	tipo_ubicacion_desc varchar(50) default null
-)
-go
-
---Ubicacion numerada
-create table ESECUELE.UbicacionNumerada(
-	ubicacion_id int identity(1,1),
-	ubicacion_publicacion int default null,
-	ubicacion_fila char default null,
-	ubicacion_asiento int default null,
-	ubicacion_precio numeric(18,2) not null,
-	ubicacion_disponible bit default 1, -- 1 Disponible , 0 no disponible
-	ubicacion_tipo int default null
-	constraint PK_Entrada primary key (ubicacion_publicacion, ubicacion_fila, ubicacion_asiento, ubicacion_tipo)
-)
-go
-
---Ubicacion sin numerar
-create table ESECUELE.UbicacionSinNumerar(
-	ubicacionSN_id int identity(1,1) primary key,
-	ubicacionSN_publicacion int default null,
-	ubicacionSN_cant_total int default 0,
-	ubicacionSN_cant_disponibles int default 0,
-	ubicacionSN_precio numeric(18,2) not null,
-	ubicacionSN_tipo int default null
+create table ESECUELE.Tipo_Entrada(
+	tipo_entrada_id int identity(1,1) primary key,
+	tipo_entrada_desc varchar(50) default null
 )
 go
 
 --Entrada
 create table ESECUELE.Entrada(
-	entrada_id int identity(1,1) primary key,
-	entrada_compra int default null,
-	entrada_sin_numerar bit default 0,
-	entrada_ubicacion int default null,
+	entrada_id int identity(1,1),
 	entrada_publicacion int default null,
-	entrada_cantidad int default 1,
-	entrada_precio numeric(18,2) not null
+	entrada_fila char default null,
+	entrada_asiento int default null,
+	entrada_sin_numerar bit default 0,
+	entrada_precio numeric(18,2) not null,
+	entrada_disponible bit default 1,
+	entrada_tipo int default null
+	constraint PK_Entrada primary key (entrada_publicacion, entrada_fila, entrada_asiento, entrada_tipo)
 )
 go
 
@@ -280,41 +257,24 @@ go
 --Compra
 create table ESECUELE.Compra(
 	compra_id int identity(1,1) primary key,
+	compra_entrada int default null,
 	compra_total numeric(18,2) not null,
 	compra_cliente int default null,
 	compra_fecha datetime default null,
-	compra_medio_pago tinyint default null
+	compra_cantidad int default null,
+	compra_medio_pago int default 1
 )
 go
 
 --Medio de pago
 create table ESECUELE.Medio_de_Pago(
 	medio_pago_id tinyint identity(1,1) primary key,
-	medio_pago_nro_tarjeta varchar(40) default null
+	medio_pago_descripcion varchar(40) default null
 )
 go
 
---alter table ESECUELE.Compra add constraint FK_Comp_MPago foreign key (compra_medio_pago) references ESECUELE.Medio_de_Pago(medio_pago_id)
-
 /*
 * --------------------- Fin Creacion de tablas. ----------------------------------
-*/
-
-/*
-* ------------------------- Creacion de funciones ----------------------------------
-*/
-create function ESECUELE.GetHash(@password nvarchar(100))
-returns nvarchar(100)
-as begin
-	declare @hash as varbinary(100) = HASHBYTES('SHA2_256', @password );
-
-	declare @result as nvarchar(100) = CONVERT(NVARCHAR(100), @hash, 2);
-
-	return @result;
-end
-go
-/*
-* --------------------- Fin Creacion de funciones. ----------------------------------
 */
 
 /*
@@ -327,14 +287,8 @@ insert into ESECUELE.Rol (rol_nombre) values
   ('Empresa')
 
 -- Ingreso de la cuenta para el administrador general
-insert into ESECUELE.Usuario (usr_username, usr_pass, usr_primer_login) values
-  ('admin', ESECUELE.GetHash('w23e'), 0)
-
-insert into ESECUELE.Empresa(empresa_razon_social, empresa_cuit, empresa_usuario)
-values ('empresa_admin', '00-00000000-0','admin') 
-
-insert into ESECUELE.Cliente(cliente_tipo_doc, cliente_num_doc, cliente_cuil, cliente_usuario)
-values ('admin', '00000000', '00-00000000-0', 'admin')
+insert into ESECUELE.Usuario (usr_username, usr_pass) values
+  ('admin', hashbytes('SHA2_256', 'w23e'))
 
 -- Se ingresan todas las funcionalidades
 insert into ESECUELE.Funcionalidad (func_nombre, func_desc) values
@@ -371,11 +325,11 @@ insert into ESECUELE.Rol_Usuario (rol_usr_rol_id, rol_usr_username) values (1,'a
 insert into ESECUELE.Rol_Usuario (rol_usr_rol_id, rol_usr_username) values (2,'admin')
 insert into ESECUELE.Rol_Usuario (rol_usr_rol_id, rol_usr_username) values (3,'admin')
 
-/*-- Ingreso de medios de pago
+-- Ingreso de medios de pago
 insert into ESECUELE.Medio_de_Pago (medio_pago_descripcion) values('EFECTIVO')
 insert into ESECUELE.Medio_de_Pago (medio_pago_descripcion) values('T_CREDITO')
 go
-*/
+
 -- Ingreso Rubros
 insert into ESECUELE.Rubro (rubro_descripcion) values 
 ('Teatro'),('Cine'), ('Musical'), ('Deportivo'), ('Conferencia'), ('Festival'), ('Otro')
@@ -411,7 +365,7 @@ usr_fecha_creacion)
 
 select distinct 
 CONCAT('usr_', Espec_Empresa_Cuit),
-ESECUELE.GetHash(Espec_Empresa_Cuit),
+(SELECT HASHBYTES('SHA2_256', Espec_Empresa_Cuit)),
 'Empresa',
 Espec_Empresa_Mail,
 CONCAT(Espec_Empresa_Dom_Calle, ' ', Espec_Empresa_Nro_Calle, ',',Espec_Empresa_Piso, ',', Espec_Empresa_Depto, ','),
@@ -419,6 +373,53 @@ Espec_Empresa_Cod_Postal,
 Espec_Empresa_Fecha_Creacion
 from gd_esquema.Maestra
 -- Fin de Carga de Empresas
+
+
+
+-- Carga de Espectaculos
+SET IDENTITY_INSERT ESECUELE.Publicacion ON
+insert into ESECUELE.Publicacion
+(publicacion_codigo, 
+publicacion_fecha_inicio, 
+publicacion_descripcion, 
+publicacion_fecha_evento,
+publicacion_rubro,
+publicacion_empresa, 
+publicacion_estado)
+
+select distinct
+Espectaculo_Cod, 
+Espectaculo_Fecha_Venc,
+Espectaculo_Descripcion, 
+Espectaculo_Fecha,  
+Espectaculo_Rubro_Descripcion,
+(select empresa_id from ESECUELE.Empresa where empresa_usuario = CONCAT('usr_', Espec_Empresa_Cuit)),
+Espectaculo_Estado
+ from gd_esquema.Maestra
+ SET IDENTITY_INSERT ESECUELE.Publicacion OFF
+-- Fin de Carga de Espectaculos
+
+-- Carga de Entradas
+insert into ESECUELE.Entrada
+(entrada_publicacion,entrada_fila, entrada_asiento, entrada_sin_numerar, entrada_precio, entrada_tipo)
+select distinct
+Espectaculo_Cod,
+Ubicacion_Fila, 
+Ubicacion_Asiento, 
+Ubicacion_Sin_numerar, 
+Ubicacion_Precio, 
+Ubicacion_Tipo_Codigo
+from gd_esquema.Maestra
+-- Fin de Carga de Entradas
+
+-- Carga de Tipos de Entradas
+SET IDENTITY_INSERT ESECUELE.Tipo_Entrada ON;
+insert into ESECUELE.Tipo_Entrada
+(tipo_entrada_id, tipo_entrada_desc)
+select distinct Ubicacion_Tipo_Codigo, Ubicacion_Tipo_Descripcion
+from gd_esquema.Maestra
+SET IDENTITY_INSERT ESECUELE.Tipo_Entrada OFF;
+-- Fin de Carga de Tipos de Entradas
 
 -- Carga de Cliente
 insert into ESECUELE.Usuario
@@ -431,7 +432,7 @@ usr_codigo_postal
 )
 select distinct
 concat('cli_', Cli_Dni),
-ESECUELE.GetHash(Cli_Dni),
+(SELECT HASHBYTES('SHA2_256', concat('cli_', Cli_Dni))),
 'Cliente',
 Cli_Mail,
 concat(Cli_Dom_Calle, ' ', Cli_Nro_Calle, ',', Cli_Piso, ',', Cli_Depto, ','),
@@ -456,117 +457,6 @@ concat('cli_', Cli_Dni)
 from gd_esquema.Maestra where Cli_Dni is not null
 -- Fin de Carga de Cliente
 
--- Carga de Espectaculos
-SET IDENTITY_INSERT ESECUELE.Publicacion ON
-insert into ESECUELE.Publicacion
-(publicacion_codigo, 
-publicacion_fecha_inicio, 
-publicacion_descripcion, 
-publicacion_fecha_evento,
-publicacion_rubro,
-publicacion_empresa, 
-publicacion_estado)
-
-select distinct
-Espectaculo_Cod, 
-Espectaculo_Fecha_Venc,
-Espectaculo_Descripcion, 
-Espectaculo_Fecha,  
-case when Espectaculo_Rubro_Descripcion = '' then 7 end,
-(select empresa_id from ESECUELE.Empresa where empresa_usuario = CONCAT('usr_', Espec_Empresa_Cuit)),
-Espectaculo_Estado
- from gd_esquema.Maestra
- SET IDENTITY_INSERT ESECUELE.Publicacion OFF
--- Fin de Carga de Espectaculos
-
--- Carga de Ubicaciones
-insert into ESECUELE.UbicacionNumerada
-(ubicacion_publicacion,ubicacion_fila, ubicacion_asiento, ubicacion_precio, ubicacion_tipo, ubicacion_disponible)
-select distinct
-Espectaculo_Cod,
-Ubicacion_Fila, 
-Ubicacion_Asiento,  
-Ubicacion_Precio, 
-Ubicacion_Tipo_Codigo,
-1
-from gd_esquema.Maestra
-where Ubicacion_Sin_numerar = 0
-and Cli_Dni is null and Item_Factura_Cantidad is null
--- Fin de Carga de Ubicaciones
-
--- Como no hay ubicaciones sin numerar en la tabla maestra, no migramos
-
--- Tabla temporal para migracion de compras y entradas
-select distinct 
-ROW_NUMBER() OVER(order by Compra_Fecha ASC) [compra],
-Espectaculo_Cod [publicacion],
-Compra_Fecha [compra_fecha],
-Compra_Cantidad [compra_cantidad], 
-Cli_Dni [cliente_dni],
-Ubicacion_Asiento [asiento],
-Ubicacion_Fila [fila],
-Ubicacion_Sin_numerar [sin_numerar],
-Ubicacion_Precio [precio],
-Ubicacion_Tipo_Codigo [ubicacion_tipo]
-INTO #EntradasTemporales
-from gd_esquema.Maestra 
-where Cli_Dni is not null and Item_Factura_Monto is null
-group by Compra_Fecha,Compra_Cantidad, Ubicacion_Precio, Cli_Dni, Espectaculo_Cod,Ubicacion_Asiento,Ubicacion_Fila,Ubicacion_Sin_numerar,Ubicacion_Precio,Ubicacion_Tipo_Codigo
-order by 1 ASC
-
--- Carga de Compras
-insert into ESECUELE.Compra
-(	compra_total,
-	compra_cliente,
-	compra_fecha
-)
-select
-precio * compra_cantidad,
-(
-	select c.cliente_id
-	from ESECUELE.Cliente c
-	where c.cliente_tipo_doc = 'DNI' and c.cliente_num_doc = cliente_dni
-),
-compra_fecha
-from #EntradasTemporales
-
--- Fin de Carga de Compras
-
--- Carga Entradas
-insert into ESECUELE.Entrada
-(entrada_compra,entrada_sin_numerar,entrada_ubicacion, entrada_publicacion, entrada_cantidad, entrada_precio)
-select 
-compra,
-sin_numerar,
-(case when sin_numerar = 0 then (select u.ubicacion_id 
-								from ESECUELE.UbicacionNumerada u
-								where u.ubicacion_publicacion = publicacion
-								and u.ubicacion_tipo = ubicacion_tipo
-								and u.ubicacion_fila = fila
-								and u.ubicacion_asiento = asiento)
-							else (select n.ubicacionSN_id
-									from ESECUELE.UbicacionSinNumerar n
-									where n.ubicacionSN_publicacion = publicacion)
-							end
-
-),
-publicacion,
-compra_cantidad,
-precio
-from #EntradasTemporales
-
-drop table #EntradasTemporales
--- Fin de carga de Entradas
-
--- Carga de Tipos de Ubicaciones
-SET IDENTITY_INSERT ESECUELE.Tipo_Ubicacion ON;
-insert into ESECUELE.Tipo_Ubicacion
-(tipo_ubicacion_id, tipo_ubicacion_desc)
-select distinct Ubicacion_Tipo_Codigo, Ubicacion_Tipo_Descripcion
-from gd_esquema.Maestra
-SET IDENTITY_INSERT ESECUELE.Tipo_Ubicacion OFF;
--- Fin de Carga de Tipos de Ubicaciones
-
 -- Asignacion de funcionalidades para los usuarios cargados
 insert into ESECUELE.Rol_Usuario (rol_usr_rol_id, rol_usr_username)
 select 2, u.usr_username from ESECUELE.Cliente c join ESECUELE.Usuario u on c.cliente_usuario = u.usr_username
@@ -574,6 +464,27 @@ select 2, u.usr_username from ESECUELE.Cliente c join ESECUELE.Usuario u on c.cl
 insert into ESECUELE.Rol_Usuario (rol_usr_rol_id, rol_usr_username)
 select 3, u.usr_username from ESECUELE.Empresa e join ESECUELE.Usuario u on e.empresa_usuario = u.usr_username
 -- Fin de asignacion de funcionalidades
+
+-- Carga de Compras
+insert into ESECUELE.Compra
+(compra_entrada,
+compra_total,
+compra_cliente,
+compra_fecha,
+compra_cantidad)
+
+select distinct
+(select e.entrada_id from ESECUELE.Entrada e 
+where e.entrada_fila = m.Ubicacion_Fila and e.entrada_asiento = m.Ubicacion_Asiento
+and e.entrada_publicacion = m.Espectaculo_Cod and e.entrada_tipo = m.Ubicacion_Tipo_Codigo),
+(m.Ubicacion_Precio*m.Compra_Cantidad),
+(select c.cliente_id from ESECUELE.Cliente c 
+where c.cliente_tipo_doc = 'DNI' and c.cliente_cuil = 'cuil' and c.cliente_num_doc = m.Cli_Dni),
+m.Compra_Fecha,
+m.Compra_Cantidad
+from gd_esquema.Maestra m 
+where m.Compra_Cantidad is not null and m.Compra_Fecha is not null
+-- Fin de Carga de Compras
 
 -- Carga de Facturas
 insert into ESECUELE.Factura
@@ -607,14 +518,11 @@ m.Factura_Nro,
 m.Item_Factura_Cantidad, 
 m.Item_Factura_Monto, 
 Item_Factura_Descripcion,
-case when m.Ubicacion_Sin_numerar = 0 then (select entrada_id from ESECUELE.Entrada join ESECUELE.UbicacionNumerada on ubicacion_id = entrada_ubicacion
-											where ubicacion_asiento = m.Ubicacion_Asiento and ubicacion_fila = m.Ubicacion_Fila 
-											and entrada_publicacion = m.Espectaculo_Cod and ubicacion_tipo = m.Ubicacion_Tipo_Codigo)
-									  else (select entrada_id from ESECUELE.Entrada join ESECUELE.UbicacionSinNumerar on ubicacionSN_id = entrada_ubicacion
-											where ubicacionSN_publicacion = m.Espectaculo_Cod and ubicacionSN_tipo = m.Ubicacion_Tipo_Codigo) 
-end
-from gd_esquema.Maestra m 
-where m.Item_Factura_Monto is not null and 
+(select entrada_id from ESECUELE.Entrada where 
+entrada_asiento = m.Ubicacion_Asiento and entrada_fila = m.Ubicacion_Fila 
+and entrada_publicacion = m.Espectaculo_Cod and entrada_tipo = m.Ubicacion_Tipo_Codigo) from gd_esquema.Maestra m 
+where 
+m.Item_Factura_Monto is not null and 
 m.Item_Factura_Cantidad is not null and 
 m.Item_Factura_Descripcion is not null 
 -- Fin de Carga de Item_Factura
@@ -642,11 +550,8 @@ alter table ESECUELE.Empresa add constraint FK_Emp_UserName foreign key (empresa
 -- Relacion Publicacion -Empresa
 alter table ESECUELE.Publicacion add constraint FK_EmpId foreign key (publicacion_empresa) references ESECUELE.Empresa(empresa_id) ON UPDATE CASCADE ON DELETE NO ACTION
 
--- Relacion Ubicacion - Tipo_Ubicacion
-alter table ESECUELE.UbicacionNumerada add constraint FK_Tipo_Ubicacion foreign key(ubicacion_tipo) references ESECUELE.Tipo_Ubicacion(tipo_ubicacion_id)
-
--- Relacion UbicacionSinNumerar - Tipo_Ubicacion
-alter table ESECUELE.UbicacionSinNumerar add constraint FK_Tipo_UbicacionSN foreign key(ubicacionSN_tipo) references ESECUELE.Tipo_Ubicacion(tipo_ubicacion_id)
+-- Relacion Entrada - Tipo_Entrada
+alter table ESECUELE.Entrada add constraint FK_Tipo_Entrada foreign key(entrada_tipo) references ESECUELE.Tipo_Entrada(tipo_entrada_id)
 
 -- Relacion Cliente - Usuario
 alter table ESECUELE.Cliente add constraint FK_Cli_UserName foreign key (cliente_usuario) references ESECUELE.Usuario(usr_username) ON UPDATE CASCADE ON DELETE CASCADE 
@@ -654,11 +559,8 @@ alter table ESECUELE.Cliente add constraint FK_Cli_UserName foreign key (cliente
 -- Relacion Compra - Cliente
 alter table ESECUELE.Compra add constraint FK_Comp_Clie foreign key (compra_cliente) references ESECUELE.Cliente(cliente_id) ON UPDATE CASCADE ON DELETE NO ACTION
 
--- Relacion Entrada - Compra
-alter table ESECUELE.Entrada add constraint FK_Entrada_Compra foreign key (entrada_compra) references ESECUELE.Compra(compra_id)
-
--- Relacion Compra - Medio de pago
-alter table ESECUELE.Compra add constraint FK_Comp_MPago foreign key (compra_medio_pago) references ESECUELE.Medio_de_Pago(medio_pago_id)
+-- Relacion Compra - Entrada
+alter table ESECUELE.Compra add constraint FK_Comp_Entrada foreign key (compra_entrada) references ESECUELE.Entrada(entrada_id)
 
 -- Relacion Canje - Cliente
 alter table ESECUELE.Canje add constraint FK_ClieId foreign key(canje_cliente) references ESECUELE.Cliente(cliente_id)
@@ -675,111 +577,93 @@ alter table ESECUELE.Punto add constraint FK_P_ClieId foreign key(punto_cliente)
 -- Relacion Factura - Empresa
 alter table ESECUELE.Factura add constraint FK_F_EmpId foreign key(fact_empresa) references ESECUELE.Empresa(empresa_id) ON DELETE SET NULL ON UPDATE CASCADE
 
+
+
 go
 /*------------------------Fin Creacion de restricciones -------------------------*/
 
+
 /*--------------------------- Store procedures ----------------------------------*/
 
-create procedure ESECUELE.SetFallosEstadoUsuario(@username varchar(50), @estado bit, @fallos tinyint)
+create procedure ESECUELE.LimpiarHabilitarUsuario(@username varchar(50))
 as
 begin
 	  update ESECUELE.Usuario
-		set usr_fallas = @fallos, usr_estado= @estado
+		set usr_fallas = 0, usr_estado= 1
 		where usr_username = @username
 end
 go
 
 -- Sproc para loguear
--- Cualquier error devuelve SQLexception y -1
--- Si el logueo es correcto y tiene un solo rol, devuelve ese 1, -1 si es primer logueo
--- Si el logueo es correcto y tiene mas de un rol, devuelve 2, -2 si es primer logueo
-create procedure ESECUELE.Login(@username varchar(50), @password_input nvarchar(100), @return_val smallint output)
+-- Returns -1 if login failed, the user is disabled
+-- Returns -2 if password incorrect
+-- Returns -3 if user doesnt exist
+-- Returns -4 if no user has no roles assigned( dont know if can happen)
+-- 0 if the login succeeded but there are many roles to choose from, or
+-- positive integers if there was only one role and was automatically assigned
+create procedure ESECUELE.Login(@username varchar(50), @plain_password varchar(100), @return_val smallint output)
 as begin
   declare @estado bit = null
-  declare @primer_login bit = null
-  declare @password nvarchar(100) = null
+  declare @password binary(32) = null
   declare @fallos tinyint = null
 
-  select @estado = usr_estado, @fallos = usr_fallas, @password = usr_pass, @primer_login = usr_primer_login
+  declare @usuario_no_habilitado smallint
+  declare @password_incorrecto smallint
+  declare @usuario_no_existe smallint
+  declare @usuario_no_tiene_roles smallint
+  declare @login_exitoso_muchos_roles smallint
+
+  set @usuario_no_habilitado = -1
+  set @password_incorrecto = -2
+  set @usuario_no_existe = -3
+  set @usuario_no_tiene_roles = -4
+  set @login_exitoso_muchos_roles = -5
+
+  select @estado = usr_estado, @fallos = usr_fallas, @password = usr_pass
   from ESECUELE.Usuario
   where usr_username = @username
 
-  if( @password is null)
-  begin
-	raiserror('El usuario no existe.',18,10)
-	return
-  end
-  
   if @estado = 0
   begin
-    raiserror('El usuario se encuentra deshabilitado',18,10)
+    select @return_val = @usuario_no_habilitado
+	return
+  end
+  if @password is null
+  begin
+	select @return_val = @usuario_no_existe
 	return
   end
 
   -- Si el usuario existe, checkeo passwords
-  if @password <> @password_input
+  if @password <> hashbytes('SHA2_256', @plain_password)
   begin
-    -- Si hay fallo, incremento contador
+    -- Si hay fallo, incremento
     set @fallos = @fallos + 1
     update ESECUELE.Usuario
       set usr_fallas = @fallos,
           usr_estado = case when @fallos >= 3  or usr_estado = 0 then 0
                           else 1 end
       where usr_username = @username
-	declare @msg NVARCHAR(100)
-	if @fallos < 3
-		set @msg = formatmessage('Contrase�a incorrecta. Tienes %d intentos restantes.', 3 - @fallos)
-	else
-		set @msg = 'Su usuario fue deshabilitado.'
-    raiserror(@msg, 18, 10)
-	return
+    set @return_val = @password_incorrecto
   end
   else begin
+    -- Como el login fue exitoso, limpiar los logueos fallidos
+    exec ESECUELE.LimpiarHabilitarUsuario @username
+
     -- Obtener los roles del usuario
+    declare @role smallint
     declare @count smallint
-    select @count = count(1)
-      from ESECUELE.Rol_Usuario RU join ESECUELE.Rol R on R.rol_id = RU.rol_usr_rol_id
+    select @count = count(R.rol_id), @role = max(R.rol_id)
+      from ESECUELE.Rol_Usuario RU left join ESECUELE.Rol R on R.rol_id = RU.rol_usr_rol_id
       where RU.rol_usr_username = @username and R.rol_estado = 1 -- Rol habilitado
-    if @count = 0
-	begin
-		raiserror(N'Su usuario no tiene roles asignadoes, comunicarse con el administrador.', 18, 10)
-		return
-	end
-
-	if @primer_login = 1
-		 exec ESECUELE.SetFallosEstadoUsuario @username, 1, 1
-	else
-		 exec ESECUELE.SetFallosEstadoUsuario @username, 1, 0
-   
-   if @count > 1
-   begin
-		if @primer_login = 1
-			begin
-				set @return_val = -2
-				return
-			end
-		else
-			begin
-				set @return_val = 2
-				return
-			end
-	end
-	else
-		begin
-			if  @primer_login = 1	
-				set @return_val = -1
-			else
-				set @return_val = 1
-			end
-		end
-end
-go
-
-create procedure ESECUELE.cambioPassword(@username varchar(50),@new_password nvarchar(100))
-as begin
-	update ESECUELE.Usuario
-	set usr_pass = @new_password, usr_primer_login = 0
-	where usr_username = @username
+    if @count > 1
+      set @return_val = @login_exitoso_muchos_roles
+    else if @count < 1
+		select @return_val = @usuario_no_tiene_roles
+	else begin
+      set @return_val = @role -- Retorno el unico rol disponible
+    end
+  end
 end
 go
 
@@ -816,13 +700,6 @@ create procedure ESECUELE.getEmpresa(@id int)
 as begin
 	select * from ESECUELE.Empresa e join ESECUELE.Usuario u on u.usr_username = e.empresa_usuario
 	where e.empresa_id = @id
-end
-go
-
-create procedure ESECUELE.getGrado(@id int)
-as begin
-	select * from ESECUELE.Grado g
-	where g.grado_id = @id
 end
 go 
 
@@ -897,7 +774,7 @@ end
 go
 
 create procedure ESECUELE.SaveUsuario(@usr_username varchar(50), 
-								   @usr_pass nvarchar(100),
+								   @usr_pass varchar(50),
 								   @usr_tipo varchar(7),
 								   @usr_email varchar(50),
 								   @usr_telefono varchar(20),
@@ -907,9 +784,11 @@ create procedure ESECUELE.SaveUsuario(@usr_username varchar(50),
 								   @return_val int output) as
 begin 
 	begin try
+		declare @encryptedPass varbinary(8000);
+		set @encryptedPass = (SELECT HASHBYTES('SHA2_256', @usr_pass));  
 		insert into ESECUELE.Usuario
-		(usr_username, usr_pass, usr_estado, usr_primer_login, usr_fecha_creacion, usr_tipo, usr_email, usr_telefono, usr_direccion, usr_codigo_postal) 
-		values(@usr_username, @usr_pass, 1, 0, @usr_creacion, @usr_tipo, @usr_email, @usr_telefono, @usr_direccion, @usr_codigo_postal)
+		(usr_username, usr_pass, usr_estado, usr_nuevo, usr_fecha_creacion, usr_tipo, usr_email, usr_telefono, usr_direccion, usr_codigo_postal) 
+		values(@usr_username, @encryptedPass, 1, 0, @usr_creacion, @usr_tipo, @usr_email, @usr_telefono, @usr_direccion, @usr_codigo_postal)
 		set @return_val = (SELECT SCOPE_IDENTITY())
 	end try
 	begin catch
@@ -1110,9 +989,11 @@ begin
 end
 go
 
-create procedure ESECUELE.updatePassUsuario(@id int, @usr_pass nvarchar(100)) as
+create procedure ESECUELE.updatePassUsuario(@id int, @usr_pass varchar(50)) as
 begin
-	update ESECUELE.Usuario set usr_pass = @usr_pass where usr_id = @id;
+	declare @encryptedPass varbinary(8000);
+	set @encryptedPass = (SELECT HASHBYTES('SHA2_256', @usr_pass));
+	update ESECUELE.Usuario set usr_pass = @encryptedPass where usr_id = @id;
 end
 go
 
@@ -1234,119 +1115,15 @@ begin
 end
 go
 
-create procedure ESECUELE.getAllGrado as
+create procedure ESECUELE.getGrado as
 begin
 	select * from ESECUELE.Grado
 end
 go
 
-create procedure ESECUELE.GetFechasPublicacion(@codigo int) as
-begin
-	select publicacion_codigo, publicacion_fecha_evento from ESECUELE.Publicacion 
-	where publicacion_codigo = @codigo
-end
-
-create procedure ESECUELE.SearchPagedPublicacion(@offset int, @items int) as
-begin
-	select distinct *, COUNT(*) OVER() from ESECUELE.Publicacion
-	order by publicacion_codigo DESC
-	offset @offset rows fetch next @items rows only
-end
-go
-
 create procedure ESECUELE.SearchPagedPublicacionByEmpresa(@idEmpresa int, @offset int, @items int) as
 begin
-	select distinct *, COUNT(*) OVER() from ESECUELE.Publicacion where publicacion_empresa = @idEmpresa 
+	select *, COUNT(*) OVER() from ESECUELE.Publicacion where publicacion_empresa = @idEmpresa 
 	order by publicacion_codigo DESC
 	offset @offset rows fetch next @items rows only
 end
-go
-
-create procedure ESECUELE.SearchAllPublicacionActivaValida(
-							@categorias varchar(255) = null,
-							@descripcion varchar(255) = null, 
-							@fechaInicio datetime = null,
-							@fechaFin datetime = null,
-							@fechaActual datetime = null)
-as
-begin
-	declare @query nvarchar(500);
-	set @query = N'select * from ESECUELE.Publicacion p left join ESECUELE.Rubro r on p.publicacion_rubro = r.rubro_codigo
-														left join ESECUELE.Grado g on p.publicacion_grado = g.grado_id';
-
-	if @categorias is not null or  @descripcion is not null or @fechaInicio is not null or @fechaFin is not null
-	begin
-		set @query = @query + ' where p.publicacion_estado = ''Publicada'' and cast(' + convert(varchar(25),@fechaActual,121) 
-							+ ') between(p.publicacion_fecha_inicio, p.publicacion_fecha_evento)'
-
-		if @descripcion is not null 
-		begin
-			set @query = @query + ' and p.publicacion_descripcion like ''%'	+ @descripcion + '%'''
-		end
-
-		if @categorias is not null 
-		begin
-			set @query = @query + ' and p.publicacion_rubro in ' + @categorias
-		end
-
-		if @fechaInicio is not null 
-		begin
-			 set @query = @query + ' and p.publicacion_fecha_inicio >= ' + @fechaInicio
-		end
-
-		if @fechaFin is not null 
-		begin
-			 set @query = @query + ' and p.publicacion_fecha_evento <=' + @fechaFin
-		end
-	end
-	set @query = @query + ' order by p.publicacion_grado asc, p.publicacion_descripcion desc'
-	exec sp_executesql @query
-end
-go
-
-create procedure ESECUELE.SearchPagedPublicacionesParaCompra(
-							@categorias varchar(255) = null,
-							@descripcion varchar(255) = null, 
-							@fechaInicio datetime = null,
-							@fechaFin datetime = null,
-							@fechaActual datetime = null,
-							@offset int,
-							@items int)
-as
-begin
-	declare @query nvarchar(500);
-	set @query = N'select *, COUNT(*) OVER() from ESECUELE.Publicacion p left join ESECUELE.Rubro r on p.publicacion_rubro = r.rubro_codigo
-														left join ESECUELE.Grado g on p.publicacion_grado = g.grado_id';
-
-	if @categorias is not null or  @descripcion is not null or @fechaInicio is not null or @fechaFin is not null
-	begin
-		set @query = @query + ' where p.publicacion_estado = ''Publicada'' and cast(' + convert(varchar(25),@fechaActual,121) 
-							+ ') between(p.publicacion_fecha_inicio, p.publicacion_fecha_evento)'
-
-		if @descripcion is not null 
-		begin
-			set @query = @query + ' and p.publicacion_descripcion like ''%'	+ @descripcion + '%'''
-		end
-
-		if @categorias is not null
-		begin
-			set @query = @query + ' and p.publicacion_rubro in ' + @categorias
-		end
-
-		if @fechaInicio is not null 
-		begin
-			 set @query = @query + ' and p.publicacion_fecha_inicio >= ' + @fechaInicio
-		end
-
-		if @fechaFin is not null 
-		begin
-			 set @query = @query + ' and p.publicacion_fecha_evento <=' + @fechaFin
-		end
-	end
-	set @query = 
-	concat(@query, ' order by p.publicacion_grado asc, p.publicacion_descripcion desc 
-							offset ', @offset,' rows fetch next ',@items,' rows only')
-
-	exec sp_executesql @query
-end
-go

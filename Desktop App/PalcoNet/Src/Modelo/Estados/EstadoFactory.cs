@@ -7,8 +7,7 @@ namespace PalcoNet.Src.Modelo.Estados
     {
         public static Estado getEstado(string estadoString)
         {
-            Assembly assembly = Assembly.GetExecutingAssembly();
-            return assembly.CreateInstance("PalcoNet.Src.Estados." + estadoString) as Estado;
+            return Utils.Utilities.createInstance("PalcoNet.Src.Modelo.Estados." + estadoString) as Estado;
         }
     }
 }

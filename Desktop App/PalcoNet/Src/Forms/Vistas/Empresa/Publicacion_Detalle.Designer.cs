@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.descripcion = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -47,10 +46,10 @@
             this.label3 = new System.Windows.Forms.Label();
             this.btn_pub_cargarFechasHoras = new System.Windows.Forms.Button();
             this.btn_pub_entradas = new System.Windows.Forms.Button();
-            this.dataGridView_fechaHora = new System.Windows.Forms.DataGridView();
             this.dataGridView_tipoEntradas = new System.Windows.Forms.DataGridView();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_fechaHora)).BeginInit();
+            this.dataGridView_fechaHora = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_tipoEntradas)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_fechaHora)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -242,37 +241,6 @@
             this.btn_pub_entradas.UseVisualStyleBackColor = true;
             this.btn_pub_entradas.Click += new System.EventHandler(this.btn_pub_entradas_Click);
             // 
-            // dataGridView_fechaHora
-            // 
-            this.dataGridView_fechaHora.AllowUserToAddRows = false;
-            this.dataGridView_fechaHora.AllowUserToResizeColumns = false;
-            this.dataGridView_fechaHora.AllowUserToResizeRows = false;
-            this.dataGridView_fechaHora.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            this.dataGridView_fechaHora.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.dataGridView_fechaHora.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView_fechaHora.ColumnHeadersVisible = false;
-            this.dataGridView_fechaHora.Cursor = System.Windows.Forms.Cursors.Default;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Transparent;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Transparent;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView_fechaHora.DefaultCellStyle = dataGridViewCellStyle1;
-            this.dataGridView_fechaHora.EnableHeadersVisualStyles = false;
-            this.dataGridView_fechaHora.Location = new System.Drawing.Point(631, 155);
-            this.dataGridView_fechaHora.MultiSelect = false;
-            this.dataGridView_fechaHora.Name = "dataGridView_fechaHora";
-            this.dataGridView_fechaHora.ReadOnly = true;
-            this.dataGridView_fechaHora.RowHeadersVisible = false;
-            this.dataGridView_fechaHora.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            this.dataGridView_fechaHora.RowTemplate.Height = 28;
-            this.dataGridView_fechaHora.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dataGridView_fechaHora.Size = new System.Drawing.Size(461, 150);
-            this.dataGridView_fechaHora.TabIndex = 64;
-            this.dataGridView_fechaHora.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_fechaHora_CellContentClick);
-            // 
             // dataGridView_tipoEntradas
             // 
             this.dataGridView_tipoEntradas.AllowUserToAddRows = false;
@@ -282,14 +250,14 @@
             this.dataGridView_tipoEntradas.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             this.dataGridView_tipoEntradas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView_tipoEntradas.Cursor = System.Windows.Forms.Cursors.Default;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Transparent;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Transparent;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView_tipoEntradas.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Transparent;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Transparent;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView_tipoEntradas.DefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView_tipoEntradas.EnableHeadersVisualStyles = false;
             this.dataGridView_tipoEntradas.Location = new System.Drawing.Point(631, 369);
             this.dataGridView_tipoEntradas.MultiSelect = false;
@@ -303,13 +271,27 @@
             this.dataGridView_tipoEntradas.TabIndex = 65;
             this.dataGridView_tipoEntradas.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_tipoEntradas_CellContentClick);
             // 
+            // dataGridView_fechaHora
+            // 
+            this.dataGridView_fechaHora.AllowUserToAddRows = false;
+            this.dataGridView_fechaHora.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.dataGridView_fechaHora.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView_fechaHora.Location = new System.Drawing.Point(631, 161);
+            this.dataGridView_fechaHora.Name = "dataGridView_fechaHora";
+            this.dataGridView_fechaHora.ReadOnly = true;
+            this.dataGridView_fechaHora.RowHeadersVisible = false;
+            this.dataGridView_fechaHora.RowTemplate.Height = 28;
+            this.dataGridView_fechaHora.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView_fechaHora.Size = new System.Drawing.Size(461, 171);
+            this.dataGridView_fechaHora.TabIndex = 66;
+            // 
             // Publicacion_Detalle
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1157, 678);
-            this.Controls.Add(this.dataGridView_tipoEntradas);
             this.Controls.Add(this.dataGridView_fechaHora);
+            this.Controls.Add(this.dataGridView_tipoEntradas);
             this.Controls.Add(this.btn_pub_entradas);
             this.Controls.Add(this.btn_pub_cargarFechasHoras);
             this.Controls.Add(this.label3);
@@ -349,10 +331,10 @@
             this.Controls.SetChildIndex(this.label3, 0);
             this.Controls.SetChildIndex(this.btn_pub_cargarFechasHoras, 0);
             this.Controls.SetChildIndex(this.btn_pub_entradas, 0);
-            this.Controls.SetChildIndex(this.dataGridView_fechaHora, 0);
             this.Controls.SetChildIndex(this.dataGridView_tipoEntradas, 0);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_fechaHora)).EndInit();
+            this.Controls.SetChildIndex(this.dataGridView_fechaHora, 0);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_tipoEntradas)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_fechaHora)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -376,7 +358,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btn_pub_cargarFechasHoras;
         private System.Windows.Forms.Button btn_pub_entradas;
-        private System.Windows.Forms.DataGridView dataGridView_fechaHora;
         private System.Windows.Forms.DataGridView dataGridView_tipoEntradas;
+        private System.Windows.Forms.DataGridView dataGridView_fechaHora;
     }
 }

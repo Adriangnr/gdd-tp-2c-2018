@@ -165,7 +165,7 @@ namespace PalcoNet.Src.Servicios
             empresaObj.Ciudad = (row[2].GetType() != typeof(System.DBNull)) ? (string)row[2] : "";
             empresaObj.Cuit = (string)row[3];
             empresaObj.Usuario = (string)row[4];
-            empresaObj.Email = (string)row[13];
+            empresaObj.Email = (row[13].GetType() != typeof(System.DBNull)) ? (string)row[13] : "";
             this.loadUsuario(empresaObj, row);
         }
     }

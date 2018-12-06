@@ -1,5 +1,6 @@
 ﻿using PalcoNet.Src.Modelo.Estados;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 
 namespace PalcoNet.Src.Modelo.Entidades

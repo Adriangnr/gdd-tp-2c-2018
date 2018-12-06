@@ -26,8 +26,7 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
         
         private void btn_cargar_Click_1(object sender, EventArgs e)
         {
-            this.parent.AddFechaHora(this.dateTimePicker_pubFecha.Value.ToString() +
-                                    " - Inicia: " + this.text_inicio.Text + " - Finaliza: " + this.text_fin.Text);
+            this.parent.AddFechaHora(this.dateTimePicker_pubFecha.Value.ToString("yyyy-MM-dd") + " " +this.text_inicio.Text);
         }
     }
 }

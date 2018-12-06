@@ -30,10 +30,8 @@
         {
             this.pub_fecha = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.dateTimePicker_pubFecha = new System.Windows.Forms.DateTimePicker();
             this.text_inicio = new System.Windows.Forms.TextBox();
-            this.text_fin = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btn_cancel = new System.Windows.Forms.Button();
             this.btn_cargar = new System.Windows.Forms.Button();
@@ -57,15 +55,6 @@
             this.label2.TabIndex = 1;
             this.label2.Text = "Horario de inicio (hh:mm)";
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(67, 175);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(149, 20);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "Hora de fin (hh:mm)";
-            // 
             // dateTimePicker_pubFecha
             // 
             this.dateTimePicker_pubFecha.Location = new System.Drawing.Point(127, 71);
@@ -79,13 +68,6 @@
             this.text_inicio.Name = "text_inicio";
             this.text_inicio.Size = new System.Drawing.Size(100, 26);
             this.text_inicio.TabIndex = 4;
-            // 
-            // text_fin
-            // 
-            this.text_fin.Location = new System.Drawing.Point(318, 169);
-            this.text_fin.Name = "text_fin";
-            this.text_fin.Size = new System.Drawing.Size(100, 26);
-            this.text_fin.TabIndex = 5;
             // 
             // label1
             // 
@@ -134,10 +116,8 @@
             this.Controls.Add(this.btn_cargar);
             this.Controls.Add(this.btn_cancel);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.text_fin);
             this.Controls.Add(this.text_inicio);
             this.Controls.Add(this.dateTimePicker_pubFecha);
-            this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.pub_fecha);
             this.Name = "Fecha_Hora";
@@ -152,10 +132,8 @@
 
         private System.Windows.Forms.Label pub_fecha;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.DateTimePicker dateTimePicker_pubFecha;
         private System.Windows.Forms.TextBox text_inicio;
-        private System.Windows.Forms.TextBox text_fin;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btn_cancel;
         private System.Windows.Forms.Button btn_cargar;

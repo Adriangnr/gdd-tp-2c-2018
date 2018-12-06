@@ -28,10 +28,10 @@ namespace PalcoNet.Src.Servicios
             usuarioObj.Password = (string)data[start + 2];
             usuarioObj.Habilitado = (bool)data[start+3];
             usuarioObj.Nuevo = (bool)data[start+4];
-            usuarioObj.Email = (string)data[start+8];
+            usuarioObj.Email = (data[start + 8].GetType() != typeof(System.DBNull)) ? (string)data[start + 8] : null;
             usuarioObj.Telefono = (data[start+9].GetType() != typeof(System.DBNull)) ? (string)data[start+9] : null;
-            usuarioObj.Direccion = (string)data[start+10];
-            usuarioObj.CodigoPostal = (string)data[start+11];
+            usuarioObj.Direccion = (data[start + 10].GetType() != typeof(System.DBNull)) ? (string)data[start + 10] : null;
+            usuarioObj.CodigoPostal = (data[start + 11].GetType() != typeof(System.DBNull)) ? (string)data[start + 11] : null;
 
             return usuarioObj;
         }
