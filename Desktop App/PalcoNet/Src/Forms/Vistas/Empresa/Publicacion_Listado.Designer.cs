@@ -107,6 +107,7 @@
             this.dataGridPublicaciones.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridPublicaciones.Size = new System.Drawing.Size(876, 388);
             this.dataGridPublicaciones.TabIndex = 62;
+            this.dataGridPublicaciones.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridPublicaciones_CellContentClick);
             // 
             // panelPaginatorControls
             // 

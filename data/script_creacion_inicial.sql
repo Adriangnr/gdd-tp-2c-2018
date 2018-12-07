@@ -207,14 +207,31 @@ create table ESECUELE.Publicacion(
 	publicacion_empresa int default null,
 	publicacion_estado varchar(10) default null,
 
-	constraint PK_Pub primary key (publicacion_codigo, publicacion_fecha_inicio)
+	constraint PK_Pub primary key (publicacion_codigo, publicacion_fecha_evento)
 )
 go
 
 --Tipo_Entrada
 create table ESECUELE.Tipo_Ubicacion(
 	tipo_ubicacion_id int identity(1,1) primary key,
-	tipo_ubicacion_desc varchar(50) default null
+	tipo_ubicacion_desc varchar(50) default null, 
+	tipo_ubicacion_menorFila varchar(3) default null,
+	tipo_ubicacion_mayorFila varchar(3) default null,
+	tipo_ubicacion_menorAsiento varchar(3) default null,
+	tipo_ubicacion_mayorAsiento varchar(3) default null
+)
+go
+
+-- Publicacion_Ubicacion
+create table ESECUELE.Publicacion_Ubicacion(
+	publicacion_codigo int,
+	publicacion_fecha_evento datetime,
+	ubicacion int foreign key references ESECUELE.Tipo_Ubicacion(tipo_ubicacion_id),
+	precio numeric default null,
+	cantidad int default null,
+	constraint pk_pubUbic primary key (publicacion_codigo, publicacion_fecha_evento, ubicacion),
+	constraint fk_pub foreign key (publicacion_codigo, publicacion_fecha_evento) references
+	ESECUELE.Publicacion(publicacion_codigo, publicacion_fecha_evento)
 )
 go
 
@@ -338,18 +355,17 @@ values ('admin', '00000000', '00-00000000-0', 'admin')
 
 -- Se ingresan todas las funcionalidades
 insert into ESECUELE.Funcionalidad (func_nombre, func_desc) values
-  ('Cliente_Listado', 'Listado de Clientes.'),
+  ('Cliente_Listado', 'Clientes.'),
   ('Cliente_Registro', 'Registro de Clientes.'),
-  ('Comisiones_Detalle', 'Detalle de Comisiones.'),
-  ('Empresa_Listado', 'Listado de Empresas.'),
+  ('Comisiones_Detalle', 'Comisiones.'),
+  ('Empresa_Listado', 'Empresas.'),
   ('Empresa_Registro', 'Registro de Empresas.'),
   ('Estadisticas', 'Estadisticas.'),
-  ('Rol_Listado', 'Listado de Roles.'),
+  ('Rol_Listado', 'Roles.'),
   ('Canje_Puntos', 'Canje de Puntos.'),
   ('Compra', 'Compras.'),
   ('Historial', 'Historial.'),
-  ('Publicacion_Detalle', 'Detalle de Publicaciones.'),
-  ('Publicacion_Listado', 'Listado de Publicaciones.')
+  ('Publicacion_Listado', 'Publicaciones.')
 go
 
 -- Ingreso de valores para Funcionalidad - Rol
@@ -364,7 +380,6 @@ insert into ESECUELE.Funcionalidad_Rol (frol_rol_id, frol_func_id) values (2,8)
 insert into ESECUELE.Funcionalidad_Rol (frol_rol_id, frol_func_id) values (2,9)
 insert into ESECUELE.Funcionalidad_Rol (frol_rol_id, frol_func_id) values (2,10)
 insert into ESECUELE.Funcionalidad_Rol (frol_rol_id, frol_func_id) values (3,11)
-insert into ESECUELE.Funcionalidad_Rol (frol_rol_id, frol_func_id) values (3,12)
 
 -- Ingreso valores para el administrador greneral
 insert into ESECUELE.Rol_Usuario (rol_usr_rol_id, rol_usr_username) values (1,'admin')
@@ -561,10 +576,23 @@ drop table #EntradasTemporales
 -- Carga de Tipos de Ubicaciones
 SET IDENTITY_INSERT ESECUELE.Tipo_Ubicacion ON;
 insert into ESECUELE.Tipo_Ubicacion
-(tipo_ubicacion_id, tipo_ubicacion_desc)
-select distinct Ubicacion_Tipo_Codigo, Ubicacion_Tipo_Descripcion
-from gd_esquema.Maestra
+(tipo_ubicacion_id, tipo_ubicacion_desc, tipo_ubicacion_menorFila, 
+tipo_ubicacion_mayorFila, tipo_ubicacion_menorAsiento, tipo_ubicacion_mayorAsiento)
+
+select m.Ubicacion_Tipo_Codigo, 
+m.Ubicacion_Tipo_Descripcion,
+(select min(m1.Ubicacion_Fila) from gd_esquema.Maestra m1 where m1.Ubicacion_Tipo_Codigo = m.Ubicacion_Tipo_Codigo),
+(select max(m1.Ubicacion_Fila) from gd_esquema.Maestra m1 where m1.Ubicacion_Tipo_Codigo = m.Ubicacion_Tipo_Codigo),
+(select min(m1.Ubicacion_Asiento) from gd_esquema.Maestra m1 where m1.Ubicacion_Tipo_Codigo = m.Ubicacion_Tipo_Codigo), 
+(select max(m1.Ubicacion_Asiento) from gd_esquema.Maestra m1 where m1.Ubicacion_Tipo_Codigo = m.Ubicacion_Tipo_Codigo)
+from gd_esquema.Maestra m group by m.Ubicacion_Tipo_Codigo, m.Ubicacion_Tipo_Descripcion
 SET IDENTITY_INSERT ESECUELE.Tipo_Ubicacion OFF;
+
+insert into ESECUELE.Tipo_Ubicacion
+(tipo_ubicacion_desc, tipo_ubicacion_menorFila, 
+tipo_ubicacion_mayorFila, tipo_ubicacion_menorAsiento, tipo_ubicacion_mayorAsiento)
+values ('Sin Numerar', null, null, null, null)
+
 -- Fin de Carga de Tipos de Ubicaciones
 
 -- Asignacion de funcionalidades para los usuarios cargados
@@ -800,7 +828,7 @@ go
 
 create procedure ESECUELE.getUsuario(@username varchar(50))
 as begin
-	select * from ESECUELE.Usuario u join ESECUELE.Rol_Usuario r on u.usr_username = r.rol_usr_username
+	select distinct * from ESECUELE.Usuario u join ESECUELE.Rol_Usuario r on u.usr_username = r.rol_usr_username
 	where u.usr_username = @username
 end
 go 
@@ -1245,6 +1273,7 @@ begin
 	select publicacion_codigo, publicacion_fecha_evento from ESECUELE.Publicacion 
 	where publicacion_codigo = @codigo
 end
+go
 
 create procedure ESECUELE.SearchPagedPublicacion(@offset int, @items int) as
 begin
@@ -1348,5 +1377,11 @@ begin
 							offset ', @offset,' rows fetch next ',@items,' rows only')
 
 	exec sp_executesql @query
+end
+go
+
+create procedure ESECUELE.getTiposUbicaciones as
+begin
+	select * from ESECUELE.Tipo_Ubicacion
 end
 go

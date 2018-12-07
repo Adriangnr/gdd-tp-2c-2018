@@ -15,37 +15,8 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
         private PublicacionService publicacionService = (PublicacionService)ServiceFactory.GetService("Publicacion");
         private bool deleteButtonLoaded = false;
 
-        class EntradaString
-        {
-            public string Descripcion { get; set; }
-
-            [DisplayName("Rango de Filas")]
-            public string RangoFilas { get; set; }
-
-            [DisplayName("Rango de Asientos")]
-            public string RangoAsientos { get; set; }
-
-            public string Precio { get; set; }
-
-            [DisplayName("Sin Numerar")]
-            public bool SinNumerar { get; set; }
-
-            [DisplayName(" ")]
-            public string deleteButton { get; set; }
-
-            public EntradaString(string desc, string filas, string asientos, string precio, bool sinNumerar)
-            {
-                this.Descripcion = desc;
-                this.RangoAsientos = asientos;
-                this.RangoFilas = filas;
-                this.Precio = precio;
-                this.SinNumerar = sinNumerar;
-                this.deleteButton = "Eliminar";
-            }
-        }
 
         private List<FechaHora> fechasHorarios = new List<FechaHora>();
-        private List<EntradaString> entradas = new List<EntradaString>();
 
         public Publicacion_Detalle()
         {
@@ -73,12 +44,6 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
 
         public void AddEntrada(string desc, string filas, string asientos, string precio, bool sinNumerar)
         {
-            EntradaString entrada = new EntradaString(desc, filas, asientos, precio, sinNumerar);
-
-            this.entradas.Add(entrada);
-            this.dataGridView_tipoEntradas.DataSource = null;
-            this.dataGridView_tipoEntradas.DataSource = this.entradas;
-            this.dataGridView_tipoEntradas.ClearSelection();
         }
 
         public void loadFields(Publicacion publicacion)
@@ -124,6 +89,8 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
             this.GetRubros();
             this.GetGrados();
             this.GetEstados();
+            this.GetUbicaciones();
+           
         }
 
         private void configureDatagridFechaHorarios()
@@ -135,6 +102,17 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
                 this.addDeleteButton();
             }
             catch (Exception) { }
+        }
+
+        private void GetUbicaciones()
+        {
+            UbicacionService ubicacionService = (UbicacionService)ServiceFactory.GetService("Ubicacion");
+            List<Tipo_Ubicacion> tiposUbicaciones = ubicacionService.getTiposUbicaciones();
+            foreach (Tipo_Ubicacion tipoUbic in tiposUbicaciones)
+            {
+                this.dataGridViewUbicaciones.Rows.Add(tipoUbic.descripcion, "", false);
+            }
+            this.dataGridViewUbicaciones.Refresh();
         }
 
         private void GetRubros()
@@ -213,12 +191,6 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
 
         private void dataGridView_tipoEntradas_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == 5)
-            {
-                this.entradas.RemoveAt(e.RowIndex);
-                this.dataGridView_tipoEntradas.DataSource = null;
-                this.dataGridView_tipoEntradas.DataSource = this.entradas;
-            }
         }
     }
 }

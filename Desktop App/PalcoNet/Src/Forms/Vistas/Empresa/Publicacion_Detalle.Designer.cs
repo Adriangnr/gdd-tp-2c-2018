@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.descripcion = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -45,11 +44,13 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.btn_pub_cargarFechasHoras = new System.Windows.Forms.Button();
-            this.btn_pub_entradas = new System.Windows.Forms.Button();
-            this.dataGridView_tipoEntradas = new System.Windows.Forms.DataGridView();
             this.dataGridView_fechaHora = new System.Windows.Forms.DataGridView();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_tipoEntradas)).BeginInit();
+            this.dataGridViewUbicaciones = new System.Windows.Forms.DataGridView();
+            this.txtTipoUbicacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.txtPrecio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.chkSelected = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_fechaHora)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewUbicaciones)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -157,7 +158,7 @@
             this.registerLink.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.registerLink.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
             this.registerLink.LinkColor = System.Drawing.SystemColors.MenuHighlight;
-            this.registerLink.Location = new System.Drawing.Point(69, 548);
+            this.registerLink.Location = new System.Drawing.Point(47, 571);
             this.registerLink.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.registerLink.Name = "registerLink";
             this.registerLink.Size = new System.Drawing.Size(172, 25);
@@ -197,7 +198,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(627, 120);
+            this.label2.Location = new System.Drawing.Point(627, 121);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(134, 20);
             this.label2.TabIndex = 57;
@@ -207,18 +208,18 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(627, 335);
+            this.label3.Location = new System.Drawing.Point(627, 311);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(136, 20);
+            this.label3.Size = new System.Drawing.Size(269, 20);
             this.label3.TabIndex = 59;
-            this.label3.Text = "Tipos de entradas";
+            this.label3.Text = "Tipos de entradas de su espectaculo";
             // 
             // btn_pub_cargarFechasHoras
             // 
             this.btn_pub_cargarFechasHoras.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_pub_cargarFechasHoras.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_pub_cargarFechasHoras.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.btn_pub_cargarFechasHoras.Location = new System.Drawing.Point(52, 437);
+            this.btn_pub_cargarFechasHoras.Location = new System.Drawing.Point(52, 419);
             this.btn_pub_cargarFechasHoras.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btn_pub_cargarFechasHoras.Name = "btn_pub_cargarFechasHoras";
             this.btn_pub_cargarFechasHoras.Size = new System.Drawing.Size(194, 69);
@@ -227,72 +228,60 @@
             this.btn_pub_cargarFechasHoras.UseVisualStyleBackColor = true;
             this.btn_pub_cargarFechasHoras.Click += new System.EventHandler(this.btn_pub_cargarFechasHoras_Click);
             // 
-            // btn_pub_entradas
-            // 
-            this.btn_pub_entradas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_pub_entradas.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_pub_entradas.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.btn_pub_entradas.Location = new System.Drawing.Point(301, 437);
-            this.btn_pub_entradas.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btn_pub_entradas.Name = "btn_pub_entradas";
-            this.btn_pub_entradas.Size = new System.Drawing.Size(194, 69);
-            this.btn_pub_entradas.TabIndex = 61;
-            this.btn_pub_entradas.Text = "Cargar entradas y precios";
-            this.btn_pub_entradas.UseVisualStyleBackColor = true;
-            this.btn_pub_entradas.Click += new System.EventHandler(this.btn_pub_entradas_Click);
-            // 
-            // dataGridView_tipoEntradas
-            // 
-            this.dataGridView_tipoEntradas.AllowUserToAddRows = false;
-            this.dataGridView_tipoEntradas.AllowUserToResizeColumns = false;
-            this.dataGridView_tipoEntradas.AllowUserToResizeRows = false;
-            this.dataGridView_tipoEntradas.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            this.dataGridView_tipoEntradas.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.dataGridView_tipoEntradas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView_tipoEntradas.Cursor = System.Windows.Forms.Cursors.Default;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Transparent;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Transparent;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView_tipoEntradas.DefaultCellStyle = dataGridViewCellStyle1;
-            this.dataGridView_tipoEntradas.EnableHeadersVisualStyles = false;
-            this.dataGridView_tipoEntradas.Location = new System.Drawing.Point(631, 369);
-            this.dataGridView_tipoEntradas.MultiSelect = false;
-            this.dataGridView_tipoEntradas.Name = "dataGridView_tipoEntradas";
-            this.dataGridView_tipoEntradas.ReadOnly = true;
-            this.dataGridView_tipoEntradas.RowHeadersVisible = false;
-            this.dataGridView_tipoEntradas.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            this.dataGridView_tipoEntradas.RowTemplate.Height = 28;
-            this.dataGridView_tipoEntradas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dataGridView_tipoEntradas.Size = new System.Drawing.Size(461, 150);
-            this.dataGridView_tipoEntradas.TabIndex = 65;
-            this.dataGridView_tipoEntradas.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_tipoEntradas_CellContentClick);
-            // 
             // dataGridView_fechaHora
             // 
             this.dataGridView_fechaHora.AllowUserToAddRows = false;
             this.dataGridView_fechaHora.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             this.dataGridView_fechaHora.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView_fechaHora.Location = new System.Drawing.Point(631, 161);
+            this.dataGridView_fechaHora.Location = new System.Drawing.Point(689, 144);
             this.dataGridView_fechaHora.Name = "dataGridView_fechaHora";
             this.dataGridView_fechaHora.ReadOnly = true;
             this.dataGridView_fechaHora.RowHeadersVisible = false;
             this.dataGridView_fechaHora.RowTemplate.Height = 28;
             this.dataGridView_fechaHora.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView_fechaHora.Size = new System.Drawing.Size(461, 171);
+            this.dataGridView_fechaHora.Size = new System.Drawing.Size(403, 120);
             this.dataGridView_fechaHora.TabIndex = 66;
+            // 
+            // dataGridViewUbicaciones
+            // 
+            this.dataGridViewUbicaciones.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewUbicaciones.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.txtTipoUbicacion,
+            this.txtPrecio,
+            this.chkSelected});
+            this.dataGridViewUbicaciones.Location = new System.Drawing.Point(692, 334);
+            this.dataGridViewUbicaciones.Name = "dataGridViewUbicaciones";
+            this.dataGridViewUbicaciones.RowHeadersVisible = false;
+            this.dataGridViewUbicaciones.RowTemplate.Height = 28;
+            this.dataGridViewUbicaciones.Size = new System.Drawing.Size(403, 150);
+            this.dataGridViewUbicaciones.TabIndex = 67;
+            // 
+            // txtTipoUbicacion
+            // 
+            this.txtTipoUbicacion.HeaderText = "Tipo de Ubicacion";
+            this.txtTipoUbicacion.Name = "txtTipoUbicacion";
+            this.txtTipoUbicacion.ReadOnly = true;
+            this.txtTipoUbicacion.Width = 200;
+            // 
+            // txtPrecio
+            // 
+            this.txtPrecio.HeaderText = "Precio";
+            this.txtPrecio.Name = "txtPrecio";
+            // 
+            // chkSelected
+            // 
+            this.chkSelected.HeaderText = "Seleccionar";
+            this.chkSelected.Name = "chkSelected";
+            this.chkSelected.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.chkSelected.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
             // Publicacion_Detalle
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1157, 678);
+            this.Controls.Add(this.dataGridViewUbicaciones);
             this.Controls.Add(this.dataGridView_fechaHora);
-            this.Controls.Add(this.dataGridView_tipoEntradas);
-            this.Controls.Add(this.btn_pub_entradas);
             this.Controls.Add(this.btn_pub_cargarFechasHoras);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -330,11 +319,10 @@
             this.Controls.SetChildIndex(this.label2, 0);
             this.Controls.SetChildIndex(this.label3, 0);
             this.Controls.SetChildIndex(this.btn_pub_cargarFechasHoras, 0);
-            this.Controls.SetChildIndex(this.btn_pub_entradas, 0);
-            this.Controls.SetChildIndex(this.dataGridView_tipoEntradas, 0);
             this.Controls.SetChildIndex(this.dataGridView_fechaHora, 0);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_tipoEntradas)).EndInit();
+            this.Controls.SetChildIndex(this.dataGridViewUbicaciones, 0);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_fechaHora)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewUbicaciones)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -357,8 +345,10 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btn_pub_cargarFechasHoras;
-        private System.Windows.Forms.Button btn_pub_entradas;
-        private System.Windows.Forms.DataGridView dataGridView_tipoEntradas;
         private System.Windows.Forms.DataGridView dataGridView_fechaHora;
+        private System.Windows.Forms.DataGridView dataGridViewUbicaciones;
+        private System.Windows.Forms.DataGridViewTextBoxColumn txtTipoUbicacion;
+        private System.Windows.Forms.DataGridViewTextBoxColumn txtPrecio;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn chkSelected;
     }
 }

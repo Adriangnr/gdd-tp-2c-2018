@@ -43,6 +43,7 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
                 }
                 else
                 {
+                    this.dataGridPublicaciones.DataSource = null;
                     this.dataGridPublicaciones.DataSource = publicaciones;
                     this.dataGridPublicaciones.ClearSelection();
                 }
@@ -145,6 +146,19 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
             this.dataGridPublicaciones.DataSource = null;
             this.dataGridPublicaciones.DataSource = publicaciones;
             this.dataGridPublicaciones.ClearSelection();
+        }
+
+        private void dataGridPublicaciones_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            Publicacion currentPublicacion = (Publicacion)this.dataGridPublicaciones.SelectedRows[0].DataBoundItem;
+            if (!currentPublicacion.Estado.puedeModificarse())
+            {
+                this.btn_edit.Text = "Ver";
+            }
+            else
+            {
+                this.btn_edit.Text = "Editar";
+            }
         }
     }
 }

@@ -226,6 +226,7 @@
     <Compile Include="Src\Modelo\Daos\DaoEmpresa.cs" />
     <Compile Include="Src\Modelo\Daos\DaoPublicacion.cs" />
     <Compile Include="Src\Modelo\Daos\DaoRol_Usuario.cs" />
+    <Compile Include="Src\Modelo\Daos\DaoTipoUbicacion.cs" />
     <Compile Include="Src\Modelo\Daos\DaoUsuario.cs" />
     <Compile Include="Src\Modelo\DBConector\Database.cs" />
     <Compile Include="Program.cs" />
@@ -245,11 +246,12 @@
     <Compile Include="Src\Modelo\Entidades\Grado.cs" />
     <Compile Include="Src\Modelo\Daos\DaoLogin.cs" />
     <Compile Include="Src\Modelo\Entidades\Publicacion.cs" />
+    <Compile Include="Src\Modelo\Entidades\Publicacion_Ubicacion.cs" />
     <Compile Include="Src\Modelo\Entidades\Rol.cs" />
     <Compile Include="Src\Modelo\Entidades\Rol_Usuario.cs" />
     <Compile Include="Src\Modelo\Entidades\Rubro.cs" />
     <Compile Include="Src\Modelo\Entidades\Titulo.cs" />
-    <Compile Include="Src\Modelo\Entidades\Ubicacion.cs" />
+    <Compile Include="Src\Modelo\Entidades\Tipo_Ubicacion.cs" />
     <Compile Include="Src\Modelo\Entidades\Usuario.cs" />
     <Compile Include="Src\Modelo\Estados\Borrador.cs" />
     <Compile Include="Src\Modelo\Estados\Estado.cs" />
@@ -267,6 +269,7 @@
     <Compile Include="Src\Servicios\RolService.cs" />
     <Compile Include="Src\Servicios\RubroService.cs" />
     <Compile Include="Src\Servicios\ServiceFactory\ServiceFactory.cs" />
+    <Compile Include="Src\Servicios\UbicacionService.cs" />
     <Compile Include="Src\Servicios\UsuarioService.cs" />
     <Compile Include="Src\Utils\SortableBindingList.cs" />
     <Compile Include="Src\Utils\Utilities.cs" />
