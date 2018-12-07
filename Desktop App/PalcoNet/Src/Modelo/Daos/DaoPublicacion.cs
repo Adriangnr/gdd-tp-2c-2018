@@ -53,5 +53,18 @@ namespace PalcoNet.Src.Modelo.Daos
                 throw e;
             }
         }
+
+        public List<List<object>> getUbicacionesDisponibles(int codigo)
+        {
+            try
+            {
+                return this.spExecuteDataReader(this.schema + ".GetUbicacionesDisponiblesPublicacion",
+                    new List<SqlParameter>() { new SqlParameter("@codigo", codigo) });
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
     }
 }

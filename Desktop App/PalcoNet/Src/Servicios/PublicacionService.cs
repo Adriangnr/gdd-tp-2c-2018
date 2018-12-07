@@ -30,6 +30,30 @@ namespace PalcoNet.Src.Servicios
             return fechas;
         }
 
+        public List<Ubicacion> getUbicaciones(int codigo)
+        {
+            List<Ubicacion> ubicaciones = new List<Ubicacion>();
+            List<List<object>> rows = daoPublicaion.getUbicacionesDisponibles(codigo);
+            foreach (List<object> row in rows)
+            {
+                Ubicacion ubicacion = new Ubicacion();
+                this.loadUbicacion(ubicacion, row);
+                ubicaciones.Add(ubicacion);
+            }
+            return ubicaciones;
+        }
+
+        public void loadUbicacion(Ubicacion ubicacion, List<object> row)
+        {
+            ubicacion.tipo = (int)row[0];
+            ubicacion.descripcion = (string)row[1];
+            ubicacion.fila = (string)row[2];
+            ubicacion.asiento = (string)row[3];
+            ubicacion.precio = Convert.ToDouble(row[4].ToString()); ;
+            ubicacion.cantidad = (int)row[5];
+            ubicacion.disponible = (int)row[6];
+        }
+
         public void loadPublicacion(Publicacion publicacion, List<object> row)
         {
             EmpresaService empresaService = new EmpresaService();

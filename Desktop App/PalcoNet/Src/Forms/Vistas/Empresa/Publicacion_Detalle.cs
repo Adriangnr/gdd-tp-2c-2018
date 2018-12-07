@@ -5,7 +5,6 @@ using PalcoNet.Src.Servicios;
 using PalcoNet.Src.Servicios.ServiceFactory;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Windows.Forms;
 
 namespace PalcoNet.Src.Forms.Vistas.Empresa
@@ -13,10 +12,6 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
     public partial class Publicacion_Detalle : Master
     {
         private PublicacionService publicacionService = (PublicacionService)ServiceFactory.GetService("Publicacion");
-        private bool deleteButtonLoaded = false;
-
-
-        private List<FechaHora> fechasHorarios = new List<FechaHora>();
 
         public Publicacion_Detalle()
         {
@@ -35,15 +30,16 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
         {
             FechaHora fechahora =
                 new FechaHora(DateTime.Parse(fechaHoraString));
-            this.fechasHorarios.Add(fechahora);
-            this.dataGridView_fechaHora.DataSource = null;
-            this.dataGridView_fechaHora.DataSource = this.fechasHorarios;
-            configureDatagridFechaHorarios();
+
+            this.dataGridView_fechaHora.Rows.Add(fechahora.fechaHora, "Quitar");
+
             this.dataGridView_fechaHora.Refresh();
         }
 
-        public void AddEntrada(string desc, string filas, string asientos, string precio, bool sinNumerar)
+        public void AddUbicacion(Ubicacion newUbicacion)
         {
+            this.dataGridViewUbicaciones.Rows.Add(newUbicacion.descripcion, newUbicacion.fila, 
+                newUbicacion.asiento, newUbicacion.precio, newUbicacion.cantidad, "Quitar");
         }
 
         public void loadFields(Publicacion publicacion)
@@ -65,54 +61,37 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
                 if (((Estado)item).ToString() == publicacion.Estado.ToString()) this.estado.SelectedItem = item;
             }
             
-            this.dataGridView_fechaHora.DataSource = null;
-            List<FechaHora> horarios = this.publicacionService.getFechasDeEvento(publicacion.Codigo);
-            this.fechasHorarios.AddRange(horarios);
-            this.dataGridView_fechaHora.DataSource = this.fechasHorarios;
-            configureDatagridFechaHorarios();
+            this.addListFechaHora(this.publicacionService.getFechasDeEvento(publicacion.Codigo));
+            this.addListUbicaciones(this.publicacionService.getUbicaciones(publicacion.Codigo));
+        }
+
+        public void addListUbicaciones(List<Ubicacion> ubicaciones)
+        {
+            foreach (Ubicacion ubicacion in ubicaciones)
+            {
+                this.AddUbicacion(ubicacion);
+            }
             this.dataGridView_fechaHora.Refresh();
         }
 
-        public void addDeleteButton()
+        public void addListFechaHora(List<FechaHora> horarios)
         {
-            if (!this.deleteButtonLoaded)
+            foreach(FechaHora fechaHora in horarios)
             {
-                DataGridViewButtonColumn btnDelete = new DataGridViewButtonColumn();
-                btnDelete.Text = "Eliminar";
-                btnDelete.UseColumnTextForButtonValue = true;
-                this.dataGridView_fechaHora.Columns.Add(btnDelete);
-                this.deleteButtonLoaded = true;
+                this.dataGridView_fechaHora.Rows.Add(fechaHora.fechaHora, "Quitar");
             }
+            this.dataGridView_fechaHora.Refresh();
         }
-
         private void loadLists(){
             this.GetRubros();
             this.GetGrados();
             this.GetEstados();
-            this.GetUbicaciones();
-           
-        }
-
-        private void configureDatagridFechaHorarios()
-        {
-            try
-            {
-                this.dataGridView_fechaHora.Columns[0].DefaultCellStyle.Format = "dd-MM-yyyy - HH:mm";
-                this.dataGridView_fechaHora.Refresh();
-                this.addDeleteButton();
-            }
-            catch (Exception) { }
         }
 
         private void GetUbicaciones()
         {
             UbicacionService ubicacionService = (UbicacionService)ServiceFactory.GetService("Ubicacion");
-            List<Tipo_Ubicacion> tiposUbicaciones = ubicacionService.getTiposUbicaciones();
-            foreach (Tipo_Ubicacion tipoUbic in tiposUbicaciones)
-            {
-                this.dataGridViewUbicaciones.Rows.Add(tipoUbic.descripcion, "", false);
-            }
-            this.dataGridViewUbicaciones.Refresh();
+            
         }
 
         private void GetRubros()
@@ -176,21 +155,29 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
         {
             if (e.ColumnIndex == 1)
             {
-                this.fechasHorarios.RemoveAt(e.RowIndex);
-                this.dataGridView_fechaHora.DataSource = null;
-                this.dataGridView_fechaHora.DataSource = this.fechasHorarios;
+                this.dataGridView_fechaHora.Rows.RemoveAt(e.RowIndex);
+                this.dataGridView_fechaHora.Refresh();
             }
-        }
-
-        private void btn_pub_entradas_Click(object sender, EventArgs e)
-        {
-            Entradas entradas = new Entradas();
-            entradas.parent = this;
-            entradas.Show();
         }
 
         private void dataGridView_tipoEntradas_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+        }
+
+        private void btnCargarUbicaciones_Click(object sender, EventArgs e)
+        {
+            Ubicaciones ubicaciones = new Ubicaciones();
+            ubicaciones.parent = this;
+            ubicaciones.Show();
+        }
+
+        private void dataGridViewUbicaciones_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == 5)
+            {
+                this.dataGridViewUbicaciones.Rows.RemoveAt(e.RowIndex);
+                this.dataGridViewUbicaciones.Refresh();
+            }
         }
     }
 }

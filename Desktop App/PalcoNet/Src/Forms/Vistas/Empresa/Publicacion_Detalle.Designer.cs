@@ -45,13 +45,23 @@
             this.label3 = new System.Windows.Forms.Label();
             this.btn_pub_cargarFechasHoras = new System.Windows.Forms.Button();
             this.dataGridView_fechaHora = new System.Windows.Forms.DataGridView();
+            this.fechaHora = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnEliminar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.dataGridViewUbicaciones = new System.Windows.Forms.DataGridView();
             this.txtTipoUbicacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fila = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.asiento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txtPrecio = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.chkSelected = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.txtCantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnQuitar = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.btnCargarUbicaciones = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_fechaHora)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewUbicaciones)).BeginInit();
             this.SuspendLayout();
+            // 
+            // footer
+            // 
+            this.footer.Location = new System.Drawing.Point(1141, 645);
             // 
             // label1
             // 
@@ -172,7 +182,7 @@
             this.btn_cancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_cancel.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_cancel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.btn_cancel.Location = new System.Drawing.Point(692, 527);
+            this.btn_cancel.Location = new System.Drawing.Point(1065, 527);
             this.btn_cancel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btn_cancel.Name = "btn_cancel";
             this.btn_cancel.Size = new System.Drawing.Size(194, 69);
@@ -187,7 +197,7 @@
             this.btn_guardar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_guardar.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_guardar.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btn_guardar.Location = new System.Drawing.Point(898, 527);
+            this.btn_guardar.Location = new System.Drawing.Point(1271, 527);
             this.btn_guardar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btn_guardar.Name = "btn_guardar";
             this.btn_guardar.Size = new System.Drawing.Size(194, 69);
@@ -198,7 +208,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(627, 121);
+            this.label2.Location = new System.Drawing.Point(588, 119);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(134, 20);
             this.label2.TabIndex = 57;
@@ -208,7 +218,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(627, 311);
+            this.label3.Location = new System.Drawing.Point(958, 119);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(269, 20);
             this.label3.TabIndex = 59;
@@ -231,30 +241,56 @@
             // dataGridView_fechaHora
             // 
             this.dataGridView_fechaHora.AllowUserToAddRows = false;
+            this.dataGridView_fechaHora.AllowUserToResizeColumns = false;
+            this.dataGridView_fechaHora.AllowUserToResizeRows = false;
             this.dataGridView_fechaHora.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             this.dataGridView_fechaHora.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView_fechaHora.Location = new System.Drawing.Point(689, 144);
+            this.dataGridView_fechaHora.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.fechaHora,
+            this.btnEliminar});
+            this.dataGridView_fechaHora.Location = new System.Drawing.Point(592, 153);
             this.dataGridView_fechaHora.Name = "dataGridView_fechaHora";
             this.dataGridView_fechaHora.ReadOnly = true;
             this.dataGridView_fechaHora.RowHeadersVisible = false;
             this.dataGridView_fechaHora.RowTemplate.Height = 28;
             this.dataGridView_fechaHora.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView_fechaHora.Size = new System.Drawing.Size(403, 120);
+            this.dataGridView_fechaHora.Size = new System.Drawing.Size(343, 335);
             this.dataGridView_fechaHora.TabIndex = 66;
+            this.dataGridView_fechaHora.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_fechaHora_CellContentClick);
+            // 
+            // fechaHora
+            // 
+            this.fechaHora.HeaderText = "Dia y Horario";
+            this.fechaHora.Name = "fechaHora";
+            this.fechaHora.ReadOnly = true;
+            this.fechaHora.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.fechaHora.Width = 150;
+            // 
+            // btnEliminar
+            // 
+            this.btnEliminar.HeaderText = "";
+            this.btnEliminar.Name = "btnEliminar";
+            this.btnEliminar.ReadOnly = true;
+            this.btnEliminar.Width = 60;
             // 
             // dataGridViewUbicaciones
             // 
+            this.dataGridViewUbicaciones.AllowUserToAddRows = false;
             this.dataGridViewUbicaciones.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewUbicaciones.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.txtTipoUbicacion,
+            this.fila,
+            this.asiento,
             this.txtPrecio,
-            this.chkSelected});
-            this.dataGridViewUbicaciones.Location = new System.Drawing.Point(692, 334);
+            this.txtCantidad,
+            this.btnQuitar});
+            this.dataGridViewUbicaciones.Location = new System.Drawing.Point(962, 152);
             this.dataGridViewUbicaciones.Name = "dataGridViewUbicaciones";
             this.dataGridViewUbicaciones.RowHeadersVisible = false;
             this.dataGridViewUbicaciones.RowTemplate.Height = 28;
-            this.dataGridViewUbicaciones.Size = new System.Drawing.Size(403, 150);
+            this.dataGridViewUbicaciones.Size = new System.Drawing.Size(503, 336);
             this.dataGridViewUbicaciones.TabIndex = 67;
+            this.dataGridViewUbicaciones.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewUbicaciones_CellContentClick);
             // 
             // txtTipoUbicacion
             // 
@@ -263,23 +299,53 @@
             this.txtTipoUbicacion.ReadOnly = true;
             this.txtTipoUbicacion.Width = 200;
             // 
+            // fila
+            // 
+            this.fila.HeaderText = "Fila";
+            this.fila.Name = "fila";
+            // 
+            // asiento
+            // 
+            this.asiento.HeaderText = "Asiento";
+            this.asiento.Name = "asiento";
+            // 
             // txtPrecio
             // 
             this.txtPrecio.HeaderText = "Precio";
             this.txtPrecio.Name = "txtPrecio";
             // 
-            // chkSelected
+            // txtCantidad
             // 
-            this.chkSelected.HeaderText = "Seleccionar";
-            this.chkSelected.Name = "chkSelected";
-            this.chkSelected.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.chkSelected.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.txtCantidad.HeaderText = "Cantidad";
+            this.txtCantidad.Name = "txtCantidad";
+            // 
+            // btnQuitar
+            // 
+            this.btnQuitar.HeaderText = "";
+            this.btnQuitar.Name = "btnQuitar";
+            this.btnQuitar.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.btnQuitar.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // btnCargarUbicaciones
+            // 
+            this.btnCargarUbicaciones.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCargarUbicaciones.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCargarUbicaciones.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.btnCargarUbicaciones.Location = new System.Drawing.Point(301, 419);
+            this.btnCargarUbicaciones.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnCargarUbicaciones.Name = "btnCargarUbicaciones";
+            this.btnCargarUbicaciones.Size = new System.Drawing.Size(194, 69);
+            this.btnCargarUbicaciones.TabIndex = 68;
+            this.btnCargarUbicaciones.Text = "Cargar Ubicaciones";
+            this.btnCargarUbicaciones.UseVisualStyleBackColor = true;
+            this.btnCargarUbicaciones.Click += new System.EventHandler(this.btnCargarUbicaciones_Click);
             // 
             // Publicacion_Detalle
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1157, 678);
+            this.ClientSize = new System.Drawing.Size(1513, 678);
+            this.Controls.Add(this.btnCargarUbicaciones);
             this.Controls.Add(this.dataGridViewUbicaciones);
             this.Controls.Add(this.dataGridView_fechaHora);
             this.Controls.Add(this.btn_pub_cargarFechasHoras);
@@ -298,6 +364,7 @@
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.descripcion);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Sizable;
             this.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
             this.Name = "Publicacion_Detalle";
             this.Text = "Palco.NET - Creación de Publicación";
@@ -321,6 +388,7 @@
             this.Controls.SetChildIndex(this.btn_pub_cargarFechasHoras, 0);
             this.Controls.SetChildIndex(this.dataGridView_fechaHora, 0);
             this.Controls.SetChildIndex(this.dataGridViewUbicaciones, 0);
+            this.Controls.SetChildIndex(this.btnCargarUbicaciones, 0);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_fechaHora)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewUbicaciones)).EndInit();
             this.ResumeLayout(false);
@@ -347,8 +415,14 @@
         private System.Windows.Forms.Button btn_pub_cargarFechasHoras;
         private System.Windows.Forms.DataGridView dataGridView_fechaHora;
         private System.Windows.Forms.DataGridView dataGridViewUbicaciones;
+        private System.Windows.Forms.Button btnCargarUbicaciones;
+        private System.Windows.Forms.DataGridViewTextBoxColumn fechaHora;
+        private System.Windows.Forms.DataGridViewButtonColumn btnEliminar;
         private System.Windows.Forms.DataGridViewTextBoxColumn txtTipoUbicacion;
+        private System.Windows.Forms.DataGridViewTextBoxColumn fila;
+        private System.Windows.Forms.DataGridViewTextBoxColumn asiento;
         private System.Windows.Forms.DataGridViewTextBoxColumn txtPrecio;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn chkSelected;
+        private System.Windows.Forms.DataGridViewTextBoxColumn txtCantidad;
+        private System.Windows.Forms.DataGridViewButtonColumn btnQuitar;
     }
 }

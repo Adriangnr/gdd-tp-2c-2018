@@ -214,33 +214,17 @@ go
 --Tipo_Entrada
 create table ESECUELE.Tipo_Ubicacion(
 	tipo_ubicacion_id int identity(1,1) primary key,
-	tipo_ubicacion_desc varchar(50) default null, 
-	tipo_ubicacion_menorFila varchar(3) default null,
-	tipo_ubicacion_mayorFila varchar(3) default null,
-	tipo_ubicacion_menorAsiento varchar(3) default null,
-	tipo_ubicacion_mayorAsiento varchar(3) default null
+	tipo_ubicacion_desc varchar(50) default null
 )
 go
 
--- Publicacion_Ubicacion
-create table ESECUELE.Publicacion_Ubicacion(
-	publicacion_codigo int,
-	publicacion_fecha_evento datetime,
-	ubicacion int foreign key references ESECUELE.Tipo_Ubicacion(tipo_ubicacion_id),
-	precio numeric default null,
-	cantidad int default null,
-	constraint pk_pubUbic primary key (publicacion_codigo, publicacion_fecha_evento, ubicacion),
-	constraint fk_pub foreign key (publicacion_codigo, publicacion_fecha_evento) references
-	ESECUELE.Publicacion(publicacion_codigo, publicacion_fecha_evento)
-)
-go
 
 --Ubicacion numerada
 create table ESECUELE.UbicacionNumerada(
 	ubicacion_id int identity(1,1),
 	ubicacion_publicacion int default null,
-	ubicacion_fila char default null,
-	ubicacion_asiento int default null,
+	ubicacion_fila varchar(3) default null,
+	ubicacion_asiento varchar(3) default null,
 	ubicacion_precio numeric(18,2) not null,
 	ubicacion_disponible bit default 1, -- 1 Disponible , 0 no disponible
 	ubicacion_tipo int default null
@@ -576,22 +560,16 @@ drop table #EntradasTemporales
 -- Carga de Tipos de Ubicaciones
 SET IDENTITY_INSERT ESECUELE.Tipo_Ubicacion ON;
 insert into ESECUELE.Tipo_Ubicacion
-(tipo_ubicacion_id, tipo_ubicacion_desc, tipo_ubicacion_menorFila, 
-tipo_ubicacion_mayorFila, tipo_ubicacion_menorAsiento, tipo_ubicacion_mayorAsiento)
+(tipo_ubicacion_id, tipo_ubicacion_desc)
 
 select m.Ubicacion_Tipo_Codigo, 
-m.Ubicacion_Tipo_Descripcion,
-(select min(m1.Ubicacion_Fila) from gd_esquema.Maestra m1 where m1.Ubicacion_Tipo_Codigo = m.Ubicacion_Tipo_Codigo),
-(select max(m1.Ubicacion_Fila) from gd_esquema.Maestra m1 where m1.Ubicacion_Tipo_Codigo = m.Ubicacion_Tipo_Codigo),
-(select min(m1.Ubicacion_Asiento) from gd_esquema.Maestra m1 where m1.Ubicacion_Tipo_Codigo = m.Ubicacion_Tipo_Codigo), 
-(select max(m1.Ubicacion_Asiento) from gd_esquema.Maestra m1 where m1.Ubicacion_Tipo_Codigo = m.Ubicacion_Tipo_Codigo)
+m.Ubicacion_Tipo_Descripcion
 from gd_esquema.Maestra m group by m.Ubicacion_Tipo_Codigo, m.Ubicacion_Tipo_Descripcion
 SET IDENTITY_INSERT ESECUELE.Tipo_Ubicacion OFF;
 
 insert into ESECUELE.Tipo_Ubicacion
-(tipo_ubicacion_desc, tipo_ubicacion_menorFila, 
-tipo_ubicacion_mayorFila, tipo_ubicacion_menorAsiento, tipo_ubicacion_mayorAsiento)
-values ('Sin Numerar', null, null, null, null)
+(tipo_ubicacion_desc)
+values ('Sin Numerar')
 
 -- Fin de Carga de Tipos de Ubicaciones
 
@@ -1383,5 +1361,20 @@ go
 create procedure ESECUELE.getTiposUbicaciones as
 begin
 	select * from ESECUELE.Tipo_Ubicacion
+end
+go
+
+create procedure ESECUELE.GetUbicacionesDisponiblesPublicacion(@codigo int) as
+begin
+	select ubicacion_tipo, tipo_ubicacion_desc, ubicacion_fila, ubicacion_asiento, ubicacion_precio, 1 cantidad, 1 disponible 
+	from ESECUELE.UbicacionNumerada
+	join ESECUELE.Tipo_Ubicacion on ubicacion_tipo = tipo_ubicacion_id
+	where ubicacion_disponible = 1 and ubicacion_publicacion = @codigo
+	union
+	select ubicacionSN_tipo, tipo_ubicacion_desc, '' fila, '' asiento, 
+	ubicacionSN_precio, ubicacionSN_cant_total, ubicacionSN_cant_disponibles
+	from ESECUELE.UbicacionSinNumerar
+	join ESECUELE.Tipo_Ubicacion on ubicacionSN_tipo = tipo_ubicacion_id
+	where ubicacionSN_cant_disponibles > 0 and ubicacionSN_publicacion = @codigo
 end
 go

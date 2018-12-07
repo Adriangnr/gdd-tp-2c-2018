@@ -145,11 +145,11 @@
     <Compile Include="Src\Forms\Vistas\Cliente\Seleccion_Ubicacion.Designer.cs">
       <DependentUpon>Seleccion_Ubicacion.cs</DependentUpon>
     </Compile>
-    <Compile Include="Src\Forms\Vistas\Empresa\Entradas.cs">
+    <Compile Include="Src\Forms\Vistas\Empresa\Ubicaciones.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Src\Forms\Vistas\Empresa\Entradas.Designer.cs">
-      <DependentUpon>Entradas.cs</DependentUpon>
+    <Compile Include="Src\Forms\Vistas\Empresa\Ubicaciones.Designer.cs">
+      <DependentUpon>Ubicaciones.cs</DependentUpon>
     </Compile>
     <Compile Include="Src\Forms\Vistas\Empresa\Fecha_Hora.cs">
       <SubType>Form</SubType>
@@ -252,6 +252,7 @@
     <Compile Include="Src\Modelo\Entidades\Rubro.cs" />
     <Compile Include="Src\Modelo\Entidades\Titulo.cs" />
     <Compile Include="Src\Modelo\Entidades\Tipo_Ubicacion.cs" />
+    <Compile Include="Src\Modelo\Entidades\Ubicacion.cs" />
     <Compile Include="Src\Modelo\Entidades\Usuario.cs" />
     <Compile Include="Src\Modelo\Estados\Borrador.cs" />
     <Compile Include="Src\Modelo\Estados\Estado.cs" />
@@ -329,8 +330,8 @@
     <EmbeddedResource Include="Src\Forms\Vistas\Cliente\Historial.resx">
       <DependentUpon>Historial.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Src\Forms\Vistas\Empresa\Entradas.resx">
-      <DependentUpon>Entradas.cs</DependentUpon>
+    <EmbeddedResource Include="Src\Forms\Vistas\Empresa\Ubicaciones.resx">
+      <DependentUpon>Ubicaciones.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Src\Forms\Vistas\Empresa\Fecha_Hora.resx">
       <DependentUpon>Fecha_Hora.cs</DependentUpon>

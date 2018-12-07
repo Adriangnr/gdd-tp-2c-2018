@@ -28,10 +28,6 @@ namespace PalcoNet.Src.Servicios
         {
             tipoUbicacion.id = (int)row[0];
             tipoUbicacion.descripcion = (string)row[1];
-            tipoUbicacion.menorFila = (row[2].GetType() != typeof(DBNull)) ? (string)row[2] : null;
-            tipoUbicacion.mayorFila = (row[3].GetType() != typeof(DBNull)) ? (string)row[3] : null;
-            tipoUbicacion.menorAsiento = (row[4].GetType() != typeof(DBNull)) ? (string)row[4] : null;
-            tipoUbicacion.mayorAsiento = (row[5].GetType() != typeof(DBNull)) ? (string)row[5] : null;
         }
     }
 }
