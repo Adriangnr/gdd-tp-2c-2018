@@ -66,5 +66,27 @@ namespace PalcoNet.Src.Modelo.Daos
                 throw e;
             }
         }
+
+        public int save(Publicacion publicacion)
+        {
+            try
+            {
+                return this.spExecuteScalar("ESECUELE.savePublicacion", new List<SqlParameter>()
+                {
+                    new SqlParameter("@fecha_inicio", publicacion.FechaPublicacion),
+                    new SqlParameter("@descripcion", publicacion.Descripcion),
+                    new SqlParameter("@fecha_evento", publicacion.FechaEvento),
+                    new SqlParameter("@rubro", publicacion.Rubro.codigo),
+                    new SqlParameter("@direccion", publicacion.Direccion),
+                    new SqlParameter("@grado", publicacion.Grado.id),
+                    new SqlParameter("@empresa", publicacion.getEmpresaId()),
+                    new SqlParameter("@estado", publicacion.Estado.ToString())
+                });
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
     }
 }

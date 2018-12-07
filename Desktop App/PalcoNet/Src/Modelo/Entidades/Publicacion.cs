@@ -24,6 +24,21 @@ namespace PalcoNet.Src.Modelo.Entidades
         public Empresa Empresa { get; set; }
         public Estado Estado { get; set; }
 
+        public List<Ubicacion> ubicaciones { get; set; }
+        public List<FechaHora> fechas { get; set; }
+
+        private int empresaId;
+
         public Publicacion() {}
+
+        public void setEmpresaId(int id)
+        {
+            this.empresaId = id;
+        }
+
+        public int getEmpresaId()
+        {
+            return this.empresaId;
+        }
     }
 }

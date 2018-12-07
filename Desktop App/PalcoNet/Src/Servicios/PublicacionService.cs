@@ -81,6 +81,13 @@ namespace PalcoNet.Src.Servicios
             }
             publicacion.Empresa = empresaService.GetEmpresa((int)row[7]);
             publicacion.Estado = EstadoFactory.getEstado((string)row[8]);
+            publicacion.fechas = this.getFechasDeEvento(publicacion.Codigo);
+            publicacion.ubicaciones = this.getUbicaciones(publicacion.Codigo);
+        }
+
+        public int save(Publicacion newPublicacion)
+        {
+            return this.daoPublicaion.save(newPublicacion);
         }
     }
 }

@@ -73,6 +73,18 @@ namespace PalcoNet.Src.Modelo.Entidades
                 return this.Roles[0];
         }
 
+        public int getEmpresaId()
+        {
+            return this.spExecuteScalar("ESECUELE.getEmpresaIdfromUsername", new List<SqlParameter>() {
+                new SqlParameter("@username", this.Username) });
+        }
+
+        public int getClienteId()
+        {
+            return this.spExecuteScalar("ESECUELE.getClienteIdfromUsername", new List<SqlParameter>() {
+                new SqlParameter("@username", this.Username) });
+        }
+
         private void LoadAttributes(List<object> row)
         {
             this.Id = (int)row[0];

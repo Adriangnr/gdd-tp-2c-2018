@@ -1378,3 +1378,39 @@ begin
 	where ubicacionSN_cant_disponibles > 0 and ubicacionSN_publicacion = @codigo
 end
 go
+
+create procedure ESECUELE.getEmpresaIdFromUsername(@username varchar(50), @return_val int) as
+begin
+	select empresa_id from ESECUELE.Empresa where empresa_usuario = @username
+	set @return_val = (SELECT SCOPE_IDENTITY())
+end
+go
+
+create procedure ESECUELE.getClienteIdFromUsername(@username varchar(50), @return_val int) as
+begin
+	select cliente_id from ESECUELE.Cliente where cliente_usuario = @username
+	set @return_val = (SELECT SCOPE_IDENTITY())
+end
+go
+
+create procedure ESECUELE.savePublicacion(@fecha_inicio datetime,
+										  @descripcion varchar(255), 
+										  @fecha_evento datetime, 
+										  @rubro int, 
+										  @direccion varchar(50), 
+										  @grado int, 
+										  @empresa int,
+										  @estado varchar(10)) as
+begin 
+	insert into ESECUELE.Publicacion( publicacion_fecha_inicio, 
+									  publicacion_descripcion, 
+									  publicacion_fecha_evento, 
+									  publicacion_rubro, 
+									  publicacion_direccion, 
+									  publicacion_grado, 
+									  publicacion_empresa, 
+									  publicacion_estado) 
+	values(@fecha_inicio, @descripcion, @fecha_evento, @rubro, @direccion, @grado, @empresa, @estado)
+	SELECT SCOPE_IDENTITY()
+end
+go

@@ -62,8 +62,8 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
                 if (((Estado)item).ToString() == this.publicacion.Estado.ToString()) this.estado.SelectedItem = item;
             }
             
-            this.addListFechaHora(this.publicacionService.getFechasDeEvento(this.publicacion.Codigo));
-            this.addListUbicaciones(this.publicacionService.getUbicaciones(this.publicacion.Codigo));
+            this.addListFechaHora(this.publicacion.fechas);
+            this.addListUbicaciones(this.publicacion.ubicaciones);
             this.publicacion.Estado.detailControls(this);
         }
 
@@ -178,6 +178,37 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
             {
                 this.dataGridViewUbicaciones.Rows.RemoveAt(e.RowIndex);
                 this.dataGridViewUbicaciones.Refresh();
+            }
+        }
+
+        private void btn_guardar_Click(object sender, EventArgs e)
+        {
+            foreach(DataGridViewRow row in this.dataGridView_fechaHora.Rows)
+            {
+                Publicacion newPublicacion = new Publicacion();
+                newPublicacion.FechaPublicacion = Utils.Utilities.getCurrentDate();
+                newPublicacion.FechaEvento = (DateTime)row.Cells[0].Value;
+                newPublicacion.Descripcion = this.descripcion.Text;
+                newPublicacion.Direccion = this.direccion.Text;
+                newPublicacion.Rubro = (Rubro)this.rubro.SelectedItem;
+                newPublicacion.Grado = (Grado)this.grado.SelectedItem;
+                newPublicacion.Estado = (Estado)this.estado.SelectedItem;
+                newPublicacion.setEmpresaId(this.usuario.getEmpresaId());
+
+                int newPubId = this.publicacionService.save(newPublicacion);
+
+                foreach(DataGridViewRow rowUbicacion in this.dataGridViewUbicaciones.Rows)
+                {
+                    Ubicacion ubicacion = new Ubicacion();
+                    ubicacion.publicacion = newPubId;
+                    ubicacion.descripcion = (string)rowUbicacion.Cells[0].Value;
+                    ubicacion.fila = (string)rowUbicacion.Cells[1].Value;
+                    ubicacion.asiento = (string)rowUbicacion.Cells[2].Value;
+                    ubicacion.precio = Convert.ToDouble((string)rowUbicacion.Cells[3].Value);
+                    ubicacion.cantidad = Convert.ToInt16((string)rowUbicacion.Cells[4].Value);
+                    ubicacion.disponible = ubicacion.cantidad;
+
+                }
             }
         }
     }

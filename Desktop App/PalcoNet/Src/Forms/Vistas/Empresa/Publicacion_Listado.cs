@@ -71,6 +71,7 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
         private void btn_create_Click(object sender, EventArgs e)
         {
             Publicacion_Detalle createForm = new Publicacion_Detalle(this);
+            createForm.setUsuario(this.usuario);
             createForm.Show();
             this.Hide();
         }
@@ -88,6 +89,7 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
                 Publicacion_Detalle detailForm = new Publicacion_Detalle(this);
                 Publicacion publicacion = (Publicacion)this.dataGridPublicaciones.CurrentRow.DataBoundItem;
                 detailForm.publicacion = publicacion;
+                detailForm.setUsuario(this.usuario);
                 detailForm.loadFields();
                 detailForm.Show();
                 System.Drawing.Size size = new System.Drawing.Size(1100, 500);

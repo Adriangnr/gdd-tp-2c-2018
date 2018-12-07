@@ -1,6 +1,8 @@
-﻿namespace PalcoNet.Src.Forms.Vistas.Empresa
+﻿using PalcoNet.Src.Forms.Layouts;
+
+namespace PalcoNet.Src.Forms.Vistas.Empresa
 {
-    partial class Publicacion_Detalle
+    partial class Publicacion_Detalle : Master
     {
         /// <summary>
         /// Required designer variable.
@@ -48,13 +50,13 @@
             this.fechaHora = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnEliminar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.dataGridViewUbicaciones = new System.Windows.Forms.DataGridView();
-            this.btnCargarUbicaciones = new System.Windows.Forms.Button();
             this.txtTipoUbicacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fila = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.asiento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txtPrecio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txtCantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnQuitar = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.btnCargarUbicaciones = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_fechaHora)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewUbicaciones)).BeginInit();
             this.SuspendLayout();
@@ -204,6 +206,7 @@
             this.btn_guardar.TabIndex = 53;
             this.btn_guardar.Text = "Guardar";
             this.btn_guardar.UseVisualStyleBackColor = false;
+            this.btn_guardar.Click += new System.EventHandler(this.btn_guardar_Click);
             // 
             // label2
             // 
@@ -292,20 +295,6 @@
             this.dataGridViewUbicaciones.TabIndex = 67;
             this.dataGridViewUbicaciones.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewUbicaciones_CellContentClick);
             // 
-            // btnCargarUbicaciones
-            // 
-            this.btnCargarUbicaciones.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCargarUbicaciones.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCargarUbicaciones.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.btnCargarUbicaciones.Location = new System.Drawing.Point(301, 419);
-            this.btnCargarUbicaciones.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btnCargarUbicaciones.Name = "btnCargarUbicaciones";
-            this.btnCargarUbicaciones.Size = new System.Drawing.Size(194, 69);
-            this.btnCargarUbicaciones.TabIndex = 68;
-            this.btnCargarUbicaciones.Text = "Cargar Ubicaciones";
-            this.btnCargarUbicaciones.UseVisualStyleBackColor = true;
-            this.btnCargarUbicaciones.Click += new System.EventHandler(this.btnCargarUbicaciones_Click);
-            // 
             // txtTipoUbicacion
             // 
             this.txtTipoUbicacion.HeaderText = "Tipo de Ubicacion";
@@ -345,10 +334,25 @@
             this.btnQuitar.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.btnQuitar.Width = 60;
             // 
+            // btnCargarUbicaciones
+            // 
+            this.btnCargarUbicaciones.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCargarUbicaciones.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCargarUbicaciones.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.btnCargarUbicaciones.Location = new System.Drawing.Point(301, 419);
+            this.btnCargarUbicaciones.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnCargarUbicaciones.Name = "btnCargarUbicaciones";
+            this.btnCargarUbicaciones.Size = new System.Drawing.Size(194, 69);
+            this.btnCargarUbicaciones.TabIndex = 68;
+            this.btnCargarUbicaciones.Text = "Cargar Ubicaciones";
+            this.btnCargarUbicaciones.UseVisualStyleBackColor = true;
+            this.btnCargarUbicaciones.Click += new System.EventHandler(this.btnCargarUbicaciones_Click);
+            // 
             // Publicacion_Detalle
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(1518, 678);
             this.Controls.Add(this.btnCargarUbicaciones);
             this.Controls.Add(this.dataGridViewUbicaciones);
