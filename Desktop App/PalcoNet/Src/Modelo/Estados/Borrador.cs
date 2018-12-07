@@ -1,4 +1,5 @@
 ﻿using System;
+using PalcoNet.Src.Forms.Vistas.Empresa;
 
 namespace PalcoNet.Src.Modelo.Estados
 {
@@ -9,10 +10,15 @@ namespace PalcoNet.Src.Modelo.Estados
         public override bool puedeModificarse() { return true; }
 
         public override Estado publicar() { return new Publicada(); }
-
+        
         public override string ToString()
         {
             return "Borrador";
+        }
+
+        public override void detailControls(Publicacion_Detalle publicacion_Detalle)
+        {
+            Utils.Utilities.EnableControls(publicacion_Detalle);
         }
     }
 }

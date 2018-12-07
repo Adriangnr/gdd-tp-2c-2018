@@ -12,6 +12,7 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
     public partial class Publicacion_Detalle : Master
     {
         private PublicacionService publicacionService = (PublicacionService)ServiceFactory.GetService("Publicacion");
+        public Publicacion publicacion { set; get; }
 
         public Publicacion_Detalle()
         {
@@ -42,27 +43,28 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
                 newUbicacion.asiento, newUbicacion.precio, newUbicacion.cantidad, "Quitar");
         }
 
-        public void loadFields(Publicacion publicacion)
+        public void loadFields()
         {
-            this.descripcion.Text = publicacion.Descripcion;
-            this.direccion.Text = publicacion.Direccion;
+            this.descripcion.Text = this.publicacion.Descripcion;
+            this.direccion.Text = this.publicacion.Direccion;
             foreach (object item in this.rubro.Items)
             {
-                if(((Rubro)item).codigo == publicacion.Rubro.codigo) this.rubro.SelectedItem = item;
+                if(((Rubro)item).codigo == this.publicacion.Rubro.codigo) this.rubro.SelectedItem = item;
             }
 
             foreach (object item in this.grado.Items)
             {
-                if (((Grado)item).id == publicacion.Grado.id) this.grado.SelectedItem = item;
+                if (((Grado)item).id == this.publicacion.Grado.id) this.grado.SelectedItem = item;
             }
 
             foreach (object item in this.estado.Items)
             {
-                if (((Estado)item).ToString() == publicacion.Estado.ToString()) this.estado.SelectedItem = item;
+                if (((Estado)item).ToString() == this.publicacion.Estado.ToString()) this.estado.SelectedItem = item;
             }
             
-            this.addListFechaHora(this.publicacionService.getFechasDeEvento(publicacion.Codigo));
-            this.addListUbicaciones(this.publicacionService.getUbicaciones(publicacion.Codigo));
+            this.addListFechaHora(this.publicacionService.getFechasDeEvento(this.publicacion.Codigo));
+            this.addListUbicaciones(this.publicacionService.getUbicaciones(this.publicacion.Codigo));
+            this.publicacion.Estado.detailControls(this);
         }
 
         public void addListUbicaciones(List<Ubicacion> ubicaciones)
@@ -91,7 +93,6 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
         private void GetUbicaciones()
         {
             UbicacionService ubicacionService = (UbicacionService)ServiceFactory.GetService("Ubicacion");
-            
         }
 
         private void GetRubros()

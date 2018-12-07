@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using PalcoNet.Src.Forms.Vistas.Empresa;
 
 namespace PalcoNet.Src.Modelo.Estados
 {
@@ -28,5 +29,6 @@ namespace PalcoNet.Src.Modelo.Estados
 
         public virtual bool estaFinalizada() { return false; }
 
+        public abstract void detailControls(Publicacion_Detalle publicacion_Detalle);
     }
 }

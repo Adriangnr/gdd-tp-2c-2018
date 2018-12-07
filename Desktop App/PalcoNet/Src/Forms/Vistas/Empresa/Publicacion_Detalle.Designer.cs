@@ -48,20 +48,20 @@
             this.fechaHora = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnEliminar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.dataGridViewUbicaciones = new System.Windows.Forms.DataGridView();
+            this.btnCargarUbicaciones = new System.Windows.Forms.Button();
             this.txtTipoUbicacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fila = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.asiento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txtPrecio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txtCantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnQuitar = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.btnCargarUbicaciones = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_fechaHora)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewUbicaciones)).BeginInit();
             this.SuspendLayout();
             // 
             // footer
             // 
-            this.footer.Location = new System.Drawing.Point(1141, 645);
+            this.footer.Location = new System.Drawing.Point(1143, 628);
             // 
             // label1
             // 
@@ -182,7 +182,7 @@
             this.btn_cancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_cancel.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_cancel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.btn_cancel.Location = new System.Drawing.Point(1065, 527);
+            this.btn_cancel.Location = new System.Drawing.Point(1096, 527);
             this.btn_cancel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btn_cancel.Name = "btn_cancel";
             this.btn_cancel.Size = new System.Drawing.Size(194, 69);
@@ -197,7 +197,7 @@
             this.btn_guardar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_guardar.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_guardar.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btn_guardar.Location = new System.Drawing.Point(1271, 527);
+            this.btn_guardar.Location = new System.Drawing.Point(1302, 527);
             this.btn_guardar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btn_guardar.Name = "btn_guardar";
             this.btn_guardar.Size = new System.Drawing.Size(194, 69);
@@ -288,43 +288,9 @@
             this.dataGridViewUbicaciones.Name = "dataGridViewUbicaciones";
             this.dataGridViewUbicaciones.RowHeadersVisible = false;
             this.dataGridViewUbicaciones.RowTemplate.Height = 28;
-            this.dataGridViewUbicaciones.Size = new System.Drawing.Size(503, 336);
+            this.dataGridViewUbicaciones.Size = new System.Drawing.Size(534, 336);
             this.dataGridViewUbicaciones.TabIndex = 67;
             this.dataGridViewUbicaciones.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewUbicaciones_CellContentClick);
-            // 
-            // txtTipoUbicacion
-            // 
-            this.txtTipoUbicacion.HeaderText = "Tipo de Ubicacion";
-            this.txtTipoUbicacion.Name = "txtTipoUbicacion";
-            this.txtTipoUbicacion.ReadOnly = true;
-            this.txtTipoUbicacion.Width = 200;
-            // 
-            // fila
-            // 
-            this.fila.HeaderText = "Fila";
-            this.fila.Name = "fila";
-            // 
-            // asiento
-            // 
-            this.asiento.HeaderText = "Asiento";
-            this.asiento.Name = "asiento";
-            // 
-            // txtPrecio
-            // 
-            this.txtPrecio.HeaderText = "Precio";
-            this.txtPrecio.Name = "txtPrecio";
-            // 
-            // txtCantidad
-            // 
-            this.txtCantidad.HeaderText = "Cantidad";
-            this.txtCantidad.Name = "txtCantidad";
-            // 
-            // btnQuitar
-            // 
-            this.btnQuitar.HeaderText = "";
-            this.btnQuitar.Name = "btnQuitar";
-            this.btnQuitar.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.btnQuitar.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
             // btnCargarUbicaciones
             // 
@@ -340,11 +306,50 @@
             this.btnCargarUbicaciones.UseVisualStyleBackColor = true;
             this.btnCargarUbicaciones.Click += new System.EventHandler(this.btnCargarUbicaciones_Click);
             // 
+            // txtTipoUbicacion
+            // 
+            this.txtTipoUbicacion.HeaderText = "Tipo de Ubicacion";
+            this.txtTipoUbicacion.Name = "txtTipoUbicacion";
+            this.txtTipoUbicacion.ReadOnly = true;
+            this.txtTipoUbicacion.Width = 200;
+            // 
+            // fila
+            // 
+            this.fila.HeaderText = "Fila";
+            this.fila.Name = "fila";
+            this.fila.Width = 60;
+            // 
+            // asiento
+            // 
+            this.asiento.HeaderText = "Asiento";
+            this.asiento.Name = "asiento";
+            this.asiento.Width = 70;
+            // 
+            // txtPrecio
+            // 
+            this.txtPrecio.HeaderText = "Precio";
+            this.txtPrecio.Name = "txtPrecio";
+            this.txtPrecio.Width = 60;
+            // 
+            // txtCantidad
+            // 
+            this.txtCantidad.HeaderText = "Cantidad";
+            this.txtCantidad.Name = "txtCantidad";
+            this.txtCantidad.Width = 80;
+            // 
+            // btnQuitar
+            // 
+            this.btnQuitar.HeaderText = "";
+            this.btnQuitar.Name = "btnQuitar";
+            this.btnQuitar.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.btnQuitar.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.btnQuitar.Width = 60;
+            // 
             // Publicacion_Detalle
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1513, 678);
+            this.ClientSize = new System.Drawing.Size(1518, 678);
             this.Controls.Add(this.btnCargarUbicaciones);
             this.Controls.Add(this.dataGridViewUbicaciones);
             this.Controls.Add(this.dataGridView_fechaHora);

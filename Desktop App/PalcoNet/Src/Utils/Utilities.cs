@@ -52,6 +52,24 @@ namespace PalcoNet.Src.Utils
             return DateTime.Compare(fechaEvento, getCurrentDate()) >= 0;
         }
 
+        public static void disableControls(Control con)
+        {
+            foreach (Control c in con.Controls)
+            {
+                disableControls(c);
+            }
+            con.Enabled = false;
+        }
+
+        public static void EnableControls(Control con)
+        {
+            if (con != null)
+            {
+                con.Enabled = true;
+                EnableControls(con.Parent);
+            }
+        }
+
         public static string Hash(string input)
         {
             using (SHA256 hasher = SHA256.Create())

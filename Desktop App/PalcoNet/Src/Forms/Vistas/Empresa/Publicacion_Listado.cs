@@ -87,9 +87,10 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
             {
                 Publicacion_Detalle detailForm = new Publicacion_Detalle(this);
                 Publicacion publicacion = (Publicacion)this.dataGridPublicaciones.CurrentRow.DataBoundItem;
-                detailForm.loadFields(publicacion);
+                detailForm.publicacion = publicacion;
+                detailForm.loadFields();
                 detailForm.Show();
-                System.Drawing.Size size = new System.Drawing.Size(1000, 500);
+                System.Drawing.Size size = new System.Drawing.Size(1100, 500);
                 detailForm.Size = size;
                 this.Hide();
             }
