@@ -115,11 +115,11 @@
     <Compile Include="Src\Forms\Vistas\Cliente\Compra.Designer.cs">
       <DependentUpon>Compra.cs</DependentUpon>
     </Compile>
-    <Compile Include="Src\Forms\Vistas\Cliente\Comra_Entrada.cs">
+    <Compile Include="Src\Forms\Vistas\Cliente\Compra_Ubicacion.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Src\Forms\Vistas\Cliente\Comra_Entrada.Designer.cs">
-      <DependentUpon>Comra_Entrada.cs</DependentUpon>
+    <Compile Include="Src\Forms\Vistas\Cliente\Compra_Ubicacion.Designer.cs">
+      <DependentUpon>Compra_Ubicacion.cs</DependentUpon>
     </Compile>
     <Compile Include="Src\Forms\Vistas\Cliente\Historial.cs">
       <SubType>Form</SubType>
@@ -139,11 +139,11 @@
     <Compile Include="Src\Forms\Vistas\Administrador\Comisiones_Detalle.Designer.cs">
       <DependentUpon>Comisiones_Detalle.cs</DependentUpon>
     </Compile>
-    <Compile Include="Src\Forms\Vistas\Cliente\Seleccion_Ubicacion.cs">
+    <Compile Include="Src\Forms\Vistas\Cliente\Compra_Detalle.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Src\Forms\Vistas\Cliente\Seleccion_Ubicacion.Designer.cs">
-      <DependentUpon>Seleccion_Ubicacion.cs</DependentUpon>
+    <Compile Include="Src\Forms\Vistas\Cliente\Compra_Detalle.Designer.cs">
+      <DependentUpon>Compra_Detalle.cs</DependentUpon>
     </Compile>
     <Compile Include="Src\Forms\Vistas\Empresa\Entradas.cs">
       <SubType>Form</SubType>
@@ -224,6 +224,7 @@
     </Compile>
     <Compile Include="Src\Modelo\Daos\DaoCliente.cs" />
     <Compile Include="Src\Modelo\Daos\DaoEmpresa.cs" />
+    <Compile Include="Src\Modelo\Daos\DaoEntrada.cs" />
     <Compile Include="Src\Modelo\Daos\DaoPublicacion.cs" />
     <Compile Include="Src\Modelo\Daos\DaoRol_Usuario.cs" />
     <Compile Include="Src\Modelo\Daos\DaoUsuario.cs" />
@@ -248,6 +249,7 @@
     <Compile Include="Src\Modelo\Entidades\Rol_Usuario.cs" />
     <Compile Include="Src\Modelo\Entidades\Rubro.cs" />
     <Compile Include="Src\Modelo\Entidades\Titulo.cs" />
+    <Compile Include="Src\Modelo\Entidades\Ubicacion.cs" />
     <Compile Include="Src\Modelo\Entidades\Usuario.cs" />
     <Compile Include="Src\Modelo\Estados\Borrador.cs" />
     <Compile Include="Src\Modelo\Estados\Estado.cs" />
@@ -258,12 +260,14 @@
     <Compile Include="Src\Servicios\CompraService.cs" />
     <Compile Include="Src\Servicios\DatabaseService.cs" />
     <Compile Include="Src\Servicios\EmpresaService.cs" />
+    <Compile Include="Src\Servicios\EntradaService.cs" />
     <Compile Include="Src\Servicios\GradoService.cs" />
     <Compile Include="Src\Servicios\LoginService.cs" />
     <Compile Include="Src\Servicios\PublicacionService.cs" />
     <Compile Include="Src\Servicios\RolService.cs" />
     <Compile Include="Src\Servicios\RubroService.cs" />
     <Compile Include="Src\Servicios\ServiceFactory\ServiceFactory.cs" />
+    <Compile Include="Src\Servicios\UbicacionService.cs" />
     <Compile Include="Src\Servicios\UsuarioService.cs" />
     <Compile Include="Src\Utils\SortableBindingList.cs" />
     <Compile Include="Src\Utils\Utilities.cs" />
@@ -317,8 +321,11 @@
     <EmbeddedResource Include="Src\Forms\Vistas\Administrador\Comisiones_Detalle.resx">
       <DependentUpon>Comisiones_Detalle.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Src\Forms\Vistas\Cliente\Comra_Entrada.resx">
-      <DependentUpon>Comra_Entrada.cs</DependentUpon>
+    <EmbeddedResource Include="Src\Forms\Vistas\Cliente\Compra_Detalle.resx">
+      <DependentUpon>Compra_Detalle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Src\Forms\Vistas\Cliente\Compra_Ubicacion.resx">
+      <DependentUpon>Compra_Ubicacion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Src\Forms\Vistas\Cliente\Historial.resx">
       <DependentUpon>Historial.cs</DependentUpon>

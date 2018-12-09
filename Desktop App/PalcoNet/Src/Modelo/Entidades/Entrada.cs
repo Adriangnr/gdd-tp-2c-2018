@@ -8,15 +8,26 @@ namespace PalcoNet.Src.Modelo.Entidades
 {
     public class Entrada
     {
-        /*id int, publicacion int, fila string, asiento string, sinNumerar bool, precio double, string tipo*/
         public int Id { get; set; }
-        public int Publicacion { get; set; }
-        public string Fila { get; set; }
-        public string Asiento { get; set; }
-        public bool SinNumerar { get; set; }
-        public double Precio { get; set; }
-        public string Tipo { get; set; }
+        public int Compra { get; set; }
+        public int UbicacionId { get; set; }
+        public int Fila { get; set; }
+        public int Asiento { get; set; }
+        public Ubicacion Ubicacion { get; set; }
 
         public Entrada() { }
+
+        public Entrada( int UbicacionId, int Fila, int Asiento, Ubicacion Ubicacion)
+        {
+            this.UbicacionId = UbicacionId;
+            this.Fila = Fila;
+            this.Asiento = Asiento;
+            this.Ubicacion = Ubicacion;
+        }
+
+        public bool EsIgual(Entrada entradaNueva)
+        {
+            return this.UbicacionId == entradaNueva.UbicacionId && this.Fila == entradaNueva.Fila && this.Asiento == entradaNueva.Asiento;
+        }
     }
 }
