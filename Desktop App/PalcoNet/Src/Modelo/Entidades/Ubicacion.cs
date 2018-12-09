@@ -6,16 +6,15 @@ using System.Threading.Tasks;
 
 namespace PalcoNet.Src.Modelo.Entidades
 {
-    public class Ubicacion : DatabaseEntity
+    public class Ubicacion
     {
         public int id { get; set; }
-        public string descripcion { get; set; }
-        public int publicacion { get; set; }
-        public string fila { get; set; }
-        public string asiento { get; set; }
+        public int fila { get; set; }
+        public int asiento { get; set; }
         public double precio { get; set; }
-        public int cantidad { get; set; }
-        public int disponible { get; set; }
-        public int tipo { get; set; }
+        public int cantSinNumerar { get; set; }
+        public bool sinNumerar { get; set; }
+
+        public Ubicacion() { }
     }
 }

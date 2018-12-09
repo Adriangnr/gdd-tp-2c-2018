@@ -1,13 +1,15 @@
-﻿using PalcoNet.Src.Modelo.Daos;
+using PalcoNet.Src.Modelo.Daos;
 using PalcoNet.Src.Modelo.Entidades;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 
 namespace PalcoNet.Src.Servicios
 {
-    public class UbicacionService : DatabaseService
+    class UbicacionService : DatabaseService
     {
-        private DaoTipoUbicacion datoTipoUbicacion = new DaoTipoUbicacion();
+    
+    private DaoTipoUbicacion datoTipoUbicacion = new DaoTipoUbicacion();
 
         public List<Tipo_Ubicacion> getTiposUbicaciones()
         {
@@ -28,6 +30,23 @@ namespace PalcoNet.Src.Servicios
         {
             tipoUbicacion.id = (int)row[0];
             tipoUbicacion.descripcion = (string)row[1];
+        }
+    
+    public List<Ubicacion> getAllUbicacionesDisponibles(Publicacion publicacion)
+        {
+            DatabaseEntity dbEntity = new DatabaseEntity();
+            List<List<Object>> listaDeListas = dbEntity.Get("UbicacionesDisponibles", new List<SqlParameter>
+                {
+                    new SqlParameter("@publicacion_codigo", publicacion.Codigo)
+                });
+            List<Ubicacion> ubicaciones = new List<Ubicacion>();
+            listaDeListas.ForEach(lista =>
+            {
+                Ubicacion ubicacion = new Ubicacion();
+
+
+            });
+            return ubicaciones;
         }
     }
 }
