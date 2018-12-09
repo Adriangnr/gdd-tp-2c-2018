@@ -218,46 +218,34 @@ create table ESECUELE.Tipo_Ubicacion(
 )
 go
 
---Ubicacion numerada
-create table ESECUELE.UbicacionNumerada(
-	ubicacion_id int identity(1,1),
-	ubicacion_publicacion int default null,
-	ubicacion_fila char default null,
-	ubicacion_asiento int default null,
+--Ubicacion
+-- Si es sin numerar cant filas estara null
+create table ESECUELE.Ubicacion(
+	ubicacion_id int identity(1,1) primary key,
+	ubicacion_publicacion int not null,
+	ubicacion_cant_filas int default null,
+	ubicacion_cant_asientos int not null,
 	ubicacion_precio numeric(18,2) not null,
-	ubicacion_disponible bit default 1, -- 1 Disponible , 0 no disponible
-	ubicacion_tipo int default null
-	constraint PK_Entrada primary key (ubicacion_publicacion, ubicacion_fila, ubicacion_asiento, ubicacion_tipo)
-)
-go
-
---Ubicacion sin numerar
-create table ESECUELE.UbicacionSinNumerar(
-	ubicacionSN_id int identity(1,1) primary key,
-	ubicacionSN_publicacion int default null,
-	ubicacionSN_cant_total int default 0,
-	ubicacionSN_cant_disponibles int default 0,
-	ubicacionSN_precio numeric(18,2) not null,
-	ubicacionSN_tipo int default null
+	ubicacion_sin_numerar bit default 0, -- 1 Sin numerar , 0 numerada
+	ubicacion_asientos_ocupados int not null,
+	ubicacion_tipo int not null
 )
 go
 
 --Entrada
+-- Si fila y asiento son null, es una entrada sin numerar
 create table ESECUELE.Entrada(
 	entrada_id int identity(1,1) primary key,
 	entrada_compra int default null,
-	entrada_sin_numerar bit default 0,
 	entrada_ubicacion int default null,
-	entrada_publicacion int default null,
-	entrada_cantidad int default 1,
-	entrada_precio numeric(18,2) not null
+	entrada_fila int default null,
+	entrada_asiento int default null,
 )
 go
 
 --Factura
 create table ESECUELE.Factura(
-	fact_id int identity(1,1),
-	fact_nro int primary key,
+	fact_id int identity(1,1) primary key,
 	fact_fecha datetime default null,
 	fact_empresa int default null,
 	fact_estado bit default 0,
@@ -270,10 +258,10 @@ go
 create table ESECUELE.Item_Factura(
 	item_id int identity(1,1) primary key,
 	item_id_factura int default null,
-	item_cantidad int default null,
-	item_precio numeric(18,2) default null,
+	item_monto numeric(18,2) default null,
 	item_descripcion varchar(50) default null,
-	item_entrada int default null
+	item_cantidad int not null,
+	item_entrada int not null
 )
 go
 
@@ -313,6 +301,43 @@ as begin
 	return @result;
 end
 go
+
+create function ESECUELE.LetraANumero(@letra varchar(3))
+returns int
+as begin
+		if @letra = 'A' 
+			return 1
+		else if @letra = 'B'
+			return 2
+		else if @letra = 'C'
+			return 3
+		else if @letra = 'D'
+			return 4
+		else if @letra = 'E'
+			return 5
+		else if @letra = 'F'
+			return 6
+		else if @letra = 'G'
+			return 7
+		else if @letra = 'H'
+			return 8
+		else if @letra = 'I'
+			return 9
+		else if @letra = 'J'
+			return 10
+		return 0	
+end
+go
+
+create function ESECUELE.ObtenerClienteId(@dni numeric(18,0))
+returns int
+as begin
+	return 	(select c.cliente_id
+			from ESECUELE.Cliente c
+			where c.cliente_tipo_doc = 'DNI' and c.cliente_num_doc = @dni)
+end
+go
+
 /*
 * --------------------- Fin Creacion de funciones. ----------------------------------
 */
@@ -473,25 +498,39 @@ Espectaculo_Estado
  SET IDENTITY_INSERT ESECUELE.Publicacion OFF
 -- Fin de Carga de Espectaculos
 
--- Carga de Ubicaciones
-insert into ESECUELE.UbicacionNumerada
-(ubicacion_publicacion,ubicacion_fila, ubicacion_asiento, ubicacion_precio, ubicacion_tipo, ubicacion_disponible)
-select distinct
-Espectaculo_Cod,
-Ubicacion_Fila, 
-Ubicacion_Asiento,  
-Ubicacion_Precio, 
-Ubicacion_Tipo_Codigo,
-0
+-- Carga de Tipos de Ubicaciones
+SET IDENTITY_INSERT ESECUELE.Tipo_Ubicacion ON
+insert into ESECUELE.Tipo_Ubicacion
+(tipo_ubicacion_id, tipo_ubicacion_desc)
+select distinct Ubicacion_Tipo_Codigo, Ubicacion_Tipo_Descripcion
 from gd_esquema.Maestra
-where Ubicacion_Sin_numerar = 0
-and Cli_Dni is null and Item_Factura_Cantidad is null
+SET IDENTITY_INSERT ESECUELE.Tipo_Ubicacion OFF
+-- Fin de Carga de Tipos de Ubicaciones
+
+-- Carga de Ubicaciones
+insert into ESECUELE.Ubicacion
+(ubicacion_publicacion,ubicacion_tipo,ubicacion_precio, ubicacion_cant_filas, ubicacion_cant_asientos, ubicacion_sin_numerar, ubicacion_asientos_ocupados)
+select 
+Espectaculo_Cod, 
+Ubicacion_Tipo_Codigo,
+Ubicacion_Precio, 
+count(1), 
+count(distinct Ubicacion_Asiento), 
+Ubicacion_Sin_numerar,
+isnull((select count(distinct b.Ubicacion_Asiento)
+		from gd_esquema.Maestra b
+		where b.Cli_Dni is not null and b.Espectaculo_Cod = a.Espectaculo_Cod and b.Ubicacion_Tipo_Codigo = a.Ubicacion_Tipo_Codigo
+									and b.Ubicacion_Precio = a.Ubicacion_Precio
+		group by b.Espectaculo_Cod, b.Ubicacion_Tipo_Codigo, b.Ubicacion_Precio
+),0)
+from gd_esquema.Maestra a
+where Cli_Dni is null
+group by Espectaculo_Cod, Ubicacion_Tipo_Codigo, Ubicacion_Precio, Ubicacion_Sin_numerar
+order by Espectaculo_Cod
 -- Fin de Carga de Ubicaciones
 
--- Como no hay ubicaciones sin numerar en la tabla maestra, no migramos
-
 -- Tabla temporal para migracion de compras y entradas
-select distinct 
+select 
 ROW_NUMBER() OVER(order by Compra_Fecha ASC) [compra],
 Espectaculo_Cod [publicacion],
 Compra_Fecha [compra_fecha],
@@ -516,11 +555,7 @@ insert into ESECUELE.Compra
 )
 select
 precio * compra_cantidad,
-(
-	select c.cliente_id
-	from ESECUELE.Cliente c
-	where c.cliente_tipo_doc = 'DNI' and c.cliente_num_doc = cliente_dni
-),
+ESECUELE.ObtenerClienteId(cliente_dni),
 compra_fecha
 from #EntradasTemporales
 
@@ -528,38 +563,35 @@ from #EntradasTemporales
 
 -- Carga Entradas
 insert into ESECUELE.Entrada
-(entrada_compra,entrada_sin_numerar,entrada_ubicacion, entrada_publicacion, entrada_cantidad, entrada_precio)
-select 
+(entrada_compra,entrada_ubicacion, entrada_fila, entrada_asiento)
+select
 compra,
-sin_numerar,
-(case when sin_numerar = 0 then (select u.ubicacion_id 
-								from ESECUELE.UbicacionNumerada u
-								where u.ubicacion_publicacion = publicacion
-								and u.ubicacion_tipo = ubicacion_tipo
-								and u.ubicacion_fila = fila
-								and u.ubicacion_asiento = asiento)
-							else (select n.ubicacionSN_id
-									from ESECUELE.UbicacionSinNumerar n
-									where n.ubicacionSN_publicacion = publicacion)
-							end
-
+(
+	select u.ubicacion_id
+	from ESECUELE.Ubicacion u
+	where u.ubicacion_tipo = t.ubicacion_tipo and u.ubicacion_publicacion = t.publicacion
+		and u.ubicacion_precio = t.precio
 ),
-publicacion,
-compra_cantidad,
-precio
-from #EntradasTemporales
-
-drop table #EntradasTemporales
+ESECUELE.LetraANumero(fila),
+asiento
+from #EntradasTemporales t
 -- Fin de carga de Entradas
 
--- Carga de Tipos de Ubicaciones
-SET IDENTITY_INSERT ESECUELE.Tipo_Ubicacion ON;
-insert into ESECUELE.Tipo_Ubicacion
-(tipo_ubicacion_id, tipo_ubicacion_desc)
-select distinct Ubicacion_Tipo_Codigo, Ubicacion_Tipo_Descripcion
-from gd_esquema.Maestra
-SET IDENTITY_INSERT ESECUELE.Tipo_Ubicacion OFF;
--- Fin de Carga de Tipos de Ubicaciones
+drop table #EntradasTemporales
+
+-- Tabla temporal para migracion de facturas
+select
+ROW_NUMBER() OVER(order by Compra_Fecha ASC) [entrada],
+Factura_Nro [fact_numero],
+Item_Factura_Cantidad [item_cant],
+Item_Factura_Descripcion [item_desc],
+Item_Factura_Monto [item_monto]
+into #ItemFacturaTemporales
+from gd_esquema.Maestra 
+where Item_Factura_Monto is not null
+group by Compra_Fecha,Compra_Cantidad, Ubicacion_Precio, Cli_Dni, Espectaculo_Cod,Ubicacion_Asiento,Ubicacion_Fila,Ubicacion_Sin_numerar,Ubicacion_Precio,Ubicacion_Tipo_Codigo,
+Factura_Nro,Item_Factura_Cantidad,Item_Factura_Descripcion,Item_Factura_Monto
+order by 1 ASC
 
 -- Asignacion de funcionalidades para los usuarios cargados
 insert into ESECUELE.Rol_Usuario (rol_usr_rol_id, rol_usr_username)
@@ -570,8 +602,9 @@ select 3, u.usr_username from ESECUELE.Empresa e join ESECUELE.Usuario u on e.em
 -- Fin de asignacion de funcionalidades
 
 -- Carga de Facturas
+SET IDENTITY_INSERT ESECUELE.Factura ON
 insert into ESECUELE.Factura
-(fact_nro,
+(fact_id,
 fact_fecha,
 fact_empresa,
 fact_total,
@@ -586,32 +619,26 @@ m.Factura_Total,
 m.Forma_Pago_Desc
  from gd_esquema.Maestra m
  where Factura_Nro is not null and Factura_Fecha is not null and Factura_Total is not null
+ SET IDENTITY_INSERT ESECUELE.Factura OFF
 -- Fin de Carga de Facturas
 
 -- Carga de Item_Factura
 insert into ESECUELE.Item_Factura
 (item_id_factura,
 item_cantidad,
-item_precio,
+item_monto,
 item_descripcion,
 item_entrada)
-
-select distinct
-m.Factura_Nro, 
-m.Item_Factura_Cantidad, 
-m.Item_Factura_Monto, 
-Item_Factura_Descripcion,
-case when m.Ubicacion_Sin_numerar = 0 then (select entrada_id from ESECUELE.Entrada join ESECUELE.UbicacionNumerada on ubicacion_id = entrada_ubicacion
-											where ubicacion_asiento = m.Ubicacion_Asiento and ubicacion_fila = m.Ubicacion_Fila 
-											and entrada_publicacion = m.Espectaculo_Cod and ubicacion_tipo = m.Ubicacion_Tipo_Codigo)
-									  else (select entrada_id from ESECUELE.Entrada join ESECUELE.UbicacionSinNumerar on ubicacionSN_id = entrada_ubicacion
-											where ubicacionSN_publicacion = m.Espectaculo_Cod and ubicacionSN_tipo = m.Ubicacion_Tipo_Codigo) 
-end
-from gd_esquema.Maestra m 
-where m.Item_Factura_Monto is not null and 
-m.Item_Factura_Cantidad is not null and 
-m.Item_Factura_Descripcion is not null 
+select
+fact_numero,
+item_cant,
+item_monto,
+item_desc,
+entrada
+from #ItemFacturaTemporales
 -- Fin de Carga de Item_Factura
+
+drop table #ItemFacturaTemporales
 
 /*----------------------- Fin Migracion de datos --------------------------------*/
 
@@ -637,10 +664,7 @@ alter table ESECUELE.Empresa add constraint FK_Emp_UserName foreign key (empresa
 alter table ESECUELE.Publicacion add constraint FK_EmpId foreign key (publicacion_empresa) references ESECUELE.Empresa(empresa_id) ON UPDATE CASCADE ON DELETE NO ACTION
 
 -- Relacion Ubicacion - Tipo_Ubicacion
-alter table ESECUELE.UbicacionNumerada add constraint FK_Tipo_Ubicacion foreign key(ubicacion_tipo) references ESECUELE.Tipo_Ubicacion(tipo_ubicacion_id)
-
--- Relacion UbicacionSinNumerar - Tipo_Ubicacion
-alter table ESECUELE.UbicacionSinNumerar add constraint FK_Tipo_UbicacionSN foreign key(ubicacionSN_tipo) references ESECUELE.Tipo_Ubicacion(tipo_ubicacion_id)
+alter table ESECUELE.Ubicacion add constraint FK_Tipo_Ubicacion foreign key(ubicacion_tipo) references ESECUELE.Tipo_Ubicacion(tipo_ubicacion_id)
 
 -- Relacion Cliente - Usuario
 alter table ESECUELE.Cliente add constraint FK_Cli_UserName foreign key (cliente_usuario) references ESECUELE.Usuario(usr_username) ON UPDATE CASCADE ON DELETE CASCADE 
@@ -1336,5 +1360,12 @@ begin
 							offset ', @offset,' rows fetch next ',@items,' rows only')
 
 	exec sp_executesql @query
+end
+go
+
+create procedure ESECUELE.GetUbicacionesDisponibles( @publicacion_codigo int)
+as begin
+	select *
+	from ESECUELE.UbicacionNumerada -- TODO
 end
 go
