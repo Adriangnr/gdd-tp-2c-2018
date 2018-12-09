@@ -75,7 +75,7 @@ namespace PalcoNet.Src.Modelo.Entidades
 
         public int getEmpresaId()
         {
-            return this.spExecuteScalar("ESECUELE.getEmpresaIdfromUsername", new List<SqlParameter>() {
+            return this.spExecuteScalar("ESECUELE.getEmpresaIdFromUsername", new List<SqlParameter>() {
                 new SqlParameter("@username", this.Username) });
         }
 

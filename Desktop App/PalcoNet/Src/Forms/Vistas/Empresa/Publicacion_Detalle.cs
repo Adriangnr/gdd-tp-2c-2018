@@ -181,34 +181,56 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
             }
         }
 
-        private void btn_guardar_Click(object sender, EventArgs e)
+        private List<DateTime> getFechas()
         {
+            List<DateTime> fechas = new List<DateTime>();
+            
             foreach(DataGridViewRow row in this.dataGridView_fechaHora.Rows)
             {
-                Publicacion newPublicacion = new Publicacion();
-                newPublicacion.FechaPublicacion = Utils.Utilities.getCurrentDate();
-                newPublicacion.FechaEvento = (DateTime)row.Cells[0].Value;
-                newPublicacion.Descripcion = this.descripcion.Text;
-                newPublicacion.Direccion = this.direccion.Text;
-                newPublicacion.Rubro = (Rubro)this.rubro.SelectedItem;
-                newPublicacion.Grado = (Grado)this.grado.SelectedItem;
-                newPublicacion.Estado = (Estado)this.estado.SelectedItem;
-                newPublicacion.setEmpresaId(this.usuario.getEmpresaId());
+                fechas.Add((DateTime)row.Cells[0].Value);
+            }
 
-                int newPubId = this.publicacionService.save(newPublicacion);
+            return fechas;
+        }
 
-                foreach(DataGridViewRow rowUbicacion in this.dataGridViewUbicaciones.Rows)
-                {
-                    Ubicacion ubicacion = new Ubicacion();
-                    ubicacion.publicacion = newPubId;
-                    ubicacion.descripcion = (string)rowUbicacion.Cells[0].Value;
-                    ubicacion.fila = (string)rowUbicacion.Cells[1].Value;
-                    ubicacion.asiento = (string)rowUbicacion.Cells[2].Value;
-                    ubicacion.precio = Convert.ToDouble((string)rowUbicacion.Cells[3].Value);
-                    ubicacion.cantidad = Convert.ToInt16((string)rowUbicacion.Cells[4].Value);
-                    ubicacion.disponible = ubicacion.cantidad;
+        private List<Dictionary<string, string>> getUbicaciones()
+        {
+            List<Dictionary<string, string>> ubicaciones = new List<Dictionary<string, string>>();
 
-                }
+            foreach(DataGridViewRow row in this.dataGridViewUbicaciones.Rows)
+            {
+                Dictionary<string, string> ubicacion = new Dictionary<string, string>();
+                ubicacion.Add("descripcion", (string)row.Cells[0].Value);
+                ubicacion.Add("fila", (string)row.Cells[1].Value);
+                ubicacion.Add("asiento", (string)row.Cells[2].Value);
+                ubicacion.Add("precio", (string)row.Cells[3].Value);
+                ubicacion.Add("cantidad", (string)row.Cells[4].Value);
+            }
+
+            return ubicaciones;
+        }
+
+        private void btn_guardar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //this.validator.validate(this.controls)
+                Dictionary<string, object> data = new Dictionary<string, object>();
+                data.Add("FechaPublicacion", Utils.Utilities.getCurrentDate());
+                data.Add("Descripcion", this.descripcion.Text);
+                data.Add("Direccion", this.direccion.Text);
+                data.Add("Rubro", (Rubro)this.rubro.SelectedItem);
+                data.Add("Grado", (Grado)this.grado.SelectedItem);
+                data.Add("Estado", (Estado)this.estado.SelectedItem);
+                data.Add("EmpresaId", this.usuario.getEmpresaId());
+                data.Add("Fechas", this.getFechas());
+                data.Add("Ubicaciones", this.getUbicaciones());
+                
+                this.publicacionService.save(this.publicacionService.loadData(data));
+            }
+            catch (Exception ex)
+            {
+
             }
         }
     }

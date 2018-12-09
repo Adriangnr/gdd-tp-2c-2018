@@ -6,6 +6,7 @@ using PalcoNet.Src.Modelo.Estados;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using static System.Windows.Forms.Control;
 
 namespace PalcoNet.Src.Servicios
 {
@@ -88,6 +89,13 @@ namespace PalcoNet.Src.Servicios
         public int save(Publicacion newPublicacion)
         {
             return this.daoPublicaion.save(newPublicacion);
+        }
+
+        public Publicacion loadData(Dictionary<string, object> data)
+        {
+            Publicacion newPublicacion = new Publicacion();
+
+            return newPublicacion;
         }
     }
 }
