@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace PalcoNet.Src.Validadores
 {
-    abstract class Validador
+    public abstract class Validador
     {
         public void validar(Control.ControlCollection campos)
         {

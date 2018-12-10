@@ -100,7 +100,7 @@ namespace PalcoNet.Src.Servicios
 
         public int update(Publicacion publicacion, List<DateTime> fechas, List<Dictionary<string, object>> ubicaciones)
         {
-            if(publicacion.fechas.Count == fechas.Count)
+			if(publicacion.fechas.Count == fechas.Count)
             {
 
             }

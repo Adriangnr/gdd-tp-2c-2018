@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace PalcoNet.Src.Validadores
 {
-    class ValidadorRegistro : Validador
+    public class ValidadorRegistro : Validador
     {
         public void textBox_usuario(TextBox username)
         {

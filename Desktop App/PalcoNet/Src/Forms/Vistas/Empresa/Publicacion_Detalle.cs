@@ -230,7 +230,7 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
         {
             try
             {
-                //this.validator.validate(this.controls)
+                //this.validator.validate(this.controls);
                 Dictionary<string, object> data = new Dictionary<string, object>();
                 data.Add("FechaPublicacion", Utils.Utilities.getCurrentDate());
                 data.Add("Descripcion", this.descripcion.Text);

@@ -277,6 +277,7 @@
     <Compile Include="Src\Utils\SortableBindingList.cs" />
     <Compile Include="Src\Utils\Utilities.cs" />
     <Compile Include="Src\Validadores\Validador.cs" />
+    <Compile Include="Src\Validadores\ValidadorCargaPublicacion.cs" />
     <Compile Include="Src\Validadores\ValidadorRegistro.cs" />
     <EmbeddedResource Include="Src\Forms\Layouts\Listado.resx">
       <DependentUpon>Listado.cs</DependentUpon>
