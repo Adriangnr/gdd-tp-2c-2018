@@ -1,6 +1,6 @@
 ﻿namespace PalcoNet.Src.Forms.Vistas.Cliente
 {
-    partial class Comra_Entrada
+    partial class Compra_Ubicacion
     {
         /// <summary>
         /// Required designer variable.
@@ -28,11 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dataGridClientes = new System.Windows.Forms.DataGridView();
+            this.dataGridEntradas = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
             this.btn_comprar = new System.Windows.Forms.Button();
             this.btn_cancel = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridClientes)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridEntradas)).BeginInit();
             this.SuspendLayout();
             // 
             // footer
@@ -40,27 +40,27 @@
             this.footer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.footer.Location = new System.Drawing.Point(855, 424);
             // 
-            // dataGridClientes
+            // dataGridEntradas
             // 
-            this.dataGridClientes.AllowUserToAddRows = false;
-            this.dataGridClientes.AllowUserToDeleteRows = false;
-            this.dataGridClientes.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.dataGridEntradas.AllowUserToAddRows = false;
+            this.dataGridEntradas.AllowUserToDeleteRows = false;
+            this.dataGridEntradas.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridClientes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            this.dataGridClientes.ImeMode = System.Windows.Forms.ImeMode.Off;
-            this.dataGridClientes.Location = new System.Drawing.Point(51, 78);
-            this.dataGridClientes.Margin = new System.Windows.Forms.Padding(2);
-            this.dataGridClientes.MultiSelect = false;
-            this.dataGridClientes.Name = "dataGridClientes";
-            this.dataGridClientes.ReadOnly = true;
-            this.dataGridClientes.RowHeadersVisible = false;
-            this.dataGridClientes.RowTemplate.Height = 28;
-            this.dataGridClientes.RowTemplate.ReadOnly = true;
-            this.dataGridClientes.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridClientes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridClientes.Size = new System.Drawing.Size(863, 307);
-            this.dataGridClientes.TabIndex = 63;
+            this.dataGridEntradas.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dataGridEntradas.ImeMode = System.Windows.Forms.ImeMode.Off;
+            this.dataGridEntradas.Location = new System.Drawing.Point(51, 78);
+            this.dataGridEntradas.Margin = new System.Windows.Forms.Padding(2);
+            this.dataGridEntradas.MultiSelect = false;
+            this.dataGridEntradas.Name = "dataGridEntradas";
+            this.dataGridEntradas.ReadOnly = true;
+            this.dataGridEntradas.RowHeadersVisible = false;
+            this.dataGridEntradas.RowTemplate.Height = 28;
+            this.dataGridEntradas.RowTemplate.ReadOnly = true;
+            this.dataGridEntradas.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridEntradas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridEntradas.Size = new System.Drawing.Size(863, 307);
+            this.dataGridEntradas.TabIndex = 63;
             // 
             // label1
             // 
@@ -82,8 +82,9 @@
             this.btn_comprar.Name = "btn_comprar";
             this.btn_comprar.Size = new System.Drawing.Size(129, 45);
             this.btn_comprar.TabIndex = 65;
-            this.btn_comprar.Text = "Comprar";
+            this.btn_comprar.Text = "Seleccionar";
             this.btn_comprar.UseVisualStyleBackColor = false;
+            this.btn_comprar.Click += new System.EventHandler(this.btn_comprar_Click);
             // 
             // btn_cancel
             // 
@@ -96,8 +97,9 @@
             this.btn_cancel.TabIndex = 66;
             this.btn_cancel.Text = "Cancelar";
             this.btn_cancel.UseVisualStyleBackColor = true;
+            this.btn_cancel.Click += new System.EventHandler(this.btn_cancel_Click);
             // 
-            // Comra_Entrada
+            // Compra_Ubicacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -105,15 +107,15 @@
             this.Controls.Add(this.btn_cancel);
             this.Controls.Add(this.btn_comprar);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.dataGridClientes);
-            this.Name = "Comra_Entrada";
-            this.Text = "Comra_Entrada";
-            this.Controls.SetChildIndex(this.dataGridClientes, 0);
+            this.Controls.Add(this.dataGridEntradas);
+            this.Name = "Compra_Ubicacion";
+            this.Text = "Compra_Ubicacion";
+            this.Controls.SetChildIndex(this.dataGridEntradas, 0);
             this.Controls.SetChildIndex(this.footer, 0);
             this.Controls.SetChildIndex(this.label1, 0);
             this.Controls.SetChildIndex(this.btn_comprar, 0);
             this.Controls.SetChildIndex(this.btn_cancel, 0);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridClientes)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridEntradas)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -121,7 +123,7 @@
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dataGridClientes;
+        private System.Windows.Forms.DataGridView dataGridEntradas;
         private System.Windows.Forms.Label label1;
         public System.Windows.Forms.Button btn_comprar;
         protected System.Windows.Forms.Button btn_cancel;

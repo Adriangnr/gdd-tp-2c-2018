@@ -93,7 +93,7 @@
             this.Entidad.Text = "Comprar";
             // 
             // btn_cancel
-            //
+            // 
             this.btn_cancel.Location = new System.Drawing.Point(964, 349);
             this.btn_cancel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             // 
@@ -106,7 +106,6 @@
             // footer
             // 
             this.footer.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.footer.Location = new System.Drawing.Point(882, 649);
             // 
             // fechaInicioVista
             // 
@@ -138,6 +137,7 @@
             this.btn_buy.TabIndex = 58;
             this.btn_buy.Text = "Comprar";
             this.btn_buy.UseVisualStyleBackColor = false;
+            this.btn_buy.Click += new System.EventHandler(this.btn_buy_Click);
             // 
             // label5
             // 
@@ -204,7 +204,6 @@
             // 
             this.dataGridPublicaciones.AllowUserToAddRows = false;
             this.dataGridPublicaciones.AllowUserToDeleteRows = false;
-            this.dataGridPublicaciones.AllowUserToResizeColumns = false;
             this.dataGridPublicaciones.AllowUserToResizeRows = false;
             this.dataGridPublicaciones.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));

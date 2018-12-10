@@ -115,9 +115,7 @@
     <Compile Include="Src\Forms\Vistas\Cliente\Compra.Designer.cs">
       <DependentUpon>Compra.cs</DependentUpon>
     </Compile>
-    <Compile Include="Src\Forms\Vistas\Cliente\Comra_Entrada.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Src\Forms\Vistas\Cliente\Comra_Entrada.cs" />
     <Compile Include="Src\Forms\Vistas\Cliente\Comra_Entrada.Designer.cs">
       <DependentUpon>Comra_Entrada.cs</DependentUpon>
     </Compile>
@@ -139,9 +137,7 @@
     <Compile Include="Src\Forms\Vistas\Administrador\Comisiones_Detalle.Designer.cs">
       <DependentUpon>Comisiones_Detalle.cs</DependentUpon>
     </Compile>
-    <Compile Include="Src\Forms\Vistas\Cliente\Seleccion_Ubicacion.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Src\Forms\Vistas\Cliente\Seleccion_Ubicacion.cs" />
     <Compile Include="Src\Forms\Vistas\Cliente\Seleccion_Ubicacion.Designer.cs">
       <DependentUpon>Seleccion_Ubicacion.cs</DependentUpon>
     </Compile>

@@ -8,7 +8,6 @@ namespace PalcoNet.Src.Servicios
 {
     class UbicacionService : DatabaseService
     {
-    
     private DaoTipoUbicacion datoTipoUbicacion = new DaoTipoUbicacion();
 
         public List<Tipo_Ubicacion> getTiposUbicaciones()
@@ -32,19 +31,28 @@ namespace PalcoNet.Src.Servicios
             tipoUbicacion.descripcion = (string)row[1];
         }
     
-    public List<Ubicacion> getAllUbicacionesDisponibles(Publicacion publicacion)
+        public List<Ubicacion> getAllUbicacionesDisponibles(int publicacion)
         {
             DatabaseEntity dbEntity = new DatabaseEntity();
-            List<List<Object>> listaDeListas = dbEntity.Get("UbicacionesDisponibles", new List<SqlParameter>
+            List<List<Object>> listaDeListas = dbEntity.Get("Ubicaciones", new List<SqlParameter>
                 {
-                    new SqlParameter("@publicacion_codigo", publicacion.Codigo)
+                    new SqlParameter("@publicacion_codigo", publicacion)
                 });
             List<Ubicacion> ubicaciones = new List<Ubicacion>();
             listaDeListas.ForEach(lista =>
             {
                 Ubicacion ubicacion = new Ubicacion();
+                ubicacion.id= (int)lista[0];
+                ubicacion.publicacion = (int)lista[1];
+                ubicacion.tipo = (int)lista[2];
+                ubicacion.descripcion = (string)lista[3];
+                ubicacion.sinNumerar = (bool)lista[4];
+                ubicacion.filas = (int)lista[5];
+                ubicacion.asientos = (int)lista[6];
+                ubicacion.precio = Convert.ToDouble(lista[7]);
+                ubicacion.ocupados = (int)lista[8];
 
-
+                ubicaciones.Add(ubicacion);
             });
             return ubicaciones;
         }

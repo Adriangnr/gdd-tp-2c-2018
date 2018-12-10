@@ -1430,10 +1430,20 @@ begin
 end
 go
 
-create procedure ESECUELE.GetUbicacionesDisponibles( @publicacion_codigo int)
+create procedure ESECUELE.GetUbicaciones(@publicacion_codigo int)
 as begin
-	select *
-	from ESECUELE.UbicacionNumerada -- TODO
+	select ubicacion_id, ubicacion_publicacion, ubicacion_tipo, tipo_ubicacion_desc, ubicacion_sin_numerar,
+	ubicacion_cant_filas, ubicacion_cant_asientos, ubicacion_precio, ubicacion_asientos_ocupados
+	from ESECUELE.Ubicacion join ESECUELE.Tipo_Ubicacion on ubicacion_tipo = tipo_ubicacion_id
+	where ubicacion_publicacion = @publicacion_codigo
+	order by ubicacion_precio
+end
+go
+
+create procedure ESECUELE.GetEntradasVendidas(@publicacion_codigo int)
+as begin
+	select * from ESECUELE.Entrada join ESECUELE.Ubicacion on entrada_ubicacion = ubicacion_id
+	where ubicacion_publicacion = @publicacion_codigo
 end
 go
 

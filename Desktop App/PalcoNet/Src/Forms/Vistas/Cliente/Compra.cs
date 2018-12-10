@@ -94,7 +94,7 @@ namespace PalcoNet.Src.Forms.Vistas.Cliente
                 SortableBindingList<Publicacion> sorteablePublicaciones = new SortableBindingList<Publicacion>(publicaciones);
                 /*------------- Fin Paginador ----------*/
 
-                this.dataGridPublicaciones.DataSource = sorteablePublicaciones;//compraService.getAllPublicacionesParaCompra(filtros);
+                this.dataGridPublicaciones.DataSource = publicaciones;
 
                 if (this.dataGridPublicaciones.Rows.Count == 0)
                     MessageBox.Show("No se encontraron publicaciones!", "Listado de publicaciones activas.",
@@ -103,18 +103,19 @@ namespace PalcoNet.Src.Forms.Vistas.Cliente
 
                 foreach (DataGridViewColumn column in this.dataGridPublicaciones.Columns)
                 {
-                    // La columna 0 es el id de la empresa
-                    //if (column.Index == 0 || column.Index > 5)
-                      //  column.Visible = false;
+                    List<int> esconder = new List<int>(new int[] {0,3,6,8});
+
+                    if (  esconder.Contains(column.Index) )
+                        column.Visible = false;
                     //if (column.HeaderText == "Habilitado")
                       //  column.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
                     // Para que empiece ordenado de menor a mayor: razon social
-                    if (column.Index == 1)
+                   /* if (column.Index == 1)
                     {
                         this.dataGridPublicaciones.Sort(column, ListSortDirection.Ascending);
                         column.HeaderCell.SortGlyphDirection = System.Windows.Forms.SortOrder.Ascending;
                     }
-                    column.SortMode = DataGridViewColumnSortMode.Automatic;
+                    column.SortMode = DataGridViewColumnSortMode.Automatic;*/
                 }
 
                 this.dataGridPublicaciones.AutoGenerateColumns = false;
@@ -218,6 +219,20 @@ namespace PalcoNet.Src.Forms.Vistas.Cliente
             this.dataGridPublicaciones.DataSource = null;
             this.dataGridPublicaciones.DataSource = publicaciones;
             this.dataGridPublicaciones.ClearSelection();
+        }
+
+        private void btn_buy_Click(object sender, EventArgs e)
+        {
+
+            if (dataGridPublicaciones.SelectedRows.Count == 0)
+                MessageBox.Show("Debe seleccionar una publicacion!", "Listado de entradas.",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+            else
+            {
+                Compra_Detalle compra_detalle = new Compra_Detalle(this, (Publicacion)this.dataGridPublicaciones.CurrentRow.DataBoundItem);
+
+                compra_detalle.ShowDialog();
+            }
         }
     }
 }
