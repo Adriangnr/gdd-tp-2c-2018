@@ -1,4 +1,5 @@
 ﻿using PalcoNet.Src.Forms.Layouts;
+using PalcoNet.Src.Modelo.Entidades;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,15 +14,20 @@ namespace PalcoNet.Src.Forms.Vistas.Cliente
 {
     public partial class Compra_Detalle : Master
     {
-        public Compra_Detalle(Form previuos)
+        private Publicacion publicacion;
+
+        public Compra_Detalle(Form anterior, Publicacion publicacion)
         {
-            this.previous = previous;
+            this.previous = anterior;
+            this.publicacion = publicacion;
+
             InitializeComponent();
         }
 
         private void Compra_Detalle_Load(object sender, EventArgs e)
         {
-
+            this.label_espectaculo.Text = publicacion.Descripcion;
+            this.label_fecha.Text = publicacion.FechaEvento.ToString();
         }
 
         private void btn_cancel_Click(object sender, EventArgs e)
@@ -32,7 +38,8 @@ namespace PalcoNet.Src.Forms.Vistas.Cliente
 
         private void btn_seleccion_Click(object sender, EventArgs e)
         {
-
+            Compra_Ubicacion compra_ubicacion = new Compra_Ubicacion(this, publicacion.Codigo);
+            compra_ubicacion.ShowDialog();
         }
     }
 }

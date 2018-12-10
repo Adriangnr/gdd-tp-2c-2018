@@ -11,9 +11,11 @@ namespace PalcoNet.Src.Modelo.Entidades
         public int Id { get; set; }
         public int Compra { get; set; }
         public int UbicacionId { get; set; }
+        public string TipoDesc { get; set; }
         public int Fila { get; set; }
         public int Asiento { get; set; }
-        public Ubicacion Ubicacion { get; set; }
+        public int TipoId { get; set; }
+        public double Precio { get; set; }
 
         public Entrada() { }
 
@@ -22,7 +24,9 @@ namespace PalcoNet.Src.Modelo.Entidades
             this.UbicacionId = UbicacionId;
             this.Fila = Fila;
             this.Asiento = Asiento;
-            this.Ubicacion = Ubicacion;
+            this.TipoId = Ubicacion.Tipo;
+            this.TipoDesc = Ubicacion.Tipo_descripcion;
+            this.Precio = Ubicacion.Precio;
         }
 
         public bool EsIgual(Entrada entradaNueva)

@@ -32,6 +32,14 @@ namespace PalcoNet.Src.Forms.Vistas.Cliente
 
                 this.dataGridEntradas.DataSource = entradaService.GetAllEntradasDisponibles(this.publicacion);
 
+                List<string> encabezados = new List<string>(new string[] {"TipoId","Id", "Compra", "UbicacionId"});
+
+                foreach (DataGridViewColumn column in this.dataGridEntradas.Columns)
+                {
+                    if ( encabezados.Contains(column.HeaderText))
+                        column.Visible = false;
+                }
+
                 this.dataGridEntradas.AutoSize = false;
                 this.dataGridEntradas.ScrollBars = ScrollBars.Both;
             }

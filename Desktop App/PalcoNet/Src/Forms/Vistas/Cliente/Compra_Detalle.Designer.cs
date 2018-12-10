@@ -34,6 +34,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label_total = new System.Windows.Forms.Label();
             this.label_espectaculo = new System.Windows.Forms.Label();
+            this.label_fecha = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridEmpresas)).BeginInit();
             this.SuspendLayout();
             // 
@@ -97,7 +98,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(80, 294);
+            this.label1.Location = new System.Drawing.Point(62, 297);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(44, 20);
             this.label1.TabIndex = 66;
@@ -109,24 +110,36 @@
             this.label_total.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_total.Location = new System.Drawing.Point(62, 342);
             this.label_total.Name = "label_total";
-            this.label_total.Size = new System.Drawing.Size(80, 24);
+            this.label_total.Size = new System.Drawing.Size(38, 24);
             this.label_total.TabIndex = 67;
-            this.label_total.Text = "[ Total ]";
+            this.label_total.Text = "0.0";
             // 
             // label_espectaculo
             // 
             this.label_espectaculo.AutoSize = true;
+            this.label_espectaculo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_espectaculo.Location = new System.Drawing.Point(211, 49);
             this.label_espectaculo.Name = "label_espectaculo";
-            this.label_espectaculo.Size = new System.Drawing.Size(117, 13);
+            this.label_espectaculo.Size = new System.Drawing.Size(117, 20);
             this.label_espectaculo.TabIndex = 68;
-            this.label_espectaculo.Text = "[ Espectaculo + fecha ]";
+            this.label_espectaculo.Text = "[ Espectaculo  ]";
+            // 
+            // label_fecha
+            // 
+            this.label_fecha.AutoSize = true;
+            this.label_fecha.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_fecha.Location = new System.Drawing.Point(752, 49);
+            this.label_fecha.Name = "label_fecha";
+            this.label_fecha.Size = new System.Drawing.Size(74, 20);
+            this.label_fecha.TabIndex = 69;
+            this.label_fecha.Text = "[ Fecha  ]";
             // 
             // Compra_Detalle
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1134, 462);
+            this.Controls.Add(this.label_fecha);
             this.Controls.Add(this.label_espectaculo);
             this.Controls.Add(this.label_total);
             this.Controls.Add(this.label1);
@@ -143,6 +156,7 @@
             this.Controls.SetChildIndex(this.label1, 0);
             this.Controls.SetChildIndex(this.label_total, 0);
             this.Controls.SetChildIndex(this.label_espectaculo, 0);
+            this.Controls.SetChildIndex(this.label_fecha, 0);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridEmpresas)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -156,7 +170,8 @@
         private System.Windows.Forms.DataGridView dataGridEmpresas;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label_total;
-        private System.Windows.Forms.Label label_espectaculo;
+        private System.Windows.Forms.Label label_fecha;
+        protected System.Windows.Forms.Label label_espectaculo;
 
     }
 }

@@ -229,8 +229,9 @@ namespace PalcoNet.Src.Forms.Vistas.Cliente
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
             else
             {
-                Compra_Ubicacion compra_ubicacion = new Compra_Ubicacion(this, (int)this.dataGridPublicaciones.CurrentRow.Cells[0].Value);
-                compra_ubicacion.ShowDialog();
+                Compra_Detalle compra_detalle = new Compra_Detalle(this, (Publicacion)this.dataGridPublicaciones.CurrentRow.DataBoundItem);
+
+                compra_detalle.ShowDialog();
             }
         }
     }
