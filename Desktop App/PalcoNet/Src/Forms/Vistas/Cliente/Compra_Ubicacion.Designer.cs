@@ -82,8 +82,9 @@
             this.btn_comprar.Name = "btn_comprar";
             this.btn_comprar.Size = new System.Drawing.Size(129, 45);
             this.btn_comprar.TabIndex = 65;
-            this.btn_comprar.Text = "Comprar";
+            this.btn_comprar.Text = "Seleccionar";
             this.btn_comprar.UseVisualStyleBackColor = false;
+            this.btn_comprar.Click += new System.EventHandler(this.btn_comprar_Click);
             // 
             // btn_cancel
             // 

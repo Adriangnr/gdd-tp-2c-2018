@@ -1,4 +1,5 @@
 ﻿using PalcoNet.Src.Forms.Layouts;
+using PalcoNet.Src.Modelo.Entidades;
 using PalcoNet.Src.Servicios;
 using System;
 using System.Collections.Generic;
@@ -15,11 +16,14 @@ namespace PalcoNet.Src.Forms.Vistas.Cliente
     public partial class Compra_Ubicacion : Master
     {
         private int publicacion;
-        public Compra_Ubicacion(Form previous, int publicacion)
+        private List<Entrada> entradasCompradas;
+
+        public Compra_Ubicacion(Form previous, int publicacion, List<Entrada> entradasCompradas)
         {
             InitializeComponent();
             this.previous = previous;
             this.publicacion = publicacion;
+            this.entradasCompradas = entradasCompradas;
             loadEntradas(publicacion);
         }
 
@@ -54,7 +58,16 @@ namespace PalcoNet.Src.Forms.Vistas.Cliente
 
         private void btn_cancel_Click(object sender, EventArgs e)
         {
-            this.Close();
+            this.Hide();
+        }
+
+        private void btn_comprar_Click(object sender, EventArgs e)
+        {
+            entradasCompradas.Add((Entrada)this.dataGridEntradas.CurrentRow.DataBoundItem);
+            dataGridEntradas.Rows.Remove(dataGridEntradas.CurrentRow);
+            ((Compra_Detalle)this.previous).load_entradas();
+            ((Compra_Detalle)this.previous).dataGridEntradasCompradas.Refresh();
+            this.Hide();
         }
     }
 }
