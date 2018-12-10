@@ -115,6 +115,12 @@
     <Compile Include="Src\Forms\Vistas\Cliente\Compra.Designer.cs">
       <DependentUpon>Compra.cs</DependentUpon>
     </Compile>
+    <Compile Include="Src\Forms\Vistas\Cliente\Compra_Agregar_Tarjeta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Src\Forms\Vistas\Cliente\Compra_Agregar_Tarjeta.Designer.cs">
+      <DependentUpon>Compra_Agregar_Tarjeta.cs</DependentUpon>
+    </Compile>
     <Compile Include="Src\Forms\Vistas\Cliente\Compra_Ubicacion.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -320,6 +326,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Src\Forms\Vistas\Administrador\Comisiones_Detalle.resx">
       <DependentUpon>Comisiones_Detalle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Src\Forms\Vistas\Cliente\Compra_Agregar_Tarjeta.resx">
+      <DependentUpon>Compra_Agregar_Tarjeta.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Src\Forms\Vistas\Cliente\Compra_Detalle.resx">
       <DependentUpon>Compra_Detalle.cs</DependentUpon>

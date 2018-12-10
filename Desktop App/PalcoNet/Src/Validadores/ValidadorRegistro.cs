@@ -161,5 +161,21 @@ namespace PalcoNet.Src.Validadores
         {
             this.validarCampoTexto(ciudadEmpresa, "Ciudad", new Regex(@"^[a-zA-Z ]+(([\'\,\.\- ][a-zA-Z ])?[a-zA-Z ]*)*$"));
         }
+
+        public void tarjeta(TextBox tarjeta)
+        {
+            this.validarCampoTexto(tarjeta, "Numero de tarjeta", new Regex(@"^[0-9]{16}$"));
+        }
+
+        public void tarjetaNueva(TextBox tarjeta)
+        {
+            if (tarjeta.Text == "")
+            {
+                throw new ValidadorException("El número de tarjeta no puede estar vacío!");
+            }
+            if(tarjeta.Text.Length != 16)
+                throw new ValidadorException("El cantidad de números de la tarjeta debe ser 16!");
+            this.validarCampoTexto(tarjeta, "Numero de tarjeta", new Regex(@"^[0-9]{16}$"));
+        }
     }
 }

@@ -68,5 +68,19 @@ namespace PalcoNet.Src.Modelo.Daos
                 throw ex;
             }
         }
+
+        public void updateTarjeta(int clientId, string tarjeta)
+        {
+            try
+            {
+                this.spExecute(this.schema + ".UpdateClienteTarjeta", new List<SqlParameter>() { 
+                    new SqlParameter("@id", clientId),
+                    new SqlParameter("@tarjeta", tarjeta)});
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

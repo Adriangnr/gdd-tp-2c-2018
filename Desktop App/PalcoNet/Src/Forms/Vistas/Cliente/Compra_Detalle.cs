@@ -1,13 +1,13 @@
 ﻿using PalcoNet.Src.Forms.Layouts;
 using PalcoNet.Src.Modelo.Entidades;
+using PalcoNet.Src.Servicios;
+using PalcoNet.Src.Servicios.ServiceFactory;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace PalcoNet.Src.Forms.Vistas.Cliente
@@ -15,13 +15,16 @@ namespace PalcoNet.Src.Forms.Vistas.Cliente
     public partial class Compra_Detalle : Master
     {
         private Publicacion publicacion;
+        private Src.Modelo.Entidades.Cliente cliente;
         private Compra_Ubicacion form_ubicacion;
         List<Entrada> entradasCompradas = new List<Entrada>();
 
-        public Compra_Detalle(Form anterior, Publicacion publicacion)
+        public Compra_Detalle(Form anterior, Usuario usuario,Publicacion publicacion)
         {
             this.previous = anterior;
             this.publicacion = publicacion;
+
+            this.loadCliente(usuario);
 
             InitializeComponent();
         }
@@ -30,6 +33,14 @@ namespace PalcoNet.Src.Forms.Vistas.Cliente
         {
             this.label_espectaculo.Text = publicacion.Descripcion;
             this.label_fecha.Text = publicacion.FechaEvento.ToString();
+            this.label_nombre.Text = this.cliente.Nombre;
+            this.label_apellido.Text = this.cliente.Apellido;
+            this.label_mail.Text = this.cliente.Email;
+
+            if (this.cliente.Email != null)
+                this.label_tarjeta.Text = this.cliente.DatosTarjeta;
+            else
+                this.label_tarjeta.Text = "No hay tarjeta registrada.";
         }
 
         private void btn_cancel_Click(object sender, EventArgs e)
@@ -102,6 +113,27 @@ namespace PalcoNet.Src.Forms.Vistas.Cliente
             }
 
             this.label_total.Text = precioTotal.ToString();
+        }
+
+        private void loadCliente(Usuario usuario)
+        {
+            ClienteService clienteService = (ClienteService)ServiceFactory.GetService("Cliente");
+            this.cliente = clienteService.GetClienteByUsername(usuario.Username);
+
+        }
+
+        private void btn_confirmar_compra_Click(object sender, EventArgs e)
+        {
+            if(this.entradasCompradas.Count == 0)
+                MessageBox.Show("Debes elegir al menos una ubicación!", "Error compra.",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+            else if (this.cliente.DatosTarjeta == null)
+            {
+                MessageBox.Show("Debes ingresar una tarjeta!", "Error compra.",
+                                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Compra_Agregar_Tarjeta tarjeta = new Compra_Agregar_Tarjeta(this, this.cliente);
+                tarjeta.ShowDialog();
+            }
         }
     }
 }

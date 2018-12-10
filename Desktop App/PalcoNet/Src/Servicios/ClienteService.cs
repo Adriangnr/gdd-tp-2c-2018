@@ -64,6 +64,17 @@ namespace PalcoNet.Src.Servicios
             
             return cliente;
         }
+
+        public Cliente GetClienteByUsername(string username)
+        {
+            List<object> clientData = this.Get("ClienteByUsername", new List<SqlParameter> { new SqlParameter("@username", username) })[0];
+
+            Cliente cliente = new Cliente();
+
+            this.loadCliente(cliente, clientData);
+
+            return cliente;
+        }
         
         public void update(Cliente cliente)
         {
@@ -86,9 +97,15 @@ namespace PalcoNet.Src.Servicios
             clienteObj.NumDoc = (string)row[4];
             clienteObj.Cuil = (string)row[5];
             clienteObj.FechaNacimiento = ((DateTime)row[6]).ToString();
+            clienteObj.DatosTarjeta = (row[7].GetType() != typeof(DBNull)) ? (string)row[7]: null;
             clienteObj.Usuario = (string)row[8];
             clienteObj.Email = (string)row[17];
             this.loadUsuarioOfClient(clienteObj, row);
+        }
+
+        public void updateTarjeta(int clienteId, string tarjeta)
+        {
+            this.daoCliente.updateTarjeta(clienteId, tarjeta);
         }
     }
 }
