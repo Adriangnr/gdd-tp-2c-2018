@@ -15,7 +15,7 @@ namespace PalcoNet.Src.Forms.Vistas.Cliente
     public partial class Compra_Detalle : Master
     {
         private Publicacion publicacion;
-        private Form form_ubicacion;
+        private Compra_Ubicacion form_ubicacion;
         List<Entrada> entradasCompradas = new List<Entrada>();
 
         public Compra_Detalle(Form anterior, Publicacion publicacion)
@@ -57,6 +57,39 @@ namespace PalcoNet.Src.Forms.Vistas.Cliente
             this.dataGridEntradasCompradas.DataSource = null;
             this.dataGridEntradasCompradas.DataSource = this.entradasCompradas;
 
+            this.mostrarMontoTotal();
+
+            List<string> encabezados = new List<string>(new string[] { "TipoId", "Id", "Compra", "UbicacionId" });
+
+            foreach (DataGridViewColumn column in this.dataGridEntradasCompradas.Columns)
+            {
+                if (encabezados.Contains(column.HeaderText))
+                    column.Visible = false;
+            }
+
+            this.dataGridEntradasCompradas.AutoSize = false;
+            this.dataGridEntradasCompradas.ScrollBars = ScrollBars.Both;
+            this.dataGridEntradasCompradas.ClearSelection();
+        }
+
+        private void btn_quitar_seleccion_Click(object sender, EventArgs e)
+        {
+            if (this.dataGridEntradasCompradas.SelectedRows.Count == 0 || this.dataGridEntradasCompradas.CurrentRow == null)
+                MessageBox.Show("Debe seleccionar una ubicación!", "Listado de ubicaciones.",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+            else
+            {
+                Entrada entrada = (Entrada)this.dataGridEntradasCompradas.CurrentRow.DataBoundItem;
+                this.entradasCompradas.Remove(entrada);
+                this.load_entradas();
+                this.form_ubicacion.regresarEntrada(entrada);
+                this.mostrarMontoTotal();
+            }
+            this.dataGridEntradasCompradas.ClearSelection();
+        }
+
+        private void mostrarMontoTotal()
+        {
             double precioTotal = 0.0;
 
             if (dataGridEntradasCompradas.DataSource != null && this.entradasCompradas.Count > 0)
@@ -69,24 +102,6 @@ namespace PalcoNet.Src.Forms.Vistas.Cliente
             }
 
             this.label_total.Text = precioTotal.ToString();
-
-            List<string> encabezados = new List<string>(new string[] { "TipoId", "Id", "Compra", "UbicacionId" });
-
-            foreach (DataGridViewColumn column in this.dataGridEntradasCompradas.Columns)
-            {
-                if (encabezados.Contains(column.HeaderText))
-                    column.Visible = false;
-            }
-
-            this.dataGridEntradasCompradas.AutoSize = false;
-            this.dataGridEntradasCompradas.ScrollBars = ScrollBars.Both;
-        }
-
-        private void btn_quitar_seleccion_Click(object sender, EventArgs e)
-        {
-            Entrada entrada = (Entrada)this.dataGridEntradasCompradas.CurrentRow.DataBoundItem;
-            this.entradasCompradas.Remove(entrada);
-            this.load_entradas();
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using PalcoNet.Src.Forms.Layouts;
 using PalcoNet.Src.Modelo.Entidades;
 using PalcoNet.Src.Servicios;
+using PalcoNet.Src.Utils;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,6 +17,7 @@ namespace PalcoNet.Src.Forms.Vistas.Cliente
     public partial class Compra_Ubicacion : Master
     {
         private int publicacion;
+        private SortableBindingList<Entrada> entradasDisponibles;
         private List<Entrada> entradasCompradas;
 
         public Compra_Ubicacion(Form previous, int publicacion, List<Entrada> entradasCompradas)
@@ -32,9 +34,12 @@ namespace PalcoNet.Src.Forms.Vistas.Cliente
             EntradaService entradaService = new EntradaService();
             try
             {
-                Console.WriteLine(publicacion);
+                if (this.entradasDisponibles == null)
+                {
+                    this.entradasDisponibles = entradaService.GetAllEntradasDisponibles(this.publicacion);
+                }
 
-                this.dataGridEntradas.DataSource = entradaService.GetAllEntradasDisponibles(this.publicacion);
+                this.dataGridEntradas.DataSource = this.entradasDisponibles;
 
                 List<string> encabezados = new List<string>(new string[] {"TipoId","Id", "Compra", "UbicacionId"});
 
@@ -63,11 +68,24 @@ namespace PalcoNet.Src.Forms.Vistas.Cliente
 
         private void btn_comprar_Click(object sender, EventArgs e)
         {
-            entradasCompradas.Add((Entrada)this.dataGridEntradas.CurrentRow.DataBoundItem);
-            dataGridEntradas.Rows.Remove(dataGridEntradas.CurrentRow);
-            ((Compra_Detalle)this.previous).load_entradas();
-            ((Compra_Detalle)this.previous).dataGridEntradasCompradas.Refresh();
-            this.Hide();
+            if (dataGridEntradas.SelectedRows.Count == 0)
+                MessageBox.Show("Debe seleccionar una ubicación!", "Listado de ubicaciones.",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+            else
+            {
+                entradasCompradas.Add((Entrada)this.dataGridEntradas.CurrentRow.DataBoundItem);
+                dataGridEntradas.Rows.Remove(dataGridEntradas.CurrentRow);
+                ((Compra_Detalle)this.previous).load_entradas();
+                ((Compra_Detalle)this.previous).dataGridEntradasCompradas.Refresh();
+                this.Hide();
+            }
+        }
+
+        public void regresarEntrada(Entrada entrada)
+        {
+            this.entradasDisponibles.Add(entrada);
+            this.dataGridEntradas.DataSource = null;
+            this.dataGridEntradas.DataSource = this.entradasDisponibles;
         }
     }
 }
