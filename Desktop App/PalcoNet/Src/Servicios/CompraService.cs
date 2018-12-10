@@ -2,6 +2,8 @@
 using PalcoNet.Src.Utils;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 
 namespace PalcoNet.Src.Servicios
 {
@@ -9,12 +11,12 @@ namespace PalcoNet.Src.Servicios
     {
         public SortableBindingList<Publicacion> getAllPublicacionesParaCompra(System.Windows.Forms.Control.ControlCollection filtros)
         {
-            PublicacionService publicaiconService = (PublicacionService)ServiceFactory.ServiceFactory.GetService("Publicacion");
+            PublicacionService publicacionService = (PublicacionService)ServiceFactory.ServiceFactory.GetService("Publicacion");
             try
             {
                 SortableBindingList<Publicacion> publicaciones = new SortableBindingList<Publicacion>();
                 
-                List<List<object>> results = publicaiconService.SearchActivasValidas(filtros);
+                List<List<object>> results = publicacionService.SearchActivasValidas(filtros);
 
                 foreach (List<object> row in results)
                 {
@@ -45,6 +47,30 @@ namespace PalcoNet.Src.Servicios
         //    publicacion.Empresa = empresaService.GetEmpresa((int)row[8]);
 
           //  Console.WriteLine(row.Count);
+        }
+
+        public void save(Cliente cliente,List<Entrada> entradas, double montoTotal)
+        {
+            DatabaseEntity dbEntity = new DatabaseEntity();
+
+            DataTable dt = new DataTable("Nueva_compra");
+            dt.Columns.Add("compra_cliente", typeof(int));
+            dt.Columns.Add("compra_fecha", typeof(DateTime));
+            dt.Columns.Add("compra_monto_total", typeof(double));
+            dt.Columns.Add("compra_tarjeta", typeof(string));
+            dt.Columns.Add("entrada_ubicacion", typeof(int));
+            dt.Columns.Add("entrada_fila", typeof(int));
+            dt.Columns.Add("entrada_asiento", typeof(int));
+
+            foreach (Entrada entrada in entradas)
+            {
+                dt.Rows.Add(cliente.Id,Utilities.getCurrentDate(),montoTotal,cliente.DatosTarjeta,entrada.UbicacionId,entrada.Fila,entrada.Asiento);
+            }
+
+            var sqlParam = new SqlParameter("@compra", SqlDbType.Structured);
+
+            sqlParam.Value = dt;
+            dbEntity.spExecute("ESECUELE.SaveCompra", new List<SqlParameter> { sqlParam });
         }
     }
 }

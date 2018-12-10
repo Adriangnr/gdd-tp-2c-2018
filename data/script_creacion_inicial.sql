@@ -117,14 +117,6 @@ create table ESECUELE.Rol_Usuario(
 )
 go
 
---Tarjeta
-create table ESECUELE.Tarjeta(
-	tarjeta_id int identity(1,1) primary key,
-	tarjeta_numero varchar(20),
-	tarjeta_tipo varchar(10)
-)
-go
-
 --Producto
 create table ESECUELE.Producto(
 	prod_id int identity(1,1) primary key,
@@ -142,7 +134,7 @@ create table ESECUELE.Cliente(
 	cliente_num_doc varchar(30) default null,
 	cliente_cuil varchar(30) default 'cuil',
 	cliente_fecha_nacimiento datetime default null,
-	cliente_datos_tarjeta int default null,
+	cliente_datos_tarjeta varchar(20) default null,
 	cliente_usuario varchar(50)
 	constraint PK_Cliente primary key (cliente_tipo_doc, cliente_num_doc, cliente_cuil)
 )
@@ -278,7 +270,7 @@ go
 --Medio de pago
 create table ESECUELE.Medio_de_Pago(
 	medio_pago_id tinyint identity(1,1) primary key,
-	medio_pago_nro_tarjeta varchar(40) default null
+	medio_pago_nro_tarjeta varchar(20) default null
 )
 go
 
@@ -689,9 +681,6 @@ alter table ESECUELE.Canje add constraint FK_ClieId foreign key(canje_cliente) r
 
 -- Relacion Canje - Producto
 alter table ESECUELE.Canje add constraint FK_ProdId foreign key(canje_producto) references ESECUELE.Producto(prod_id)
-
--- Relacion Cliente - Tarjeta
-alter table ESECUELE.Cliente add constraint FK_TarjId foreign key(cliente_datos_tarjeta) references ESECUELE.Tarjeta(tarjeta_id)
 
 -- Relacion Punto - Cliente
 alter table ESECUELE.Punto add constraint FK_P_ClieId foreign key(punto_cliente) references ESECUELE.Cliente(cliente_id)
@@ -1466,3 +1455,56 @@ begin
 	(@publicacion, @filas, @asientos, @precio, @sinNumerar, @ocupados, @tipo)
 end
 go 
+
+create procedure ESECUELE.getClienteByUsername(@username varchar(50))
+as begin
+	select * from ESECUELE.Cliente c join ESECUELE.Usuario u on u.usr_username = c.cliente_usuario
+	where c.cliente_usuario = @username
+end
+go 
+
+create procedure ESECUELE.UpdateClienteTarjeta(@id int, @tarjeta varchar(20))
+as begin
+	update ESECUELE.Cliente
+	set cliente_datos_tarjeta = @tarjeta
+	where cliente_id = @id
+end
+go
+
+CREATE TYPE ESECUELE.Compra_Nueva AS TABLE
+(
+    compra_cliente int,
+    compra_fecha datetime,
+	compra_monto_total numeric(18,2),
+	compra_tarjeta varchar(20),
+	entrada_ubicacion int,
+	entrada_fila int,
+	entrada_asiento int
+);
+go
+
+create procedure ESECUELE.SaveCompra( @compra as ESECUELE.Compra_Nueva readonly)
+as begin
+	begin try
+
+	insert into ESECUELE.Medio_de_Pago(medio_pago_nro_tarjeta) select top 1 compra_tarjeta from @compra
+
+	declare @medioPago int
+	set @medioPago = SCOPE_IDENTITY()
+
+	insert into ESECUELE.Compra(compra_cliente,compra_fecha,compra_total, compra_medio_pago) 
+	select top 1 c.compra_cliente, c.compra_fecha, c.compra_monto_total, @medioPago from @compra c
+
+	declare @compra_id int
+	set @compra_id = SCOPE_IDENTITY()
+
+	insert into ESECUELE.Entrada(entrada_compra, entrada_ubicacion, entrada_fila, entrada_asiento)
+	select @compra_id, c.entrada_ubicacion, c.entrada_fila, c.entrada_asiento
+	from @compra c
+
+	end try
+	begin catch
+		raiserror('Error insert de entradas', 18, 10)
+	end catch
+end
+go

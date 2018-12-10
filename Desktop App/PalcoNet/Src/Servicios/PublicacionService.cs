@@ -98,15 +98,14 @@ namespace PalcoNet.Src.Servicios
             }
         }
 
-        public int update(Publicacion newPublicacion, List<DateTime> fechas, List<Dictionary<string, object>> ubicaciones)
+        public int update(Publicacion publicacion, List<DateTime> fechas, List<Dictionary<string, object>> ubicaciones)
         {
-            foreach (DateTime fecha in fechas)
+            if(publicacion.fechas.Count == fechas.Count)
             {
-                newPublicacion.FechaEvento = fecha;
-                newPublicacion.Codigo = this.daoPublicaion.save(newPublicacion);
-                this.saveUbicaciones(newPublicacion, ubicaciones);
+
             }
-            return this.daoPublicaion.save(newPublicacion);
+            
+            return this.daoPublicaion.save(publicacion);
         }
 
         public Publicacion loadData(Dictionary<string, object> data)

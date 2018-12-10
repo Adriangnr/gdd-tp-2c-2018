@@ -229,7 +229,7 @@ namespace PalcoNet.Src.Forms.Vistas.Cliente
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
             else
             {
-                Compra_Detalle compra_detalle = new Compra_Detalle(this, (Publicacion)this.dataGridPublicaciones.CurrentRow.DataBoundItem);
+                Compra_Detalle compra_detalle = new Compra_Detalle(this, this.usuario,(Publicacion)this.dataGridPublicaciones.CurrentRow.DataBoundItem);
 
                 compra_detalle.ShowDialog();
             }
