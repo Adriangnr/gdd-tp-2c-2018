@@ -1383,3 +1383,41 @@ as begin
 	where cliente_id = @id
 end
 go
+
+CREATE TYPE ESECUELE.Compra_Nueva AS TABLE
+(
+    compra_cliente int,
+    compra_fecha datetime,
+	compra_monto_total numeric(18,2),
+	compra_tarjeta varchar(20),
+	entrada_ubicacion int,
+	entrada_fila int,
+	entrada_asiento int
+);
+go
+
+create procedure ESECUELE.SaveCompra( @compra as ESECUELE.Compra_Nueva readonly)
+as begin
+	begin try
+
+	insert into ESECUELE.Medio_de_Pago(medio_pago_nro_tarjeta) select top 1 compra_tarjeta from @compra
+
+	declare @medioPago int
+	set @medioPago = SCOPE_IDENTITY()
+
+	insert into ESECUELE.Compra(compra_cliente,compra_fecha,compra_total, compra_medio_pago) 
+	select top 1 c.compra_cliente, c.compra_fecha, c.compra_monto_total, @medioPago from @compra c
+
+	declare @compra_id int
+	set @compra_id = SCOPE_IDENTITY()
+
+	insert into ESECUELE.Entrada(entrada_compra, entrada_ubicacion, entrada_fila, entrada_asiento)
+	select @compra_id, c.entrada_ubicacion, c.entrada_fila, c.entrada_asiento
+	from @compra c
+
+	end try
+	begin catch
+		raiserror('Error insert de entradas', 18, 10)
+	end catch
+end
+go

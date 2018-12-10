@@ -46,6 +46,7 @@ namespace PalcoNet.Src.Forms.Vistas.Cliente
                 validReg.validar(this.Controls);
                 ClienteService clienteService = (ClienteService)ServiceFactory.GetService("Cliente");
                 clienteService.updateTarjeta(this.cliente.Id, tarjetaNueva.Text);
+                cliente.DatosTarjeta = tarjetaNueva.Text;
                 MessageBox.Show("Tarjeta guardada con exito!", "Nueva Tarjeta", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.Close();
             }

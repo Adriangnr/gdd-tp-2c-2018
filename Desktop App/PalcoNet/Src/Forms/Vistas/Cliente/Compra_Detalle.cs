@@ -5,6 +5,7 @@ using PalcoNet.Src.Servicios.ServiceFactory;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -17,6 +18,7 @@ namespace PalcoNet.Src.Forms.Vistas.Cliente
         private Publicacion publicacion;
         private Src.Modelo.Entidades.Cliente cliente;
         private Compra_Ubicacion form_ubicacion;
+        private double precioTotal = 0.0;
         List<Entrada> entradasCompradas = new List<Entrada>();
 
         public Compra_Detalle(Form anterior, Usuario usuario,Publicacion publicacion)
@@ -101,8 +103,6 @@ namespace PalcoNet.Src.Forms.Vistas.Cliente
 
         private void mostrarMontoTotal()
         {
-            double precioTotal = 0.0;
-
             if (dataGridEntradasCompradas.DataSource != null && this.entradasCompradas.Count > 0)
             {
                 foreach (DataGridViewRow row in this.dataGridEntradasCompradas.Rows)
@@ -133,6 +133,26 @@ namespace PalcoNet.Src.Forms.Vistas.Cliente
                                     MessageBoxButtons.OK, MessageBoxIcon.Information);
                 Compra_Agregar_Tarjeta tarjeta = new Compra_Agregar_Tarjeta(this, this.cliente);
                 tarjeta.ShowDialog();
+            }
+            else
+            {
+                try
+                {
+                    CompraService compraService = (CompraService)ServiceFactory.GetService("Compra");
+                    compraService.save(this.cliente,this.entradasCompradas, this.precioTotal);
+                    MessageBox.Show("Compra realizada con exito!", "Compra", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    form_ubicacion.Close();
+                    this.Close();
+                    this.previous.Show();
+                }
+                catch (SqlException exception)
+                {
+                    Console.WriteLine(exception.Message);
+
+                    MessageBox.Show(exception.Message, "Error al comprar.",
+                                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
             }
         }
     }
