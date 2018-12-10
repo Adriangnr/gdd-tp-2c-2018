@@ -24,9 +24,9 @@ namespace PalcoNet.Src.Modelo.Entidades
             this.UbicacionId = UbicacionId;
             this.Fila = Fila;
             this.Asiento = Asiento;
-            this.TipoId = Ubicacion.Tipo;
-            this.TipoDesc = Ubicacion.Tipo_descripcion;
-            this.Precio = Ubicacion.Precio;
+            this.TipoId = Ubicacion.tipo;
+            this.TipoDesc = Ubicacion.descripcion;
+            this.Precio = Ubicacion.precio;
         }
 
         public bool EsIgual(Entrada entradaNueva)

@@ -1,4 +1,6 @@
-﻿namespace PalcoNet.Src.Forms.Vistas.Cliente
+﻿using System;
+
+namespace PalcoNet.Src.Forms.Vistas.Cliente
 {
     partial class Compra_Detalle
     {
@@ -198,6 +200,26 @@
             this.ResumeLayout(false);
             this.PerformLayout();
 
+        }
+
+        private void Compra_Detalle_Load(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void btn_seleccion_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void btn_quitar_seleccion_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void btn_cancel_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         #endregion

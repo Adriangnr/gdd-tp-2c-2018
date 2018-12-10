@@ -8,7 +8,6 @@ namespace PalcoNet.Src.Modelo.Entidades
 {
     public class Ubicacion
     {
-<<<<<<< HEAD
         public int id { get; set; }
         public int publicacion { get; set; }
         public int filas { get; set; }
