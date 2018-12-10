@@ -36,13 +36,13 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
 
         private void btn_cargar_Click(object sender, EventArgs e)
         {
-            Ubicacion newUbicacion = new Ubicacion();
-            newUbicacion.descripcion = this.comboBoxTipos.SelectedItem.ToString();
-            newUbicacion.tipo = (int)((Tipo_Ubicacion)this.comboBoxTipos.SelectedItem).id;
-            newUbicacion.fila = (string)this.txt_filas.Text;
-            newUbicacion.asiento = (string)this.txt_asientos.Text;
-            newUbicacion.precio = Convert.ToDouble(this.txt_precio.Text);
-            newUbicacion.cantidad = Convert.ToInt16(this.txt_cantidad.Text);
+            Dictionary<string, object> newUbicacion = new Dictionary<string, object>();
+            newUbicacion.Add("descripcion", this.comboBoxTipos.SelectedItem);
+            newUbicacion.Add("tipo", (int)((Tipo_Ubicacion)this.comboBoxTipos.SelectedItem).id);
+            newUbicacion.Add("filas", (string)this.txt_filas.Text);
+            newUbicacion.Add("asientos", (string)this.txt_asientos.Text);
+            newUbicacion.Add("precio", Convert.ToDouble(this.txt_precio.Text));
+            newUbicacion.Add("cantidad", Convert.ToInt16(this.txt_cantidad.Text));
 
             this.parent.AddUbicacion(newUbicacion);
         }

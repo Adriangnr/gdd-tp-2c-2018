@@ -26,7 +26,7 @@ namespace PalcoNet.Src.Forms.Vistas.Paginador
             this.form = form;
             this.controls = new PaginatorControls(this.form);
         }
-        
+
         public Page NextPage()
         {
             Page currentPage = null;
@@ -112,12 +112,19 @@ namespace PalcoNet.Src.Forms.Vistas.Paginador
 
                 this.controls.Controls["btn_previousPage"].Enabled = false;
                 this.controls.Controls["btn_firstPage"].Enabled = false;
-                this.controls.Controls["btn_nextPage"].Enabled = true;
-                this.controls.Controls["btn_lastPage"].Enabled = true;
+                if(this.TotalPages <= 1) {
+                    this.controls.Controls["btn_nextPage"].Enabled = false;
+                    this.controls.Controls["btn_lastPage"].Enabled = false;
+                }
+                else
+                {
+                    this.controls.Controls["btn_nextPage"].Enabled = true;
+                    this.controls.Controls["btn_lastPage"].Enabled = true;
+                }
             }
             else
             {
-                if(this.PageNumber == (this.TotalPages - 1))
+                if(this.PageNumber == (this.TotalPages - 1) && this.TotalPages > 1)
                 {
                     this.controls.Controls["paginaActual"].Text = this.TotalPages.ToString();
                     this.controls.Controls["btn_previousPage"].Enabled = true;

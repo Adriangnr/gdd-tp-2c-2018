@@ -88,5 +88,26 @@ namespace PalcoNet.Src.Modelo.Daos
                 throw e;
             }
         }
+
+        public void saveUbicacion(Ubicacion ubicacion)
+        {
+            try
+            {
+                this.spExecute("ESECUELE.saveUbicacion", new List<SqlParameter>()
+                {
+                    new SqlParameter("@publicacion", ubicacion.publicacion),
+                   new SqlParameter("@filas", ubicacion.filas),
+                   new SqlParameter("@asientos", ubicacion.asientos),
+                   new SqlParameter("@precio", ubicacion.precio),
+                   new SqlParameter("@sinNumerar", ubicacion.sinNumerar),
+                   new SqlParameter("@ocupados", ubicacion.ocupados),
+                   new SqlParameter("@tipo", ubicacion.tipo)
+                });
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

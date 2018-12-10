@@ -37,10 +37,10 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
             this.dataGridView_fechaHora.Refresh();
         }
 
-        public void AddUbicacion(Ubicacion newUbicacion)
+        public void AddUbicacion(Dictionary<string, object> newUbicacion)
         {
-            this.dataGridViewUbicaciones.Rows.Add(newUbicacion.descripcion, newUbicacion.fila, 
-                newUbicacion.asiento, newUbicacion.precio, newUbicacion.cantidad, "Quitar");
+            this.dataGridViewUbicaciones.Rows.Add(newUbicacion["descripcion"], newUbicacion["filas"],
+                newUbicacion["asientos"], newUbicacion["precio"], newUbicacion["cantidad"], "Quitar");
         }
 
         public void loadFields()
@@ -71,7 +71,21 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
         {
             foreach (Ubicacion ubicacion in ubicaciones)
             {
-                this.AddUbicacion(ubicacion);
+                Dictionary<string, object> ubicacionDic = new Dictionary<string, object>();
+                ubicacionDic.Add("descripcion", ubicacion.descripcion);
+                ubicacionDic.Add("filas", ubicacion.filas);
+                ubicacionDic.Add("asientos", ubicacion.asientos);
+                ubicacionDic.Add("precio", ubicacion.precio);
+                if(ubicacion.tipo == 4454)
+                {
+                    ubicacionDic.Add("cantidad", ubicacion.cantSinNumerar);
+                }
+                else
+                {
+                    ubicacionDic.Add("cantidad", ubicacion.filas * ubicacion.asientos);
+                }
+                
+                this.AddUbicacion(ubicacionDic);
             }
             this.dataGridView_fechaHora.Refresh();
         }
@@ -193,18 +207,20 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
             return fechas;
         }
 
-        private List<Dictionary<string, string>> getUbicaciones()
+        private List<Dictionary<string, object>> getUbicaciones()
         {
-            List<Dictionary<string, string>> ubicaciones = new List<Dictionary<string, string>>();
+            List<Dictionary<string, object>> ubicaciones = new List<Dictionary<string, object>>();
 
             foreach(DataGridViewRow row in this.dataGridViewUbicaciones.Rows)
             {
-                Dictionary<string, string> ubicacion = new Dictionary<string, string>();
-                ubicacion.Add("descripcion", (string)row.Cells[0].Value);
-                ubicacion.Add("fila", (string)row.Cells[1].Value);
-                ubicacion.Add("asiento", (string)row.Cells[2].Value);
-                ubicacion.Add("precio", (string)row.Cells[3].Value);
-                ubicacion.Add("cantidad", (string)row.Cells[4].Value);
+                Dictionary<string, object> ubicacion = new Dictionary<string, object>();
+                ubicacion.Add("descripcion", row.Cells[0].Value);
+                ubicacion.Add("fila", row.Cells[1].Value);
+                ubicacion.Add("asiento", row.Cells[2].Value);
+                ubicacion.Add("precio", row.Cells[3].Value);
+                ubicacion.Add("cantidad", row.Cells[4].Value);
+
+                ubicaciones.Add(ubicacion);
             }
 
             return ubicaciones;
@@ -223,14 +239,33 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
                 data.Add("Grado", (Grado)this.grado.SelectedItem);
                 data.Add("Estado", (Estado)this.estado.SelectedItem);
                 data.Add("EmpresaId", this.usuario.getEmpresaId());
-                data.Add("Fechas", this.getFechas());
-                data.Add("Ubicaciones", this.getUbicaciones());
+                if(this.publicacion == null)
+                {
+                    this.publicacionService.save(this.publicacionService.loadData(data), this.getFechas(), this.getUbicaciones());
+                    MessageBox.Show("Publicacion cargada con exito!", "Cagar publicación.",
+                                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.Hide();
+                    Publicacion_Listado listado = new Publicacion_Listado();
+                    listado.usuario = this.usuario;
+                    this.previous.Close();
+                    this.previous = listado;
+                    listado.Show();
+                }
+                else
+                {
+                    this.publicacionService.update(this.publicacion, this.getFechas(), this.getUbicaciones());
+                    MessageBox.Show("Publicacion actualizada con exito!", "Actualizar publicación.",
+                                    MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
                 
-                this.publicacionService.save(this.publicacionService.loadData(data));
             }
             catch (Exception ex)
             {
-
+                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.StackTrace);
+                MessageBox.Show("Error al guardar la publicación!", "Error!",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
         }
     }

@@ -10,33 +10,43 @@ using System.Windows.Forms;
 
 namespace PalcoNet.Src.Forms.Vistas.Empresa
 {
-    public partial class Publicacion_Listado : Master, Pageable 
+    public partial class Publicacion_Listado : Master, Pageable
     {
         public Paginator paginator { get; set; }
+        List<Publicacion> publicaciones;
 
         public Publicacion_Listado()
         {
             InitializeComponent();
         }
 
+        private void loadPaginator()
+        {
+            this.paginator = new EmpresaPublicacionPaginator(this);
+            this.paginator.ItemsPerPage = 10;
+            EmpresaService empresaService = ((EmpresaService)ServiceFactory.GetService("Empresa"));
+
+            this.paginator.Entity = empresaService.GetEmpresaFromUsername(this.usuario.Username);
+        }
+
+        private void getPage()
+        {
+            Page currentPage = this.paginator.NextPage();
+
+            this.panelPaginatorControls.Controls.Add(this.paginator.controls);
+
+            List<object> objects = currentPage.GetItems();
+            this.publicaciones = objects.Cast<Publicacion>().ToList();
+        }
+
         private void Pulicacion_Listado_Load(object sender, EventArgs e)
         {
             try
             {
-                this.paginator = new EmpresaPublicacionPaginator(this);
-                this.paginator.ItemsPerPage = 10;
-                EmpresaService empresaService = ((EmpresaService)ServiceFactory.GetService("Empresa"));
+                this.loadPaginator();
+                this.getPage();
 
-                this.paginator.Entity = empresaService.GetEmpresaFromUsername(this.usuario.Username);
-
-                Page currentPage = this.paginator.NextPage();
-
-                this.panelPaginatorControls.Controls.Add(this.paginator.controls);
-                
-                List<object> objects = currentPage.GetItems();
-                List<Publicacion> publicaciones = objects.Cast<Publicacion>().ToList();
-
-                if (publicaciones.Count == 0)
+                if (this.publicaciones.Count == 0)
                 {
                     MessageBox.Show("No se encontraron publicaciones cargadas para este usuario!", "Alerta!",
                                 MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -44,13 +54,14 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
                 else
                 {
                     this.dataGridPublicaciones.DataSource = null;
-                    this.dataGridPublicaciones.DataSource = publicaciones;
+                    this.dataGridPublicaciones.DataSource = this.publicaciones;
                     this.dataGridPublicaciones.ClearSelection();
                 }
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.StackTrace);
                 MessageBox.Show("Error al buscar Publicaciones!", "Error!",
                                 MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;

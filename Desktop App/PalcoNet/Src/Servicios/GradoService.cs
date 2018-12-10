@@ -36,7 +36,7 @@ namespace PalcoNet.Src.Servicios
         {
             grado.id = (int)row[0];
             grado.descripcion = (string)row[1];
-            grado.comision = (double)row[2];
+            grado.comision = Convert.ToDouble(row[2]);
         }
     }
 }

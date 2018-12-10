@@ -509,6 +509,8 @@ insert into ESECUELE.Tipo_Ubicacion
 select distinct Ubicacion_Tipo_Codigo, Ubicacion_Tipo_Descripcion
 from gd_esquema.Maestra
 SET IDENTITY_INSERT ESECUELE.Tipo_Ubicacion OFF
+
+insert into ESECUELE.Tipo_Ubicacion (tipo_ubicacion_desc) values ('Sin Numerar')
 -- Fin de Carga de Tipos de Ubicaciones
 
 -- Carga de Ubicaciones
@@ -1380,32 +1382,28 @@ begin
 end
 go
 
-/*create procedure ESECUELE.GetUbicacionesDisponiblesPublicacion(@codigo int) as
+create procedure ESECUELE.GetUbicacionesDisponiblesPublicacion(@codigo int) as
 begin
-	select ubicacion_tipo, tipo_ubicacion_desc, ubicacion_fila, ubicacion_asiento, ubicacion_precio, 1 cantidad, 1 disponible 
-	from ESECUELE.UbicacionNumerada
+	select ubicacion_id, ubicacion_tipo, tipo_ubicacion_desc, ubicacion_cant_filas, ubicacion_cant_asientos, ubicacion_precio, 
+	ubicacion_sin_numerar, ubicacion_asientos_ocupados
+	from ESECUELE.Ubicacion
 	join ESECUELE.Tipo_Ubicacion on ubicacion_tipo = tipo_ubicacion_id
-	where ubicacion_disponible = 1 and ubicacion_publicacion = @codigo
-	union
-	select ubicacionSN_tipo, tipo_ubicacion_desc, '' fila, '' asiento, 
-	ubicacionSN_precio, ubicacionSN_cant_total, ubicacionSN_cant_disponibles
-	from ESECUELE.UbicacionSinNumerar
-	join ESECUELE.Tipo_Ubicacion on ubicacionSN_tipo = tipo_ubicacion_id
-	where ubicacionSN_cant_disponibles > 0 and ubicacionSN_publicacion = @codigo
-end
-go*/
-
-create procedure ESECUELE.getEmpresaIdFromUsername(@username varchar(50), @return_val int) as
-begin
-	select empresa_id from ESECUELE.Empresa where empresa_usuario = @username
-	set @return_val = (SELECT SCOPE_IDENTITY())
+	where ubicacion_asientos_ocupados < (ubicacion_cant_filas*ubicacion_cant_asientos) 
+	and ubicacion_publicacion = @codigo
 end
 go
 
-create procedure ESECUELE.getClienteIdFromUsername(@username varchar(50), @return_val int) as
+create procedure ESECUELE.getEmpresaIdFromUsername(@username varchar(50), @return_val int output) as
 begin
-	select cliente_id from ESECUELE.Cliente where cliente_usuario = @username
-	set @return_val = (SELECT SCOPE_IDENTITY())
+	select @return_val = empresa_id from ESECUELE.Empresa where empresa_usuario = @username
+	return @return_val
+end
+go
+
+create procedure ESECUELE.getClienteIdFromUsername(@username varchar(50), @return_val int output) as
+begin
+	select @return_val = cliente_id from ESECUELE.Cliente where cliente_usuario = @username
+	return @return_val
 end
 go
 
@@ -1416,7 +1414,8 @@ create procedure ESECUELE.savePublicacion(@fecha_inicio datetime,
 										  @direccion varchar(50), 
 										  @grado int, 
 										  @empresa int,
-										  @estado varchar(10)) as
+										  @estado varchar(10),
+										  @return_val int output) as
 begin 
 	insert into ESECUELE.Publicacion( publicacion_fecha_inicio, 
 									  publicacion_descripcion, 
@@ -1427,7 +1426,9 @@ begin
 									  publicacion_empresa, 
 									  publicacion_estado) 
 	values(@fecha_inicio, @descripcion, @fecha_evento, @rubro, @direccion, @grado, @empresa, @estado)
-	SELECT SCOPE_IDENTITY()
+	set @return_val = (select SCOPE_IDENTITY())
+end
+go
 
 create procedure ESECUELE.GetUbicacionesDisponibles( @publicacion_codigo int)
 as begin
@@ -1435,3 +1436,23 @@ as begin
 	from ESECUELE.UbicacionNumerada -- TODO
 end
 go
+
+create procedure ESECUELE.saveUbicacion( @publicacion int,
+										 @filas int,
+										 @asientos int,
+										 @precio decimal,
+										 @sinNumerar bit,
+										 @ocupados int,
+										 @tipo int ) as
+begin
+	insert into ESECUELE.Ubicacion (ubicacion_publicacion, 
+									ubicacion_cant_filas, 
+									ubicacion_cant_asientos, 
+									ubicacion_precio, 
+									ubicacion_sin_numerar,
+									ubicacion_asientos_ocupados,
+									ubicacion_tipo)
+	values
+	(@publicacion, @filas, @asientos, @precio, @sinNumerar, @ocupados, @tipo)
+end
+go 

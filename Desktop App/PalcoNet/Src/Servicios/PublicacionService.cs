@@ -46,13 +46,15 @@ namespace PalcoNet.Src.Servicios
 
         public void loadUbicacion(Ubicacion ubicacion, List<object> row)
         {
-            ubicacion.tipo = (int)row[0];
-            ubicacion.descripcion = (string)row[1];
-            ubicacion.fila = (string)row[2];
-            ubicacion.asiento = (string)row[3];
-            ubicacion.precio = Convert.ToDouble(row[4].ToString()); ;
-            ubicacion.cantidad = (int)row[5];
-            ubicacion.disponible = (int)row[6];
+            ubicacion.id = (int)row[0];
+            ubicacion.tipo = (int)row[1];
+            ubicacion.descripcion = (string)row[2];
+            ubicacion.filas = (int)row[3];
+            ubicacion.asientos = (int)row[4];
+            ubicacion.precio = Convert.ToDouble(row[5].ToString());
+            ubicacion.sinNumerar = (bool)row[6];
+            ubicacion.ocupados = (int)row[7];
+            ubicacion.cantSinNumerar = (((int)row[1]) == 4454) ? (int)row[4] : 0;
         }
 
         public void loadPublicacion(Publicacion publicacion, List<object> row)
@@ -86,8 +88,24 @@ namespace PalcoNet.Src.Servicios
             publicacion.ubicaciones = this.getUbicaciones(publicacion.Codigo);
         }
 
-        public int save(Publicacion newPublicacion)
+        public void save(Publicacion newPublicacion, List<DateTime> fechas, List<Dictionary<string, object>> ubicaciones)
         {
+            foreach(DateTime fecha in fechas)
+            {
+                newPublicacion.FechaEvento = fecha;
+                newPublicacion.Codigo = this.daoPublicaion.save(newPublicacion);
+                this.saveUbicaciones(newPublicacion, ubicaciones);
+            }
+        }
+
+        public int update(Publicacion newPublicacion, List<DateTime> fechas, List<Dictionary<string, object>> ubicaciones)
+        {
+            foreach (DateTime fecha in fechas)
+            {
+                newPublicacion.FechaEvento = fecha;
+                newPublicacion.Codigo = this.daoPublicaion.save(newPublicacion);
+                this.saveUbicaciones(newPublicacion, ubicaciones);
+            }
             return this.daoPublicaion.save(newPublicacion);
         }
 
@@ -95,7 +113,45 @@ namespace PalcoNet.Src.Servicios
         {
             Publicacion newPublicacion = new Publicacion();
 
+            newPublicacion.Descripcion = (string)data["Descripcion"];
+            newPublicacion.Direccion = (string)data["Direccion"];
+            newPublicacion.setEmpresaId((int)data["EmpresaId"]);
+            newPublicacion.Estado = (Estado)data["Estado"];
+            newPublicacion.Rubro = (Rubro)data["Rubro"];
+            newPublicacion.Grado = (Grado)data["Grado"];
+            newPublicacion.FechaPublicacion = (DateTime)data["FechaPublicacion"];
+
             return newPublicacion;
+        }
+
+        private void saveUbicaciones(Publicacion newPublicacion, List<Dictionary<string, object>> ubicaciones)
+        {
+            try
+            {
+                foreach (Dictionary<string, object> ubicacionData in ubicaciones)
+                {
+                    Ubicacion ubicacion = new Ubicacion();
+                    ubicacion.publicacion = newPublicacion.Codigo;
+
+                    ubicacion.descripcion = ((Tipo_Ubicacion)ubicacionData["descripcion"]).descripcion;
+                    ubicacion.tipo = ((Tipo_Ubicacion)ubicacionData["descripcion"]).id;
+                    ubicacion.filas = ((string)ubicacionData["fila"] != "") ? Convert.ToInt16((string)ubicacionData["fila"]) : 0;
+                    ubicacion.asientos = ((string)ubicacionData["asiento"] != "") ? Convert.ToInt16((string)ubicacionData["asiento"]) : 0;
+                    ubicacion.precio = (double)ubicacionData["precio"];
+                    ubicacion.cantSinNumerar = Convert.ToInt16((short)ubicacionData["cantidad"]);
+                    ubicacion.sinNumerar = false;
+                    if (ubicacion.descripcion == "Sin Numerar") ubicacion.sinNumerar = true;
+                    ubicacion.ocupados = 0;
+
+                    this.daoPublicaion.saveUbicacion(ubicacion);
+                }
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.StackTrace);
+                throw ex;
+            }
         }
     }
 }
