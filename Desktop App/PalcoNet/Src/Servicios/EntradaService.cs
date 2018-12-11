@@ -53,7 +53,7 @@ namespace PalcoNet.Src.Servicios
             List<Ubicacion> ubicaciones = ubicacionService.getAllUbicacionesDisponibles(publicacion);
             SortableBindingList<Entrada> entradasDisponibles = new SortableBindingList<Entrada>();
 
-            if (ubicaciones.Any(u => u.Cant_asientos * u.Cant_filas > u.Cant_asientos_opcupados))
+            if (ubicaciones.Any(u => u.asientos * u.filas > u.ocupados))
             {
                 SortableBindingList<Entrada> entradasVendidas = this.GetEntradasVendidas(publicacion);
 
@@ -67,23 +67,23 @@ namespace PalcoNet.Src.Servicios
 
         private void crearEntradas(Ubicacion u, SortableBindingList<Entrada> entradasVendidas, SortableBindingList<Entrada> entradasDisponibles)
         {
-            int fila = u.Cant_filas, asiento = u.Cant_asientos;
+            int fila = u.filas, asiento = u.asientos;
 
-            if (fila * asiento == u.Cant_asientos_opcupados)
+            if (fila * asiento == u.ocupados)
                 return;
 
             while (fila > 0)
             {
                 while (asiento > 0)
                 {
-                    Entrada entradaNueva = new Entrada(u.Id, fila, asiento, u);
+                    Entrada entradaNueva = new Entrada(u.id, fila, asiento, u);
 
                     if( !entradasVendidas.Any(e => e.EsIgual(entradaNueva) ))
                         entradasDisponibles.Add(entradaNueva);
 
                     asiento -= 1;
                 }
-                asiento = u.Cant_asientos;
+                asiento = u.asientos;
                 fila -= 1;
             }
 
