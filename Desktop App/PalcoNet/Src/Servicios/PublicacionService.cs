@@ -19,14 +19,12 @@ namespace PalcoNet.Src.Servicios
             return this.daoPublicaion.SearchActivasValidas(filtros);
         }
 
-        public List<FechaHora> getFechasDeEvento(int codigo)
+        public List<DateTime> getFechasDeEvento(int codigo)
         {
-            List<FechaHora> fechas = new List<FechaHora>();
+            List<DateTime> fechas = new List<DateTime>();
             List<List<object>> rows = daoPublicaion.getFechas(codigo);
             foreach(List<object> row in rows){
-                FechaHora fechaHora = new FechaHora((DateTime)row[1]);
-                fechaHora.setCodigoPublicacion((int)row[0]);
-                fechas.Add(fechaHora);
+                fechas.Add((DateTime)row[0]);
             }
             return fechas;
         }
@@ -66,13 +64,12 @@ namespace PalcoNet.Src.Servicios
             publicacion.Codigo = (int)row[0];
             publicacion.FechaPublicacion = (DateTime)row[1];
             publicacion.Descripcion = (string)row[2];
-            publicacion.FechaEvento = (DateTime)row[3];
-            publicacion.Rubro = rubroService.GetRubro((int)row[4]);
-            publicacion.Direccion = (row[5].GetType() != typeof(DBNull)) ? (string)row[5] : "Indeterminado";
+            publicacion.Rubro = rubroService.GetRubro((int)row[3]);
+            publicacion.Direccion = (row[4].GetType() != typeof(DBNull)) ? (string)row[4] : "Indeterminado";
 
-            if (row[6].GetType() != typeof(DBNull))
+            if (row[5].GetType() != typeof(DBNull))
             {
-                publicacion.Grado = gradoService.GetGrado((int)row[6]);
+                publicacion.Grado = gradoService.GetGrado((int)row[5]);
             }
             else
             {
@@ -82,29 +79,30 @@ namespace PalcoNet.Src.Servicios
                 gradoIndef.id = -1;
                 publicacion.Grado = gradoIndef;
             }
-            publicacion.Empresa = empresaService.GetEmpresa((int)row[7]);
-            publicacion.Estado = EstadoFactory.getEstado((string)row[8]);
+            publicacion.Empresa = empresaService.GetEmpresa((int)row[6]);
+            publicacion.Estado = EstadoFactory.getEstado((string)row[7]);
             publicacion.fechas = this.getFechasDeEvento(publicacion.Codigo);
             publicacion.ubicaciones = this.getUbicaciones(publicacion.Codigo);
         }
 
         public void save(Publicacion newPublicacion, List<DateTime> fechas, List<Dictionary<string, object>> ubicaciones)
         {
-            foreach(DateTime fecha in fechas)
-            {
-                newPublicacion.FechaEvento = fecha;
-                newPublicacion.Codigo = this.daoPublicaion.save(newPublicacion);
-                this.saveUbicaciones(newPublicacion, ubicaciones);
-            }
+            newPublicacion.Codigo = this.daoPublicaion.save(newPublicacion);
+            this.daoPublicaion.saveDates(newPublicacion.Codigo, fechas);
+            this.saveUbicaciones(newPublicacion, ubicaciones);
         }
 
         public int update(Publicacion publicacion, List<DateTime> fechas, List<Dictionary<string, object>> ubicaciones)
         {
-			if(publicacion.fechas.Count == fechas.Count)
+            /*if(publicacion.fechas.Count == fechas.Count && )
             {
-
+                return this.daoPublicaion.update(publicacion);
             }
-            
+            else
+            {
+                if()
+            }
+            */
             return this.daoPublicaion.save(publicacion);
         }
 

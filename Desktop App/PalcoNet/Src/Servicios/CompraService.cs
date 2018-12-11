@@ -20,9 +20,9 @@ namespace PalcoNet.Src.Servicios
 
                 foreach (List<object> row in results)
                 {
-                    Publicacion clienteObj = new Publicacion();
-                    this.loadPublicacionCompra(clienteObj, row);
-                    publicaciones.Add(clienteObj);
+                    Publicacion publicacionObj = new Publicacion();
+                    this.loadPublicacionCompra(publicacionObj, row);
+                    publicaciones.Add(publicacionObj);
                 }
 
                 return publicaciones;
@@ -39,8 +39,8 @@ namespace PalcoNet.Src.Servicios
             publicacion.Codigo = (int)row[0];
             publicacion.FechaPublicacion = (DateTime)row[1];
             publicacion.Descripcion = (string)row[2];
-            publicacion.FechaEvento = (DateTime)row[3];
-            publicacion.Direccion = (row[5].GetType() != typeof(DBNull))? (string)row[5] : "Indeterminado";
+            publicacion.FechaEvento = (DateTime)row[15];
+            publicacion.Direccion = (row[4].GetType() != typeof(DBNull))? (string)row[4] : "Indeterminado";
 
             EmpresaService empresaService = new EmpresaService();
 

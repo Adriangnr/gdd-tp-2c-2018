@@ -10,22 +10,20 @@ namespace PalcoNet.Src.Modelo.Entidades
         /*int, date, string, date, int, string, int, int, string*/
         public int Codigo { get; set; }
 
-        [DisplayName("Fecha de Evento")]
-        public DateTime FechaEvento { get; set; }
-
         public string Descripcion { get; set; }
 
         [DisplayName("Fecha de Publicación")]
         public DateTime FechaPublicacion { get; set; }
-		
-        public Rubro Rubro { get; set; }
+        
         public string Direccion { get; set; }
+        public DateTime FechaEvento { get; set; }
+        public Rubro Rubro { get; set; }
         public Grado Grado { get; set; }
         public Empresa Empresa { get; set; }
         public Estado Estado { get; set; }
 
         public List<Ubicacion> ubicaciones { get; set; }
-        public List<FechaHora> fechas { get; set; }
+        public List<DateTime> fechas { get; set; }
 
         private int empresaId;
 

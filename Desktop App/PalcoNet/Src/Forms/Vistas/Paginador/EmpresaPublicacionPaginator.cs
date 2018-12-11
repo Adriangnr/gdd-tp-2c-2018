@@ -33,7 +33,7 @@ namespace PalcoNet.Src.Forms.Vistas.Paginador
                 Publicacion publicacion = new Publicacion();
                 PublicacionService publicacionService = (PublicacionService)ServiceFactory.GetService("Publicacion");
                 publicacionService.loadPublicacion(publicacion, row);
-                page.TotalItems = (int)row[9];
+                page.TotalItems = (int)row[8];
                 page.AddItem(publicacion);
             }
 

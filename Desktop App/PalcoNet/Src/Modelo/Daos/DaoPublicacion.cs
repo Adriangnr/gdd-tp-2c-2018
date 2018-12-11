@@ -75,7 +75,6 @@ namespace PalcoNet.Src.Modelo.Daos
                 {
                     new SqlParameter("@fecha_inicio", publicacion.FechaPublicacion),
                     new SqlParameter("@descripcion", publicacion.Descripcion),
-                    new SqlParameter("@fecha_evento", publicacion.FechaEvento),
                     new SqlParameter("@rubro", publicacion.Rubro.codigo),
                     new SqlParameter("@direccion", publicacion.Direccion),
                     new SqlParameter("@grado", publicacion.Grado.id),
@@ -87,6 +86,25 @@ namespace PalcoNet.Src.Modelo.Daos
             {
                 throw e;
             }
+        }
+
+        public void saveDates(int publicacion, List<DateTime> fechas)
+        {
+            try
+            {
+                foreach (DateTime fecha in fechas)
+                {
+                    this.spExecute("ESECUELE.saveFechas", new List<SqlParameter>()
+                    {
+                        new SqlParameter("@codigoPub", publicacion),
+                        new SqlParameter("@fecha", fecha)
+                    });
+                }
+            }catch(Exception ex)
+            {
+                throw ex;
+            }
+            
         }
 
         public void saveUbicacion(Ubicacion ubicacion)

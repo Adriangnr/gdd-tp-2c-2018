@@ -189,17 +189,23 @@ go
 
 --Publicacion
 create table ESECUELE.Publicacion(
-	publicacion_codigo int identity(1,1),
+	publicacion_codigo int identity(1,1) primary key,
 	publicacion_fecha_inicio datetime default null,
 	publicacion_descripcion nvarchar(255) default null,
-	publicacion_fecha_evento datetime default null,
+	--publicacion_fecha_evento datetime default null,
 	publicacion_rubro int default null,
 	publicacion_direccion varchar(50) default null,
 	publicacion_grado int default null,
 	publicacion_empresa int default null,
 	publicacion_estado varchar(10) default null,
+)
+go
 
-	constraint PK_Pub primary key (publicacion_codigo, publicacion_fecha_evento)
+--FechaEvento
+create table ESECUELE.Fecha_Evento(
+	fecha_evento_id int identity(1,1),
+	fecha_evento_publicacion int not null,
+	fecha_evento datetime not null
 )
 go
 
@@ -477,7 +483,6 @@ insert into ESECUELE.Publicacion
 (publicacion_codigo, 
 publicacion_fecha_inicio, 
 publicacion_descripcion, 
-publicacion_fecha_evento,
 publicacion_rubro,
 publicacion_empresa, 
 publicacion_estado)
@@ -485,14 +490,18 @@ publicacion_estado)
 select distinct
 Espectaculo_Cod, 
 Espectaculo_Fecha_Venc,
-Espectaculo_Descripcion, 
-Espectaculo_Fecha,  
+Espectaculo_Descripcion,
 case when Espectaculo_Rubro_Descripcion = '' then 7 end,
 (select empresa_id from ESECUELE.Empresa where empresa_usuario = CONCAT('usr_', Espec_Empresa_Cuit)),
 Espectaculo_Estado
  from gd_esquema.Maestra
  SET IDENTITY_INSERT ESECUELE.Publicacion OFF
 -- Fin de Carga de Espectaculos
+
+-- Carga de fechas de espectaculos
+insert into ESECUELE.Fecha_Evento (fecha_evento_publicacion, fecha_evento)
+select distinct Espectaculo_Cod, Espectaculo_Fecha from gd_esquema.Maestra
+-- Fin de carga de fechas de espectaculos
 
 -- Carga de Tipos de Ubicaciones
 SET IDENTITY_INSERT ESECUELE.Tipo_Ubicacion ON
@@ -660,6 +669,9 @@ alter table ESECUELE.Empresa add constraint FK_Emp_UserName foreign key (empresa
 
 -- Relacion Publicacion -Empresa
 alter table ESECUELE.Publicacion add constraint FK_EmpId foreign key (publicacion_empresa) references ESECUELE.Empresa(empresa_id) ON UPDATE CASCADE ON DELETE NO ACTION
+
+-- Relacion Fecha_Evento - Publicacion
+--alter table ESECUELE.Fecha_Evento
 
 -- Relacion Ubicacion - Tipo_Ubicacion
 alter table ESECUELE.Ubicacion add constraint FK_Tipo_Ubicacion foreign key(ubicacion_tipo) references ESECUELE.Tipo_Ubicacion(tipo_ubicacion_id)
@@ -1255,8 +1267,8 @@ go
 
 create procedure ESECUELE.GetFechasPublicacion(@codigo int) as
 begin
-	select publicacion_codigo, publicacion_fecha_evento from ESECUELE.Publicacion 
-	where publicacion_codigo = @codigo
+	select fecha_evento from ESECUELE.Fecha_Evento 
+	where fecha_evento_publicacion = @codigo
 end
 go
 
@@ -1286,12 +1298,13 @@ as
 begin
 	declare @query nvarchar(500);
 	set @query = N'select * from ESECUELE.Publicacion p left join ESECUELE.Rubro r on p.publicacion_rubro = r.rubro_codigo
-														left join ESECUELE.Grado g on p.publicacion_grado = g.grado_id';
+														left join ESECUELE.Grado g on p.publicacion_grado = g.grado_id
+														left join ESECUELE.Fecha_Evento fe on fe.fecha_evento_publicacion = p.publicacion_codigo' ;
 
 	if @categorias is not null or  @descripcion is not null or @fechaInicio is not null or @fechaFin is not null
 	begin
 		set @query = @query + ' where p.publicacion_estado = ''Publicada'' and cast(' + convert(varchar(25),@fechaActual,121) 
-							+ ') between(p.publicacion_fecha_inicio, p.publicacion_fecha_evento)'
+							+ ') between(p.publicacion_fecha_inicio, fe.fecha_evento)'
 
 		if @descripcion is not null 
 		begin
@@ -1310,7 +1323,7 @@ begin
 
 		if @fechaFin is not null 
 		begin
-			 set @query = @query + ' and p.publicacion_fecha_evento <=' + @fechaFin
+			 set @query = @query + ' and fe.fecha_evento <=' + @fechaFin
 		end
 	end
 	set @query = @query + ' order by p.publicacion_grado asc, p.publicacion_descripcion desc'
@@ -1330,12 +1343,13 @@ as
 begin
 	declare @query nvarchar(500);
 	set @query = N'select *, COUNT(*) OVER() from ESECUELE.Publicacion p left join ESECUELE.Rubro r on p.publicacion_rubro = r.rubro_codigo
-														left join ESECUELE.Grado g on p.publicacion_grado = g.grado_id';
+														left join ESECUELE.Grado g on p.publicacion_grado = g.grado_id
+														left join ESECUELE.Fecha_Evento fe on fe.fecha_evento_publicacion = p.publicacion_codigo';
 
 	if @categorias is not null or  @descripcion is not null or @fechaInicio is not null or @fechaFin is not null
 	begin
 		set @query = @query + ' where p.publicacion_estado = ''Publicada'' and cast(' + convert(varchar(25),@fechaActual,121) 
-							+ ') between(p.publicacion_fecha_inicio, p.publicacion_fecha_evento)'
+							+ ') between(p.publicacion_fecha_inicio, fe.fecha_evento)'
 
 		if @descripcion is not null 
 		begin
@@ -1354,7 +1368,7 @@ begin
 
 		if @fechaFin is not null 
 		begin
-			 set @query = @query + ' and p.publicacion_fecha_evento <=' + @fechaFin
+			 set @query = @query + ' and fe.fecha_evento <=' + @fechaFin
 		end
 	end
 	set @query = 
@@ -1397,8 +1411,7 @@ end
 go
 
 create procedure ESECUELE.savePublicacion(@fecha_inicio datetime,
-										  @descripcion varchar(255), 
-										  @fecha_evento datetime, 
+										  @descripcion varchar(255),
 										  @rubro int, 
 										  @direccion varchar(50), 
 										  @grado int, 
@@ -1407,14 +1420,13 @@ create procedure ESECUELE.savePublicacion(@fecha_inicio datetime,
 										  @return_val int output) as
 begin 
 	insert into ESECUELE.Publicacion( publicacion_fecha_inicio, 
-									  publicacion_descripcion, 
-									  publicacion_fecha_evento, 
+									  publicacion_descripcion,
 									  publicacion_rubro, 
 									  publicacion_direccion, 
 									  publicacion_grado, 
 									  publicacion_empresa, 
 									  publicacion_estado) 
-	values(@fecha_inicio, @descripcion, @fecha_evento, @rubro, @direccion, @grado, @empresa, @estado)
+	values(@fecha_inicio, @descripcion, @rubro, @direccion, @grado, @empresa, @estado)
 	set @return_val = (select SCOPE_IDENTITY())
 end
 go
@@ -1508,3 +1520,14 @@ as begin
 	end catch
 end
 go
+
+create procedure ESECUELE.saveFechas(@codigoPub int, @fecha datetime) as
+begin
+	begin try
+		insert into ESECUELE.Fecha_Evento (fecha_evento_publicacion, fecha_evento)
+		values (@codigoPub, @fecha)
+	end try
+	begin catch
+		throw
+	end catch
+end

@@ -90,11 +90,11 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
             this.dataGridView_fechaHora.Refresh();
         }
 
-        public void addListFechaHora(List<FechaHora> horarios)
+        public void addListFechaHora(List<DateTime> horarios)
         {
-            foreach(FechaHora fechaHora in horarios)
+            foreach(DateTime fechaHora in horarios)
             {
-                this.dataGridView_fechaHora.Rows.Add(fechaHora.fechaHora, "Quitar");
+                this.dataGridView_fechaHora.Rows.Add(fechaHora, "Quitar");
             }
             this.dataGridView_fechaHora.Refresh();
         }

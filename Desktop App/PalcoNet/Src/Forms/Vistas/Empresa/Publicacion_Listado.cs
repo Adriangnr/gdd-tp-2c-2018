@@ -55,6 +55,7 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
                 {
                     this.dataGridPublicaciones.DataSource = null;
                     this.dataGridPublicaciones.DataSource = this.publicaciones;
+                    this.dataGridPublicaciones.Columns[4].Visible = false;
                     this.dataGridPublicaciones.ClearSelection();
                 }
             }

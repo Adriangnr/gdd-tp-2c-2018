@@ -91,15 +91,15 @@ namespace PalcoNet.Src.Servicios
         private void loadCliente(Cliente clienteObj, List<object> row)
         {
             clienteObj.Id = (int)row[0];
-            clienteObj.Nombre = (string)row[1];
-            clienteObj.Apellido = (string)row[2];
-            clienteObj.TipoDoc = (string)row[3];
-            clienteObj.NumDoc = (string)row[4];
-            clienteObj.Cuil = (string)row[5];
-            clienteObj.FechaNacimiento = ((DateTime)row[6]).ToString();
+            clienteObj.Nombre = (row[1].GetType() != typeof(DBNull)) ? (string)row[1] : "";
+            clienteObj.Apellido = (row[2].GetType() != typeof(DBNull)) ? (string)row[2] : "";
+            clienteObj.TipoDoc = (row[3].GetType() != typeof(DBNull)) ? (string)row[3] : "";
+            clienteObj.NumDoc = (row[4].GetType() != typeof(DBNull)) ? (string)row[4] : "";
+            clienteObj.Cuil = (row[5].GetType() != typeof(DBNull)) ? (string)row[5] : "";
+            clienteObj.FechaNacimiento = (row[6].GetType() != typeof(DBNull)) ? ((DateTime)row[6]).ToString() : null;
             clienteObj.DatosTarjeta = (row[7].GetType() != typeof(DBNull)) ? (string)row[7]: null;
             clienteObj.Usuario = (string)row[8];
-            clienteObj.Email = (string)row[17];
+            clienteObj.Email = (row[17].GetType() != typeof(DBNull)) ? (string)row[17] : "";
             this.loadUsuarioOfClient(clienteObj, row);
         }
 

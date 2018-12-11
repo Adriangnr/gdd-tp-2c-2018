@@ -37,13 +37,13 @@ namespace PalcoNet.Src.Forms.Vistas.Paginador
                 publicacion.Codigo = (int)row[0];
                 publicacion.FechaPublicacion = (DateTime)row[1];
                 publicacion.Descripcion = (string)row[2];
-                publicacion.FechaEvento = (DateTime)row[3];
-                publicacion.Rubro = rubroService.GetRubro((int)row[4]);
-                publicacion.Direccion = (row[5].GetType() != typeof(DBNull)) ? (string)row[5] : "Indeterminado";
-                publicacion.Grado = (row[6].GetType() != typeof(DBNull)) ? gradoService.GetGrado((int)row[6]) : null;
-                publicacion.Empresa = empresaService.GetEmpresa((int)row[7]);
-                publicacion.Estado = EstadoFactory.getEstado((string)row[8]);
-                page.TotalItems = (int)row[14];
+                publicacion.Rubro = rubroService.GetRubro((int)row[3]);
+                publicacion.Direccion = (row[4].GetType() != typeof(DBNull)) ? (string)row[4] : "Indeterminado";
+                publicacion.Grado = (row[5].GetType() != typeof(DBNull)) ? gradoService.GetGrado((int)row[5]) : null;
+                publicacion.Empresa = empresaService.GetEmpresa((int)row[6]);
+                publicacion.Estado = EstadoFactory.getEstado((string)row[7]);
+                publicacion.FechaEvento = (DateTime)row[15];
+                page.TotalItems = (int)row[16];
                 page.AddItem(publicacion);
             }
 
