@@ -116,7 +116,8 @@
       <DependentUpon>Compra.cs</DependentUpon>
     </Compile>
     <Compile Include="Src\Forms\Vistas\Cliente\Compra_Detalle.cs">
-
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Src\Forms\Vistas\Cliente\Compra_Agregar_Tarjeta.cs">
       <SubType>Form</SubType>
     </Compile>
