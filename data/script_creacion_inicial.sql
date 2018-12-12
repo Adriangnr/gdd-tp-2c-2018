@@ -560,6 +560,22 @@ from #EntradasTemporales
 
 -- Fin de Carga de Compras
 
+-- Carga de Puntos
+insert into ESECUELE.Punto
+(
+	punto_compra,
+	punto_cliente,
+	punto_valor,
+	punto_fecha_vencimiento
+)
+select
+compra_id,
+compra_cliente,
+round(compra_total,0),
+dateadd(month,3,compra_fecha)
+from ESECUELE.Compra
+-- Fin de Carga de Puntos
+
 -- Carga Entradas
 insert into ESECUELE.Entrada
 (entrada_compra,entrada_ubicacion, entrada_fila, entrada_asiento)
