@@ -234,5 +234,10 @@ namespace PalcoNet.Src.Forms.Vistas.Cliente
                 compra_detalle.ShowDialog();
             }
         }
+
+        private void btn_search_Click(object sender, EventArgs e)
+        {
+            this.cargarListaCompras();
+        }
     }
 }

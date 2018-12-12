@@ -85,6 +85,7 @@
             // btn_search
             // 
             this.btn_search.Location = new System.Drawing.Point(19, 294);
+            this.btn_search.Click += new System.EventHandler(this.btn_search_Click);
             // 
             // Entidad
             // 

@@ -6,7 +6,6 @@ using PalcoNet.Src.Modelo.Estados;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using static System.Windows.Forms.Control;
 
 namespace PalcoNet.Src.Servicios
 {
@@ -53,7 +52,14 @@ namespace PalcoNet.Src.Servicios
             ubicacion.precio = Convert.ToDouble(row[5].ToString());
             ubicacion.sinNumerar = (bool)row[6];
             ubicacion.ocupados = (int)row[7];
-            ubicacion.cantSinNumerar = (((int)row[1]) == 4454) ? (int)row[4] : 0;
+
+            if (ubicacion.sinNumerar)
+                ubicacion.cantSinNumerar = (int)row[4];
+            else
+            {
+                ubicacion.filas = (int)row[3];
+                ubicacion.asientos = (int)row[4];
+            }
         }
 
         public void loadPublicacion(Publicacion publicacion, List<object> row)

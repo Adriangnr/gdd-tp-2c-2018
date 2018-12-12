@@ -143,10 +143,11 @@ go
 --Punto
 create table ESECUELE.Punto(
 	punto_id int identity(1,1) primary key,
-	punto_valor int default null,
-	punto_usados int default null,
+	punto_valor int not null,
+	punto_usados int default 0,
 	punto_cliente int default null,
-	punto_fecha_vencimiento datetime default null
+	punto_fecha_vencimiento datetime default null,
+	punto_compra int not null
 )
 go
 
@@ -350,14 +351,14 @@ insert into ESECUELE.Rol (rol_nombre) values
   ('Empresa')
 
 -- Ingreso de la cuenta para el administrador general
-insert into ESECUELE.Usuario (usr_username, usr_pass, usr_primer_login) values
-  ('admin', ESECUELE.GetHash('w23e'), 0)
+insert into ESECUELE.Usuario (usr_username, usr_pass, usr_primer_login, usr_email) values
+  ('admin', ESECUELE.GetHash('w23e'), 0, 'admin@admin.com')
 
 insert into ESECUELE.Empresa(empresa_razon_social, empresa_cuit, empresa_usuario)
 values ('empresa_admin', '00-00000000-0','admin') 
 
-insert into ESECUELE.Cliente(cliente_tipo_doc, cliente_num_doc, cliente_cuil, cliente_usuario)
-values ('admin', '00000000', '00-00000000-0', 'admin')
+insert into ESECUELE.Cliente(cliente_nombre,cliente_apellido,cliente_fecha_nacimiento,cliente_tipo_doc, cliente_num_doc, cliente_cuil, cliente_usuario)
+values ('admin','admin',convert(varchar(25),'01/01/1900',121) ,'ADMIN', '00000000', '00-00000000-0', 'admin')
 
 -- Se ingresan todas las funcionalidades
 insert into ESECUELE.Funcionalidad (func_nombre, func_desc) values
@@ -565,6 +566,22 @@ compra_fecha
 from #EntradasTemporales
 
 -- Fin de Carga de Compras
+
+-- Carga de Puntos
+insert into ESECUELE.Punto
+(
+	punto_compra,
+	punto_cliente,
+	punto_valor,
+	punto_fecha_vencimiento
+)
+select
+compra_id,
+compra_cliente,
+round(compra_total,0),
+dateadd(month,3,compra_fecha)
+from ESECUELE.Compra
+-- Fin de Carga de Puntos
 
 -- Carga Entradas
 insert into ESECUELE.Entrada
@@ -1501,12 +1518,20 @@ as begin
 
 	declare @medioPago int
 	set @medioPago = SCOPE_IDENTITY()
+	declare @cliente int 
+	declare @total numeric(18,2)
+	declare @date datetime
+	
+	select top 1 @cliente = compra_cliente, @total = compra_monto_total, @date = compra_fecha from @compra
 
 	insert into ESECUELE.Compra(compra_cliente,compra_fecha,compra_total, compra_medio_pago) 
 	select top 1 c.compra_cliente, c.compra_fecha, c.compra_monto_total, @medioPago from @compra c
 
 	declare @compra_id int
 	set @compra_id = SCOPE_IDENTITY()
+
+	insert into ESECUELE.Punto(punto_compra, punto_cliente,punto_valor,punto_fecha_vencimiento)
+	values(@compra_id,@cliente, cast(round(@total,0) as int),dateadd(MONTH, 3, @date))
 
 	insert into ESECUELE.Entrada(entrada_compra, entrada_ubicacion, entrada_fila, entrada_asiento)
 	select @compra_id, c.entrada_ubicacion, c.entrada_fila, c.entrada_asiento

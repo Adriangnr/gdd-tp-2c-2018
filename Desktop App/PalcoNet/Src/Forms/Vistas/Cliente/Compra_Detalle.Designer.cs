@@ -30,7 +30,7 @@
         {
             this.btn_seleccion = new System.Windows.Forms.Button();
             this.btn_cancel = new System.Windows.Forms.Button();
-            this.dataGridEntradasCompradas = new System.Windows.Forms.DataGridView();
+            this.dataGridEntradasNumeradas = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
             this.label_total = new System.Windows.Forms.Label();
             this.label_espectaculo = new System.Windows.Forms.Label();
@@ -48,12 +48,18 @@
             this.label_mail = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridEntradasCompradas)).BeginInit();
+            this.dataGridEntradasSinNumerar = new System.Windows.Forms.DataGridView();
+            this.label9 = new System.Windows.Forms.Label();
+            this.btn_seleccionSN = new System.Windows.Forms.Button();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridEntradasNumeradas)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridEntradasSinNumerar)).BeginInit();
             this.SuspendLayout();
             // 
             // footer
             // 
-            this.footer.Location = new System.Drawing.Point(855, 424);
+            this.footer.Location = new System.Drawing.Point(900, 534);
             // 
             // btn_seleccion
             // 
@@ -62,7 +68,7 @@
             this.btn_seleccion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_seleccion.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_seleccion.ForeColor = System.Drawing.SystemColors.Window;
-            this.btn_seleccion.Location = new System.Drawing.Point(935, 83);
+            this.btn_seleccion.Location = new System.Drawing.Point(960, 92);
             this.btn_seleccion.Margin = new System.Windows.Forms.Padding(0);
             this.btn_seleccion.Name = "btn_seleccion";
             this.btn_seleccion.Size = new System.Drawing.Size(129, 45);
@@ -76,7 +82,7 @@
             this.btn_cancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_cancel.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_cancel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.btn_cancel.Location = new System.Drawing.Point(933, 345);
+            this.btn_cancel.Location = new System.Drawing.Point(60, 470);
             this.btn_cancel.Name = "btn_cancel";
             this.btn_cancel.Size = new System.Drawing.Size(129, 45);
             this.btn_cancel.TabIndex = 60;
@@ -84,28 +90,28 @@
             this.btn_cancel.UseVisualStyleBackColor = true;
             this.btn_cancel.Click += new System.EventHandler(this.btn_cancel_Click);
             // 
-            // dataGridEntradasCompradas
+            // dataGridEntradasNumeradas
             // 
-            this.dataGridEntradasCompradas.AllowUserToAddRows = false;
-            this.dataGridEntradasCompradas.AllowUserToDeleteRows = false;
-            this.dataGridEntradasCompradas.AllowUserToOrderColumns = true;
-            this.dataGridEntradasCompradas.AllowUserToResizeRows = false;
-            this.dataGridEntradasCompradas.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.dataGridEntradasNumeradas.AllowUserToAddRows = false;
+            this.dataGridEntradasNumeradas.AllowUserToDeleteRows = false;
+            this.dataGridEntradasNumeradas.AllowUserToOrderColumns = true;
+            this.dataGridEntradasNumeradas.AllowUserToResizeRows = false;
+            this.dataGridEntradasNumeradas.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridEntradasCompradas.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridEntradasCompradas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridEntradasCompradas.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.dataGridEntradasCompradas.Location = new System.Drawing.Point(403, 83);
-            this.dataGridEntradasCompradas.Margin = new System.Windows.Forms.Padding(2);
-            this.dataGridEntradasCompradas.MultiSelect = false;
-            this.dataGridEntradasCompradas.Name = "dataGridEntradasCompradas";
-            this.dataGridEntradasCompradas.ReadOnly = true;
-            this.dataGridEntradasCompradas.RowHeadersVisible = false;
-            this.dataGridEntradasCompradas.RowTemplate.Height = 28;
-            this.dataGridEntradasCompradas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridEntradasCompradas.Size = new System.Drawing.Size(489, 307);
-            this.dataGridEntradasCompradas.TabIndex = 65;
+            this.dataGridEntradasNumeradas.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridEntradasNumeradas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridEntradasNumeradas.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.dataGridEntradasNumeradas.Location = new System.Drawing.Point(411, 55);
+            this.dataGridEntradasNumeradas.Margin = new System.Windows.Forms.Padding(2);
+            this.dataGridEntradasNumeradas.MultiSelect = false;
+            this.dataGridEntradasNumeradas.Name = "dataGridEntradasNumeradas";
+            this.dataGridEntradasNumeradas.ReadOnly = true;
+            this.dataGridEntradasNumeradas.RowHeadersVisible = false;
+            this.dataGridEntradasNumeradas.RowTemplate.Height = 28;
+            this.dataGridEntradasNumeradas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridEntradasNumeradas.Size = new System.Drawing.Size(500, 222);
+            this.dataGridEntradasNumeradas.TabIndex = 65;
             // 
             // label1
             // 
@@ -154,7 +160,7 @@
             this.btn_quitar_seleccion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_quitar_seleccion.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_quitar_seleccion.ForeColor = System.Drawing.SystemColors.Window;
-            this.btn_quitar_seleccion.Location = new System.Drawing.Point(933, 144);
+            this.btn_quitar_seleccion.Location = new System.Drawing.Point(958, 470);
             this.btn_quitar_seleccion.Margin = new System.Windows.Forms.Padding(0);
             this.btn_quitar_seleccion.Name = "btn_quitar_seleccion";
             this.btn_quitar_seleccion.Size = new System.Drawing.Size(129, 45);
@@ -170,7 +176,7 @@
             this.btn_confirmar_compra.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_confirmar_compra.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_confirmar_compra.ForeColor = System.Drawing.SystemColors.Window;
-            this.btn_confirmar_compra.Location = new System.Drawing.Point(935, 286);
+            this.btn_confirmar_compra.Location = new System.Drawing.Point(242, 470);
             this.btn_confirmar_compra.Margin = new System.Windows.Forms.Padding(0);
             this.btn_confirmar_compra.Name = "btn_confirmar_compra";
             this.btn_confirmar_compra.Size = new System.Drawing.Size(129, 45);
@@ -289,11 +295,85 @@
             this.label8.TabIndex = 82;
             this.label8.Text = "Fecha";
             // 
+            // dataGridEntradasSinNumerar
+            // 
+            this.dataGridEntradasSinNumerar.AllowUserToAddRows = false;
+            this.dataGridEntradasSinNumerar.AllowUserToDeleteRows = false;
+            this.dataGridEntradasSinNumerar.AllowUserToOrderColumns = true;
+            this.dataGridEntradasSinNumerar.AllowUserToResizeRows = false;
+            this.dataGridEntradasSinNumerar.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridEntradasSinNumerar.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridEntradasSinNumerar.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridEntradasSinNumerar.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.dataGridEntradasSinNumerar.Location = new System.Drawing.Point(411, 293);
+            this.dataGridEntradasSinNumerar.Margin = new System.Windows.Forms.Padding(2);
+            this.dataGridEntradasSinNumerar.MultiSelect = false;
+            this.dataGridEntradasSinNumerar.Name = "dataGridEntradasSinNumerar";
+            this.dataGridEntradasSinNumerar.ReadOnly = true;
+            this.dataGridEntradasSinNumerar.RowHeadersVisible = false;
+            this.dataGridEntradasSinNumerar.RowTemplate.Height = 28;
+            this.dataGridEntradasSinNumerar.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridEntradasSinNumerar.Size = new System.Drawing.Size(500, 222);
+            this.dataGridEntradasSinNumerar.TabIndex = 83;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(407, 26);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(96, 20);
+            this.label9.TabIndex = 84;
+            this.label9.Text = "Ubicaciones";
+            // 
+            // btn_seleccionSN
+            // 
+            this.btn_seleccionSN.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btn_seleccionSN.BackColor = System.Drawing.SystemColors.Highlight;
+            this.btn_seleccionSN.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_seleccionSN.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_seleccionSN.ForeColor = System.Drawing.SystemColors.Window;
+            this.btn_seleccionSN.Location = new System.Drawing.Point(958, 328);
+            this.btn_seleccionSN.Margin = new System.Windows.Forms.Padding(0);
+            this.btn_seleccionSN.Name = "btn_seleccionSN";
+            this.btn_seleccionSN.Size = new System.Drawing.Size(129, 45);
+            this.btn_seleccionSN.TabIndex = 85;
+            this.btn_seleccionSN.Text = "Seleccionar ubicacion";
+            this.btn_seleccionSN.UseVisualStyleBackColor = false;
+            this.btn_seleccionSN.Click += new System.EventHandler(this.btn_seleccionSN_Click);
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(941, 293);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(183, 20);
+            this.label10.TabIndex = 86;
+            this.label10.Text = "Ubicaciones sin numerar";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(941, 43);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(180, 20);
+            this.label11.TabIndex = 87;
+            this.label11.Text = "Ubicaciones numeradas";
+            // 
             // Compra_Detalle
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1134, 462);
+            this.ClientSize = new System.Drawing.Size(1164, 565);
+            this.Controls.Add(this.label11);
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.btn_seleccionSN);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.dataGridEntradasSinNumerar);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
@@ -311,16 +391,15 @@
             this.Controls.Add(this.label_espectaculo);
             this.Controls.Add(this.label_total);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.dataGridEntradasCompradas);
+            this.Controls.Add(this.dataGridEntradasNumeradas);
             this.Controls.Add(this.btn_cancel);
             this.Controls.Add(this.btn_seleccion);
             this.Name = "Compra_Detalle";
             this.Text = "Detalle de compra";
             this.Load += new System.EventHandler(this.Compra_Detalle_Load);
-            this.Controls.SetChildIndex(this.footer, 0);
             this.Controls.SetChildIndex(this.btn_seleccion, 0);
             this.Controls.SetChildIndex(this.btn_cancel, 0);
-            this.Controls.SetChildIndex(this.dataGridEntradasCompradas, 0);
+            this.Controls.SetChildIndex(this.dataGridEntradasNumeradas, 0);
             this.Controls.SetChildIndex(this.label1, 0);
             this.Controls.SetChildIndex(this.label_total, 0);
             this.Controls.SetChildIndex(this.label_espectaculo, 0);
@@ -338,7 +417,14 @@
             this.Controls.SetChildIndex(this.label6, 0);
             this.Controls.SetChildIndex(this.label7, 0);
             this.Controls.SetChildIndex(this.label8, 0);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridEntradasCompradas)).EndInit();
+            this.Controls.SetChildIndex(this.dataGridEntradasSinNumerar, 0);
+            this.Controls.SetChildIndex(this.label9, 0);
+            this.Controls.SetChildIndex(this.footer, 0);
+            this.Controls.SetChildIndex(this.btn_seleccionSN, 0);
+            this.Controls.SetChildIndex(this.label10, 0);
+            this.Controls.SetChildIndex(this.label11, 0);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridEntradasNumeradas)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridEntradasSinNumerar)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -352,7 +438,7 @@
         private System.Windows.Forms.Label label_total;
         private System.Windows.Forms.Label label_fecha;
         protected System.Windows.Forms.Label label_espectaculo;
-        public System.Windows.Forms.DataGridView dataGridEntradasCompradas;
+        public System.Windows.Forms.DataGridView dataGridEntradasNumeradas;
         public System.Windows.Forms.Button btn_quitar_seleccion;
         public System.Windows.Forms.Button btn_confirmar_compra;
         private System.Windows.Forms.Label label_nombre;
@@ -366,6 +452,11 @@
         private System.Windows.Forms.Label label_mail;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
+        public System.Windows.Forms.DataGridView dataGridEntradasSinNumerar;
+        private System.Windows.Forms.Label label9;
+        public System.Windows.Forms.Button btn_seleccionSN;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label11;
 
     }
 }

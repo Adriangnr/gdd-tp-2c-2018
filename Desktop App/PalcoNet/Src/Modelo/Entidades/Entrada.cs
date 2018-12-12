@@ -15,7 +15,9 @@ namespace PalcoNet.Src.Modelo.Entidades
         public int Fila { get; set; }
         public int Asiento { get; set; }
         public int TipoId { get; set; }
+        public int cantSinNumerar { get; set; }
         public double Precio { get; set; }
+        public bool sinNumerar { get; set; }
 
         public Entrada() { }
 
@@ -27,11 +29,18 @@ namespace PalcoNet.Src.Modelo.Entidades
             this.TipoId = Ubicacion.tipo.id;
             this.TipoDesc = Ubicacion.tipo.descripcion;
             this.Precio = Ubicacion.precio;
+            this.sinNumerar = Ubicacion.sinNumerar;
+            this.cantSinNumerar = Ubicacion.cantSinNumerar;
         }
 
         public bool EsIgual(Entrada entradaNueva)
         {
             return this.UbicacionId == entradaNueva.UbicacionId && this.Fila == entradaNueva.Fila && this.Asiento == entradaNueva.Asiento;
+        }
+
+        public override string ToString()
+        {
+            return TipoDesc;
         }
     }
 }

@@ -18,11 +18,13 @@ namespace PalcoNet.Src.Forms.Vistas.Cliente
     public partial class Compra_Agregar_Tarjeta : Master
     {
         private Src.Modelo.Entidades.Cliente cliente;
+        private Compra_Detalle compra_detalle;
 
-        public Compra_Agregar_Tarjeta(Form anterior, Src.Modelo.Entidades.Cliente cliente)
+        public Compra_Agregar_Tarjeta(Compra_Detalle anterior, Src.Modelo.Entidades.Cliente cliente)
         {
             this.cliente = cliente;
             this.previous = anterior;
+            this.compra_detalle = anterior;
             InitializeComponent();
         }
 
@@ -47,6 +49,7 @@ namespace PalcoNet.Src.Forms.Vistas.Cliente
                 ClienteService clienteService = (ClienteService)ServiceFactory.GetService("Cliente");
                 clienteService.updateTarjeta(this.cliente.Id, tarjetaNueva.Text);
                 cliente.DatosTarjeta = tarjetaNueva.Text;
+                this.compra_detalle.setTarjeta();
                 MessageBox.Show("Tarjeta guardada con exito!", "Nueva Tarjeta", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.Close();
             }

@@ -20,28 +20,23 @@ namespace PalcoNet.Src.Forms.Vistas.Cliente
         private SortableBindingList<Entrada> entradasDisponibles;
         private List<Entrada> entradasCompradas;
 
-        public Compra_Ubicacion(Form previous, int publicacion, List<Entrada> entradasCompradas)
+        public Compra_Ubicacion(Form previous, int publicacion, List<Entrada> entradasCompradas, SortableBindingList<Entrada> entradasDisponibles)
         {
             InitializeComponent();
             this.previous = previous;
             this.publicacion = publicacion;
+            this.entradasDisponibles = entradasDisponibles;
             this.entradasCompradas = entradasCompradas;
             loadEntradas(publicacion);
         }
 
         private void loadEntradas(int publicacion)
         {
-            EntradaService entradaService = new EntradaService();
             try
             {
-                if (this.entradasDisponibles == null)
-                {
-                    this.entradasDisponibles = entradaService.GetAllEntradasDisponibles(this.publicacion);
-                }
-
                 this.dataGridEntradas.DataSource = this.entradasDisponibles;
 
-                List<string> encabezados = new List<string>(new string[] {"TipoId","Id", "Compra", "UbicacionId"});
+                List<string> encabezados = new List<string>(new string[] {"TipoId","Id", "Compra", "UbicacionId", "sinNumerar"});
 
                 foreach (DataGridViewColumn column in this.dataGridEntradas.Columns)
                 {
@@ -76,7 +71,7 @@ namespace PalcoNet.Src.Forms.Vistas.Cliente
                 entradasCompradas.Add((Entrada)this.dataGridEntradas.CurrentRow.DataBoundItem);
                 dataGridEntradas.Rows.Remove(dataGridEntradas.CurrentRow);
                 ((Compra_Detalle)this.previous).load_entradas();
-                ((Compra_Detalle)this.previous).dataGridEntradasCompradas.Refresh();
+                ((Compra_Detalle)this.previous).dataGridEntradasNumeradas.Refresh();
                 this.Hide();
             }
         }

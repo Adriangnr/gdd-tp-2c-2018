@@ -121,11 +121,17 @@
     <Compile Include="Src\Forms\Vistas\Cliente\Compra_Detalle.designer.cs">
       <DependentUpon>Compra_Detalle.cs</DependentUpon>
     </Compile>
-	<Compile Include="Src\Forms\Vistas\Cliente\Compra_Agregar_Tarjeta.cs">
+    <Compile Include="Src\Forms\Vistas\Cliente\Compra_Agregar_Tarjeta.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Src\Forms\Vistas\Cliente\Compra_Agregar_Tarjeta.Designer.cs">
       <DependentUpon>Compra_Agregar_Tarjeta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Src\Forms\Vistas\Cliente\Compra_Sin_Numerar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Src\Forms\Vistas\Cliente\Compra_Sin_Numerar.Designer.cs">
+      <DependentUpon>Compra_Sin_Numerar.cs</DependentUpon>
     </Compile>
     <Compile Include="Src\Forms\Vistas\Cliente\Compra_Ubicacion.cs">
       <SubType>Form</SubType>
@@ -230,7 +236,7 @@
     </Compile>
     <Compile Include="Src\Modelo\Daos\DaoCliente.cs" />
     <Compile Include="Src\Modelo\Daos\DaoEmpresa.cs" />
-	<Compile Include="Src\Modelo\Daos\DaoEntrada.cs" />
+    <Compile Include="Src\Modelo\Daos\DaoEntrada.cs" />
     <Compile Include="Src\Modelo\Daos\DaoPublicacion.cs" />
     <Compile Include="Src\Modelo\Daos\DaoRol_Usuario.cs" />
     <Compile Include="Src\Modelo\Daos\DaoTipoUbicacion.cs" />
@@ -270,7 +276,7 @@
     <Compile Include="Src\Servicios\CompraService.cs" />
     <Compile Include="Src\Servicios\DatabaseService.cs" />
     <Compile Include="Src\Servicios\EmpresaService.cs" />
-	<Compile Include="Src\Servicios\EntradaService.cs" />
+    <Compile Include="Src\Servicios\EntradaService.cs" />
     <Compile Include="Src\Servicios\EstadoService.cs" />
     <Compile Include="Src\Servicios\GradoService.cs" />
     <Compile Include="Src\Servicios\LoginService.cs" />
@@ -284,7 +290,7 @@
     <Compile Include="Src\Utils\Utilities.cs" />
     <Compile Include="Src\Validadores\Validador.cs" />
     <Compile Include="Src\Validadores\ValidadorRegistro.cs" />
-	<Compile Include="Src\Validadores\ValidadorCargaPublicacion.cs" />
+    <Compile Include="Src\Validadores\ValidadorCargaPublicacion.cs" />
     <EmbeddedResource Include="Src\Forms\Layouts\Listado.resx">
       <DependentUpon>Listado.cs</DependentUpon>
     </EmbeddedResource>
@@ -335,6 +341,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Src\Forms\Vistas\Cliente\Compra_Detalle.resx">
       <DependentUpon>Compra_Detalle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Src\Forms\Vistas\Cliente\Compra_Sin_Numerar.resx">
+      <DependentUpon>Compra_Sin_Numerar.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Src\Forms\Vistas\Cliente\Historial.resx">
       <DependentUpon>Historial.cs</DependentUpon>
