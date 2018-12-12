@@ -1,8 +1,10 @@
-﻿using PalcoNet.Src.Forms.Layouts;
+﻿using PalcoNet.Src.Excepciones;
+using PalcoNet.Src.Forms.Layouts;
 using PalcoNet.Src.Modelo.Entidades;
 using PalcoNet.Src.Modelo.Estados;
 using PalcoNet.Src.Servicios;
 using PalcoNet.Src.Servicios.ServiceFactory;
+using PalcoNet.Src.Validadores;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -100,6 +102,12 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
             }
             this.dataGridView_fechaHora.Refresh();
         }
+
+        public DataGridView getFechasDataGrid()
+        {
+            return this.dataGridView_fechaHora;
+        }
+
         private void loadLists(){
             this.GetRubros();
             this.GetGrados();
@@ -233,7 +241,8 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
         {
             try
             {
-                //this.validator.validate(this.controls);
+                ValidadorCargaPublicacion validador = new ValidadorCargaPublicacion();
+                validador.validar(this.Controls);
                 Dictionary<string, object> data = new Dictionary<string, object>();
                 data.Add("FechaPublicacion", Utils.Utilities.getCurrentDate());
                 data.Add("Descripcion", this.descripcion.Text);
@@ -256,6 +265,12 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
                 }
                 else
                 {
+                    this.publicacion.Descripcion = this.descripcion.Text;
+                    this.publicacion.Direccion = this.direccion.Text;
+                    this.publicacion.Rubro = (Rubro)this.rubro.SelectedItem;
+                    this.publicacion.Grado = (Grado)this.grado.SelectedItem;
+                    this.publicacion.Estado = (Estado)this.estado.SelectedItem;
+
                     this.publicacionService.update(this.publicacion, this.getFechas(), this.getUbicaciones());
                     MessageBox.Show("Publicacion actualizada con exito!", "Actualizar publicación.",
                                     MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -268,6 +283,12 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
                     listado.Show();
                 }
                 
+            }
+            catch(ValidadorException ex)
+            {
+                MessageBox.Show(ex.Message, "Error!",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
             catch (Exception ex)
             {

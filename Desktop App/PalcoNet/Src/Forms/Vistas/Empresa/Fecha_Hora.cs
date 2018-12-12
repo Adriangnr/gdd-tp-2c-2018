@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PalcoNet.Src.Excepciones;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -26,7 +27,31 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
         
         private void btn_cargar_Click_1(object sender, EventArgs e)
         {
-            this.parent.AddFechaHora(this.dateTimePicker_pubFecha.Value.ToString("yyyy-MM-dd") + " " +this.text_inicio.Text);
+            try
+            {
+                if (this.parent.getFechasDataGrid().Rows.Count > 0)
+                {
+                    DateTime lastDateInserted = (DateTime)this.parent.getFechasDataGrid().Rows[this.parent.getFechasDataGrid().Rows.Count - 1].Cells[0].Value;
+                    DateTime currentDate = DateTime.Parse(this.dateTimePicker_pubFecha.Value.ToString("yyyy-MM-dd") + " " + this.text_inicio.Text);
+                    int compare = DateTime.Compare(currentDate, lastDateInserted);
+                    if (compare <= 0)
+                    {
+                        MessageBox.Show("La fecha ingresada debe ser mayor a la ultima cargada!", "Error!",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                }
+                this.parent.AddFechaHora(this.dateTimePicker_pubFecha.Value.ToString("yyyy-MM-dd") + " " + this.text_inicio.Text);
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.StackTrace);
+                MessageBox.Show("Verifique la fecha ingresada!", "Error!",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            
         }
     }
 }

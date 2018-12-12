@@ -13,19 +13,64 @@ namespace PalcoNet.Src.Validadores
     {
         public void descripcion(TextBox descripcion)
         {
-            this.validarCampoTexto(descripcion, "Descripcion", new Regex(@"^[a-zA-Z0-9\., ]+$"));
+            if(descripcion.Text == "")
+            {
+                throw new ValidadorException("Debe ingresar la descripcion de su espectaculo!");
+            }
+            else
+            {
+                this.validarCampoTexto(descripcion, "Descripcion", new Regex(@"^[a-zA-Z0-9\., ]+$"));
+            }
         }
 
         public void direccion(TextBox direccion)
         {
-            this.validarCampoTexto(direccion, "Direccion", new Regex(@"^[a-zA-Z0-9\., ]+$"));
+            if(direccion.Text == "")
+            {
+                throw new ValidadorException("Debe ingresar la direccion de su espectaculo!");
+            }
+            else
+            {
+                this.validarCampoTexto(direccion, "Direccion", new Regex(@"^[a-zA-Z0-9\., ]+$"));
+            }
         }
-        
+
+        public void rubro(ComboBox rubros)
+        {
+            if (rubros.SelectedIndex == -1)
+            {
+                throw new ValidadorException("Debe ingresar el rubro de su espectaculo!");
+            }
+        }
+
+        public void grado(ComboBox grados)
+        {
+            if (grados.SelectedIndex == -1)
+            {
+                throw new ValidadorException("Debe ingresar el grado de su espectaculo!");
+            }
+        }
+
+        public void estado(ComboBox estados)
+        {
+            if (estados.SelectedIndex == -1)
+            {
+                throw new ValidadorException("Debe ingresar el estado de su espectaculo!");
+            }
+        }
+
         public void dataGridView_fechaHora(DataGridView fechaHora)
         {
             if(fechaHora.Rows.Count == 0)
             {
                 throw new ValidadorException("Debe ingresar fechas y horarios para su espectaculo!");
+            }
+            else
+            {
+                foreach(DataGridViewRow row in fechaHora.Rows)
+                {
+                    Console.WriteLine((DateTime)row.Cells[0].Value);
+                }
             }
         }
 
@@ -33,7 +78,63 @@ namespace PalcoNet.Src.Validadores
         {
             if (fechaHora.Rows.Count == 0)
             {
-                throw new ValidadorException("Ubicaciones para su espectaculo!");
+                throw new ValidadorException("Debe ingresar ubicaciones para su espectaculo!");
+            }
+        }
+
+        public void comboBoxTipos(ComboBox tipos)
+        {
+            if (tipos.SelectedIndex == -1)
+            {
+                throw new ValidadorException("Debe ingresar el tipo de ubicacin!");
+            }
+        }
+
+        public void txt_filas(TextBox filas)
+        {
+            if (filas.Text == "")
+            {
+                throw new ValidadorException("Ingrese la cantidad de filas de su ubicación!");
+            }
+            else
+            {
+                this.validarCampoTexto(filas, "Filas", new Regex("^[0-9]+$"));
+            }
+        }
+
+        public void txt_asientos(TextBox asientos) 
+        {
+            if (asientos.Text == "")
+            {
+                throw new ValidadorException("Ingrese la cantidad de asientos de su ubicación!");
+            }
+            else
+            {
+                this.validarCampoTexto(asientos, "Asientos", new Regex("^[0-9]+$"));
+            }
+        }
+
+        public void txt_cantidad(TextBox cantidad)
+        {
+            if (cantidad.Text == "")
+            {
+                throw new ValidadorException("Ingrese el stock de su ubicación!");
+            }
+            else
+            {
+                this.validarCampoTexto(cantidad, "Cantidad", new Regex("^[0-9]+$"));
+            }
+        }
+
+        public void txt_precio(TextBox precio)
+        {
+            if (precio.Text == "")
+            {
+                throw new ValidadorException("Ingrese el precio de su ubicación!");
+            }
+            else
+            {
+                this.validarCampoTexto(precio, "Precio", new Regex(@"^\d+(\.{1}\d+)?$"));
             }
         }
     }

@@ -1,6 +1,7 @@
 ﻿using PalcoNet.Src.Modelo.Entidades;
 using PalcoNet.Src.Servicios;
 using PalcoNet.Src.Servicios.ServiceFactory;
+using PalcoNet.Src.Validadores;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -36,16 +37,28 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
 
         private void btn_cargar_Click(object sender, EventArgs e)
         {
-            Dictionary<string, object> newUbicacion = new Dictionary<string, object>();
-            newUbicacion.Add("descripcion", this.comboBoxTipos.SelectedItem);
-            newUbicacion.Add("tipo", (int)((Tipo_Ubicacion)this.comboBoxTipos.SelectedItem).id);
-            newUbicacion.Add("filas", (string)this.txt_filas.Text);
-            newUbicacion.Add("asientos", (string)this.txt_asientos.Text);
-            newUbicacion.Add("precio", Convert.ToDouble(this.txt_precio.Text));
-            newUbicacion.Add("cantidad", Convert.ToInt16(this.txt_cantidad.Text));
-            newUbicacion.Add("sinNumerar", this.chkSinNumerar.Checked);
+            try
+            {
+                ValidadorCargaPublicacion validador = new ValidadorCargaPublicacion();
+                validador.validar(this.Controls);
+                Dictionary<string, object> newUbicacion = new Dictionary<string, object>();
+                newUbicacion.Add("descripcion", this.comboBoxTipos.SelectedItem);
+                newUbicacion.Add("tipo", (int)((Tipo_Ubicacion)this.comboBoxTipos.SelectedItem).id);
+                newUbicacion.Add("filas", (string)this.txt_filas.Text);
+                newUbicacion.Add("asientos", (string)this.txt_asientos.Text);
+                newUbicacion.Add("precio", Convert.ToDouble(this.txt_precio.Text));
+                newUbicacion.Add("cantidad", Convert.ToInt16(this.txt_cantidad.Text));
+                newUbicacion.Add("sinNumerar", this.chkSinNumerar.Checked);
 
-            this.parent.AddUbicacion(newUbicacion);
+                this.parent.AddUbicacion(newUbicacion);
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error!",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            
         }
 
         private void comboBoxTipos_SelectedIndexChanged(object sender, EventArgs e)
