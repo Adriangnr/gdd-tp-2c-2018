@@ -46,13 +46,13 @@ namespace PalcoNet.Src.Servicios
             entrada.Asiento = (int)row[4];
         }
 
-        public SortableBindingList<Entrada> GetAllEntradasDisponibles(int publicacion)
+        public List<Entrada> GetAllEntradasDisponibles(int publicacion)
         {
             UbicacionService ubicacionService = new UbicacionService();
 
             List<Ubicacion> ubicaciones = ubicacionService.getAllUbicacionesDisponibles(publicacion);
-            SortableBindingList<Entrada> entradasDisponibles = new SortableBindingList<Entrada>();
-
+            //SortableBindingList<Entrada> entradasDisponibles = new SortableBindingList<Entrada>();
+            List<Entrada> entradasDisponibles = new List<Entrada>();
             if (ubicaciones.Any(u => u.asientos * u.filas > u.ocupados))
             {
                 SortableBindingList<Entrada> entradasVendidas = this.GetEntradasVendidas(publicacion);
@@ -65,7 +65,7 @@ namespace PalcoNet.Src.Servicios
             return entradasDisponibles;
         }
 
-        private void crearEntradas(Ubicacion u, SortableBindingList<Entrada> entradasVendidas, SortableBindingList<Entrada> entradasDisponibles)
+        private void crearEntradas(Ubicacion u, SortableBindingList<Entrada> entradasVendidas, List<Entrada> entradasDisponibles)
         {
             int fila = u.filas, asiento = u.asientos;
 

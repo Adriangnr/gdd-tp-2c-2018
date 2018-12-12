@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace PalcoNet.Src.Utils
 {
-    class SortableBindingList<T> : BindingList<T> where T : class
+    public class SortableBindingList<T> : BindingList<T> where T : class
     {
         private bool isSortedValue;
         ListSortDirection sortDirectionValue;

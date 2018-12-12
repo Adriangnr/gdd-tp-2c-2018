@@ -2,6 +2,7 @@
 using PalcoNet.Src.Modelo.Entidades;
 using PalcoNet.Src.Servicios;
 using PalcoNet.Src.Servicios.ServiceFactory;
+using PalcoNet.Src.Utils;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -18,8 +19,14 @@ namespace PalcoNet.Src.Forms.Vistas.Cliente
         private Publicacion publicacion;
         private Src.Modelo.Entidades.Cliente cliente;
         private Compra_Ubicacion form_ubicacion;
+        private Compra_Sin_Numerar form_compraSN;
         private double precioTotal = 0.0;
-        List<Entrada> entradasCompradas = new List<Entrada>();
+        private List<Entrada> entradasCompradasN = new List<Entrada>();
+        private List<Entrada> entradasCompradasSN = new List<Entrada>();
+
+        SortableBindingList<Entrada> entradasDisponiblesN = null;
+        SortableBindingList<Entrada> entradasDisponiblesSN = null;
+
 
         public Compra_Detalle(Form anterior, Usuario usuario,Publicacion publicacion)
         {
@@ -43,72 +50,105 @@ namespace PalcoNet.Src.Forms.Vistas.Cliente
                 this.label_tarjeta.Text = this.cliente.DatosTarjeta;
             else
                 this.label_tarjeta.Text = "No hay tarjeta registrada.";
+
+            this.loadEntradas();
+
         }
 
         private void btn_cancel_Click(object sender, EventArgs e)
         {
-            this.form_ubicacion.Close();
+            if( this.form_ubicacion != null)
+                this.form_ubicacion.Close();
+            if (this.form_compraSN != null)
+                this.form_compraSN.Close();
             this.previous.Show();
             this.Close();
         }
 
         private void btn_seleccion_Click(object sender, EventArgs e)
         {
-            if (this.form_ubicacion == null)
-            {
-                Compra_Ubicacion compra_ubicacion = new Compra_Ubicacion(this, publicacion.Codigo, entradasCompradas);
-                this.form_ubicacion = compra_ubicacion;
-                compra_ubicacion.ShowDialog();
-            }
-            else
+
+            if(hayEntradas(this.entradasDisponiblesN))
                 this.form_ubicacion.ShowDialog();
+            else
+                MessageBox.Show("No hay más ubicaciones disponibles!", "Listado de ubicaciones.",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
             
         }
 
         public void load_entradas()
         {
-            this.dataGridEntradasCompradas.DataSource = null;
-            this.dataGridEntradasCompradas.DataSource = this.entradasCompradas;
+            this.dataGridEntradasNumeradas.DataSource = null;
+            this.dataGridEntradasNumeradas.DataSource = this.entradasCompradasN;
 
             this.mostrarMontoTotal();
 
-            List<string> encabezados = new List<string>(new string[] { "TipoId", "Id", "Compra", "UbicacionId" });
+            List<string> encabezados = new List<string>(new string[] { "TipoId", "Id", "Compra", "UbicacionId", "cantSinNumerar", "sinNumerar" });
 
-            foreach (DataGridViewColumn column in this.dataGridEntradasCompradas.Columns)
+            foreach (DataGridViewColumn column in this.dataGridEntradasNumeradas.Columns)
             {
                 if (encabezados.Contains(column.HeaderText))
                     column.Visible = false;
             }
 
-            this.dataGridEntradasCompradas.AutoSize = false;
-            this.dataGridEntradasCompradas.ScrollBars = ScrollBars.Both;
-            this.dataGridEntradasCompradas.ClearSelection();
+            this.dataGridEntradasNumeradas.AutoSize = false;
+            this.dataGridEntradasNumeradas.ScrollBars = ScrollBars.Both;
+            this.dataGridEntradasNumeradas.ClearSelection();
+        }
+
+        public void load_entradasSN()
+        {
+            this.dataGridEntradasSinNumerar.DataSource = null;
+            this.dataGridEntradasSinNumerar.DataSource = this.entradasCompradasSN;
+
+            this.mostrarMontoTotal();
+
+            List<string> encabezados = new List<string>(new string[] { "TipoId", "Id", "Compra", "UbicacionId", "Fila", "Asiento", "sinNumerar" });
+
+            foreach (DataGridViewColumn column in this.dataGridEntradasSinNumerar.Columns)
+            {
+                if (encabezados.Contains(column.HeaderText))
+                    column.Visible = false;
+            }
+
+            this.dataGridEntradasSinNumerar.AutoSize = false;
+            this.dataGridEntradasSinNumerar.ScrollBars = ScrollBars.Both;
+            this.dataGridEntradasSinNumerar.ClearSelection();
         }
 
         private void btn_quitar_seleccion_Click(object sender, EventArgs e)
         {
-            if (this.dataGridEntradasCompradas.SelectedRows.Count == 0 || this.dataGridEntradasCompradas.CurrentRow == null)
+            if (this.dataGridEntradasNumeradas.SelectedRows.Count == 0 || this.dataGridEntradasNumeradas.CurrentRow == null)
                 MessageBox.Show("Debe seleccionar una ubicación!", "Listado de ubicaciones.",
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
             else
             {
-                Entrada entrada = (Entrada)this.dataGridEntradasCompradas.CurrentRow.DataBoundItem;
-                this.entradasCompradas.Remove(entrada);
+                Entrada entrada = (Entrada)this.dataGridEntradasNumeradas.CurrentRow.DataBoundItem;
+                this.entradasCompradasN.Remove(entrada);
                 this.load_entradas();
                 this.form_ubicacion.regresarEntrada(entrada);
                 this.mostrarMontoTotal();
             }
-            this.dataGridEntradasCompradas.ClearSelection();
+            this.dataGridEntradasNumeradas.ClearSelection();
         }
 
         private void mostrarMontoTotal()
         {
-            if (dataGridEntradasCompradas.DataSource != null && this.entradasCompradas.Count > 0)
+            this.precioTotal = 0.0;
+
+            if (this.entradasCompradasN.Count > 0)
             {
-                foreach (DataGridViewRow row in this.dataGridEntradasCompradas.Rows)
+                foreach (Entrada entrada in this.entradasCompradasN)
                 {
-                    Entrada entrada = row.DataBoundItem as Entrada;
                     precioTotal += entrada.Precio;
+                }
+            }
+
+            if (this.entradasCompradasSN.Count > 0)
+            {
+                foreach (Entrada entrada in this.entradasCompradasSN)
+                {
+                    precioTotal += entrada.Precio*entrada.cantSinNumerar;
                 }
             }
 
@@ -124,7 +164,7 @@ namespace PalcoNet.Src.Forms.Vistas.Cliente
 
         private void btn_confirmar_compra_Click(object sender, EventArgs e)
         {
-            if(this.entradasCompradas.Count == 0)
+            if(this.entradasCompradasN.Count == 0)
                 MessageBox.Show("Debes elegir al menos una ubicación!", "Error compra.",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
             else if (this.cliente.DatosTarjeta == null)
@@ -136,24 +176,70 @@ namespace PalcoNet.Src.Forms.Vistas.Cliente
             }
             else
             {
-                try
+                DialogResult result = MessageBox.Show("Confirmar compra","Compra",MessageBoxButtons.OKCancel,MessageBoxIcon.Information);
+                if (result == System.Windows.Forms.DialogResult.OK)
                 {
-                    CompraService compraService = (CompraService)ServiceFactory.GetService("Compra");
-                    compraService.save(this.cliente,this.entradasCompradas, this.precioTotal);
-                    MessageBox.Show("Compra realizada con exito!", "Compra", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    form_ubicacion.Close();
-                    this.Close();
-                    this.previous.Show();
-                }
-                catch (SqlException exception)
-                {
-                    Console.WriteLine(exception.Message);
+                    try
+                    {
+                        CompraService compraService = (CompraService)ServiceFactory.GetService("Compra");
+                        compraService.save(this.cliente, this.entradasCompradasN, this.precioTotal);
+                        MessageBox.Show("Compra realizada con exito!", "Compra", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        form_ubicacion.Close();
+                        this.Close();
+                        this.previous.Show();
+                    }
+                    catch (SqlException exception)
+                    {
+                        Console.WriteLine(exception.Message);
 
-                    MessageBox.Show(exception.Message, "Error al comprar.",
-                                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
+                        MessageBox.Show(exception.Message, "Error al comprar.",
+                                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
                 }
             }
+        }
+
+        private void btn_seleccionSN_Click(object sender, EventArgs e)
+        {
+
+            if (hayEntradas(this.entradasDisponiblesSN))
+                this.form_compraSN.ShowDialog();
+            else
+                MessageBox.Show("No hay más ubicaciones disponibles!", "Listado de ubicaciones.",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        public void loadEntradas()
+        {
+            EntradaService entradaService = new EntradaService();
+            List<Entrada> listaCompleta = entradaService.GetAllEntradasDisponibles(this.publicacion.Codigo);
+
+            this.entradasDisponiblesN = new SortableBindingList<Entrada>(listaCompleta.FindAll(e => !e.sinNumerar));
+
+            this.entradasDisponiblesSN = new SortableBindingList<Entrada>(listaCompleta.FindAll(e => e.sinNumerar));
+
+            if (hayEntradas(entradasDisponiblesN))
+            {
+                Compra_Ubicacion compra_ubicacion = new Compra_Ubicacion(this, publicacion.Codigo, entradasCompradasN, this.entradasDisponiblesN);
+                this.form_ubicacion = compra_ubicacion;
+            }
+
+            if (hayEntradas(entradasDisponiblesSN))
+            {
+                Compra_Sin_Numerar form_compraSN = new Compra_Sin_Numerar(this, publicacion.Codigo, this.entradasCompradasSN, this.entradasDisponiblesSN);
+                this.form_compraSN = form_compraSN;
+            }
+        }
+
+        private bool hayEntradas(SortableBindingList<Entrada> entradas)
+        {
+            return entradas.Count > 0 || entradas == null;
+        }
+
+        public void setTarjeta()
+        {
+            this.label_tarjeta.Text = this.cliente.DatosTarjeta;
         }
     }
 }
