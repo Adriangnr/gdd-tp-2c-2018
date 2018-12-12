@@ -257,11 +257,8 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
                     MessageBox.Show("Publicacion cargada con exito!", "Cagar publicación.",
                                     MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.Hide();
-                    Publicacion_Listado listado = new Publicacion_Listado();
-                    listado.usuario = this.usuario;
-                    this.previous.Close();
-                    this.previous = listado;
-                    listado.Show();
+                    ((Publicacion_Listado)this.previous).reload();
+                    this.previous.Show();
                 }
                 else
                 {

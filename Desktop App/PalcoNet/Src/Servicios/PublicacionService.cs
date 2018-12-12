@@ -95,14 +95,19 @@ namespace PalcoNet.Src.Servicios
 
         public int update(Publicacion publicacion, List<DateTime> fechas, List<Dictionary<string, object>> ubicaciones)
         {
-            this.daoPublicaion.deleteUbicaciones(publicacion.Codigo);
-            this.saveUbicaciones(publicacion, ubicaciones);
-
-            this.daoPublicaion.deleteFechas(publicacion.Codigo);
-            this.daoPublicaion.saveDates(publicacion.Codigo, fechas);
-
+            if(ubicaciones != null)
+            {
+                this.daoPublicaion.deleteUbicaciones(publicacion.Codigo);
+                this.saveUbicaciones(publicacion, ubicaciones);
+            }
+            
+            if(fechas != null)
+            {
+                this.daoPublicaion.deleteFechas(publicacion.Codigo);
+                this.daoPublicaion.saveDates(publicacion.Codigo, fechas);
+            }
+            
             return this.daoPublicaion.update(publicacion);
-
         }
 
         public Publicacion loadData(Dictionary<string, object> data)

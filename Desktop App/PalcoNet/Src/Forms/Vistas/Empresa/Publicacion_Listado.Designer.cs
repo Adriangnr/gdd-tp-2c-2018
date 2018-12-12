@@ -34,6 +34,7 @@
             this.Entidad = new System.Windows.Forms.Label();
             this.dataGridPublicaciones = new System.Windows.Forms.DataGridView();
             this.panelPaginatorControls = new System.Windows.Forms.Panel();
+            this.btnFinalizar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridPublicaciones)).BeginInit();
             this.SuspendLayout();
             // 
@@ -116,11 +117,28 @@
             this.panelPaginatorControls.Size = new System.Drawing.Size(529, 69);
             this.panelPaginatorControls.TabIndex = 63;
             // 
+            // btnFinalizar
+            // 
+            this.btnFinalizar.BackColor = System.Drawing.SystemColors.Highlight;
+            this.btnFinalizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnFinalizar.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFinalizar.ForeColor = System.Drawing.SystemColors.Window;
+            this.btnFinalizar.Location = new System.Drawing.Point(948, 222);
+            this.btnFinalizar.Margin = new System.Windows.Forms.Padding(0);
+            this.btnFinalizar.Name = "btnFinalizar";
+            this.btnFinalizar.Size = new System.Drawing.Size(194, 69);
+            this.btnFinalizar.TabIndex = 64;
+            this.btnFinalizar.Text = "Finalizar";
+            this.btnFinalizar.UseVisualStyleBackColor = false;
+            this.btnFinalizar.Visible = false;
+            this.btnFinalizar.Click += new System.EventHandler(this.btnFinalizar_Click);
+            // 
             // Publicacion_Listado
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1176, 678);
+            this.Controls.Add(this.btnFinalizar);
             this.Controls.Add(this.panelPaginatorControls);
             this.Controls.Add(this.dataGridPublicaciones);
             this.Controls.Add(this.Entidad);
@@ -138,6 +156,7 @@
             this.Controls.SetChildIndex(this.Entidad, 0);
             this.Controls.SetChildIndex(this.dataGridPublicaciones, 0);
             this.Controls.SetChildIndex(this.panelPaginatorControls, 0);
+            this.Controls.SetChildIndex(this.btnFinalizar, 0);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridPublicaciones)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -152,5 +171,6 @@
         public System.Windows.Forms.Label Entidad;
         private System.Windows.Forms.DataGridView dataGridPublicaciones;
         private System.Windows.Forms.Panel panelPaginatorControls;
+        public System.Windows.Forms.Button btnFinalizar;
     }
 }

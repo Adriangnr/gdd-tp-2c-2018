@@ -1,6 +1,7 @@
 ﻿using PalcoNet.Src.Forms.Layouts;
 using PalcoNet.Src.Forms.Vistas.Paginador;
 using PalcoNet.Src.Modelo.Entidades;
+using PalcoNet.Src.Modelo.Estados;
 using PalcoNet.Src.Servicios;
 using PalcoNet.Src.Servicios.ServiceFactory;
 using System;
@@ -165,16 +166,54 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
             this.dataGridPublicaciones.ClearSelection();
         }
 
+        public void reload()
+        {
+            this.Pulicacion_Listado_Load(null, null);
+        }
+
         private void dataGridPublicaciones_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             Publicacion currentPublicacion = (Publicacion)this.dataGridPublicaciones.SelectedRows[0].DataBoundItem;
             if (!currentPublicacion.Estado.puedeModificarse())
             {
                 this.btn_edit.Text = "Ver";
+                this.btnFinalizar.Visible = true;
             }
             else
             {
                 this.btn_edit.Text = "Editar";
+                this.btnFinalizar.Visible = false;
+            }
+        }
+
+        private void btnFinalizar_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Realmente quiere finalizar esta publicación?", 
+                "Finalizar Publicación", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                try
+                {
+                    Publicacion currentPublicacion = (Publicacion)this.dataGridPublicaciones.SelectedRows[0].DataBoundItem;
+                    PublicacionService publicacionService = new PublicacionService();
+                    currentPublicacion.Estado = new Finalizada();
+                    publicacionService.update(currentPublicacion, null, null);
+                    MessageBox.Show("Publicacion finalizada con exito!", "Finalizar publicación.",
+                                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.Pulicacion_Listado_Load(null, null);
+                }
+                catch(Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    Console.WriteLine(ex.StackTrace);
+                    MessageBox.Show("Error al finalizar la publicación!", "Error!",
+                                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+            }
+            else if (dialogResult == DialogResult.No)
+            {
+                return;
             }
         }
     }
