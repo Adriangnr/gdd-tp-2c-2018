@@ -44,8 +44,10 @@ namespace PalcoNet.Src.Servicios
                 Ubicacion ubicacion = new Ubicacion();
                 ubicacion.id= (int)lista[0];
                 ubicacion.publicacion = (int)lista[1];
-                ubicacion.tipo = (int)lista[2];
-                ubicacion.descripcion = (string)lista[3];
+
+                Tipo_Ubicacion tipo = new Tipo_Ubicacion((int)lista[2], (string)lista[3]);
+
+                ubicacion.tipo = tipo;
                 ubicacion.sinNumerar = (bool)lista[4];
                 ubicacion.filas = (int)lista[5];
                 ubicacion.asientos = (int)lista[6];

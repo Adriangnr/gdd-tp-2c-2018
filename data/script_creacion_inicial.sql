@@ -510,8 +510,6 @@ insert into ESECUELE.Tipo_Ubicacion
 select distinct Ubicacion_Tipo_Codigo, Ubicacion_Tipo_Descripcion
 from gd_esquema.Maestra
 SET IDENTITY_INSERT ESECUELE.Tipo_Ubicacion OFF
-
-insert into ESECUELE.Tipo_Ubicacion (tipo_ubicacion_desc) values ('Sin Numerar')
 -- Fin de Carga de Tipos de Ubicaciones
 
 -- Carga de Ubicaciones
@@ -1391,7 +1389,7 @@ begin
 	ubicacion_sin_numerar, ubicacion_asientos_ocupados
 	from ESECUELE.Ubicacion
 	join ESECUELE.Tipo_Ubicacion on ubicacion_tipo = tipo_ubicacion_id
-	where ubicacion_asientos_ocupados < (ubicacion_cant_filas*ubicacion_cant_asientos) 
+	where ubicacion_asientos_ocupados < ubicacion_cant_asientos
 	and ubicacion_publicacion = @codigo
 end
 go
@@ -1530,5 +1528,41 @@ begin
 	begin catch
 		throw
 	end catch
+end
+go
+
+create procedure ESECUELE.deleteUbicaciones(@publicacion int) as
+begin
+	delete from ESECUELE.Ubicacion where ubicacion_publicacion = @publicacion 
+end
+go
+
+create procedure ESECUELE.deleteFechas(@publicacion int) as
+begin
+	delete from ESECUELE.Fecha_Evento where fecha_evento_publicacion = @publicacion 
+end
+go
+
+create procedure ESECUELE.updatePublicacion(@id int,
+										  @fecha_inicio datetime,
+										  @descripcion varchar(255),
+										  @rubro int, 
+										  @direccion varchar(50), 
+										  @grado int, 
+										  @empresa int,
+										  @estado varchar(10),
+										  @return_val int output) as
+begin 
+	update ESECUELE.Publicacion
+	set publicacion_fecha_inicio=@fecha_inicio, 
+		publicacion_descripcion=@descripcion,
+		publicacion_rubro=@rubro, 
+		publicacion_direccion=@direccion, 
+		publicacion_grado=@grado, 
+		publicacion_empresa=@empresa, 
+		publicacion_estado=@estado
+	where publicacion_codigo=@id
+	set @return_val = @id
+	return @return_val
 end
 go

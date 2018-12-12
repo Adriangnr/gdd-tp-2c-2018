@@ -44,9 +44,10 @@ namespace PalcoNet.Src.Servicios
 
         public void loadUbicacion(Ubicacion ubicacion, List<object> row)
         {
+            Tipo_Ubicacion tipo = new Tipo_Ubicacion((int)row[1], (string)row[2]);
+
             ubicacion.id = (int)row[0];
-            ubicacion.tipo = (int)row[1];
-            ubicacion.descripcion = (string)row[2];
+            ubicacion.tipo = tipo;
             ubicacion.filas = (int)row[3];
             ubicacion.asientos = (int)row[4];
             ubicacion.precio = Convert.ToDouble(row[5].ToString());
@@ -94,16 +95,14 @@ namespace PalcoNet.Src.Servicios
 
         public int update(Publicacion publicacion, List<DateTime> fechas, List<Dictionary<string, object>> ubicaciones)
         {
-            /*if(publicacion.fechas.Count == fechas.Count && )
-            {
-                return this.daoPublicaion.update(publicacion);
-            }
-            else
-            {
-                if()
-            }
-            */
-            return this.daoPublicaion.save(publicacion);
+            this.daoPublicaion.deleteUbicaciones(publicacion.Codigo);
+            this.saveUbicaciones(publicacion, ubicaciones);
+
+            this.daoPublicaion.deleteFechas(publicacion.Codigo);
+            this.daoPublicaion.saveDates(publicacion.Codigo, fechas);
+
+            return this.daoPublicaion.update(publicacion);
+
         }
 
         public Publicacion loadData(Dictionary<string, object> data)
@@ -130,14 +129,16 @@ namespace PalcoNet.Src.Servicios
                     Ubicacion ubicacion = new Ubicacion();
                     ubicacion.publicacion = newPublicacion.Codigo;
 
-                    ubicacion.descripcion = ((Tipo_Ubicacion)ubicacionData["descripcion"]).descripcion;
-                    ubicacion.tipo = ((Tipo_Ubicacion)ubicacionData["descripcion"]).id;
-                    ubicacion.filas = ((string)ubicacionData["fila"] != "") ? Convert.ToInt16((string)ubicacionData["fila"]) : 0;
-                    ubicacion.asientos = ((string)ubicacionData["asiento"] != "") ? Convert.ToInt16((string)ubicacionData["asiento"]) : 0;
+                    Tipo_Ubicacion tipo = new Tipo_Ubicacion(((Tipo_Ubicacion)ubicacionData["descripcion"]).id,((Tipo_Ubicacion)ubicacionData["descripcion"]).descripcion);
+                    
+                    ubicacion.tipo = tipo;
+
+                    ubicacion.filas = Convert.ToInt16(ubicacionData["fila"]);
+
+                    ubicacion.asientos = Convert.ToInt16(ubicacionData["asiento"]);
                     ubicacion.precio = (double)ubicacionData["precio"];
-                    ubicacion.cantSinNumerar = Convert.ToInt16((short)ubicacionData["cantidad"]);
-                    ubicacion.sinNumerar = false;
-                    if (ubicacion.descripcion == "Sin Numerar") ubicacion.sinNumerar = true;
+                    ubicacion.cantSinNumerar = Convert.ToInt16(ubicacionData["cantidad"]);
+                    ubicacion.sinNumerar = (bool)ubicacionData["sinNumerar"];
                     ubicacion.ocupados = 0;
 
                     this.daoPublicaion.saveUbicacion(ubicacion);

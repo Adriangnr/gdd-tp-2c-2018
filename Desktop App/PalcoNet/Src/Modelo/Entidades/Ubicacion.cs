@@ -15,10 +15,14 @@ namespace PalcoNet.Src.Modelo.Entidades
         public double precio { get; set; }
         public bool sinNumerar { get; set; }
         public int ocupados { get; set; }
-        public int tipo { get; set; }
-        public string descripcion { get; set; }
+        public Tipo_Ubicacion tipo { get; set; }
         public int cantSinNumerar { get; set; }
 
         public Ubicacion() { }
+
+        public override string ToString()
+        {
+            return this.tipo.descripcion;
+        }
     }
 }

@@ -43,15 +43,22 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
             newUbicacion.Add("asientos", (string)this.txt_asientos.Text);
             newUbicacion.Add("precio", Convert.ToDouble(this.txt_precio.Text));
             newUbicacion.Add("cantidad", Convert.ToInt16(this.txt_cantidad.Text));
+            newUbicacion.Add("sinNumerar", this.chkSinNumerar.Checked);
 
             this.parent.AddUbicacion(newUbicacion);
         }
 
         private void comboBoxTipos_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(this.comboBoxTipos.SelectedItem.ToString() == "Sin Numerar")
+        }
+
+        private void chkSinNumerar_CheckedChanged(object sender, EventArgs e)
+        {
+            if (this.chkSinNumerar.Checked)
             {
+                this.txt_asientos.Text = "0";
                 this.txt_asientos.Enabled = false;
+                this.txt_filas.Text = "0";
                 this.txt_filas.Enabled = false;
             }
             else

@@ -50,13 +50,14 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
             this.fechaHora = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnEliminar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.dataGridViewUbicaciones = new System.Windows.Forms.DataGridView();
+            this.btnCargarUbicaciones = new System.Windows.Forms.Button();
             this.txtTipoUbicacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fila = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.asiento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txtPrecio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txtCantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.sinNumerar = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnQuitar = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.btnCargarUbicaciones = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_fechaHora)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewUbicaciones)).BeginInit();
             this.SuspendLayout();
@@ -286,6 +287,7 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
             this.asiento,
             this.txtPrecio,
             this.txtCantidad,
+            this.sinNumerar,
             this.btnQuitar});
             this.dataGridViewUbicaciones.Location = new System.Drawing.Point(962, 152);
             this.dataGridViewUbicaciones.Name = "dataGridViewUbicaciones";
@@ -294,6 +296,20 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
             this.dataGridViewUbicaciones.Size = new System.Drawing.Size(534, 336);
             this.dataGridViewUbicaciones.TabIndex = 67;
             this.dataGridViewUbicaciones.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewUbicaciones_CellContentClick);
+            // 
+            // btnCargarUbicaciones
+            // 
+            this.btnCargarUbicaciones.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCargarUbicaciones.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCargarUbicaciones.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.btnCargarUbicaciones.Location = new System.Drawing.Point(301, 419);
+            this.btnCargarUbicaciones.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnCargarUbicaciones.Name = "btnCargarUbicaciones";
+            this.btnCargarUbicaciones.Size = new System.Drawing.Size(194, 69);
+            this.btnCargarUbicaciones.TabIndex = 68;
+            this.btnCargarUbicaciones.Text = "Cargar Ubicaciones";
+            this.btnCargarUbicaciones.UseVisualStyleBackColor = true;
+            this.btnCargarUbicaciones.Click += new System.EventHandler(this.btnCargarUbicaciones_Click);
             // 
             // txtTipoUbicacion
             // 
@@ -304,13 +320,13 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
             // 
             // fila
             // 
-            this.fila.HeaderText = "Fila";
+            this.fila.HeaderText = "Filas";
             this.fila.Name = "fila";
             this.fila.Width = 60;
             // 
             // asiento
             // 
-            this.asiento.HeaderText = "Asiento";
+            this.asiento.HeaderText = "Asientos";
             this.asiento.Name = "asiento";
             this.asiento.Width = 70;
             // 
@@ -326,6 +342,12 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
             this.txtCantidad.Name = "txtCantidad";
             this.txtCantidad.Width = 80;
             // 
+            // sinNumerar
+            // 
+            this.sinNumerar.HeaderText = "Sin Numerar";
+            this.sinNumerar.Name = "sinNumerar";
+            this.sinNumerar.ReadOnly = true;
+            // 
             // btnQuitar
             // 
             this.btnQuitar.HeaderText = "";
@@ -333,20 +355,6 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
             this.btnQuitar.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.btnQuitar.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.btnQuitar.Width = 60;
-            // 
-            // btnCargarUbicaciones
-            // 
-            this.btnCargarUbicaciones.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCargarUbicaciones.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCargarUbicaciones.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.btnCargarUbicaciones.Location = new System.Drawing.Point(301, 419);
-            this.btnCargarUbicaciones.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btnCargarUbicaciones.Name = "btnCargarUbicaciones";
-            this.btnCargarUbicaciones.Size = new System.Drawing.Size(194, 69);
-            this.btnCargarUbicaciones.TabIndex = 68;
-            this.btnCargarUbicaciones.Text = "Cargar Ubicaciones";
-            this.btnCargarUbicaciones.UseVisualStyleBackColor = true;
-            this.btnCargarUbicaciones.Click += new System.EventHandler(this.btnCargarUbicaciones_Click);
             // 
             // Publicacion_Detalle
             // 
@@ -432,6 +440,7 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
         private System.Windows.Forms.DataGridViewTextBoxColumn asiento;
         private System.Windows.Forms.DataGridViewTextBoxColumn txtPrecio;
         private System.Windows.Forms.DataGridViewTextBoxColumn txtCantidad;
+        private System.Windows.Forms.DataGridViewTextBoxColumn sinNumerar;
         private System.Windows.Forms.DataGridViewButtonColumn btnQuitar;
     }
 }

@@ -67,6 +67,28 @@ namespace PalcoNet.Src.Modelo.Daos
             }
         }
 
+        public int update(Publicacion publicacion)
+        {
+            try
+            {
+                return this.spExecuteScalar("ESECUELE.updatePublicacion", new List<SqlParameter>()
+                {
+                    new SqlParameter("@id", publicacion.Codigo),
+                    new SqlParameter("@fecha_inicio", publicacion.FechaPublicacion),
+                    new SqlParameter("@descripcion", publicacion.Descripcion),
+                    new SqlParameter("@rubro", publicacion.Rubro.codigo),
+                    new SqlParameter("@direccion", publicacion.Direccion),
+                    new SqlParameter("@grado", publicacion.Grado.id),
+                    new SqlParameter("@empresa", publicacion.Empresa.Id),
+                    new SqlParameter("@estado", publicacion.Estado.ToString())
+                });
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
         public int save(Publicacion publicacion)
         {
             try
@@ -107,19 +129,54 @@ namespace PalcoNet.Src.Modelo.Daos
             
         }
 
+        public void deleteUbicaciones(int publicacion)
+        {
+            try
+            {
+                this.spExecute("ESECUELE.deleteUbicaciones", new List<SqlParameter>()
+                {
+                    new SqlParameter("@publicacion", publicacion)
+                });
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public void deleteFechas(int publicacion)
+        {
+            try
+            {
+                this.spExecute("ESECUELE.deleteFechas", new List<SqlParameter>()
+                {
+                    new SqlParameter("@publicacion", publicacion)
+                });
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public void saveUbicacion(Ubicacion ubicacion)
         {
             try
             {
+                int asientos = ubicacion.asientos;
+                if (ubicacion.sinNumerar)
+                {
+                    asientos = ubicacion.cantSinNumerar;
+                }
                 this.spExecute("ESECUELE.saveUbicacion", new List<SqlParameter>()
                 {
-                    new SqlParameter("@publicacion", ubicacion.publicacion),
+                   new SqlParameter("@publicacion", ubicacion.publicacion),
                    new SqlParameter("@filas", ubicacion.filas),
-                   new SqlParameter("@asientos", ubicacion.asientos),
+                   new SqlParameter("@asientos", asientos),
                    new SqlParameter("@precio", ubicacion.precio),
                    new SqlParameter("@sinNumerar", ubicacion.sinNumerar),
                    new SqlParameter("@ocupados", ubicacion.ocupados),
-                   new SqlParameter("@tipo", ubicacion.tipo)
+                   new SqlParameter("@tipo", ubicacion.tipo.id)
                 });
             }
             catch (Exception ex)

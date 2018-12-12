@@ -40,6 +40,7 @@
             this.label7 = new System.Windows.Forms.Label();
             this.txt_cantidad = new System.Windows.Forms.TextBox();
             this.comboBoxTipos = new System.Windows.Forms.ComboBox();
+            this.chkSinNumerar = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // txt_filas
@@ -154,12 +155,24 @@
             this.comboBoxTipos.TabIndex = 64;
             this.comboBoxTipos.SelectedIndexChanged += new System.EventHandler(this.comboBoxTipos_SelectedIndexChanged);
             // 
+            // chkSinNumerar
+            // 
+            this.chkSinNumerar.AutoSize = true;
+            this.chkSinNumerar.Location = new System.Drawing.Point(242, 189);
+            this.chkSinNumerar.Name = "chkSinNumerar";
+            this.chkSinNumerar.Size = new System.Drawing.Size(123, 24);
+            this.chkSinNumerar.TabIndex = 65;
+            this.chkSinNumerar.Text = "Sin Numerar";
+            this.chkSinNumerar.UseVisualStyleBackColor = true;
+            this.chkSinNumerar.CheckedChanged += new System.EventHandler(this.chkSinNumerar_CheckedChanged);
+            // 
             // Ubicaciones
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.ClientSize = new System.Drawing.Size(377, 313);
+            this.Controls.Add(this.chkSinNumerar);
             this.Controls.Add(this.comboBoxTipos);
             this.Controls.Add(this.txt_cantidad);
             this.Controls.Add(this.label7);
@@ -193,5 +206,6 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox txt_cantidad;
         private System.Windows.Forms.ComboBox comboBoxTipos;
+        private System.Windows.Forms.CheckBox chkSinNumerar;
     }
 }

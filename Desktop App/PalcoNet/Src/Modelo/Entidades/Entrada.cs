@@ -24,8 +24,8 @@ namespace PalcoNet.Src.Modelo.Entidades
             this.UbicacionId = UbicacionId;
             this.Fila = Fila;
             this.Asiento = Asiento;
-            this.TipoId = Ubicacion.tipo;
-            this.TipoDesc = Ubicacion.descripcion;
+            this.TipoId = Ubicacion.tipo.id;
+            this.TipoDesc = Ubicacion.tipo.descripcion;
             this.Precio = Ubicacion.precio;
         }
 

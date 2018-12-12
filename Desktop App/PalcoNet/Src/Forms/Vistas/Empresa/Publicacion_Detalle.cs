@@ -40,7 +40,7 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
         public void AddUbicacion(Dictionary<string, object> newUbicacion)
         {
             this.dataGridViewUbicaciones.Rows.Add(newUbicacion["descripcion"], newUbicacion["filas"],
-                newUbicacion["asientos"], newUbicacion["precio"], newUbicacion["cantidad"], "Quitar");
+                newUbicacion["asientos"], newUbicacion["precio"], newUbicacion["cantidad"], newUbicacion["sinNumerar"], "Quitar");
         }
 
         public void loadFields()
@@ -71,12 +71,14 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
         {
             foreach (Ubicacion ubicacion in ubicaciones)
             {
+                Dictionary<string, object> newUbicacion = new Dictionary<string, object>();
+
                 Dictionary<string, object> ubicacionDic = new Dictionary<string, object>();
-                ubicacionDic.Add("descripcion", ubicacion.descripcion);
+                ubicacionDic.Add("descripcion", ubicacion.tipo);
                 ubicacionDic.Add("filas", ubicacion.filas);
                 ubicacionDic.Add("asientos", ubicacion.asientos);
                 ubicacionDic.Add("precio", ubicacion.precio);
-                if(ubicacion.tipo == 4454)
+                if(ubicacion.sinNumerar)
                 {
                     ubicacionDic.Add("cantidad", ubicacion.cantSinNumerar);
                 }
@@ -84,7 +86,7 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
                 {
                     ubicacionDic.Add("cantidad", ubicacion.filas * ubicacion.asientos);
                 }
-                
+                ubicacionDic.Add("sinNumerar", ubicacion.sinNumerar);
                 this.AddUbicacion(ubicacionDic);
             }
             this.dataGridView_fechaHora.Refresh();
@@ -219,6 +221,7 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
                 ubicacion.Add("asiento", row.Cells[2].Value);
                 ubicacion.Add("precio", row.Cells[3].Value);
                 ubicacion.Add("cantidad", row.Cells[4].Value);
+                ubicacion.Add("sinNumerar", row.Cells[5].Value);
 
                 ubicaciones.Add(ubicacion);
             }
@@ -255,7 +258,14 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
                 {
                     this.publicacionService.update(this.publicacion, this.getFechas(), this.getUbicaciones());
                     MessageBox.Show("Publicacion actualizada con exito!", "Actualizar publicación.",
-                                    MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    this.Hide();
+                    Publicacion_Listado listado = new Publicacion_Listado();
+                    listado.usuario = this.usuario;
+                    this.previous.Close();
+                    this.previous = listado;
+                    listado.Show();
                 }
                 
             }
