@@ -79,6 +79,18 @@
     <Compile Include="Src\Forms\Vistas\Administrador\Estadisticas.Designer.cs">
       <DependentUpon>Estadisticas.cs</DependentUpon>
     </Compile>
+    <Compile Include="Src\Forms\Vistas\Administrador\Grado_Publicacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Src\Forms\Vistas\Administrador\Grado_Publicacion.Designer.cs">
+      <DependentUpon>Grado_Publicacion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Src\Forms\Vistas\Administrador\Grado_Publicacion_Detalle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Src\Forms\Vistas\Administrador\Grado_Publicacion_Detalle.Designer.cs">
+      <DependentUpon>Grado_Publicacion_Detalle.cs</DependentUpon>
+    </Compile>
     <Compile Include="Src\Forms\Vistas\Administrador\Rol_Creacion.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -102,6 +114,12 @@
     </Compile>
     <Compile Include="Src\Forms\Vistas\Administrador\Rol_Listado.Designer.cs">
       <DependentUpon>Rol_Listado.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Src\Forms\Vistas\Administrador\Rubro_Publicacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Src\Forms\Vistas\Administrador\Rubro_Publicacion.Designer.cs">
+      <DependentUpon>Rubro_Publicacion.cs</DependentUpon>
     </Compile>
     <Compile Include="Src\Forms\Vistas\Cliente\Canje_Puntos.cs">
       <SubType>Form</SubType>
@@ -237,8 +255,10 @@
     <Compile Include="Src\Modelo\Daos\DaoCliente.cs" />
     <Compile Include="Src\Modelo\Daos\DaoEmpresa.cs" />
     <Compile Include="Src\Modelo\Daos\DaoEntrada.cs" />
+    <Compile Include="Src\Modelo\Daos\DaoGrado.cs" />
     <Compile Include="Src\Modelo\Daos\DaoPublicacion.cs" />
     <Compile Include="Src\Modelo\Daos\DaoRol_Usuario.cs" />
+    <Compile Include="Src\Modelo\Daos\DaoRubro.cs" />
     <Compile Include="Src\Modelo\Daos\DaoTipoUbicacion.cs" />
     <Compile Include="Src\Modelo\Daos\DaoUsuario.cs" />
     <Compile Include="Src\Modelo\DBConector\Database.cs" />
@@ -321,6 +341,12 @@
     <EmbeddedResource Include="Src\Forms\Vistas\Administrador\Estadisticas.resx">
       <DependentUpon>Estadisticas.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Src\Forms\Vistas\Administrador\Grado_Publicacion.resx">
+      <DependentUpon>Grado_Publicacion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Src\Forms\Vistas\Administrador\Grado_Publicacion_Detalle.resx">
+      <DependentUpon>Grado_Publicacion_Detalle.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Src\Forms\Vistas\Administrador\Rol_Creacion.resx">
       <DependentUpon>Rol_Creacion.cs</DependentUpon>
     </EmbeddedResource>
@@ -329,6 +355,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Src\Forms\Vistas\Administrador\Rol_Listado.resx">
       <DependentUpon>Rol_Listado.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Src\Forms\Vistas\Administrador\Rubro_Publicacion.resx">
+      <DependentUpon>Rubro_Publicacion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Src\Forms\Vistas\Cliente\Canje_Puntos.resx">
       <DependentUpon>Canje_Puntos.cs</DependentUpon>

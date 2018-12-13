@@ -1,15 +1,14 @@
-﻿using PalcoNet.Src.Modelo.Entidades;
+﻿using PalcoNet.Src.Modelo.Daos;
+using PalcoNet.Src.Modelo.Entidades;
 using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PalcoNet.Src.Servicios
 {
     class RubroService : DatabaseService
     {
+        private DaoRubro daoRubro = new DaoRubro();
+
         public List<Rubro> getAllRubros()
         {
             DatabaseEntity dbEntity = new DatabaseEntity();
@@ -35,5 +34,29 @@ namespace PalcoNet.Src.Servicios
 
             return rubro;
 		}
+
+        public void save(Rubro rubro)
+        {
+            try
+            {
+                this.daoRubro.save(rubro);
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public void delete(Rubro rubro)
+        {
+            try
+            {
+                this.daoRubro.delete(rubro);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

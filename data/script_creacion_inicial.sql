@@ -183,7 +183,7 @@ go
 --Grado_Publicacion
 create table ESECUELE.Grado(
 	grado_id int identity(1,1) primary key,
-	grado_descripcion varchar(5) default null,
+	grado_descripcion varchar(20) default null,
 	grado_comision numeric(18,2) default null
 )
 go
@@ -366,6 +366,8 @@ insert into ESECUELE.Funcionalidad (func_nombre, func_desc) values
   ('Empresa_Listado', 'Empresas.'),
   ('Estadisticas', 'Estadisticas.'),
   ('Rol_Listado', 'Roles.'),
+  ('Grado_Publicacion', 'Grados de publicación.'),
+  ('Rubro_Publicacion', 'Rubros de publicación.'),
   ('Canje_Puntos', 'Canje de Puntos.'),
   ('Compra', 'Compras.'),
   ('Historial', 'Historial.'),
@@ -378,10 +380,12 @@ insert into ESECUELE.Funcionalidad_Rol (frol_rol_id, frol_func_id) values (1,2)
 insert into ESECUELE.Funcionalidad_Rol (frol_rol_id, frol_func_id) values (1,3)
 insert into ESECUELE.Funcionalidad_Rol (frol_rol_id, frol_func_id) values (1,4)
 insert into ESECUELE.Funcionalidad_Rol (frol_rol_id, frol_func_id) values (1,5)
-insert into ESECUELE.Funcionalidad_Rol (frol_rol_id, frol_func_id) values (2,6)
-insert into ESECUELE.Funcionalidad_Rol (frol_rol_id, frol_func_id) values (2,7)
+insert into ESECUELE.Funcionalidad_Rol (frol_rol_id, frol_func_id) values (1,6)
+insert into ESECUELE.Funcionalidad_Rol (frol_rol_id, frol_func_id) values (1,7)
 insert into ESECUELE.Funcionalidad_Rol (frol_rol_id, frol_func_id) values (2,8)
-insert into ESECUELE.Funcionalidad_Rol (frol_rol_id, frol_func_id) values (3,9)
+insert into ESECUELE.Funcionalidad_Rol (frol_rol_id, frol_func_id) values (2,9)
+insert into ESECUELE.Funcionalidad_Rol (frol_rol_id, frol_func_id) values (2,10)
+insert into ESECUELE.Funcionalidad_Rol (frol_rol_id, frol_func_id) values (3,11)
 
 -- Ingreso valores para el administrador greneral
 insert into ESECUELE.Rol_Usuario (rol_usr_rol_id, rol_usr_username) values (1,'admin')
@@ -1584,5 +1588,35 @@ begin
 	where publicacion_codigo=@id
 	set @return_val = @id
 	return @return_val
+end
+go
+
+create procedure ESECUELE.saveRubro(@descripcion varchar(50)) as
+begin
+	insert into ESECUELE.Rubro(rubro_descripcion) values (@descripcion)
+end
+go
+
+create procedure ESECUELE.deleteRubro(@codigo int) as
+begin
+	delete from ESECUELE.Rubro where rubro_codigo = @codigo
+end
+go
+
+create procedure ESECUELE.saveGrado(@descripcion varchar(20), @comision decimal) as
+begin
+	insert into ESECUELE.Grado (grado_descripcion, grado_comision) values (@descripcion, @comision)
+end
+go
+
+create procedure ESECUELE.updateGrado(@comision decimal) as
+begin
+	update ESECUELE.Grado set grado_comision = @comision
+end
+go
+
+create procedure ESECUELE.deleteGrado(@id int) as
+begin
+	delete from ESECUELE.Grado where grado_id = @id
 end
 go

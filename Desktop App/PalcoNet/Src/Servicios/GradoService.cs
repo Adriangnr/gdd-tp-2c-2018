@@ -1,4 +1,5 @@
-﻿using PalcoNet.Src.Modelo.Entidades;
+﻿using PalcoNet.Src.Modelo.Daos;
+using PalcoNet.Src.Modelo.Entidades;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -7,6 +8,8 @@ namespace PalcoNet.Src.Servicios
 {
     public class GradoService : DatabaseService
     {
+        private DaoGrado daoGrado = new DaoGrado();
+
         public List<Grado> GetGrados()
         {
             List<List<object>> grados = this.Get("AllGrado", new List<SqlParameter>());
@@ -30,6 +33,19 @@ namespace PalcoNet.Src.Servicios
             this.loadGrado(grado, data);
 
             return grado;
+        }
+
+        public void save(string descripcion, double comision)
+        {
+            try
+            {
+                Grado grado = new Grado(descripcion, comision);
+                this.daoGrado.save(grado);
+            }
+            catch (Exception ex)
+            {
+
+            }
         }
 
         private void loadGrado(Grado grado, List<object> row)
