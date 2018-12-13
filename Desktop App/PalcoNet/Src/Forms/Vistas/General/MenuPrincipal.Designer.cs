@@ -45,7 +45,7 @@
             this.menuPrincipalSalir.Name = "menuPrincipalSalir";
             this.menuPrincipalSalir.Size = new System.Drawing.Size(129, 45);
             this.menuPrincipalSalir.TabIndex = 2;
-            this.menuPrincipalSalir.Text = "Salir";
+            this.menuPrincipalSalir.Text = "Volver";
             this.menuPrincipalSalir.UseVisualStyleBackColor = true;
             this.menuPrincipalSalir.Click += new System.EventHandler(this.menuPrincipalSalir_Click);
             // 
@@ -56,7 +56,7 @@
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(567, 440);
             this.Controls.Add(this.menuPrincipalSalir);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "MenuPrincipal";
             this.Text = "MenuPrincipal";
             this.Load += new System.EventHandler(this.MenuPrincipal_Load);

@@ -52,6 +52,7 @@
             this.btn_cancel.TabIndex = 21;
             this.btn_cancel.Text = "Volver";
             this.btn_cancel.UseVisualStyleBackColor = true;
+            this.btn_cancel.Click += new System.EventHandler(this.btn_cancel_Click);
             // 
             // Historial
             // 
@@ -63,6 +64,7 @@
             this.Name = "Historial";
             this.Text = "Palco.NET - Historial de cliente";
             this.Load += new System.EventHandler(this.Historial_Load);
+            this.Controls.SetChildIndex(this.footer, 0);
             this.Controls.SetChildIndex(this.dataGridView1, 0);
             this.Controls.SetChildIndex(this.btn_cancel, 0);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();

@@ -33,7 +33,6 @@
             this.btn_canjear = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.points = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -48,6 +47,7 @@
             this.btn_cancel.TabIndex = 60;
             this.btn_cancel.Text = "Cancelar";
             this.btn_cancel.UseVisualStyleBackColor = true;
+            this.btn_cancel.Click += new System.EventHandler(this.btn_cancel_Click);
             // 
             // premios
             // 
@@ -93,21 +93,11 @@
             this.points.TabIndex = 0;
             this.points.Text = "999999";
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(0, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
-            this.label1.TabIndex = 62;
-            this.label1.Text = "label1";
-            // 
             // Canje_Puntos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 441);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btn_cancel);
             this.Controls.Add(this.premios);
@@ -115,11 +105,11 @@
             this.Name = "Canje_Puntos";
             this.Text = "Palco.NET - Canjear Puntos";
             this.Load += new System.EventHandler(this.Canje_Puntos_Load);
+            this.Controls.SetChildIndex(this.footer, 0);
             this.Controls.SetChildIndex(this.btn_canjear, 0);
             this.Controls.SetChildIndex(this.premios, 0);
             this.Controls.SetChildIndex(this.btn_cancel, 0);
             this.Controls.SetChildIndex(this.groupBox1, 0);
-            this.Controls.SetChildIndex(this.label1, 0);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -134,6 +124,5 @@
         public System.Windows.Forms.Button btn_canjear;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label points;
-        private System.Windows.Forms.Label label1;
     }
 }

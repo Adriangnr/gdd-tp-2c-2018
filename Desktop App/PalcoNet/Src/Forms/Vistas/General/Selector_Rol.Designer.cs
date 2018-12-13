@@ -78,11 +78,13 @@
             this.combo_rol.AccessibleName = "combo_rol";
             this.combo_rol.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.combo_rol.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.combo_rol.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.combo_rol.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.combo_rol.FormattingEnabled = true;
             this.combo_rol.Location = new System.Drawing.Point(121, 145);
             this.combo_rol.Margin = new System.Windows.Forms.Padding(2);
             this.combo_rol.Name = "combo_rol";
-            this.combo_rol.Size = new System.Drawing.Size(197, 21);
+            this.combo_rol.Size = new System.Drawing.Size(197, 28);
             this.combo_rol.TabIndex = 2;
             this.combo_rol.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
@@ -91,7 +93,7 @@
             this.btn_selctRol_salir.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.btn_selctRol_salir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_selctRol_salir.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_selctRol_salir.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.btn_selctRol_salir.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.btn_selctRol_salir.Location = new System.Drawing.Point(145, 244);
             this.btn_selctRol_salir.Margin = new System.Windows.Forms.Padding(0);
             this.btn_selctRol_salir.Name = "btn_selctRol_salir";

@@ -40,35 +40,43 @@
             // totalPaginas
             // 
             this.totalPaginas.AutoSize = true;
-            this.totalPaginas.Location = new System.Drawing.Point(285, 17);
+            this.totalPaginas.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.totalPaginas.Location = new System.Drawing.Point(190, 11);
+            this.totalPaginas.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.totalPaginas.Name = "totalPaginas";
-            this.totalPaginas.Size = new System.Drawing.Size(18, 20);
+            this.totalPaginas.Size = new System.Drawing.Size(13, 13);
             this.totalPaginas.TabIndex = 76;
             this.totalPaginas.Text = "0";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(235, 17);
+            this.label1.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label1.Location = new System.Drawing.Point(157, 11);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(27, 20);
+            this.label1.Size = new System.Drawing.Size(19, 13);
             this.label1.TabIndex = 75;
             this.label1.Text = "de";
             // 
             // paginaActual
             // 
             this.paginaActual.AutoSize = true;
-            this.paginaActual.Location = new System.Drawing.Point(187, 19);
+            this.paginaActual.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.paginaActual.Location = new System.Drawing.Point(125, 12);
+            this.paginaActual.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.paginaActual.Name = "paginaActual";
-            this.paginaActual.Size = new System.Drawing.Size(18, 20);
+            this.paginaActual.Size = new System.Drawing.Size(13, 13);
             this.paginaActual.TabIndex = 74;
             this.paginaActual.Text = "0";
             // 
             // btn_lastPage
             // 
-            this.btn_lastPage.Location = new System.Drawing.Point(422, 7);
+            this.btn_lastPage.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.btn_lastPage.Location = new System.Drawing.Point(281, 5);
+            this.btn_lastPage.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btn_lastPage.Name = "btn_lastPage";
-            this.btn_lastPage.Size = new System.Drawing.Size(75, 32);
+            this.btn_lastPage.Size = new System.Drawing.Size(50, 21);
             this.btn_lastPage.TabIndex = 73;
             this.btn_lastPage.Text = ">>";
             this.btn_lastPage.UseVisualStyleBackColor = true;
@@ -76,9 +84,11 @@
             // 
             // btn_firstPage
             // 
-            this.btn_firstPage.Location = new System.Drawing.Point(7, 7);
+            this.btn_firstPage.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.btn_firstPage.Location = new System.Drawing.Point(5, 5);
+            this.btn_firstPage.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btn_firstPage.Name = "btn_firstPage";
-            this.btn_firstPage.Size = new System.Drawing.Size(75, 32);
+            this.btn_firstPage.Size = new System.Drawing.Size(50, 21);
             this.btn_firstPage.TabIndex = 72;
             this.btn_firstPage.Text = "<<";
             this.btn_firstPage.UseVisualStyleBackColor = true;
@@ -86,9 +96,11 @@
             // 
             // btn_nextPage
             // 
-            this.btn_nextPage.Location = new System.Drawing.Point(341, 7);
+            this.btn_nextPage.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.btn_nextPage.Location = new System.Drawing.Point(227, 5);
+            this.btn_nextPage.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btn_nextPage.Name = "btn_nextPage";
-            this.btn_nextPage.Size = new System.Drawing.Size(75, 32);
+            this.btn_nextPage.Size = new System.Drawing.Size(50, 21);
             this.btn_nextPage.TabIndex = 71;
             this.btn_nextPage.Text = ">";
             this.btn_nextPage.UseVisualStyleBackColor = true;
@@ -96,9 +108,11 @@
             // 
             // btn_previousPage
             // 
-            this.btn_previousPage.Location = new System.Drawing.Point(87, 7);
+            this.btn_previousPage.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.btn_previousPage.Location = new System.Drawing.Point(58, 5);
+            this.btn_previousPage.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btn_previousPage.Name = "btn_previousPage";
-            this.btn_previousPage.Size = new System.Drawing.Size(75, 32);
+            this.btn_previousPage.Size = new System.Drawing.Size(50, 21);
             this.btn_previousPage.TabIndex = 70;
             this.btn_previousPage.Text = "<";
             this.btn_previousPage.UseVisualStyleBackColor = true;
@@ -106,7 +120,7 @@
             // 
             // PaginatorControls
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.totalPaginas);
             this.Controls.Add(this.label1);
@@ -115,8 +129,9 @@
             this.Controls.Add(this.btn_firstPage);
             this.Controls.Add(this.btn_nextPage);
             this.Controls.Add(this.btn_previousPage);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "PaginatorControls";
-            this.Size = new System.Drawing.Size(506, 47);
+            this.Size = new System.Drawing.Size(337, 31);
             this.Load += new System.EventHandler(this.PaginatorControls_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

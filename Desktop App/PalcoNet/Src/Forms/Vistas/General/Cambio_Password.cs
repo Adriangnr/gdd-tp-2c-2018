@@ -54,5 +54,21 @@ namespace PalcoNet.Src.Forms.Vistas.General
             }
         }
 
+        private void titulo_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void login_btn_salir_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            this.previous.Show();
+        }
+
+        private void Cambio_Password_Load(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }
