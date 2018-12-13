@@ -33,17 +33,17 @@
             // 
             // footer
             // 
-            this.footer.Location = new System.Drawing.Point(496, 629);
+            this.footer.Location = new System.Drawing.Point(331, 409);
+            this.footer.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             // 
             // menuPrincipalSalir
             // 
             this.menuPrincipalSalir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.menuPrincipalSalir.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.menuPrincipalSalir.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.menuPrincipalSalir.Location = new System.Drawing.Point(643, 529);
-            this.menuPrincipalSalir.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.menuPrincipalSalir.Location = new System.Drawing.Point(429, 344);
             this.menuPrincipalSalir.Name = "menuPrincipalSalir";
-            this.menuPrincipalSalir.Size = new System.Drawing.Size(194, 69);
+            this.menuPrincipalSalir.Size = new System.Drawing.Size(129, 45);
             this.menuPrincipalSalir.TabIndex = 2;
             this.menuPrincipalSalir.Text = "Salir";
             this.menuPrincipalSalir.UseVisualStyleBackColor = true;
@@ -51,13 +51,15 @@
             // 
             // MenuPrincipal
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(850, 677);
+            this.ClientSize = new System.Drawing.Size(567, 440);
             this.Controls.Add(this.menuPrincipalSalir);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "MenuPrincipal";
             this.Text = "MenuPrincipal";
+            this.Load += new System.EventHandler(this.MenuPrincipal_Load);
             this.Controls.SetChildIndex(this.footer, 0);
             this.Controls.SetChildIndex(this.menuPrincipalSalir, 0);
             this.ResumeLayout(false);

@@ -35,6 +35,9 @@
             this.registerLink = new System.Windows.Forms.LinkLabel();
             this.login_label = new System.Windows.Forms.Label();
             this.titulo = new System.Windows.Forms.Label();
+            this.shapeContainer1 = new Microsoft.VisualBasic.PowerPacks.ShapeContainer();
+            this.rectangleShape2 = new Microsoft.VisualBasic.PowerPacks.RectangleShape();
+            this.rectangleShape1 = new Microsoft.VisualBasic.PowerPacks.RectangleShape();
             this.SuspendLayout();
             // 
             // footer
@@ -133,6 +136,36 @@
             this.titulo.TabIndex = 0;
             this.titulo.Text = "Iniciar Sesión";
             // 
+            // shapeContainer1
+            // 
+            this.shapeContainer1.Location = new System.Drawing.Point(0, 0);
+            this.shapeContainer1.Margin = new System.Windows.Forms.Padding(0);
+            this.shapeContainer1.Name = "shapeContainer1";
+            this.shapeContainer1.Shapes.AddRange(new Microsoft.VisualBasic.PowerPacks.Shape[] {
+            this.rectangleShape1,
+            this.rectangleShape2});
+            this.shapeContainer1.Size = new System.Drawing.Size(784, 441);
+            this.shapeContainer1.TabIndex = 20;
+            this.shapeContainer1.TabStop = false;
+            // 
+            // rectangleShape2
+            // 
+            this.rectangleShape2.BackColor = System.Drawing.SystemColors.Control;
+            this.rectangleShape2.BackStyle = Microsoft.VisualBasic.PowerPacks.BackStyle.Opaque;
+            this.rectangleShape2.BorderColor = System.Drawing.SystemColors.Control;
+            this.rectangleShape2.Location = new System.Drawing.Point(250, 133);
+            this.rectangleShape2.Name = "rectangleShape2";
+            this.rectangleShape2.Size = new System.Drawing.Size(253, 40);
+            // 
+            // rectangleShape1
+            // 
+            this.rectangleShape1.BackColor = System.Drawing.SystemColors.Control;
+            this.rectangleShape1.BackStyle = Microsoft.VisualBasic.PowerPacks.BackStyle.Opaque;
+            this.rectangleShape1.BorderColor = System.Drawing.SystemColors.Control;
+            this.rectangleShape1.Location = new System.Drawing.Point(252, 205);
+            this.rectangleShape1.Name = "rectangleShape1";
+            this.rectangleShape1.Size = new System.Drawing.Size(253, 40);
+            // 
             // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -145,10 +178,12 @@
             this.Controls.Add(this.login_tbox_usuario);
             this.Controls.Add(this.login_btn_salir);
             this.Controls.Add(this.login_btn_entrar);
+            this.Controls.Add(this.shapeContainer1);
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "Login";
             this.Text = "Login";
             this.Load += new System.EventHandler(this.Login_Load);
+            this.Controls.SetChildIndex(this.shapeContainer1, 0);
             this.Controls.SetChildIndex(this.login_btn_entrar, 0);
             this.Controls.SetChildIndex(this.login_btn_salir, 0);
             this.Controls.SetChildIndex(this.login_tbox_usuario, 0);
@@ -171,5 +206,8 @@
         private System.Windows.Forms.LinkLabel registerLink;
         private System.Windows.Forms.Label login_label;
         private System.Windows.Forms.Label titulo;
+        private Microsoft.VisualBasic.PowerPacks.ShapeContainer shapeContainer1;
+        private Microsoft.VisualBasic.PowerPacks.RectangleShape rectangleShape1;
+        private Microsoft.VisualBasic.PowerPacks.RectangleShape rectangleShape2;
     }
 }

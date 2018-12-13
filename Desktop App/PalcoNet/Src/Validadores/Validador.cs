@@ -33,7 +33,7 @@ namespace PalcoNet.Src.Validadores
         {
             if (!patron.IsMatch(campo.Text))
             {
-                throw new ValidadorException("El campo " + descripcion + " posee caracteres invalidos!");
+                throw new ValidadorException("El campo " + descripcion + " es inválido!");
             }
         }
     }

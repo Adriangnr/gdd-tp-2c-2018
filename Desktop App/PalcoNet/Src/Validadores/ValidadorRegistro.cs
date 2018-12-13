@@ -1,4 +1,4 @@
-﻿using PalcoNet.Src.Excepciones;
+using PalcoNet.Src.Excepciones;
 using System;
 using System.Net.Mail;
 using System.Text.RegularExpressions;

@@ -23,10 +23,10 @@ namespace PalcoNet.Src.Forms.Vistas.General
             panelFuncionalidades.AutoSize = true;
             this.AutoSizeMode = AutoSizeMode.GrowAndShrink;
 
-            panelFuncionalidades.Location = new Point(this.Width/4, this.Height / 4);
+            panelFuncionalidades.Location = new Point(this.Width/13, this.Height/6);
 
-            int buttonLeft = 10;
-            int buttonTop = 10;
+            int buttonLeft = 0;
+            int buttonTop = 0;
             int i = 0;
 
             foreach (Funcionalidad f in rol.GetFuncionalidades())
@@ -39,14 +39,14 @@ namespace PalcoNet.Src.Forms.Vistas.General
                 newButton.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                 newButton.ForeColor = System.Drawing.SystemColors.Window;
                 newButton.Margin = new System.Windows.Forms.Padding(0);
-                newButton.Size = new System.Drawing.Size(218, 69);
+                newButton.Size = new System.Drawing.Size(200, 48);
                 newButton.UseVisualStyleBackColor = false;
 
                 i++;
                 if( i > rol.GetFuncionalidades().Count / 2)
                 {
-                    buttonTop = 10;
-                    buttonLeft = 500;
+                    buttonTop = 0;
+                    buttonLeft = 270;
                     i = 0;
                 }
 
@@ -72,7 +72,7 @@ namespace PalcoNet.Src.Forms.Vistas.General
                     }
                 };
 
-                buttonTop += (newButton.Height + 15);
+                buttonTop += (newButton.Height + 18);
                 panelFuncionalidades.Controls.Add(newButton);
             }
             this.Controls.Add(panelFuncionalidades);
@@ -87,6 +87,11 @@ namespace PalcoNet.Src.Forms.Vistas.General
                 ((Login)this.previous).clearFields();
             this.previous.Show();
             this.Close();
+        }
+
+        private void MenuPrincipal_Load(object sender, System.EventArgs e)
+        {
+
         }
     }
 }

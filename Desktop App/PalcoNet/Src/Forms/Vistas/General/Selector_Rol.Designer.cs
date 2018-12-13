@@ -92,10 +92,10 @@
             this.btn_selctRol_salir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_selctRol_salir.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_selctRol_salir.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.btn_selctRol_salir.Location = new System.Drawing.Point(161, 244);
+            this.btn_selctRol_salir.Location = new System.Drawing.Point(145, 244);
             this.btn_selctRol_salir.Margin = new System.Windows.Forms.Padding(0);
             this.btn_selctRol_salir.Name = "btn_selctRol_salir";
-            this.btn_selctRol_salir.Size = new System.Drawing.Size(113, 34);
+            this.btn_selctRol_salir.Size = new System.Drawing.Size(145, 41);
             this.btn_selctRol_salir.TabIndex = 1;
             this.btn_selctRol_salir.Text = "Salir";
             this.btn_selctRol_salir.UseVisualStyleBackColor = false;

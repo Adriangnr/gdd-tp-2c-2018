@@ -41,6 +41,7 @@
             this.nacimiento = new System.Windows.Forms.DateTimePicker();
             this.label6 = new System.Windows.Forms.Label();
             this.tarjeta = new System.Windows.Forms.TextBox();
+            this.label_cuil = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label3
@@ -96,6 +97,7 @@
             // 
             // doc
             // 
+            this.doc.BackColor = System.Drawing.SystemColors.Window;
             this.doc.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.doc.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.doc.FormattingEnabled = true;
@@ -125,7 +127,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label5.Location = new System.Drawing.Point(35, 184);
+            this.label5.Location = new System.Drawing.Point(35, 193);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(63, 13);
             this.label5.TabIndex = 16;
@@ -134,7 +136,7 @@
             // nacimiento
             // 
             this.nacimiento.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.nacimiento.Location = new System.Drawing.Point(112, 181);
+            this.nacimiento.Location = new System.Drawing.Point(112, 190);
             this.nacimiento.Name = "nacimiento";
             this.nacimiento.Size = new System.Drawing.Size(137, 20);
             this.nacimiento.TabIndex = 17;
@@ -144,7 +146,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label6.Location = new System.Drawing.Point(35, 219);
+            this.label6.Location = new System.Drawing.Point(35, 228);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(43, 13);
             this.label6.TabIndex = 19;
@@ -152,16 +154,29 @@
             // 
             // tarjeta
             // 
-            this.tarjeta.Location = new System.Drawing.Point(112, 216);
+            this.tarjeta.Location = new System.Drawing.Point(112, 225);
             this.tarjeta.Name = "tarjeta";
             this.tarjeta.Size = new System.Drawing.Size(137, 20);
             this.tarjeta.TabIndex = 18;
+            // 
+            // label_cuil
+            // 
+            this.label_cuil.AutoSize = true;
+            this.label_cuil.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_cuil.ForeColor = System.Drawing.SystemColors.AppWorkspace;
+            this.label_cuil.Location = new System.Drawing.Point(119, 169);
+            this.label_cuil.Name = "label_cuil";
+            this.label_cuil.Size = new System.Drawing.Size(124, 13);
+            this.label_cuil.TabIndex = 20;
+            this.label_cuil.Text = "( Formato: xx-xxxxxxxx-x )";
+            this.label_cuil.Click += new System.EventHandler(this.label7_Click);
             // 
             // Cliente_Registro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.Controls.Add(this.label_cuil);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.tarjeta);
             this.Controls.Add(this.nacimiento);
@@ -198,6 +213,7 @@
         private System.Windows.Forms.DateTimePicker nacimiento;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox tarjeta;
+        private System.Windows.Forms.Label label_cuil;
 
     }
 }

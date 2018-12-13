@@ -119,7 +119,7 @@ namespace PalcoNet.Src.Forms.Vistas.General
 
             if ( !ingresoUsuario && !ingresoPass )
             {
-                MessageBox.Show("Debe ingresar valores.", "Error al inicio de sesión.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Debe ingresar usuario y contraseña", "Error al inicio de sesión.", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             else if (!ingresoUsuario)
