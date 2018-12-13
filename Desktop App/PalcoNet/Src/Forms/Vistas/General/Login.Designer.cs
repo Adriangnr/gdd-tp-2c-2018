@@ -35,9 +35,8 @@
             this.registerLink = new System.Windows.Forms.LinkLabel();
             this.login_label = new System.Windows.Forms.Label();
             this.titulo = new System.Windows.Forms.Label();
-            this.shapeContainer1 = new Microsoft.VisualBasic.PowerPacks.ShapeContainer();
-            this.rectangleShape2 = new Microsoft.VisualBasic.PowerPacks.RectangleShape();
-            this.rectangleShape1 = new Microsoft.VisualBasic.PowerPacks.RectangleShape();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // footer
@@ -78,6 +77,7 @@
             this.login_tbox_usuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.login_tbox_usuario.ForeColor = System.Drawing.Color.DarkGray;
             this.login_tbox_usuario.Location = new System.Drawing.Point(251, 143);
+            this.login_tbox_usuario.Margin = new System.Windows.Forms.Padding(10);
             this.login_tbox_usuario.Name = "login_tbox_usuario";
             this.login_tbox_usuario.Size = new System.Drawing.Size(253, 17);
             this.login_tbox_usuario.TabIndex = 1;
@@ -89,12 +89,14 @@
             // 
             this.login_tbox_password.BackColor = System.Drawing.SystemColors.Control;
             this.login_tbox_password.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.login_tbox_password.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.login_tbox_password.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.login_tbox_password.ForeColor = System.Drawing.Color.DarkGray;
             this.login_tbox_password.Location = new System.Drawing.Point(251, 219);
+            this.login_tbox_password.MaximumSize = new System.Drawing.Size(500, 42);
+            this.login_tbox_password.MinimumSize = new System.Drawing.Size(200, 42);
             this.login_tbox_password.Name = "login_tbox_password";
             this.login_tbox_password.PasswordChar = '*';
-            this.login_tbox_password.Size = new System.Drawing.Size(253, 17);
+            this.login_tbox_password.Size = new System.Drawing.Size(253, 22);
             this.login_tbox_password.TabIndex = 2;
             this.login_tbox_password.Text = "password";
             this.login_tbox_password.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -136,35 +138,31 @@
             this.titulo.TabIndex = 0;
             this.titulo.Text = "Iniciar Sesión";
             // 
-            // shapeContainer1
+            // button1
             // 
-            this.shapeContainer1.Location = new System.Drawing.Point(0, 0);
-            this.shapeContainer1.Margin = new System.Windows.Forms.Padding(0);
-            this.shapeContainer1.Name = "shapeContainer1";
-            this.shapeContainer1.Shapes.AddRange(new Microsoft.VisualBasic.PowerPacks.Shape[] {
-            this.rectangleShape1,
-            this.rectangleShape2});
-            this.shapeContainer1.Size = new System.Drawing.Size(784, 441);
-            this.shapeContainer1.TabIndex = 20;
-            this.shapeContainer1.TabStop = false;
+            this.button1.BackColor = System.Drawing.SystemColors.Control;
+            this.button1.Enabled = false;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.ForeColor = System.Drawing.SystemColors.Control;
+            this.button1.Location = new System.Drawing.Point(251, 127);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(253, 48);
+            this.button1.TabIndex = 20;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = false;
             // 
-            // rectangleShape2
+            // button2
             // 
-            this.rectangleShape2.BackColor = System.Drawing.SystemColors.Control;
-            this.rectangleShape2.BackStyle = Microsoft.VisualBasic.PowerPacks.BackStyle.Opaque;
-            this.rectangleShape2.BorderColor = System.Drawing.SystemColors.Control;
-            this.rectangleShape2.Location = new System.Drawing.Point(250, 133);
-            this.rectangleShape2.Name = "rectangleShape2";
-            this.rectangleShape2.Size = new System.Drawing.Size(253, 40);
-            // 
-            // rectangleShape1
-            // 
-            this.rectangleShape1.BackColor = System.Drawing.SystemColors.Control;
-            this.rectangleShape1.BackStyle = Microsoft.VisualBasic.PowerPacks.BackStyle.Opaque;
-            this.rectangleShape1.BorderColor = System.Drawing.SystemColors.Control;
-            this.rectangleShape1.Location = new System.Drawing.Point(252, 205);
-            this.rectangleShape1.Name = "rectangleShape1";
-            this.rectangleShape1.Size = new System.Drawing.Size(253, 40);
+            this.button2.BackColor = System.Drawing.SystemColors.Control;
+            this.button2.Enabled = false;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.ForeColor = System.Drawing.SystemColors.Control;
+            this.button2.Location = new System.Drawing.Point(251, 202);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(253, 48);
+            this.button2.TabIndex = 21;
+            this.button2.Text = "button2";
+            this.button2.UseVisualStyleBackColor = false;
             // 
             // Login
             // 
@@ -178,12 +176,14 @@
             this.Controls.Add(this.login_tbox_usuario);
             this.Controls.Add(this.login_btn_salir);
             this.Controls.Add(this.login_btn_entrar);
-            this.Controls.Add(this.shapeContainer1);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.button2);
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "Login";
             this.Text = "Login";
             this.Load += new System.EventHandler(this.Login_Load);
-            this.Controls.SetChildIndex(this.shapeContainer1, 0);
+            this.Controls.SetChildIndex(this.button2, 0);
+            this.Controls.SetChildIndex(this.button1, 0);
             this.Controls.SetChildIndex(this.login_btn_entrar, 0);
             this.Controls.SetChildIndex(this.login_btn_salir, 0);
             this.Controls.SetChildIndex(this.login_tbox_usuario, 0);
@@ -206,8 +206,7 @@
         private System.Windows.Forms.LinkLabel registerLink;
         private System.Windows.Forms.Label login_label;
         private System.Windows.Forms.Label titulo;
-        private Microsoft.VisualBasic.PowerPacks.ShapeContainer shapeContainer1;
-        private Microsoft.VisualBasic.PowerPacks.RectangleShape rectangleShape1;
-        private Microsoft.VisualBasic.PowerPacks.RectangleShape rectangleShape2;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
     }
 }
