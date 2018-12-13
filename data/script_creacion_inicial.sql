@@ -193,7 +193,6 @@ create table ESECUELE.Publicacion(
 	publicacion_codigo int identity(1,1) primary key,
 	publicacion_fecha_inicio datetime default null,
 	publicacion_descripcion nvarchar(255) default null,
-	--publicacion_fecha_evento datetime default null,
 	publicacion_rubro int default null,
 	publicacion_direccion varchar(50) default null,
 	publicacion_grado int default null,
@@ -363,10 +362,8 @@ values ('admin','admin',convert(varchar(25),'01/01/1900',121) ,'ADMIN', '0000000
 -- Se ingresan todas las funcionalidades
 insert into ESECUELE.Funcionalidad (func_nombre, func_desc) values
   ('Cliente_Listado', 'Clientes.'),
-  ('Cliente_Registro', 'Registro de Clientes.'),
   ('Comisiones_Detalle', 'Comisiones.'),
   ('Empresa_Listado', 'Empresas.'),
-  ('Empresa_Registro', 'Registro de Empresas.'),
   ('Estadisticas', 'Estadisticas.'),
   ('Rol_Listado', 'Roles.'),
   ('Canje_Puntos', 'Canje de Puntos.'),
@@ -381,12 +378,10 @@ insert into ESECUELE.Funcionalidad_Rol (frol_rol_id, frol_func_id) values (1,2)
 insert into ESECUELE.Funcionalidad_Rol (frol_rol_id, frol_func_id) values (1,3)
 insert into ESECUELE.Funcionalidad_Rol (frol_rol_id, frol_func_id) values (1,4)
 insert into ESECUELE.Funcionalidad_Rol (frol_rol_id, frol_func_id) values (1,5)
-insert into ESECUELE.Funcionalidad_Rol (frol_rol_id, frol_func_id) values (1,6)
-insert into ESECUELE.Funcionalidad_Rol (frol_rol_id, frol_func_id) values (1,7)
+insert into ESECUELE.Funcionalidad_Rol (frol_rol_id, frol_func_id) values (2,6)
+insert into ESECUELE.Funcionalidad_Rol (frol_rol_id, frol_func_id) values (2,7)
 insert into ESECUELE.Funcionalidad_Rol (frol_rol_id, frol_func_id) values (2,8)
-insert into ESECUELE.Funcionalidad_Rol (frol_rol_id, frol_func_id) values (2,9)
-insert into ESECUELE.Funcionalidad_Rol (frol_rol_id, frol_func_id) values (2,10)
-insert into ESECUELE.Funcionalidad_Rol (frol_rol_id, frol_func_id) values (3,11)
+insert into ESECUELE.Funcionalidad_Rol (frol_rol_id, frol_func_id) values (3,9)
 
 -- Ingreso valores para el administrador greneral
 insert into ESECUELE.Rol_Usuario (rol_usr_rol_id, rol_usr_username) values (1,'admin')
