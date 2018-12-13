@@ -241,5 +241,26 @@ namespace PalcoNet.Src.Forms.Vistas.Cliente
         {
             this.label_tarjeta.Text = this.cliente.DatosTarjeta;
         }
+
+        private void groupBox3_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_quitar_seleccion_nn_Click(object sender, EventArgs e)
+        {
+            if (this.dataGridEntradasSinNumerar.SelectedRows.Count == 0 || this.dataGridEntradasSinNumerar.CurrentRow == null)
+                MessageBox.Show("Debe seleccionar una ubicación!", "Listado de ubicaciones.",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+            else
+            {
+                Entrada entrada = (Entrada)this.dataGridEntradasSinNumerar.CurrentRow.DataBoundItem;
+                this.entradasCompradasN.Remove(entrada);
+                this.load_entradas();
+                this.form_ubicacion.regresarEntrada(entrada);
+                this.mostrarMontoTotal();
+            }
+            this.dataGridEntradasSinNumerar.ClearSelection();
+        }
     }
 }

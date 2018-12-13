@@ -38,7 +38,7 @@
             // footer
             // 
             this.footer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.footer.Location = new System.Drawing.Point(855, 424);
+            this.footer.Location = new System.Drawing.Point(356, 424);
             // 
             // dataGridEntradas
             // 
@@ -59,13 +59,14 @@
             this.dataGridEntradas.RowTemplate.ReadOnly = true;
             this.dataGridEntradas.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridEntradas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridEntradas.Size = new System.Drawing.Size(863, 307);
+            this.dataGridEntradas.Size = new System.Drawing.Size(401, 307);
             this.dataGridEntradas.TabIndex = 63;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(220, 49);
+            this.label1.ForeColor = System.Drawing.Color.DimGray;
+            this.label1.Location = new System.Drawing.Point(220, 44);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(85, 13);
             this.label1.TabIndex = 64;
@@ -77,7 +78,7 @@
             this.btn_comprar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_comprar.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_comprar.ForeColor = System.Drawing.SystemColors.Window;
-            this.btn_comprar.Location = new System.Drawing.Point(949, 78);
+            this.btn_comprar.Location = new System.Drawing.Point(470, 78);
             this.btn_comprar.Margin = new System.Windows.Forms.Padding(0);
             this.btn_comprar.Name = "btn_comprar";
             this.btn_comprar.Size = new System.Drawing.Size(129, 45);
@@ -91,7 +92,7 @@
             this.btn_cancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_cancel.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_cancel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.btn_cancel.Location = new System.Drawing.Point(949, 340);
+            this.btn_cancel.Location = new System.Drawing.Point(470, 340);
             this.btn_cancel.Name = "btn_cancel";
             this.btn_cancel.Size = new System.Drawing.Size(129, 45);
             this.btn_cancel.TabIndex = 66;
@@ -103,7 +104,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1134, 462);
+            this.ClientSize = new System.Drawing.Size(623, 462);
             this.Controls.Add(this.btn_cancel);
             this.Controls.Add(this.btn_comprar);
             this.Controls.Add(this.label1);
