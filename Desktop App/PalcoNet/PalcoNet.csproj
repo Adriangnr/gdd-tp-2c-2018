@@ -136,7 +136,7 @@
     <Compile Include="Src\Forms\Vistas\Cliente\Compra_Detalle.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Src\Forms\Vistas\Cliente\Compra_Detalle.designer.cs">
+    <Compile Include="Src\Forms\Vistas\Cliente\Compra_Detalle.Designer.cs">
       <DependentUpon>Compra_Detalle.cs</DependentUpon>
     </Compile>
     <Compile Include="Src\Forms\Vistas\Cliente\Compra_Agregar_Tarjeta.cs">

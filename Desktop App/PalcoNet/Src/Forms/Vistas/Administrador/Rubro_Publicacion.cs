@@ -54,6 +54,8 @@ namespace PalcoNet.Src.Forms.Vistas.Administrador
             }
             catch(Exception ex)
             {
+                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.StackTrace);
                 MessageBox.Show("Error al cargar el rubro!", "Nuevo rubro.",
                                 MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;

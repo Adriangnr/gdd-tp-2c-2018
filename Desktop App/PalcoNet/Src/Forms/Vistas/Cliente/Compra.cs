@@ -74,6 +74,8 @@ namespace PalcoNet.Src.Forms.Vistas.Cliente
                     filtros.Add("categorias", categorias.Text);
                 }
 
+                if(this.descripcion.Text != "") filtros.Add("descripcion", this.descripcion.Text);
+
                 /*------------ Paginador ---------------*/
                 this.paginator = new CompraPublicacionPaginator(this);
                 this.paginator.ItemsPerPage = 10;
@@ -174,8 +176,10 @@ namespace PalcoNet.Src.Forms.Vistas.Cliente
             List<Publicacion> publicaciones = objects.Cast<Publicacion>().ToList();
 
             this.dataGridPublicaciones.DataSource = null;
+            this.dataGridPublicaciones.Refresh();
             this.dataGridPublicaciones.DataSource = publicaciones;
             this.dataGridPublicaciones.ClearSelection();
+            this.dataGridPublicaciones.Refresh();
         }
 
         public void btn_firstPage_Click(object sender, EventArgs e)
