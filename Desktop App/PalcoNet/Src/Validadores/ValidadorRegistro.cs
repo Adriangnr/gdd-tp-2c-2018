@@ -69,6 +69,11 @@ namespace PalcoNet.Src.Validadores
             this.validar(direccion.Controls);
         }
 
+        public void panel_datausuario(Panel usuarioData)
+        {
+            this.validar(usuarioData.Controls);
+        }
+
         public void panel_roldata(Panel roldata)
         {
             this.validar(roldata.Controls[0].Controls);
