@@ -16,6 +16,7 @@ namespace PalcoNet.Src.Forms.Vistas.Cliente
     {
         private List<Rubro> categoriasElegidas = new List<Rubro>();
         private Paginator paginator;
+        public Dictionary<string, string> filtros { get; set; }
 
         public Compra()
         {
@@ -39,30 +40,19 @@ namespace PalcoNet.Src.Forms.Vistas.Cliente
             CompraService compraService = (CompraService)ServiceFactory.GetService("Compra");
             try
             {
-                System.Windows.Forms.Control.ControlCollection filtros = groupBox1.Controls;
-
-                DateTimePicker fechaActivaFilter = new DateTimePicker();
-                fechaActivaFilter.Visible = false;
-                fechaActivaFilter.Name = "fechaActual";
-                fechaActivaFilter.Value = Utils.Utilities.getCurrentDate();
-                filtros.Add(fechaActivaFilter);
+                this.filtros = null;
+                this.filtros = new Dictionary<string, string>();
+               
+                filtros.Add("fechaActual", Utils.Utilities.getCurrentDate().ToString());
 
                 if (fechaInicioCheckBox.Checked)
                 {
-                    DateTimePicker fechaInicio = new DateTimePicker();
-                    fechaInicio.Visible = false;
-                    fechaInicio.Name = "fechaInicio";
-                    fechaInicio.Value = fechaInicioVista.Value;
-                    filtros.Add(fechaInicio);
+                    filtros.Add("fechaInicio", fechaInicioVista.Value.ToString());
                 }
 
                 if (fechaInicioCheckBox.Checked)
                 {
-                    DateTimePicker fechaFin = new DateTimePicker();
-                    fechaFin.Visible = false;
-                    fechaFin.Name = "fechaFin";
-                    fechaFin.Value = fechaFinVista.Value;
-                    filtros.Add(fechaFin);
+                    filtros.Add("fechaFin", fechaFinVista.Value.ToString());
                 }
 
                 if( categoriasVista.Text != "" )
@@ -81,12 +71,13 @@ namespace PalcoNet.Src.Forms.Vistas.Cliente
                     }
 
                     categorias.Text = str;
-                    filtros.Add(categorias);
+                    filtros.Add("categorias", categorias.Text);
                 }
 
                 /*------------ Paginador ---------------*/
                 this.paginator = new CompraPublicacionPaginator(this);
                 this.paginator.ItemsPerPage = 10;
+                this.panelPaginatorControls.Controls.Clear();
                 this.panelPaginatorControls.Controls.Add(this.paginator.controls);
                 Page currentPage = this.paginator.NextPage();
                 List<object> objects = currentPage.GetItems();
@@ -94,6 +85,7 @@ namespace PalcoNet.Src.Forms.Vistas.Cliente
                 SortableBindingList<Publicacion> sorteablePublicaciones = new SortableBindingList<Publicacion>(publicaciones);
                 /*------------- Fin Paginador ----------*/
 
+                this.dataGridPublicaciones.DataSource = null;
                 this.dataGridPublicaciones.DataSource = publicaciones;
 
                 if (this.dataGridPublicaciones.Rows.Count == 0)
@@ -124,6 +116,7 @@ namespace PalcoNet.Src.Forms.Vistas.Cliente
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.StackTrace);
                 MessageBox.Show("Error al buscar Publicaciones!", "Error!",
                                 MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -237,6 +230,7 @@ namespace PalcoNet.Src.Forms.Vistas.Cliente
 
         private void btn_search_Click(object sender, EventArgs e)
         {
+            this.paginator = null;
             this.cargarListaCompras();
         }
     }

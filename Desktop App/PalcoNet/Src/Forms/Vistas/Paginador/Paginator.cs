@@ -27,6 +27,10 @@ namespace PalcoNet.Src.Forms.Vistas.Paginador
             this.controls = new PaginatorControls(this.form);
         }
 
+        public void reload() {
+            this.initialize(this.form);
+        }
+
         public Page NextPage()
         {
             Page currentPage = null;

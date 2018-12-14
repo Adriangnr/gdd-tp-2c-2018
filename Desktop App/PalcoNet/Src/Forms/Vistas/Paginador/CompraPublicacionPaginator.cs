@@ -54,22 +54,20 @@ namespace PalcoNet.Src.Forms.Vistas.Paginador
         {
             List<SqlParameter> parameters = new List<SqlParameter>();
 
-            foreach (Control field in ((Compra)this.form).Controls)
+            foreach (KeyValuePair<string, string> filtro in ((Compra)this.form).filtros)
             {
-                if (!field.Name.Contains("Vista"))
+                string key = filtro.Key;
+                if (key.StartsWith("fecha", false, null))
                 {
-                    if (field.GetType() == typeof(TextBox))
-                    {
-                        string value = null;
-                        if (field.Text != "") value = field.Text;
-                        parameters.Add(new SqlParameter("@" + field.Name, value));
-                    }
-
-                    if (field.GetType() == typeof(DateTimePicker))
-                    {
-                        parameters.Add(new SqlParameter("@" + field.Name, ((DateTimePicker)field).Value));
-                    }
+                    DateTime date = DateTime.Parse(filtro.Value);
+                    parameters.Add(new SqlParameter("@" + filtro.Key, date));
                 }
+                else
+                {
+                    parameters.Add(new SqlParameter("@" + filtro.Key, filtro.Value));
+                }
+                
+                
             }
             parameters.Add(new SqlParameter("@offset", offset));
             parameters.Add(new SqlParameter("@items", itemsPerPage));

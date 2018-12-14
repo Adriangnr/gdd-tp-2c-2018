@@ -1353,15 +1353,20 @@ create procedure ESECUELE.SearchPagedPublicacionesParaCompra(
 							@items int)
 as
 begin
-	declare @query nvarchar(500);
+	declare @query nvarchar(800);
 	set @query = N'select *, COUNT(*) OVER() from ESECUELE.Publicacion p left join ESECUELE.Rubro r on p.publicacion_rubro = r.rubro_codigo
-														left join ESECUELE.Grado g on p.publicacion_grado = g.grado_id
-														left join ESECUELE.Fecha_Evento fe on fe.fecha_evento_publicacion = p.publicacion_codigo';
+	left join ESECUELE.Grado g on p.publicacion_grado = g.grado_id left join ESECUELE.Fecha_Evento fe on 
+	fe.fecha_evento_publicacion = p.publicacion_codigo'
 
-	if @categorias is not null or  @descripcion is not null or @fechaInicio is not null or @fechaFin is not null
+	if @categorias is not null or  @descripcion is not null or @fechaInicio is not null or @fechaFin is not null or @fechaActual is not null
 	begin
-		set @query = @query + ' where p.publicacion_estado = ''Publicada'' and cast(' + convert(varchar(25),@fechaActual,121) 
-							+ ') between(p.publicacion_fecha_inicio, fe.fecha_evento)'
+		set @query = concat(@query , ' where p.publicacion_estado = ''Publicada''')
+		
+		if @fechaActual is not null
+		begin
+			set @query = concat(@query , ' and ''' , @fechaActual , ''' < fe.fecha_evento')
+		end
+		
 
 		if @descripcion is not null 
 		begin
@@ -1375,17 +1380,15 @@ begin
 
 		if @fechaInicio is not null 
 		begin
-			 set @query = @query + ' and p.publicacion_fecha_inicio >= ' + @fechaInicio
+			 set @query = concat(@query , ' and p.publicacion_fecha_inicio >= ''', @fechaInicio, '''')
 		end
 
 		if @fechaFin is not null 
 		begin
-			 set @query = @query + ' and fe.fecha_evento <=' + @fechaFin
+			 set @query = concat(@query , ' and fe.fecha_evento <= ''' , @fechaFin, '''')
 		end
 	end
-	set @query = 
-	concat(@query, ' order by p.publicacion_grado asc, p.publicacion_descripcion desc 
-							offset ', @offset,' rows fetch next ',@items,' rows only')
+	set @query = concat(@query, ' order by p.publicacion_grado asc, p.publicacion_descripcion desc offset ', @offset ,' rows fetch next ', @items,' rows only')
 
 	exec sp_executesql @query
 end
@@ -1619,3 +1622,4 @@ begin
 	delete from ESECUELE.Grado where grado_id = @id
 end
 go
+
