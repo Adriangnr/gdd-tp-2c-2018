@@ -3,6 +3,8 @@ using PalcoNet.Src.Forms.Layouts;
 using PalcoNet.Src.Modelo.Entidades;
 using PalcoNet.Src.Servicios;
 using PalcoNet.Src.Servicios.ServiceFactory;
+using System;
+using System.Windows.Forms;
 
 namespace PalcoNet.Src.Forms.Vistas.Administrador
 {
@@ -21,6 +23,18 @@ namespace PalcoNet.Src.Forms.Vistas.Administrador
             this.dataGridGrados.DataSource = null;
             this.dataGridGrados.DataSource = gradoService.GetGrados();
             this.dataGridGrados.Refresh();
+        }
+
+        public bool gradoExist(string descripcion)
+        {
+            foreach(DataGridViewRow row in this.dataGridGrados.Rows)
+            {
+                if ((string)row.Cells[1].Value == descripcion)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
         private void btnAgregarGrado_Click(object sender, System.EventArgs e)
@@ -43,6 +57,23 @@ namespace PalcoNet.Src.Forms.Vistas.Administrador
         {
             this.Hide();
             this.previous.Show();
+        }
+
+        private void btnEliminar_Click(object sender, System.EventArgs e)
+        {
+            try
+            {
+                this.gradoService.delete((Grado)this.dataGridGrados.CurrentRow.DataBoundItem);
+                this.reload();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.StackTrace);
+                MessageBox.Show(ex.Message, "Eliminar grado.",
+                                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
         }
     }
 }

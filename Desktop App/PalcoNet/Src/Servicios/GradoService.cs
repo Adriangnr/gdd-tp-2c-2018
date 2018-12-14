@@ -16,11 +16,11 @@ namespace PalcoNet.Src.Servicios
             List<Grado> gradosList = new List<Grado>();
             foreach (List<object> row in grados)
             {
-                Grado grado = new Grado((int)row[0], (string)row[1], decimal.ToDouble((decimal)row[2]));
+                Grado grado = new Grado((int)row[0], (string)row[1], Convert.ToDouble(row[2]));
                 gradosList.Add(grado);
             }
-            Grado gradoIndef = new Grado(-1, "Indefinido", 0);
-            gradosList.Add(gradoIndef);
+            //Grado gradoIndef = new Grado(-1, "Indefinido", 0);
+           // gradosList.Add(gradoIndef);
             return gradosList;
         }
 
@@ -44,7 +44,31 @@ namespace PalcoNet.Src.Servicios
             }
             catch (Exception ex)
             {
+                throw ex;
+            }
+        }
 
+        public void update(Grado grado)
+        {
+            try
+            {
+                this.daoGrado.update(grado);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public void delete(Grado grado)
+        {
+            try
+            {
+                this.daoGrado.delete(grado);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
         }
 
@@ -52,7 +76,7 @@ namespace PalcoNet.Src.Servicios
         {
             grado.id = (int)row[0];
             grado.descripcion = (string)row[1];
-            grado.comision = Convert.ToDouble(row[2]);
+            grado.comision = Convert.ToDouble((string)row[2]);
         }
     }
 }

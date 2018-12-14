@@ -65,6 +65,7 @@
             this.btnEliminar.TabIndex = 77;
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.UseVisualStyleBackColor = false;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
             // btnCancel
             // 
