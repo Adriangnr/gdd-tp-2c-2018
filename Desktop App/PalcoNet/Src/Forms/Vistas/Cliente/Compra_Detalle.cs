@@ -118,17 +118,24 @@ namespace PalcoNet.Src.Forms.Vistas.Cliente
 
         private void btn_quitar_seleccion_Click(object sender, EventArgs e)
         {
-            if (this.dataGridEntradasNumeradas.SelectedRows.Count == 0 || this.dataGridEntradasNumeradas.CurrentRow == null)
-                MessageBox.Show("Debe seleccionar una ubicación!", "Listado de ubicaciones.",
-                        MessageBoxButtons.OK, MessageBoxIcon.Error);
-            else
+            if (this.dataGridEntradasNumeradas.SelectedRows.Count != 0 || this.dataGridEntradasNumeradas.CurrentRow != null)
             {
                 Entrada entrada = (Entrada)this.dataGridEntradasNumeradas.CurrentRow.DataBoundItem;
                 this.entradasCompradasN.Remove(entrada);
                 this.load_entradas();
                 this.form_ubicacion.regresarEntrada(entrada);
-                this.mostrarMontoTotal();
             }
+            else if (this.dataGridEntradasSinNumerar.SelectedRows.Count != 0 || this.dataGridEntradasSinNumerar.CurrentRow != null)
+            {
+                Entrada entrada = (Entrada)this.dataGridEntradasSinNumerar.CurrentRow.DataBoundItem;
+                this.entradasDisponiblesSN.Remove(entrada);
+                entrada.Ocupados -= entrada.cantSinNumerar;
+                entrada.cantSinNumerar = 0;
+                this.load_entradasSN();
+            }
+            else
+                 MessageBox.Show("Debe seleccionar una ubicación!", "Listado de ubicaciones.",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
             this.dataGridEntradasNumeradas.ClearSelection();
         }
 

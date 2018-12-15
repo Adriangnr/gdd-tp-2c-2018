@@ -52,7 +52,8 @@ namespace PalcoNet.Src.Forms.Vistas.Cliente
 
         private void Compra_Sin_Numerar_Load(object sender, EventArgs e)
         {
-            this.comboBox1.DataSource = entradasDisponibles;
+            IEnumerable<Entrada> entradas = entradasDisponibles.Where( en => en.Asiento > en.Ocupados);
+            this.comboBox1.DataSource = entradas;
         }
 
 
@@ -66,11 +67,11 @@ namespace PalcoNet.Src.Forms.Vistas.Cliente
             Entrada entrada = this.comboBox1.SelectedItem as Entrada;
             int cantidad = int.Parse(textBox1.Text);
 
-            if (cantidad <= entrada.Asiento)
+            if (cantidad <= (entrada.Asiento - entrada.Ocupados))
             {
                 entrada.cantSinNumerar = cantidad;
+                entrada.Ocupados += cantidad;
                 this.entradasCompradas.Add(entrada);
-                this.entradasDisponibles.Remove(entrada);
                 this.Hide();
             }
             else

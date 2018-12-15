@@ -16,8 +16,6 @@ namespace PalcoNet.Src.Modelo.Entidades
         public bool sinNumerar { get; set; }
         public int ocupados { get; set; }
         public Tipo_Ubicacion tipo { get; set; }
-        public int cantSinNumerar { get; set; }
-
         public Ubicacion() { }
 
         public override string ToString()
