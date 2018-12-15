@@ -182,7 +182,7 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
             else
             {
                 this.btn_edit.Text = "Editar";
-                this.btnFinalizar.Visible = false;
+                if(currentPublicacion.FechaEvento < Utils.Utilities.getCurrentDate()) this.btnFinalizar.Visible = false;
             }
         }
 
