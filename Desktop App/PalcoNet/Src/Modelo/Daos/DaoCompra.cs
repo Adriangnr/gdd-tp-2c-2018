@@ -15,7 +15,8 @@ namespace PalcoNet.Src.Modelo.Daos
             try
             {
                 List<SqlParameter> parameters = new List<SqlParameter>() {
-                    new SqlParameter("@cliente", cliente)
+                    new SqlParameter("@cliente", cliente),
+                    new SqlParameter("@fechaActual",Utils.Utilities.getCurrentDate())
                 };
 
                 return this.spExecuteDataReader(this.schema + ".GetAllCompras", parameters);
@@ -35,7 +36,7 @@ namespace PalcoNet.Src.Modelo.Daos
                     new SqlParameter("@compra", idCompra)
                 };
 
-                return this.spExecuteDataReader(this.schema + ".GetCompra", parameters);
+                return this.spExecuteDataReader(this.schema + ".GetEntradasCompra", parameters);
             }
             catch (Exception e)
             {

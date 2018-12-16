@@ -54,7 +54,7 @@ namespace PalcoNet.Src.Forms.Vistas.Paginador
         {
             List<SqlParameter> parameters = new List<SqlParameter>();
 
-            foreach (KeyValuePair<string, string> filtro in ((Compra)this.form).filtros)
+            foreach (KeyValuePair<string, string> filtro in ((Src.Forms.Vistas.Cliente.Compra)this.form).filtros)
             {
                 string key = filtro.Key;
                 if (key.StartsWith("fecha", false, null))

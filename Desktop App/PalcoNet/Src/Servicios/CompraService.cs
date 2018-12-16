@@ -10,6 +10,8 @@ namespace PalcoNet.Src.Servicios
 {
     class CompraService : DatabaseService
     {
+        private string SININFO = "Sin información";
+
         public SortableBindingList<Publicacion> getAllPublicacionesParaCompra(System.Windows.Forms.Control.ControlCollection filtros)
         {
             PublicacionService publicacionService = (PublicacionService)ServiceFactory.ServiceFactory.GetService("Publicacion");
@@ -78,23 +80,71 @@ namespace PalcoNet.Src.Servicios
         {
             DaoCompra daoCompra = new DaoCompra();
 
-            List<List<Object>> listas = daoCompra.getAllCompras(cliente.Id);
+            try
+            {
+                List<List<Object>> listas = daoCompra.getAllCompras(cliente.Id);
 
-            List<Compra> compras = new List<Compra>();
+                List<Compra> compras = new List<Compra>();
 
-            return compras;
+                foreach (List<object> row in listas)
+                {
+                    Compra compraObj = new Compra();
+
+                    compraObj.Id = (int)row[0];
+                    compraObj.Fecha = (DateTime)row[1];
+                    compraObj.MontoTotal = Convert.ToDouble(row[2]);
+                    compraObj.Tarjeta = (row[3].GetType() != typeof(DBNull)) ? (string)row[3] : this.SININFO;
+                    compraObj.Publicacion = (string)row[4];
+                    compraObj.Direccion = (row[5].GetType() != typeof(DBNull)) ? (string)row[5] : this.SININFO;
+                    compraObj.ClienteNombre = cliente.Nombre;
+                    compraObj.ClienteApellido = cliente.Apellido;
+
+                    compras.Add(compraObj);
+                }
+
+                return compras;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
 
-        public Compra getCompra(int idCompra)
+        public void getDetallesCompra(Compra compra)
         {
-            DaoCompra daoCompra = new DaoCompra();
+            try
+            {
+                DaoCompra daoCompra = new DaoCompra();
 
-            List<List<Object>> listas = daoCompra.getCompra(idCompra);
+                List<List<Object>> listas = daoCompra.getCompra(compra.Id);
 
-            Compra compras = new Compra();
+                this.loadCompra(compra, listas);
 
-            return compra;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
 
+        private void loadCompra(Compra compra, List<List<Object>> listas)
+        {
+            foreach (List<object> row in listas)
+            {
+                Entrada_Ticket entrada = new Entrada_Ticket();
+
+                entrada.Id = (int)row[0];
+                entrada.SinNumerar = (bool)row[3];
+
+                entrada.Fila = entrada.SinNumerar? ((int)row[1]).ToString(): " ";
+                entrada.Asiento = entrada.SinNumerar? ((int)row[2]).ToString(): " ";
+
+                entrada.Precio = Convert.ToDouble(row[4]);
+                entrada.Tipo = (string)row[5];
+
+                compra.addEntrada(entrada);
+            }
+
+        }
     }
 }

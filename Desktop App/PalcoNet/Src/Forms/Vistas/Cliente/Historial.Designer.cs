@@ -28,23 +28,28 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dataGridHistorial = new System.Windows.Forms.DataGridView();
             this.btn_cancel = new System.Windows.Forms.Button();
             this.btn_detalles = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridHistorial)).BeginInit();
             this.SuspendLayout();
             // 
             // footer
             // 
             this.footer.Location = new System.Drawing.Point(675, 409);
             // 
-            // dataGridView1
+            // dataGridHistorial
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(32, 89);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(717, 291);
-            this.dataGridView1.TabIndex = 2;
+            this.dataGridHistorial.AllowUserToAddRows = false;
+            this.dataGridHistorial.AllowUserToDeleteRows = false;
+            this.dataGridHistorial.AllowUserToResizeRows = false;
+            this.dataGridHistorial.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridHistorial.Location = new System.Drawing.Point(32, 89);
+            this.dataGridHistorial.MultiSelect = false;
+            this.dataGridHistorial.Name = "dataGridHistorial";
+            this.dataGridHistorial.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridHistorial.Size = new System.Drawing.Size(717, 291);
+            this.dataGridHistorial.TabIndex = 2;
             // 
             // btn_cancel
             // 
@@ -81,15 +86,15 @@
             this.ClientSize = new System.Drawing.Size(935, 441);
             this.Controls.Add(this.btn_detalles);
             this.Controls.Add(this.btn_cancel);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dataGridHistorial);
             this.Name = "Historial";
             this.Text = "Palco.NET - Historial de cliente";
             this.Load += new System.EventHandler(this.Historial_Load);
             this.Controls.SetChildIndex(this.footer, 0);
-            this.Controls.SetChildIndex(this.dataGridView1, 0);
+            this.Controls.SetChildIndex(this.dataGridHistorial, 0);
             this.Controls.SetChildIndex(this.btn_cancel, 0);
             this.Controls.SetChildIndex(this.btn_detalles, 0);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridHistorial)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -97,7 +102,7 @@
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dataGridHistorial;
         private System.Windows.Forms.Button btn_cancel;
         public System.Windows.Forms.Button btn_detalles;
     }

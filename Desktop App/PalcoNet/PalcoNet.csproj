@@ -253,6 +253,7 @@
       <DependentUpon>PaginatorControls.cs</DependentUpon>
     </Compile>
     <Compile Include="Src\Modelo\Daos\DaoCliente.cs" />
+    <Compile Include="Src\Modelo\Daos\DaoCompra.cs" />
     <Compile Include="Src\Modelo\Daos\DaoEmpresa.cs" />
     <Compile Include="Src\Modelo\Daos\DaoEntrada.cs" />
     <Compile Include="Src\Modelo\Daos\DaoGrado.cs" />
@@ -271,6 +272,7 @@
       <DependentUpon>Selector_Rol.cs</DependentUpon>
     </Compile>
     <Compile Include="Src\Modelo\Entidades\Cliente.cs" />
+    <Compile Include="Src\Modelo\Entidades\Compra.cs" />
     <Compile Include="Src\Modelo\Entidades\DatabaseEntity.cs" />
     <Compile Include="Src\Modelo\Entidades\Empresa.cs" />
     <Compile Include="Src\Modelo\Entidades\Entrada.cs" />

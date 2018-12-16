@@ -1623,3 +1623,29 @@ begin
 end
 go
 
+create procedure ESECUELE.GetEntradasCompra(@compra int)
+as begin
+	select entrada_id,entrada_fila,entrada_asiento
+		  ,ubicacion_sin_numerar,ubicacion_precio
+		  ,tipo_ubicacion_desc
+	from ESECUELE.Compra join ESECUELE.Entrada on entrada_compra = compra_id
+								  join ESECUELE.Ubicacion on ubicacion_id = entrada_ubicacion
+								  join ESECUELE.Tipo_Ubicacion on tipo_ubicacion_id = ubicacion_tipo
+								  join ESECUELE.Publicacion on publicacion_codigo = ubicacion_publicacion
+	where compra_id = @compra
+end
+go
+
+create procedure ESECUELE.GetAllCompras(@cliente int, @fechaActual datetime)
+as begin
+	select distinct compra_id, compra_fecha, compra_total
+				    ,medio_pago_nro_tarjeta
+					,publicacion_descripcion,publicacion_direccion
+	from ESECUELE.Compra join ESECUELE.Entrada on entrada_compra = compra_id
+								  left join ESECUELE.Medio_de_Pago on medio_pago_id = compra_medio_pago
+								  join ESECUELE.Ubicacion on ubicacion_id = entrada_ubicacion
+								  join ESECUELE.Publicacion on publicacion_codigo = ubicacion_publicacion
+	where compra_cliente = @cliente and compra_fecha <= @fechaActual
+	order by compra_fecha desc
+end
+go
