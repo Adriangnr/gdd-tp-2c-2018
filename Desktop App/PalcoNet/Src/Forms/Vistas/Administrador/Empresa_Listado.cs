@@ -159,5 +159,13 @@ namespace PalcoNet.Src.Forms.Vistas.Administrador
         {
             
         }
+
+        private void btn_comisionar_Click(object sender, EventArgs e)
+        {
+            Selector_Comisiones selectorComisiones = new Selector_Comisiones();
+            selectorComisiones.previous = this;
+            selectorComisiones.Show();
+            this.Hide();
+        }
     }
 }

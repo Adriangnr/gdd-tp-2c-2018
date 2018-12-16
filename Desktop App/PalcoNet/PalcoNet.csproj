@@ -121,6 +121,12 @@
     <Compile Include="Src\Forms\Vistas\Administrador\Rubro_Publicacion.Designer.cs">
       <DependentUpon>Rubro_Publicacion.cs</DependentUpon>
     </Compile>
+    <Compile Include="Src\Forms\Vistas\Administrador\Selector_Comisiones.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Src\Forms\Vistas\Administrador\Selector_Comisiones.Designer.cs">
+      <DependentUpon>Selector_Comisiones.cs</DependentUpon>
+    </Compile>
     <Compile Include="Src\Forms\Vistas\Cliente\Canje_Puntos.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -359,6 +365,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Src\Forms\Vistas\Administrador\Rubro_Publicacion.resx">
       <DependentUpon>Rubro_Publicacion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Src\Forms\Vistas\Administrador\Selector_Comisiones.resx">
+      <DependentUpon>Selector_Comisiones.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Src\Forms\Vistas\Cliente\Canje_Puntos.resx">
       <DependentUpon>Canje_Puntos.cs</DependentUpon>

@@ -374,7 +374,6 @@ insert into ESECUELE.Funcionalidad (func_nombre, func_desc) values
 go
 
 -- Ingreso de valores para Funcionalidad - Rol
-<<<<<<< HEAD
 insert into ESECUELE.Funcionalidad_Rol (frol_rol_id, frol_func_id) values (1,1)
 insert into ESECUELE.Funcionalidad_Rol (frol_rol_id, frol_func_id) values (1,2)
 insert into ESECUELE.Funcionalidad_Rol (frol_rol_id, frol_func_id) values (1,3)
@@ -385,10 +384,6 @@ insert into ESECUELE.Funcionalidad_Rol (frol_rol_id, frol_func_id) values (2,7)
 insert into ESECUELE.Funcionalidad_Rol (frol_rol_id, frol_func_id) values (2,8)
 insert into ESECUELE.Funcionalidad_Rol (frol_rol_id, frol_func_id) values (2,9)
 insert into ESECUELE.Funcionalidad_Rol (frol_rol_id, frol_func_id) values (3,10)
-=======
-insert into ESECUELE.Funcionalidad_Rol (frol_rol_id, frol_func_id) 
-values (1,1),(1,2),(1,3),(1,4),(1,5),(2,6),(2,7),(3,9)
->>>>>>> compras_v2
 
 -- Ingreso valores para el administrador greneral
 insert into ESECUELE.Rol_Usuario (rol_usr_rol_id, rol_usr_username) 
@@ -1620,7 +1615,6 @@ begin
 end
 go
 
-<<<<<<< HEAD
 create procedure ESECUELE.saveRubro(@descripcion varchar(50)) as
 begin
 	insert into ESECUELE.Rubro(rubro_descripcion) values (@descripcion)
@@ -1652,7 +1646,6 @@ begin
 end
 go
 
-=======
 create procedure ESECUELE.Ticket_Compra(@compra int)
 as begin
 	select cliente_nombre, cliente_apellido
@@ -1670,4 +1663,3 @@ as begin
 	where compra_id = @compra
 end
 go
->>>>>>> compras_v2
