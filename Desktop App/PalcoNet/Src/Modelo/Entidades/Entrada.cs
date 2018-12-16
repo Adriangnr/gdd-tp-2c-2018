@@ -18,6 +18,7 @@ namespace PalcoNet.Src.Modelo.Entidades
         public int cantSinNumerar { get; set; }
         public double Precio { get; set; }
         public bool sinNumerar { get; set; }
+        public int Ocupados { get; set; }
 
         public Entrada() { }
 
@@ -30,7 +31,8 @@ namespace PalcoNet.Src.Modelo.Entidades
             this.TipoDesc = Ubicacion.tipo.descripcion;
             this.Precio = Ubicacion.precio;
             this.sinNumerar = Ubicacion.sinNumerar;
-            this.cantSinNumerar = Ubicacion.cantSinNumerar;
+            this.Ocupados = Ubicacion.ocupados;
+            this.cantSinNumerar = 0;
         }
 
         public bool EsIgual(Entrada entradaNueva)

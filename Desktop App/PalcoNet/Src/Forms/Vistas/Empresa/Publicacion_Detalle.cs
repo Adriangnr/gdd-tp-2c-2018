@@ -82,7 +82,7 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
                 ubicacionDic.Add("precio", ubicacion.precio);
                 if(ubicacion.sinNumerar)
                 {
-                    ubicacionDic.Add("cantidad", ubicacion.cantSinNumerar);
+                    ubicacionDic.Add("cantidad", ubicacion.asientos);
                 }
                 else
                 {

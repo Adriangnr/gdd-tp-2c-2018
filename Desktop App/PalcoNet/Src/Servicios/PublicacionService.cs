@@ -52,14 +52,6 @@ namespace PalcoNet.Src.Servicios
             ubicacion.precio = Convert.ToDouble(row[5].ToString());
             ubicacion.sinNumerar = (bool)row[6];
             ubicacion.ocupados = (int)row[7];
-
-            if (ubicacion.sinNumerar)
-                ubicacion.cantSinNumerar = (int)row[4];
-            else
-            {
-                ubicacion.filas = (int)row[3];
-                ubicacion.asientos = (int)row[4];
-            }
         }
 
         public void loadPublicacion(Publicacion publicacion, List<object> row)
@@ -148,7 +140,6 @@ namespace PalcoNet.Src.Servicios
 
                     ubicacion.asientos = Convert.ToInt16(ubicacionData["asiento"]);
                     ubicacion.precio = (double)ubicacionData["precio"];
-                    ubicacion.cantSinNumerar = Convert.ToInt16(ubicacionData["cantidad"]);
                     ubicacion.sinNumerar = (bool)ubicacionData["sinNumerar"];
                     ubicacion.ocupados = 0;
 

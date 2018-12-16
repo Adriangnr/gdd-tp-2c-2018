@@ -163,16 +163,11 @@ namespace PalcoNet.Src.Modelo.Daos
         {
             try
             {
-                int asientos = ubicacion.asientos;
-                if (ubicacion.sinNumerar)
-                {
-                    asientos = ubicacion.cantSinNumerar;
-                }
                 this.spExecute("ESECUELE.saveUbicacion", new List<SqlParameter>()
                 {
                    new SqlParameter("@publicacion", ubicacion.publicacion),
                    new SqlParameter("@filas", ubicacion.filas),
-                   new SqlParameter("@asientos", asientos),
+                   new SqlParameter("@asientos", ubicacion.asientos),
                    new SqlParameter("@precio", ubicacion.precio),
                    new SqlParameter("@sinNumerar", ubicacion.sinNumerar),
                    new SqlParameter("@ocupados", ubicacion.ocupados),
