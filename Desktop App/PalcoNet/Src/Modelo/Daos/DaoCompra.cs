@@ -57,37 +57,37 @@ namespace PalcoNet.Src.Modelo.Daos
             }
 
         }
-		
-		public List<List<Object>> getCompra(int idCompra)
-        {
-            try
-            {
-                List<SqlParameter> parameters = new List<SqlParameter>() {
-                    new SqlParameter("@compra", idCompra)
-                };
 
-                return this.spExecuteDataReader(this.schema + ".GetEntradasCompra", parameters);
-            }
-            catch (Exception e)
-            {
-                throw e;
-            }
-        }
+       public List<List<Object>> getDetallesCompra(int idCompra)
+       {
+           try
+           {
+               List<SqlParameter> parameters = new List<SqlParameter>() {
+                   new SqlParameter("@compra", idCompra)
+               };
 
-        public List<List<object>> getCompra(int id)
-        {
-            try
-            {
-                return this.spExecuteDataReader("ESECUELE.getCompra",
-                    new List<SqlParameter>()
-                    {
-                        new SqlParameter("@id", id)
-                    });
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-			}
-		}
+               return this.spExecuteDataReader(this.schema + ".GetEntradasCompra", parameters);
+           }
+           catch (Exception e)
+           {
+               throw e;
+           }
+       }
+
+      public List<List<object>> getCompra(int id)
+       {
+           try
+           {
+               return this.spExecuteDataReader("ESECUELE.getCompra",
+                   new List<SqlParameter>()
+                   {
+                       new SqlParameter("@id", id)
+                   });
+           }
+           catch (Exception ex)
+           {
+               throw ex;
+           }
+       }
     }
 }

@@ -150,7 +150,7 @@ namespace PalcoNet.Src.Servicios
             {
                 DaoCompra daoCompra = new DaoCompra();
 
-                List<List<Object>> listas = daoCompra.getCompra(compra.Id);
+                List<List<Object>> listas = daoCompra.getDetallesCompra(compra.Id);
 
                 this.loadCompra(compra, listas);
 
