@@ -62,5 +62,18 @@ namespace PalcoNet.Src.Modelo.Daos
                 throw ex;
             }
         }
+
+
+        public List<List<object>> getEmpresasComisiones()
+        {
+            try
+            {
+                return this.spExecuteDataReader("ESECUELE.getEmpresasComisiones", new List<SqlParameter>());
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

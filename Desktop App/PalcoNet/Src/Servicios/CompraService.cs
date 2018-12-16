@@ -1,4 +1,5 @@
-﻿using PalcoNet.Src.Modelo.Entidades;
+﻿using PalcoNet.Src.Modelo.Daos;
+using PalcoNet.Src.Modelo.Entidades;
 using PalcoNet.Src.Utils;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,8 @@ namespace PalcoNet.Src.Servicios
 {
     class CompraService : DatabaseService
     {
+        DaoCompra daoCompra = new DaoCompra();
+
         public SortableBindingList<Publicacion> getAllPublicacionesParaCompra(System.Windows.Forms.Control.ControlCollection filtros)
         {
             PublicacionService publicacionService = (PublicacionService)ServiceFactory.ServiceFactory.GetService("Publicacion");
@@ -71,6 +74,18 @@ namespace PalcoNet.Src.Servicios
 
             sqlParam.Value = dt;
             dbEntity.spExecute("ESECUELE.SaveCompra", new List<SqlParameter> { sqlParam });
+        }
+
+        public int getComprasOfEmpresa(int id)
+        {
+            try
+            {
+                return this.daoCompra.getComprasOfEmpresa(id);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }

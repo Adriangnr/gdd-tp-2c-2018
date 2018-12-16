@@ -159,6 +159,30 @@ namespace PalcoNet.Src.Servicios
             }
         }
 
+        public List<Empresa> getEmpresasComisiones()
+        {
+            try
+            {
+                List<Empresa> empresas = new List<Empresa>();
+                List<List<object>> data = daoEmpresa.getEmpresasComisiones();
+                
+                foreach(List<object> row in data)
+                {
+                    Empresa empresaObj = new Empresa();
+                    empresaObj.Id = (int)row[0];
+                    empresaObj.RazonSocial = (string)row[1];
+                    empresaObj.Cuit = (string)row[2];
+                    empresaObj.Usuario = (string)row[3];
+                    empresas.Add(empresaObj);
+                }
+                return empresas;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         private void loadEmpresa(Empresa empresaObj, List<object> row)
         {
             empresaObj.Id = (int)row[0];

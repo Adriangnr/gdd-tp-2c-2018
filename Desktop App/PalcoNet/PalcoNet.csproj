@@ -259,6 +259,7 @@
       <DependentUpon>PaginatorControls.cs</DependentUpon>
     </Compile>
     <Compile Include="Src\Modelo\Daos\DaoCliente.cs" />
+    <Compile Include="Src\Modelo\Daos\DaoCompra.cs" />
     <Compile Include="Src\Modelo\Daos\DaoEmpresa.cs" />
     <Compile Include="Src\Modelo\Daos\DaoEntrada.cs" />
     <Compile Include="Src\Modelo\Daos\DaoGrado.cs" />
@@ -267,6 +268,7 @@
     <Compile Include="Src\Modelo\Daos\DaoRubro.cs" />
     <Compile Include="Src\Modelo\Daos\DaoTipoUbicacion.cs" />
     <Compile Include="Src\Modelo\Daos\DaoUsuario.cs" />
+    <Compile Include="Src\Modelo\Daos\SqlParameters.cs" />
     <Compile Include="Src\Modelo\DBConector\Database.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -280,10 +282,12 @@
     <Compile Include="Src\Modelo\Entidades\DatabaseEntity.cs" />
     <Compile Include="Src\Modelo\Entidades\Empresa.cs" />
     <Compile Include="Src\Modelo\Entidades\Entrada.cs" />
+    <Compile Include="Src\Modelo\Entidades\Factura.cs" />
     <Compile Include="Src\Modelo\Entidades\FechaHora.cs" />
     <Compile Include="Src\Modelo\Entidades\Funcionalidad.cs" />
     <Compile Include="Src\Modelo\Entidades\Grado.cs" />
     <Compile Include="Src\Modelo\Daos\DaoLogin.cs" />
+    <Compile Include="Src\Modelo\Entidades\Item_Factura.cs" />
     <Compile Include="Src\Modelo\Entidades\Publicacion.cs" />
     <Compile Include="Src\Modelo\Entidades\Publicacion_Ubicacion.cs" />
     <Compile Include="Src\Modelo\Entidades\Rol.cs" />
@@ -302,7 +306,7 @@
     <Compile Include="Src\Servicios\CompraService.cs" />
     <Compile Include="Src\Servicios\DatabaseService.cs" />
     <Compile Include="Src\Servicios\EmpresaService.cs" />
-	<Compile Include="Src\Servicios\ComisionesService.cs" />
+    <Compile Include="Src\Servicios\ComisionesService.cs" />
     <Compile Include="Src\Servicios\EntradaService.cs" />
     <Compile Include="Src\Servicios\EstadoService.cs" />
     <Compile Include="Src\Servicios\GradoService.cs" />

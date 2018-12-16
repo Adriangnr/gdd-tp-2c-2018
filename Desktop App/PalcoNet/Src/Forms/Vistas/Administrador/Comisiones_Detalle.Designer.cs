@@ -28,20 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.ventasComisionables = new System.Windows.Forms.CheckedListBox();
             this.btn_comisionar = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.btn_cancel = new System.Windows.Forms.Button();
+            this.dataGridViewEmpresas = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewEmpresas)).BeginInit();
             this.SuspendLayout();
-            // 
-            // ventasComisionables
-            // 
-            this.ventasComisionables.FormattingEnabled = true;
-            this.ventasComisionables.Location = new System.Drawing.Point(48, 166);
-            this.ventasComisionables.Margin = new System.Windows.Forms.Padding(15, 15, 15, 15);
-            this.ventasComisionables.Name = "ventasComisionables";
-            this.ventasComisionables.Size = new System.Drawing.Size(808, 424);
-            this.ventasComisionables.TabIndex = 0;
             // 
             // btn_comisionar
             // 
@@ -83,34 +75,44 @@
             this.btn_cancel.UseVisualStyleBackColor = true;
             this.btn_cancel.Click += new System.EventHandler(this.btn_cancel_Click);
             // 
+            // dataGridViewEmpresas
+            // 
+            this.dataGridViewEmpresas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewEmpresas.Location = new System.Drawing.Point(47, 166);
+            this.dataGridViewEmpresas.Name = "dataGridViewEmpresas";
+            this.dataGridViewEmpresas.RowTemplate.Height = 28;
+            this.dataGridViewEmpresas.Size = new System.Drawing.Size(836, 445);
+            this.dataGridViewEmpresas.TabIndex = 58;
+            // 
             // Comisiones_Detalle
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.HighlightText;
             this.ClientSize = new System.Drawing.Size(1176, 678);
+            this.Controls.Add(this.dataGridViewEmpresas);
             this.Controls.Add(this.btn_cancel);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btn_comisionar);
-            this.Controls.Add(this.ventasComisionables);
             this.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
             this.Name = "Comisiones_Detalle";
             this.Text = "Comisiones_Detalle";
             this.Load += new System.EventHandler(this.Comisiones_Detalle_Load);
-            this.Controls.SetChildIndex(this.ventasComisionables, 0);
+            this.Controls.SetChildIndex(this.footer, 0);
             this.Controls.SetChildIndex(this.btn_comisionar, 0);
             this.Controls.SetChildIndex(this.label1, 0);
             this.Controls.SetChildIndex(this.btn_cancel, 0);
+            this.Controls.SetChildIndex(this.dataGridViewEmpresas, 0);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewEmpresas)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.CheckedListBox ventasComisionables;
         public System.Windows.Forms.Button btn_comisionar;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btn_cancel;
+        private System.Windows.Forms.DataGridView dataGridViewEmpresas;
     }
 }

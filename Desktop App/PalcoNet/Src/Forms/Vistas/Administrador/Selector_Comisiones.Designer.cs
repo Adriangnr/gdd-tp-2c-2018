@@ -29,13 +29,13 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.labelCanCompras = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
+            this.labelNombreEmpresa = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.register_btn_cancel = new System.Windows.Forms.Button();
-            this.btn_guardar = new System.Windows.Forms.Button();
+            this.txtCantComisiones = new System.Windows.Forms.TextBox();
+            this.btnCancel = new System.Windows.Forms.Button();
+            this.btnComisiones = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // footer
@@ -51,14 +51,14 @@
             this.label1.TabIndex = 2;
             this.label1.Text = "Se realizaron";
             // 
-            // label2
+            // labelCanCompras
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(152, 137);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(122, 20);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "<cantCompras>";
+            this.labelCanCompras.AutoSize = true;
+            this.labelCanCompras.Location = new System.Drawing.Point(152, 137);
+            this.labelCanCompras.Name = "labelCanCompras";
+            this.labelCanCompras.Size = new System.Drawing.Size(122, 20);
+            this.labelCanCompras.TabIndex = 3;
+            this.labelCanCompras.Text = "<cantCompras>";
             // 
             // label3
             // 
@@ -69,14 +69,14 @@
             this.label3.TabIndex = 4;
             this.label3.Text = "compras para la empresa ";
             // 
-            // label4
+            // labelNombreEmpresa
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(44, 172);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(145, 20);
-            this.label4.TabIndex = 5;
-            this.label4.Text = "<nombreEmpresa>";
+            this.labelNombreEmpresa.AutoSize = true;
+            this.labelNombreEmpresa.Location = new System.Drawing.Point(44, 172);
+            this.labelNombreEmpresa.Name = "labelNombreEmpresa";
+            this.labelNombreEmpresa.Size = new System.Drawing.Size(145, 20);
+            this.labelNombreEmpresa.TabIndex = 5;
+            this.labelNombreEmpresa.Text = "<nombreEmpresa>";
             // 
             // label5
             // 
@@ -87,64 +87,65 @@
             this.label5.TabIndex = 6;
             this.label5.Text = "Para cuantas compras desea rendir comisiones?";
             // 
-            // textBox1
+            // txtCantComisiones
             // 
-            this.textBox1.Location = new System.Drawing.Point(423, 213);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(61, 26);
-            this.textBox1.TabIndex = 7;
+            this.txtCantComisiones.Location = new System.Drawing.Point(423, 213);
+            this.txtCantComisiones.Name = "txtCantComisiones";
+            this.txtCantComisiones.Size = new System.Drawing.Size(61, 26);
+            this.txtCantComisiones.TabIndex = 7;
             // 
-            // register_btn_cancel
+            // btnCancel
             // 
-            this.register_btn_cancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.register_btn_cancel.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.register_btn_cancel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.register_btn_cancel.Location = new System.Drawing.Point(13, 301);
-            this.register_btn_cancel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.register_btn_cancel.Name = "register_btn_cancel";
-            this.register_btn_cancel.Size = new System.Drawing.Size(122, 58);
-            this.register_btn_cancel.TabIndex = 25;
-            this.register_btn_cancel.Text = "Cancelar";
-            this.register_btn_cancel.UseVisualStyleBackColor = true;
+            this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCancel.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.btnCancel.Location = new System.Drawing.Point(13, 301);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(122, 58);
+            this.btnCancel.TabIndex = 25;
+            this.btnCancel.Text = "Cancelar";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
-            // btn_guardar
+            // btnComisiones
             // 
-            this.btn_guardar.BackColor = System.Drawing.SystemColors.MenuHighlight;
-            this.btn_guardar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_guardar.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_guardar.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btn_guardar.Location = new System.Drawing.Point(340, 301);
-            this.btn_guardar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btn_guardar.Name = "btn_guardar";
-            this.btn_guardar.Size = new System.Drawing.Size(149, 58);
-            this.btn_guardar.TabIndex = 24;
-            this.btn_guardar.Text = "Rendir Comisiones";
-            this.btn_guardar.UseVisualStyleBackColor = false;
+            this.btnComisiones.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.btnComisiones.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnComisiones.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnComisiones.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnComisiones.Location = new System.Drawing.Point(340, 301);
+            this.btnComisiones.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnComisiones.Name = "btnComisiones";
+            this.btnComisiones.Size = new System.Drawing.Size(149, 58);
+            this.btnComisiones.TabIndex = 24;
+            this.btnComisiones.Text = "Rendir Comisiones";
+            this.btnComisiones.UseVisualStyleBackColor = false;
             // 
             // Selector_Comisiones
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(502, 407);
-            this.Controls.Add(this.register_btn_cancel);
-            this.Controls.Add(this.btn_guardar);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.btnCancel);
+            this.Controls.Add(this.btnComisiones);
+            this.Controls.Add(this.txtCantComisiones);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.label4);
+            this.Controls.Add(this.labelNombreEmpresa);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.labelCanCompras);
             this.Controls.Add(this.label1);
             this.Name = "Selector_Comisiones";
             this.Text = "Rendir Comisiones";
             this.Controls.SetChildIndex(this.footer, 0);
             this.Controls.SetChildIndex(this.label1, 0);
-            this.Controls.SetChildIndex(this.label2, 0);
+            this.Controls.SetChildIndex(this.labelCanCompras, 0);
             this.Controls.SetChildIndex(this.label3, 0);
-            this.Controls.SetChildIndex(this.label4, 0);
+            this.Controls.SetChildIndex(this.labelNombreEmpresa, 0);
             this.Controls.SetChildIndex(this.label5, 0);
-            this.Controls.SetChildIndex(this.textBox1, 0);
-            this.Controls.SetChildIndex(this.btn_guardar, 0);
-            this.Controls.SetChildIndex(this.register_btn_cancel, 0);
+            this.Controls.SetChildIndex(this.txtCantComisiones, 0);
+            this.Controls.SetChildIndex(this.btnComisiones, 0);
+            this.Controls.SetChildIndex(this.btnCancel, 0);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -153,12 +154,12 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label labelCanCompras;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label labelNombreEmpresa;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button register_btn_cancel;
-        private System.Windows.Forms.Button btn_guardar;
+        private System.Windows.Forms.TextBox txtCantComisiones;
+        private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.Button btnComisiones;
     }
 }

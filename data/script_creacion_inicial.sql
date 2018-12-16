@@ -1663,3 +1663,13 @@ as begin
 	where compra_id = @compra
 end
 go
+
+create procedure ESECUELE.getComprasOfEmpresa(@empresaId int, @return_val int output) as
+begin
+	set @return_val = (select distinct count(*) 
+	from ESECUELE.Empresa em join ESECUELE.Publicacion p on em.empresa_id = publicacion_empresa
+	join ESECUELE.Ubicacion u on u.ubicacion_publicacion = p.publicacion_codigo  
+	join ESECUELE.Entrada e on e.entrada_ubicacion = u.ubicacion_id where em.empresa_id=@empresaId)
+	return @return_val
+end
+go
