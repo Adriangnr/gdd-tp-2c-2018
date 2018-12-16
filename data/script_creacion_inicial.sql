@@ -1664,12 +1664,46 @@ as begin
 end
 go
 
-create procedure ESECUELE.getComprasOfEmpresa(@empresaId int, @return_val int output) as
+create procedure ESECUELE.getCountComprasOfEmpresa(@empresaId int, @return_val int output) as
 begin
 	set @return_val = (select distinct count(*) 
 	from ESECUELE.Empresa em join ESECUELE.Publicacion p on em.empresa_id = publicacion_empresa
 	join ESECUELE.Ubicacion u on u.ubicacion_publicacion = p.publicacion_codigo  
 	join ESECUELE.Entrada e on e.entrada_ubicacion = u.ubicacion_id where em.empresa_id=@empresaId)
 	return @return_val
+end
+go
+
+create procedure ESECUELE.getEmpresasComisiones as
+begin
+	select distinct empresa_id, empresa_razon_social, empresa_cuit, empresa_usuario
+	from ESECUELE.Empresa em join ESECUELE.Publicacion p on em.empresa_id = publicacion_empresa
+	join ESECUELE.Ubicacion u on u.ubicacion_publicacion = p.publicacion_codigo  
+	join ESECUELE.Entrada e on e.entrada_ubicacion = u.ubicacion_id
+end
+go
+
+create procedure ESECUELE.getComprasOfEmpresa(@top int, @empresaId int) as
+begin
+	select top (@top) p.publicacion_codigo, compra_id
+	from ESECUELE.Empresa em join ESECUELE.Publicacion p on em.empresa_id = publicacion_empresa
+	join ESECUELE.Ubicacion u on u.ubicacion_publicacion = p.publicacion_codigo  
+	join ESECUELE.Entrada e on e.entrada_ubicacion = u.ubicacion_id
+	join ESECUELE.Compra c on c.compra_id = e.entrada_compra
+	where em.empresa_id = @empresaId
+	group by p.publicacion_codigo, c.compra_id, c.compra_fecha 
+	order by c.compra_fecha asc
+end
+go
+
+create procedure ESECUELE.getCompra(@id int) as
+begin
+	select * from ESECUELE.Compra where compra_id = @id
+end
+go
+
+create procedure ESECUELE.getPublicacionById(@codidgo int)
+as begin
+	select * from ESECUELE.Publicacion where publicacion_codigo=@codidgo
 end
 go

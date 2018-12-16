@@ -76,11 +76,28 @@ namespace PalcoNet.Src.Servicios
             dbEntity.spExecute("ESECUELE.SaveCompra", new List<SqlParameter> { sqlParam });
         }
 
-        public int getComprasOfEmpresa(int id)
+        public int getCountComprasOfEmpresa(int id)
         {
             try
             {
-                return this.daoCompra.getComprasOfEmpresa(id);
+                return this.daoCompra.getCountComprasOfEmpresa(id);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public Compra getCompra(int id)
+        {
+            try
+            {
+                List<List<object>> compraData = this.daoCompra.getCompra(id);
+                Compra compra = new Compra();
+                
+                /*cargar compra*/
+
+                return compra;
             }
             catch (Exception ex)
             {

@@ -67,6 +67,19 @@ namespace PalcoNet.Src.Modelo.Daos
             }
         }
 
+        public List<List<object>> getById(int codigo)
+        {
+            try
+            {
+                return this.spExecuteDataReader(this.schema + ".getPublicacionById",
+                    new List<SqlParameter>() { new SqlParameter("@codigo", codigo) });
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
         public int update(Publicacion publicacion)
         {
             try

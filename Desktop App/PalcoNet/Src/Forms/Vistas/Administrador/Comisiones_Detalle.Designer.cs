@@ -48,6 +48,7 @@
             this.btn_comisionar.TabIndex = 5;
             this.btn_comisionar.Text = "Comisionar";
             this.btn_comisionar.UseVisualStyleBackColor = false;
+            this.btn_comisionar.Click += new System.EventHandler(this.btn_comisionar_Click);
             // 
             // label1
             // 
@@ -77,11 +78,19 @@
             // 
             // dataGridViewEmpresas
             // 
+            this.dataGridViewEmpresas.AllowUserToAddRows = false;
+            this.dataGridViewEmpresas.AllowUserToDeleteRows = false;
+            this.dataGridViewEmpresas.AllowUserToOrderColumns = true;
+            this.dataGridViewEmpresas.AllowUserToResizeColumns = false;
+            this.dataGridViewEmpresas.AllowUserToResizeRows = false;
             this.dataGridViewEmpresas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewEmpresas.Location = new System.Drawing.Point(47, 166);
             this.dataGridViewEmpresas.Name = "dataGridViewEmpresas";
+            this.dataGridViewEmpresas.ReadOnly = true;
+            this.dataGridViewEmpresas.RowHeadersVisible = false;
             this.dataGridViewEmpresas.RowTemplate.Height = 28;
-            this.dataGridViewEmpresas.Size = new System.Drawing.Size(836, 445);
+            this.dataGridViewEmpresas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridViewEmpresas.Size = new System.Drawing.Size(726, 445);
             this.dataGridViewEmpresas.TabIndex = 58;
             // 
             // Comisiones_Detalle

@@ -279,6 +279,7 @@
       <DependentUpon>Selector_Rol.cs</DependentUpon>
     </Compile>
     <Compile Include="Src\Modelo\Entidades\Cliente.cs" />
+    <Compile Include="Src\Modelo\Entidades\Compra.cs" />
     <Compile Include="Src\Modelo\Entidades\DatabaseEntity.cs" />
     <Compile Include="Src\Modelo\Entidades\Empresa.cs" />
     <Compile Include="Src\Modelo\Entidades\Entrada.cs" />

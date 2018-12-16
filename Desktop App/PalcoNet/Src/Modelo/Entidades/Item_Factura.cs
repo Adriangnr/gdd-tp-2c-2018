@@ -16,6 +16,6 @@ namespace PalcoNet.Src.Modelo.Entidades
         public decimal monto { get; set; }
         public string descripcion { get; set; }
         public int cantidad { get; set; }
-        public int entrad { get; set; }
+        public int entrada { get; set; }
     }
 }

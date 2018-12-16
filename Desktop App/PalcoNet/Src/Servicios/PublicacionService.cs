@@ -5,6 +5,7 @@ using PalcoNet.Src.Modelo.Entidades;
 using PalcoNet.Src.Modelo.Estados;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Windows.Forms;
 
 namespace PalcoNet.Src.Servicios
@@ -152,6 +153,16 @@ namespace PalcoNet.Src.Servicios
                 Console.WriteLine(ex.StackTrace);
                 throw ex;
             }
+        }
+
+        public Publicacion getPublicacion(int id)
+        {
+            List<List<object>> publicacionData = this.daoPublicaion.getById(id);
+            Publicacion publicacion = new Publicacion();
+
+            this.loadPublicacion(publicacion, publicacionData[0]);
+
+            return publicacion;
         }
     }
 }
