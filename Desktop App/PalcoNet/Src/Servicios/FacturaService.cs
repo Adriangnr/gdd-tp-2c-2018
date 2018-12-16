@@ -18,5 +18,17 @@ namespace PalcoNet.Src.Servicios
                 throw ex;
             }
         }
+
+        public void update(Factura factura)
+        {
+            try
+            {
+                this.daoFactura.update(factura);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

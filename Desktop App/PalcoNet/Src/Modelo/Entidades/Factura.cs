@@ -16,6 +16,7 @@ namespace PalcoNet.Src.Modelo.Entidades
         public int empresa { get; set; }
         public int estado { get; set; }
         public decimal total { get; set; }
-        public string formaPago { get; set; }
+        public decimal totalComision { get; set; }
+        public int formaPago { get; set; }
     }
 }

@@ -25,5 +25,26 @@ namespace PalcoNet.Src.Modelo.Daos
                 throw ex;
             }
         }
+
+        public void update(Factura factura)
+        {
+            try
+            {
+                this.spExecute("ESECUELE.updateFactura", new List<SqlParameter>()
+                {
+                    new SqlParameter("@id", factura.id),
+                    new SqlParameter("@fecha", factura.fecha),
+                    new SqlParameter("@empresa", factura.empresa),
+                    new SqlParameter("@estado", factura.estado),
+                    new SqlParameter("@total", factura.total),
+                    new SqlParameter("@totalComision", factura.totalComision),
+                    new SqlParameter("@formaPago", factura.formaPago),
+                });
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

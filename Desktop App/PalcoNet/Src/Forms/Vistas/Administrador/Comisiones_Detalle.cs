@@ -38,7 +38,11 @@ namespace PalcoNet.Src.Forms.Vistas.Administrador
             }
             catch (Exception ex)
             {
-
+                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.StackTrace);
+                MessageBox.Show("Error al cargar empresa!", "Error!",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
         }
 

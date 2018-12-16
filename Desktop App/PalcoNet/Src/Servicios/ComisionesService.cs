@@ -19,14 +19,6 @@ namespace PalcoNet.Src.Servicios
 
         public void comisionar(int cantidad, int empresa)
         {
-            /*
-             *me traigo las n compras de la empresa. 
-             *recorro la lista. 
-             *me traigo la publicacion para saber el grado. 
-             calculo la comision.
-             armo la factura con el total y desc de la empresa.
-             cargo los items_factura (compras)
-             */
             try
             {
                 List<Compra> compras = this.getComprasComision(cantidad, empresa);
@@ -36,7 +28,7 @@ namespace PalcoNet.Src.Servicios
                     factura.fecha = Utils.Utilities.getCurrentDate();
                     factura.empresa = compras[0].publicacion.Empresa.Id;
                     factura.estado = 1;
-                    factura.formaPago = "Efectivo";
+                    factura.formaPago = 1;
                     factura.id = this.facturaService.save(factura);
 
                     decimal total = 0;
@@ -52,10 +44,12 @@ namespace PalcoNet.Src.Servicios
                         itemFactura.cantidad = 1;
                         itemFactura.entrada = entrada.Id;
                         itemFactura.comision = (itemFactura.monto) * ((decimal)compra.publicacion.Grado.comision);
-                        this.itemFacturaService.save(itemFactura);
+                        itemFactura.id = this.itemFacturaService.save(itemFactura);
                         totalComision += itemFactura.comision;
                     }
                     factura.total = total;
+                    factura.totalComision = totalComision;
+                    this.facturaService.update(factura);
                 }
             }
             catch (Exception ex)

@@ -9,15 +9,15 @@ namespace PalcoNet.Src.Servicios
     {
         private DaoItemFactura daoItemFactura = new DaoItemFactura();
         
-        public void save(Item_Factura itemFactura)
+        public int save(Item_Factura itemFactura)
         {
             try
             {
-                this.daoItemFactura.save(itemFactura);
+                return this.daoItemFactura.save(itemFactura);
             }
             catch(Exception ex)
             {
-
+                throw ex;
             }
         }
     }

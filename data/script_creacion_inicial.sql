@@ -249,6 +249,7 @@ create table ESECUELE.Factura(
 	fact_empresa int default null,
 	fact_estado bit default 0,
 	fact_total numeric(18,2) default null,
+	fact_total_comision numeric(18,2) default 0,
 	fact_forma_pago varchar(60) default null
 )
 go
@@ -1684,12 +1685,17 @@ as begin
 end
 go
 
-create procedure ESECUELE.getCountComprasOfEmpresa(@empresaId int, @return_val int output) as
+alter procedure ESECUELE.getCountComprasOfEmpresa(@empresaId int, @return_val int output) as
 begin
-	set @return_val = (select distinct count(*) 
-	from ESECUELE.Empresa em join ESECUELE.Publicacion p on em.empresa_id = publicacion_empresa
-	join ESECUELE.Ubicacion u on u.ubicacion_publicacion = p.publicacion_codigo  
-	join ESECUELE.Entrada e on e.entrada_ubicacion = u.ubicacion_id where em.empresa_id=@empresaId)
+	select @return_val = count(distinct compra_id) from ESECUELE.Compra c 
+	join ESECUELE.Entrada e on c.compra_id=e.entrada_compra
+	join ESECUELE.Ubicacion u on u.ubicacion_id = e.entrada_ubicacion
+	join ESECUELE.Publicacion p on p.publicacion_codigo = u.ubicacion_publicacion
+	join ESECUELE.Empresa em on em.empresa_id = p.publicacion_empresa
+	where em.empresa_id=@empresaId
+	group by c.compra_id
+	order by c.compra_id
+	
 	return @return_val
 end
 go
@@ -1710,7 +1716,7 @@ begin
 	join ESECUELE.Ubicacion u on u.ubicacion_publicacion = p.publicacion_codigo  
 	join ESECUELE.Entrada e on e.entrada_ubicacion = u.ubicacion_id
 	join ESECUELE.Compra c on c.compra_id = e.entrada_compra
-	where em.empresa_id = @empresaId
+	where em.empresa_id = @empresaId and e.entrada_facturada=0
 	group by p.publicacion_codigo, c.compra_id, c.compra_fecha 
 	order by c.compra_fecha asc
 end
@@ -1722,9 +1728,9 @@ begin
 end
 go
 
-create procedure ESECUELE.getPublicacionById(@codidgo int)
+create procedure ESECUELE.getPublicacionById(@codigo int)
 as begin
-	select * from ESECUELE.Publicacion where publicacion_codigo=@codidgo
+	select * from ESECUELE.Publicacion where publicacion_codigo=@codigo
 end
 go
 
@@ -1744,7 +1750,10 @@ go
 
 create procedure ESECUELE.getEntradasByCompra(@compraId int) as
 begin
-	select * from ESECUELE.Entrada e where e.entrada_compra = @compraId
+	select e.entrada_id, e.entrada_compra, e.entrada_ubicacion, e.entrada_fila, e.entrada_asiento, e.entrada_facturada,
+	u.ubicacion_precio from ESECUELE.Entrada e join ESECUELE.Ubicacion u
+	on e.entrada_ubicacion = u.ubicacion_id
+	where e.entrada_compra = @compraId and e.entrada_facturada=0
 end
 go
 
@@ -1762,5 +1771,34 @@ as begin
 								  join ESECUELE.Fecha_Evento on fecha_evento_publicacion = publicacion_codigo
 	where compra_cliente = @cliente and compra_fecha <= @fechaActual
 	order by compra_fecha desc
+end
+go
+
+create procedure ESECUELE.saveItemFactura(
+						@factura int, 
+						@monto decimal, 
+						@descripcion varchar(50), 
+						@cantidad int, 
+						@entrada int,
+						@comision decimal,
+						@return_val int output) as
+begin
+	insert into ESECUELE.Item_Factura (item_id_factura, item_monto, item_descripcion, item_cantidad, item_entrada, item_total_comision)
+	values (@factura, @monto, @descripcion, @cantidad, @entrada, @comision)
+
+	set @return_val = (select SCOPE_IDENTITY())
+end
+go
+
+create procedure ESECUELE.updateFactura(@id int, 
+									    @fecha datetime, 
+										@empresa int, 
+										@estado bit, 
+										@total decimal, 
+										@totalComision decimal,
+										@formaPago int) as
+begin
+	update ESECUELE.Factura set fact_fecha=@fecha, fact_empresa=@empresa, fact_estado=@estado, fact_total=@total, fact_total_comision=@totalComision,
+	fact_forma_pago=@formaPago where fact_id=@id
 end
 go

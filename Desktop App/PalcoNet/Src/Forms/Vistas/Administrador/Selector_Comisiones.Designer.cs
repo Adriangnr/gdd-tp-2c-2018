@@ -40,21 +40,21 @@
             // 
             // footer
             // 
-            this.footer.Location = new System.Drawing.Point(200, 378);
+            this.footer.Location = new System.Drawing.Point(257, 378);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(42, 162);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(387, 20);
+            this.label1.Size = new System.Drawing.Size(461, 20);
             this.label1.TabIndex = 2;
-            this.label1.Text = "Entradas compradas de publicaciones de la empresa:";
+            this.label1.Text = "Cantidad de compras realizadas a publicaciones de la empresa: ";
             // 
             // labelCanCompras
             // 
             this.labelCanCompras.AutoSize = true;
-            this.labelCanCompras.Location = new System.Drawing.Point(422, 162);
+            this.labelCanCompras.Location = new System.Drawing.Point(500, 162);
             this.labelCanCompras.Name = "labelCanCompras";
             this.labelCanCompras.Size = new System.Drawing.Size(122, 20);
             this.labelCanCompras.TabIndex = 3;
@@ -105,7 +105,7 @@
             this.btnComisiones.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnComisiones.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnComisiones.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnComisiones.Location = new System.Drawing.Point(390, 301);
+            this.btnComisiones.Location = new System.Drawing.Point(461, 301);
             this.btnComisiones.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnComisiones.Name = "btnComisiones";
             this.btnComisiones.Size = new System.Drawing.Size(149, 58);
@@ -126,7 +126,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(552, 407);
+            this.ClientSize = new System.Drawing.Size(623, 407);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnComisiones);

@@ -7,12 +7,17 @@ namespace PalcoNet.Src.Modelo.Daos
 {
     public class DaoItemFactura : DatabaseEntity
     {
-        public void save(Item_Factura itemFactura)
+        public int save(Item_Factura itemFactura)
         {
             try
             {
-                this.spExecute("ESECUELE.saveItemFactura", new List<SqlParameter>() {
-                    new SqlParameter(),
+                return this.spExecuteScalar("ESECUELE.saveItemFactura", new List<SqlParameter>() {
+                    new SqlParameter("@factura", itemFactura.facturaId),
+                    new SqlParameter("@monto", itemFactura.monto),
+                    new SqlParameter("@descripcion", itemFactura.descripcion),
+                    new SqlParameter("@cantidad", itemFactura.cantidad),
+                    new SqlParameter("@entrada", itemFactura.entrada),
+                    new SqlParameter("@comision", itemFactura.comision)
                 });
             }
             catch(Exception ex)

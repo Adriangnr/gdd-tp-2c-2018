@@ -31,7 +31,7 @@ namespace PalcoNet.Src.Modelo.Daos
             try
             {
                 List<SqlParameter> parameters = new List<SqlParameter>() {
-                    new SqlParameter("@idCompra", idCompra)
+                    new SqlParameter("@compraId", idCompra)
                 };
 
                 return this.spExecuteDataReader(this.schema + ".getEntradasByCompra", parameters);
