@@ -10,7 +10,6 @@ namespace PalcoNet.Src.Modelo.Daos
 {
     class DaoEntrada : DatabaseEntity
     {
-
         public List<List<object>> GetEntradasVendidas(int publicacion)
         {
             try
@@ -20,6 +19,22 @@ namespace PalcoNet.Src.Modelo.Daos
                 };
 
                 return this.spExecuteDataReader(this.schema + ".GetEntradasVendidas", parameters);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        public List<List<object>> getEntradasByCompra(int idCompra)
+        {
+            try
+            {
+                List<SqlParameter> parameters = new List<SqlParameter>() {
+                    new SqlParameter("@idCompra", idCompra)
+                };
+
+                return this.spExecuteDataReader(this.schema + ".getEntradasByCompra", parameters);
             }
             catch (Exception e)
             {

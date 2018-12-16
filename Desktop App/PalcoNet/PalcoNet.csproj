@@ -262,6 +262,7 @@
     <Compile Include="Src\Modelo\Daos\DaoCompra.cs" />
     <Compile Include="Src\Modelo\Daos\DaoEmpresa.cs" />
     <Compile Include="Src\Modelo\Daos\DaoEntrada.cs" />
+    <Compile Include="Src\Modelo\Daos\DaoFactura.cs" />
     <Compile Include="Src\Modelo\Daos\DaoGrado.cs" />
     <Compile Include="Src\Modelo\Daos\DaoPublicacion.cs" />
     <Compile Include="Src\Modelo\Daos\DaoRol_Usuario.cs" />
@@ -310,6 +311,7 @@
     <Compile Include="Src\Servicios\ComisionesService.cs" />
     <Compile Include="Src\Servicios\EntradaService.cs" />
     <Compile Include="Src\Servicios\EstadoService.cs" />
+    <Compile Include="Src\Servicios\FacturaService.cs" />
     <Compile Include="Src\Servicios\GradoService.cs" />
     <Compile Include="Src\Servicios\LoginService.cs" />
     <Compile Include="Src\Servicios\PublicacionService.cs" />

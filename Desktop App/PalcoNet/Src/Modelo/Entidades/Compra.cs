@@ -14,6 +14,7 @@ namespace PalcoNet.Src.Modelo.Entidades
         public int clienteId { get; set; }
         public DateTime fecha { get; set; }
         public int medioDePago { get; set; }
-        public int publicacion { get; set; }
+        public Publicacion publicacion { get; set; }
+        public List<Entrada> entradas { get; set; }
     }
 }

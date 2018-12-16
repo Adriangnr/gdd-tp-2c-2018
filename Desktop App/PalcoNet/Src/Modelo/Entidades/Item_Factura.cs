@@ -14,6 +14,7 @@ namespace PalcoNet.Src.Modelo.Entidades
         public int id { get; set; }
         public int facturaId { get; set; }
         public decimal monto { get; set; }
+        public decimal comision { get; set; }
         public string descripcion { get; set; }
         public int cantidad { get; set; }
         public int entrada { get; set; }

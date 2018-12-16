@@ -89,5 +89,22 @@ namespace PalcoNet.Src.Servicios
 
         }
 
+        public List<Entrada> getEntradasByCompra(int id)
+        {
+            List<Entrada> entradas = new List<Entrada>();
+            List<List<object>> entradasData = this.daoEntrada.getEntradasByCompra(id);
+            foreach(List<object> row in entradasData)
+            {
+                Entrada entrada = new Entrada();
+                entrada.Id = (int)row[0];
+                entrada.Compra = (int)row[1];
+                entrada.UbicacionId = (int)row[2];
+                entrada.Fila = (int)row[3];
+                entrada.Asiento = (int)row[4];
+
+                entradas.Add(entrada);
+            }
+            return entradas;
+        }
     }
 }

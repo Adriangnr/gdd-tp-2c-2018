@@ -238,6 +238,7 @@ create table ESECUELE.Entrada(
 	entrada_ubicacion int default null,
 	entrada_fila int default null,
 	entrada_asiento int default null,
+	entrada_facturada bit default 0
 )
 go
 
@@ -259,7 +260,8 @@ create table ESECUELE.Item_Factura(
 	item_monto numeric(18,2) default null,
 	item_descripcion varchar(50) default null,
 	item_cantidad int not null,
-	item_entrada int not null
+	item_entrada int not null,
+	item_total_comision numeric(18,2) default 0
 )
 go
 
@@ -1705,5 +1707,25 @@ go
 create procedure ESECUELE.getPublicacionById(@codidgo int)
 as begin
 	select * from ESECUELE.Publicacion where publicacion_codigo=@codidgo
+end
+go
+
+create procedure ESECUELE.saveFactura(@fecha datetime,
+									  @empresa int, 
+									  @estado bit, 
+									  @total decimal, 
+									  @formaPago int, 
+									  @return_val int output) as
+begin
+	insert into ESECUELE.Factura (fact_fecha, fact_empresa, fact_estado, fact_total, fact_forma_pago)
+	values
+	(@fecha, @empresa, @estado, @total, @formaPago)
+	set @return_val = (select SCOPE_IDENTITY())
+end
+go
+
+create procedure ESECUELE.getEntradasByCompra(@compraId int) as
+begin
+	select * from ESECUELE.Entrada e where e.entrada_compra = @compraId
 end
 go

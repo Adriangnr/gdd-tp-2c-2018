@@ -42,7 +42,7 @@ namespace PalcoNet.Src.Forms.Vistas.Administrador
                     }
                     else
                     {
-                        this.gradoService.save(this.txtDescripcion.Text, Convert.ToDouble(this.txtComision.Text));
+                        this.gradoService.save(this.txtDescripcion.Text, Convert.ToDecimal(this.txtComision.Text));
                         this.Hide();
                         ((Grado_Publicacion)this.previous).reload();
                         this.previous.Show();
@@ -50,7 +50,7 @@ namespace PalcoNet.Src.Forms.Vistas.Administrador
                 }
                 else
                 {
-                    this.current.comision = Convert.ToDouble(this.txtComision.Text);
+                    this.current.comision = Convert.ToDecimal(this.txtComision.Text);
                     this.current.descripcion = this.txtDescripcion.Text;
 
                     this.gradoService.update(this.current);

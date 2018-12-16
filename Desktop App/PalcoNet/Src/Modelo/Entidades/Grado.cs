@@ -16,17 +16,17 @@ namespace PalcoNet.Src.Modelo.Entidades
         public string descripcion { get; set; }
 
         [DisplayName("Comisión")]
-        public double comision { get; set; }
+        public decimal comision { get; set; }
 
         public Grado() { }
 
-        public Grado(string descripcion, double comision)
+        public Grado(string descripcion, decimal comision)
         {
             this.descripcion = descripcion;
             this.comision = comision;
         }
 
-        public Grado(int id, string descripcion, double comision)
+        public Grado(int id, string descripcion, decimal comision)
         {
             this.id = id;
             this.descripcion = descripcion;

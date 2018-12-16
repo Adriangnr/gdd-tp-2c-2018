@@ -11,6 +11,7 @@ namespace PalcoNet.Src.Servicios
     class CompraService : DatabaseService
     {
         DaoCompra daoCompra = new DaoCompra();
+        EntradaService entradaService = new EntradaService();
 
         public SortableBindingList<Publicacion> getAllPublicacionesParaCompra(System.Windows.Forms.Control.ControlCollection filtros)
         {
@@ -92,11 +93,14 @@ namespace PalcoNet.Src.Servicios
         {
             try
             {
-                List<List<object>> compraData = this.daoCompra.getCompra(id);
+                List<object> compraData = this.daoCompra.getCompra(id)[0];
                 Compra compra = new Compra();
-                
-                /*cargar compra*/
-
+                compra.id = (int)compraData[0];
+                compra.fecha = (DateTime)compraData[3];
+                compra.clienteId = (int)compraData[2];
+                compra.total = (decimal)compraData[1];
+                compra.medioDePago = (compraData[4].GetType() == typeof(System.DBNull)) ? (int)compraData[4] : -1;
+                compra.entradas = entradaService.getEntradasByCompra(compra.id);
                 return compra;
             }
             catch (Exception ex)

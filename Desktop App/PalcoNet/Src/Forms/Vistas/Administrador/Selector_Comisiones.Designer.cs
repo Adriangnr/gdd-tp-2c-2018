@@ -47,9 +47,9 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(42, 162);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(374, 20);
+            this.label1.Size = new System.Drawing.Size(387, 20);
             this.label1.TabIndex = 2;
-            this.label1.Text = "Compras realizadas a publicaciones de la empresa: ";
+            this.label1.Text = "Entradas compradas de publicaciones de la empresa:";
             // 
             // labelCanCompras
             // 
@@ -74,9 +74,9 @@
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(44, 213);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(271, 20);
+            this.label5.Size = new System.Drawing.Size(273, 20);
             this.label5.TabIndex = 6;
-            this.label5.Text = "Cuantas compras desea comisionar?";
+            this.label5.Text = "Cuentas entradas desea comisionar?";
             // 
             // txtCantComisiones
             // 
