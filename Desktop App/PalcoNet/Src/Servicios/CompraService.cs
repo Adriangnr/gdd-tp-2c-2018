@@ -1,4 +1,5 @@
-﻿using PalcoNet.Src.Modelo.Entidades;
+﻿using PalcoNet.Src.Modelo.Daos;
+using PalcoNet.Src.Modelo.Entidades;
 using PalcoNet.Src.Utils;
 using System;
 using System.Collections.Generic;
@@ -72,5 +73,28 @@ namespace PalcoNet.Src.Servicios
             sqlParam.Value = dt;
             dbEntity.spExecute("ESECUELE.SaveCompra", new List<SqlParameter> { sqlParam });
         }
+
+        public List<Compra> getAllCompras(Cliente cliente)
+        {
+            DaoCompra daoCompra = new DaoCompra();
+
+            List<List<Object>> listas = daoCompra.getAllCompras(cliente.Id);
+
+            List<Compra> compras = new List<Compra>();
+
+            return compras;
+        }
+
+        public Compra getCompra(int idCompra)
+        {
+            DaoCompra daoCompra = new DaoCompra();
+
+            List<List<Object>> listas = daoCompra.getCompra(idCompra);
+
+            Compra compras = new Compra();
+
+            return compra;
+        }
+
     }
 }
