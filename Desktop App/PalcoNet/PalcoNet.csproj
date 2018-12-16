@@ -302,6 +302,7 @@
     <Compile Include="Src\Servicios\CompraService.cs" />
     <Compile Include="Src\Servicios\DatabaseService.cs" />
     <Compile Include="Src\Servicios\EmpresaService.cs" />
+	<Compile Include="Src\Servicios\ComisionesService.cs" />
     <Compile Include="Src\Servicios\EntradaService.cs" />
     <Compile Include="Src\Servicios\EstadoService.cs" />
     <Compile Include="Src\Servicios\GradoService.cs" />
