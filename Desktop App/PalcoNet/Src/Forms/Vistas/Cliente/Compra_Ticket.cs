@@ -31,6 +31,10 @@ namespace PalcoNet.Src.Forms.Vistas.Cliente
                 compraService.getDetallesCompra(this.Compra);
 
                 this.dataGridHistorialEntradas.DataSource = this.Compra.Entradas;
+                label_nombre.Text = Compra.ClienteNombre;
+                label_apellido.Text = Compra.ClienteApellido;
+                label_espectaculo.Text = Compra.Publicacion;
+                label_fecha.Text = Compra.Fecha.ToString();
             }
             catch (Exception ex)
             {
@@ -40,6 +44,7 @@ namespace PalcoNet.Src.Forms.Vistas.Cliente
 
         private void btn_cancel_Click(object sender, EventArgs e)
         {
+            this.Compra.Entradas.Clear(); ;
             this.Close();
         }
     }

@@ -24,7 +24,7 @@ namespace PalcoNet.Src.Forms.Vistas.Cliente
             {
                 this.dataGridHistorial.DataSource = compraService.getAllCompras(cliente);
 
-                List<string> encabezados = new List<string>(new string[] {"Id", "ClienteNombre", "ClienteApellido"});
+                List<string> encabezados = new List<string>(new string[] {"ClienteNombre", "ClienteApellido"});
 
                 foreach (DataGridViewColumn column in this.dataGridHistorial.Columns)
                 {
@@ -53,7 +53,16 @@ namespace PalcoNet.Src.Forms.Vistas.Cliente
 
         private void btn_detalles_Click(object sender, EventArgs e)
         {
+            if (this.dataGridHistorial.SelectedRows.Count == 0 )
+                MessageBox.Show("Debe seleccionar una compra!", "Historial",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+            else
+            {
+                Compra_Ticket compra_ticket = new Compra_Ticket(this, (Src.Modelo.Entidades.Compra)this.dataGridHistorial.CurrentRow.DataBoundItem);
+                compra_ticket.ShowDialog();
 
+            }
+            this.dataGridHistorial.ClearSelection();
         }
     }
 }

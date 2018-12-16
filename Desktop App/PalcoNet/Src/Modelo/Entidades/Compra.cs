@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PalcoNet.Src.Modelo.Entidades
 {
-    class Compra
+    public class Compra
     {
         public int Id { get; set; }
         public DateTime Fecha { get; set; }

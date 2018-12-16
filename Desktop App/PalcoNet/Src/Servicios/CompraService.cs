@@ -134,10 +134,10 @@ namespace PalcoNet.Src.Servicios
                 Entrada_Ticket entrada = new Entrada_Ticket();
 
                 entrada.Id = (int)row[0];
-                entrada.SinNumerar = (bool)row[3];
-
-                entrada.Fila = entrada.SinNumerar? ((int)row[1]).ToString(): " ";
-                entrada.Asiento = entrada.SinNumerar? ((int)row[2]).ToString(): " ";
+                bool SinNumerar = (bool)row[3];
+                entrada.SinNumerar = !SinNumerar ? "Numerada" : "Sin numerar";
+                entrada.Fila = !SinNumerar? ((int)row[1]).ToString(): " ";
+                entrada.Asiento = !SinNumerar? ((int)row[2]).ToString(): " ";
 
                 entrada.Precio = Convert.ToDouble(row[4]);
                 entrada.Tipo = (string)row[5];
