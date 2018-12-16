@@ -1,4 +1,7 @@
 ﻿using PalcoNet.Src.Modelo.Entidades;
+using System;
+using System.Collections.Generic;
+using System.Data.SqlClient;
 
 namespace PalcoNet.Src.Modelo.Daos
 {
@@ -8,7 +11,9 @@ namespace PalcoNet.Src.Modelo.Daos
         {
             try
             {
-
+                this.spExecute("ESECUELE.saveItemFactura", new List<SqlParameter>() {
+                    new SqlParameter(),
+                });
             }
             catch(Exception ex)
             {

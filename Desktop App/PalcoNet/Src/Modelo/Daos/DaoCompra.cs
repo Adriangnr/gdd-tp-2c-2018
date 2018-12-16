@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using PalcoNet.Src.Modelo.Entidades;
@@ -7,7 +7,6 @@ namespace PalcoNet.Src.Modelo.Daos
 {
     public class DaoCompra : DatabaseEntity
     {
-        
         public int getCountComprasOfEmpresa(int id)
         {
             try
@@ -40,6 +39,40 @@ namespace PalcoNet.Src.Modelo.Daos
                 throw ex;
             }
         }
+		
+		public List<List<Object>> getAllCompras(int cliente)
+        {
+            try
+            {
+                List<SqlParameter> parameters = new List<SqlParameter>() {
+                    new SqlParameter("@cliente", cliente),
+                    new SqlParameter("@fechaActual",Utils.Utilities.getCurrentDate())
+                };
+
+                return this.spExecuteDataReader(this.schema + ".GetAllCompras", parameters);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+
+        }
+		
+		public List<List<Object>> getCompra(int idCompra)
+        {
+            try
+            {
+                List<SqlParameter> parameters = new List<SqlParameter>() {
+                    new SqlParameter("@compra", idCompra)
+                };
+
+                return this.spExecuteDataReader(this.schema + ".GetEntradasCompra", parameters);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
 
         public List<List<object>> getCompra(int id)
         {
@@ -54,7 +87,7 @@ namespace PalcoNet.Src.Modelo.Daos
             catch (Exception ex)
             {
                 throw ex;
-            }
-        }
+			}
+		}
     }
 }

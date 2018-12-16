@@ -53,7 +53,6 @@ namespace PalcoNet.Src.Forms.Vistas.Paginador
         private List<List<object>> SearchPagedPublicacionesParaCompra(int offset, int itemsPerPage)
         {
             List<SqlParameter> parameters = new List<SqlParameter>();
-
             foreach (KeyValuePair<string, string> filtro in ((Cliente.Compra)this.form).filtros)
             {
                 string key = filtro.Key;

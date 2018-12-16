@@ -157,6 +157,12 @@
     <Compile Include="Src\Forms\Vistas\Cliente\Compra_Sin_Numerar.Designer.cs">
       <DependentUpon>Compra_Sin_Numerar.cs</DependentUpon>
     </Compile>
+    <Compile Include="Src\Forms\Vistas\Cliente\Compra_Ticket.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Src\Forms\Vistas\Cliente\Compra_Ticket.Designer.cs">
+      <DependentUpon>Compra_Ticket.cs</DependentUpon>
+    </Compile>
     <Compile Include="Src\Forms\Vistas\Cliente\Compra_Ubicacion.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -285,7 +291,8 @@
     <Compile Include="Src\Modelo\Entidades\DatabaseEntity.cs" />
     <Compile Include="Src\Modelo\Entidades\Empresa.cs" />
     <Compile Include="Src\Modelo\Entidades\Entrada.cs" />
-    <Compile Include="Src\Modelo\Entidades\Factura.cs" />
+	<Compile Include="Src\Modelo\Entidades\Factura.cs" />
+    <Compile Include="Src\Modelo\Entidades\Entrada_Ticket.cs" />
     <Compile Include="Src\Modelo\Entidades\FechaHora.cs" />
     <Compile Include="Src\Modelo\Entidades\Funcionalidad.cs" />
     <Compile Include="Src\Modelo\Entidades\Grado.cs" />
@@ -394,6 +401,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Src\Forms\Vistas\Cliente\Compra_Sin_Numerar.resx">
       <DependentUpon>Compra_Sin_Numerar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Src\Forms\Vistas\Cliente\Compra_Ticket.resx">
+      <DependentUpon>Compra_Ticket.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Src\Forms\Vistas\Cliente\Historial.resx">
       <DependentUpon>Historial.cs</DependentUpon>

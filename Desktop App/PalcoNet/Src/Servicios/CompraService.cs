@@ -12,6 +12,7 @@ namespace PalcoNet.Src.Servicios
     {
         DaoCompra daoCompra = new DaoCompra();
         EntradaService entradaService = new EntradaService();
+        private string SININFO = "Sin información";
 
         public SortableBindingList<Publicacion> getAllPublicacionesParaCompra(System.Windows.Forms.Control.ControlCollection filtros)
         {
@@ -106,6 +107,76 @@ namespace PalcoNet.Src.Servicios
             catch (Exception ex)
             {
                 throw ex;
+            }
+        }
+
+        public List<Compra> getAllCompras(Cliente cliente)
+        {
+            DaoCompra daoCompra = new DaoCompra();
+
+            try
+            {
+                List<List<Object>> listas = daoCompra.getAllCompras(cliente.Id);
+
+                List<Compra> compras = new List<Compra>();
+
+                foreach (List<object> row in listas)
+                {
+                    Compra compraObj = new Compra();
+
+                    compraObj.Id = (int)row[0];
+                    compraObj.Fecha = (DateTime)row[1];
+                    compraObj.MontoTotal = Convert.ToDouble(row[2]);
+                    compraObj.Tarjeta = (row[3].GetType() != typeof(DBNull)) ? (string)row[3] : this.SININFO;
+                    compraObj.Publicacion = (string)row[4];
+                    compraObj.Direccion = (row[5].GetType() != typeof(DBNull)) ? (string)row[5] : this.SININFO;
+                    compraObj.ClienteNombre = cliente.Nombre;
+                    compraObj.ClienteApellido = cliente.Apellido;
+
+                    compras.Add(compraObj);
+                }
+
+                return compras;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        public void getDetallesCompra(Compra compra)
+        {
+            try
+            {
+                DaoCompra daoCompra = new DaoCompra();
+
+                List<List<Object>> listas = daoCompra.getCompra(compra.Id);
+
+                this.loadCompra(compra, listas);
+
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        private void loadCompra(Compra compra, List<List<Object>> listas)
+        {
+            foreach (List<object> row in listas)
+            {
+                Entrada_Ticket entrada = new Entrada_Ticket();
+
+                entrada.Id = (int)row[0];
+                bool SinNumerar = (bool)row[3];
+                entrada.SinNumerar = !SinNumerar ? "Numerada" : "Sin numerar";
+                entrada.Fila = !SinNumerar? ((int)row[1]).ToString(): " ";
+                entrada.Asiento = !SinNumerar? ((int)row[2]).ToString(): " ";
+
+                entrada.Precio = Convert.ToDouble(row[4]);
+                entrada.Tipo = (string)row[5];
+
+                compra.addEntrada(entrada);
             }
         }
     }
