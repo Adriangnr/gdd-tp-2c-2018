@@ -2,6 +2,7 @@
 
 using PalcoNet.Src.Modelo.Daos;
 using PalcoNet.Src.Modelo.Entidades;
+using System;
 using System.Collections.Generic;
 
 namespace PalcoNet.Src.Servicios
@@ -12,6 +13,7 @@ namespace PalcoNet.Src.Servicios
         private PublicacionService publicacionService = new PublicacionService();
         private FacturaService facturaService = new FacturaService();
         private EntradaService entradaService = new EntradaService();
+        private ItemFacturaService itemFacturaService = new ItemFacturaService();
 
         private DaoCompra daoCompra = new DaoCompra();
 
@@ -25,32 +27,40 @@ namespace PalcoNet.Src.Servicios
              armo la factura con el total y desc de la empresa.
              cargo los items_factura (compras)
              */
-            List<Compra> compras = this.getComprasComision(cantidad, empresa);
-            foreach(Compra compra in compras)
+            try
             {
-                Factura factura = new Factura();
-                factura.fecha = Utils.Utilities.getCurrentDate();
-                factura.empresa = compras[0].publicacion.Empresa.Id;
-                factura.estado = 1;
-                factura.formaPago = "Efectivo";
-                factura.id = this.facturaService.save(factura);
-
-                decimal total = 0;
-                decimal totalComision = 0;
-
-                foreach (Entrada entrada in compra.entradas)
+                List<Compra> compras = this.getComprasComision(cantidad, empresa);
+                foreach (Compra compra in compras)
                 {
-                    Item_Factura itemFactura = new Item_Factura();
-                    itemFactura.facturaId = factura.id;
-                    itemFactura.monto = (decimal)entrada.Precio;
-                    total += itemFactura.monto;
-                    itemFactura.descripcion = "Comisiones por compras.";
-                    itemFactura.cantidad = 1;
-                    itemFactura.entrada = entrada.Id;
-                    itemFactura.comision = (itemFactura.monto) * ((decimal)compra.publicacion.Grado.comision);
-                    totalComision += itemFactura.comision;
+                    Factura factura = new Factura();
+                    factura.fecha = Utils.Utilities.getCurrentDate();
+                    factura.empresa = compras[0].publicacion.Empresa.Id;
+                    factura.estado = 1;
+                    factura.formaPago = "Efectivo";
+                    factura.id = this.facturaService.save(factura);
+
+                    decimal total = 0;
+                    decimal totalComision = 0;
+
+                    foreach (Entrada entrada in compra.entradas)
+                    {
+                        Item_Factura itemFactura = new Item_Factura();
+                        itemFactura.facturaId = factura.id;
+                        itemFactura.monto = (decimal)entrada.Precio;
+                        total += itemFactura.monto;
+                        itemFactura.descripcion = "Comisiones por compras.";
+                        itemFactura.cantidad = 1;
+                        itemFactura.entrada = entrada.Id;
+                        itemFactura.comision = (itemFactura.monto) * ((decimal)compra.publicacion.Grado.comision);
+                        this.itemFacturaService.save(itemFactura);
+                        totalComision += itemFactura.comision;
+                    }
+                    factura.total = total;
                 }
-                factura.total = total;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
         }
 
