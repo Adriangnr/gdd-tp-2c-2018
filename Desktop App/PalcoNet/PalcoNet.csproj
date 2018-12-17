@@ -79,6 +79,12 @@
     <Compile Include="Src\Forms\Vistas\Administrador\Estadisticas.Designer.cs">
       <DependentUpon>Estadisticas.cs</DependentUpon>
     </Compile>
+    <Compile Include="Src\Forms\Vistas\Administrador\Facturas_Listado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Src\Forms\Vistas\Administrador\Facturas_Listado.Designer.cs">
+      <DependentUpon>Facturas_Listado.cs</DependentUpon>
+    </Compile>
     <Compile Include="Src\Forms\Vistas\Administrador\Grado_Publicacion.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -375,6 +381,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Src\Forms\Vistas\Administrador\Estadisticas.resx">
       <DependentUpon>Estadisticas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Src\Forms\Vistas\Administrador\Facturas_Listado.resx">
+      <DependentUpon>Facturas_Listado.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Src\Forms\Vistas\Administrador\Grado_Publicacion.resx">
       <DependentUpon>Grado_Publicacion.cs</DependentUpon>

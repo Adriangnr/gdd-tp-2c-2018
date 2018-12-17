@@ -83,5 +83,14 @@ namespace PalcoNet.Src.Forms.Vistas.Administrador
                 }
             }
         }
+
+        private void btnVerFacturas_Click(object sender, EventArgs e)
+        {
+            Facturas_Listado facturasListado = new Facturas_Listado();
+            facturasListado.empresa = (PalcoNet.Src.Modelo.Entidades.Empresa)this.dataGridViewEmpresas.CurrentRow.DataBoundItem;
+            facturasListado.previous = this;
+            facturasListado.Show();
+            this.Hide();
+        }
     }
 }

@@ -111,6 +111,7 @@
             this.btnVerFacturas.TabIndex = 59;
             this.btnVerFacturas.Text = "Ver Facturas";
             this.btnVerFacturas.UseVisualStyleBackColor = false;
+            this.btnVerFacturas.Click += new System.EventHandler(this.btnVerFacturas_Click);
             // 
             // Comisiones_Detalle
             // 
