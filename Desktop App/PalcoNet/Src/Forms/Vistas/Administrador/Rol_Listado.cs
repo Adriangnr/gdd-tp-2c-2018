@@ -46,8 +46,13 @@ namespace PalcoNet.Src.Forms.Vistas.Administrador
 
         private void btn_edit_Click(object sender, EventArgs e)
         {
-            new Rol_Detalle(this, (Rol) list_Roles.SelectedItem).Show();
-            Hide();
+            if (list_Roles.SelectedItem == null)
+                MessageBox.Show("Debe seleccionr un rol!", "Listado roles", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            else
+            {
+                new Rol_Detalle(this, (Rol)list_Roles.SelectedItem).Show();
+                Hide();
+            }
         }
 
     }

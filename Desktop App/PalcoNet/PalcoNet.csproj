@@ -133,6 +133,12 @@
     <Compile Include="Src\Forms\Vistas\Cliente\Canje_Puntos.Designer.cs">
       <DependentUpon>Canje_Puntos.cs</DependentUpon>
     </Compile>
+    <Compile Include="Src\Forms\Vistas\Cliente\Canje_Punto_Historial.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Src\Forms\Vistas\Cliente\Canje_Punto_Historial.Designer.cs">
+      <DependentUpon>Canje_Punto_Historial.cs</DependentUpon>
+    </Compile>
     <Compile Include="Src\Forms\Vistas\Cliente\Compra.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -286,18 +292,21 @@
     <Compile Include="Src\Forms\Vistas\General\Selector_Rol.Designer.cs">
       <DependentUpon>Selector_Rol.cs</DependentUpon>
     </Compile>
+    <Compile Include="Src\Modelo\Entidades\Canje.cs" />
     <Compile Include="Src\Modelo\Entidades\Cliente.cs" />
     <Compile Include="Src\Modelo\Entidades\Compra.cs" />
+    <Compile Include="Src\Modelo\Entidades\Compra_Ticket.cs" />
     <Compile Include="Src\Modelo\Entidades\DatabaseEntity.cs" />
     <Compile Include="Src\Modelo\Entidades\Empresa.cs" />
     <Compile Include="Src\Modelo\Entidades\Entrada.cs" />
-	<Compile Include="Src\Modelo\Entidades\Factura.cs" />
+    <Compile Include="Src\Modelo\Entidades\Factura.cs" />
     <Compile Include="Src\Modelo\Entidades\Entrada_Ticket.cs" />
     <Compile Include="Src\Modelo\Entidades\FechaHora.cs" />
     <Compile Include="Src\Modelo\Entidades\Funcionalidad.cs" />
     <Compile Include="Src\Modelo\Entidades\Grado.cs" />
     <Compile Include="Src\Modelo\Daos\DaoLogin.cs" />
     <Compile Include="Src\Modelo\Entidades\Item_Factura.cs" />
+    <Compile Include="Src\Modelo\Entidades\Producto.cs" />
     <Compile Include="Src\Modelo\Entidades\Publicacion.cs" />
     <Compile Include="Src\Modelo\Entidades\Publicacion_Ubicacion.cs" />
     <Compile Include="Src\Modelo\Entidades\Rol.cs" />
@@ -324,6 +333,7 @@
     <Compile Include="Src\Servicios\ItemFactura.cs" />
     <Compile Include="Src\Servicios\ItemFacturaService.cs" />
     <Compile Include="Src\Servicios\LoginService.cs" />
+    <Compile Include="Src\Servicios\ProductoService.cs" />
     <Compile Include="Src\Servicios\PublicacionService.cs" />
     <Compile Include="Src\Servicios\RolService.cs" />
     <Compile Include="Src\Servicios\RubroService.cs" />
@@ -389,6 +399,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Src\Forms\Vistas\Cliente\Canje_Puntos.resx">
       <DependentUpon>Canje_Puntos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Src\Forms\Vistas\Cliente\Canje_Punto_Historial.resx">
+      <DependentUpon>Canje_Punto_Historial.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Src\Forms\Vistas\Cliente\Compra.resx">
       <DependentUpon>Compra.cs</DependentUpon>

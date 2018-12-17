@@ -8,6 +8,8 @@ namespace PalcoNet.Src.Forms.Vistas.Cliente
 {
     public partial class Historial : Master
     {
+        private Src.Modelo.Entidades.Cliente Cliente;
+
         public Historial()
         {
             InitializeComponent();
@@ -18,6 +20,7 @@ namespace PalcoNet.Src.Forms.Vistas.Cliente
             ClienteService clienteService = new ClienteService();
 
             Src.Modelo.Entidades.Cliente cliente = clienteService.GetClienteByUsername(this.usuario.Username);
+            this.Cliente = cliente;
 
             CompraService compraService = new CompraService();
             try
@@ -58,7 +61,7 @@ namespace PalcoNet.Src.Forms.Vistas.Cliente
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
             else
             {
-                Compra_Ticket compra_ticket = new Compra_Ticket(this, (Src.Modelo.Entidades.Compra)this.dataGridHistorial.CurrentRow.DataBoundItem);
+                Compra_Ticket compra_ticket = new Compra_Ticket(this, this.Cliente,(Src.Modelo.Entidades.Compra_Ticket)this.dataGridHistorial.CurrentRow.DataBoundItem);
                 compra_ticket.ShowDialog();
 
             }

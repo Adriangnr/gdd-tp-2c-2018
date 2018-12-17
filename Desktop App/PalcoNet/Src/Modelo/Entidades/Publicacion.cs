@@ -21,7 +21,7 @@ namespace PalcoNet.Src.Modelo.Entidades
         public Grado Grado { get; set; }
         public Empresa Empresa { get; set; }
         public Estado Estado { get; set; }
-
+        public int FechaEventoId { get; set; }
         public List<Ubicacion> ubicaciones { get; set; }
         public List<DateTime> fechas { get; set; }
 

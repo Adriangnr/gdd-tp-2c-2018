@@ -42,8 +42,9 @@ namespace PalcoNet.Src.Forms.Vistas.Paginador
                 publicacion.Grado = (row[5].GetType() != typeof(DBNull)) ? gradoService.GetGrado((int)row[5]) : null;
                 publicacion.Empresa = empresaService.GetEmpresa((int)row[6]);
                 publicacion.Estado = EstadoFactory.getEstado((string)row[7]);
-                publicacion.FechaEvento = (DateTime)row[15];
-                page.TotalItems = (int)row[16];
+                publicacion.FechaEventoId = (int)row[15];
+                publicacion.FechaEvento = (DateTime)row[17];
+                page.TotalItems = (int)row[18];
                 page.AddItem(publicacion);
             }
 

@@ -155,7 +155,6 @@ go
 create table ESECUELE.Canje(
 	canje_id int identity(1,1) primary key,
 	canje_cliente int default null,
-	canje_puntos int default null,
 	canje_fecha datetime default null, 
 	canje_producto int default null
 )
@@ -176,7 +175,8 @@ go
 --Rubro
 create table ESECUELE.Rubro(
 	rubro_codigo int identity(1,1) primary key,
-	rubro_descripcion varchar(50) default null
+	rubro_descripcion varchar(50) default null,
+	rubro_habilitado bit default 1
 )
 go
 
@@ -184,7 +184,8 @@ go
 create table ESECUELE.Grado(
 	grado_id int identity(1,1) primary key,
 	grado_descripcion varchar(20) default null,
-	grado_comision numeric(18,2) default null
+	grado_comision numeric(18,2) default null,
+	grado_habilitado bit default 1
 )
 go
 
@@ -238,7 +239,8 @@ create table ESECUELE.Entrada(
 	entrada_ubicacion int default null,
 	entrada_fila int default null,
 	entrada_asiento int default null,
-	entrada_facturada bit default 0
+	entrada_facturada bit default 0,
+	entrada_fecha_evento int not null
 )
 go
 
@@ -403,12 +405,12 @@ insert into ESECUELE.Grado (grado_descripcion, grado_comision) values
 
 -- Ingreso Productos
 insert into ESECUELE.Producto(prod_descripcion, prod_puntos) values
-('Entrada gratuita de espectaculo a elección.',3000),
-('Bebida gratis.',100),
-('Snack gratis.',50),
-('Ticket sorteo moto.',2000),
+('Entrada gratuita de espectaculo a elección',3000),
+('Bebida gratis',100),
+('Snack gratis',50),
+('Ticket sorteo moto',2000),
 ('Televisor',7500),
-('PC portatil.',10000)
+('PC portátil',10000)
 
 /*
 * --------------------- Fin ingreso valores default ------------------------------
@@ -594,7 +596,7 @@ from ESECUELE.Compra
 
 -- Carga Entradas
 insert into ESECUELE.Entrada
-(entrada_compra,entrada_ubicacion, entrada_fila, entrada_asiento)
+(entrada_compra,entrada_ubicacion, entrada_fila, entrada_asiento, entrada_fecha_evento)
 select
 compra,
 (
@@ -604,7 +606,12 @@ compra,
 		and u.ubicacion_precio = t.precio
 ),
 ESECUELE.LetraANumero(fila),
-asiento
+asiento,
+(
+	select fecha_evento_id
+	from ESECUELE.Fecha_Evento
+	where fecha_evento_publicacion = t.publicacion
+)
 from #EntradasTemporales t
 -- Fin de carga de Entradas
 
@@ -768,6 +775,17 @@ as begin
   -- Si el usuario existe, checkeo passwords
   if @password <> @password_input
   begin
+
+	if @primer_login = 1
+	begin
+		update ESECUELE.Usuario
+		set usr_fallas = @fallos,
+			  usr_estado = 0
+		where usr_username = @username
+		raiserror('Su usuario fue deshabilitado.', 18, 10)
+		return
+	end
+
     -- Si hay fallo, incremento contador
     set @fallos = @fallos + 1
     update ESECUELE.Usuario
@@ -777,7 +795,7 @@ as begin
       where usr_username = @username
 	declare @msg NVARCHAR(100)
 	if @fallos < 3
-		set @msg = formatmessage('Contrase�a incorrecta. Tienes %d intentos restantes.', 3 - @fallos)
+		set @msg = formatmessage('Contraseña incorrecta. Tienes un total de %d intentos restantes.', 3 - @fallos)
 	else
 		set @msg = 'Su usuario fue deshabilitado.'
     raiserror(@msg, 18, 10)
@@ -795,10 +813,7 @@ as begin
 		return
 	end
 
-	if @primer_login = 1
-		 exec ESECUELE.SetFallosEstadoUsuario @username, 1, 1
-	else
-		 exec ESECUELE.SetFallosEstadoUsuario @username, 1, 0
+	exec ESECUELE.SetFallosEstadoUsuario @username, 1, 0
    
    if @count > 1
    begin
@@ -1280,12 +1295,14 @@ go
 create procedure ESECUELE.getRubro as
 begin
 	select * from ESECUELE.Rubro
+	where rubro_habilitado = 1
 end
 go
 
 create procedure ESECUELE.getAllGrado as
 begin
 	select * from ESECUELE.Grado
+	where grado_habilitado = 1
 end
 go
 
@@ -1514,6 +1531,7 @@ CREATE TYPE ESECUELE.Compra_Nueva AS TABLE
 (
     compra_cliente int,
     compra_fecha datetime,
+	compra_fecha_evento int,
 	compra_monto_total numeric(18,2),
 	compra_tarjeta varchar(20),
 	entrada_ubicacion int,
@@ -1548,17 +1566,22 @@ as begin
 	declare @asiento int
 	declare @fila int
 	declare @ubicacion int
-	declare cursorUbicacion cursor for select entrada_ubicacion, entrada_fila, entrada_asiento from @compra
+	declare @fecha_evento int
+	declare cursorUbicacion cursor for select entrada_ubicacion, entrada_fila, entrada_asiento, compra_fecha_evento from @compra
 	open cursorUbicacion
 	fetch next from cursorUbicacion into @ubicacion, @fila, @asiento
 	while @@FETCH_STATUS = 0
 	begin
 		if (select ubicacion_sin_numerar from ESECUELE.Ubicacion where ubicacion_id = @ubicacion) = 0
-			insert into ESECUELE.Entrada(entrada_compra, entrada_ubicacion, entrada_fila, entrada_asiento)
-			values (@compra_id,@ubicacion,@fila,@asiento)
+			insert into ESECUELE.Entrada(entrada_compra, entrada_ubicacion, entrada_fila, entrada_asiento, entrada_fecha_evento)
+			values (@compra_id,@ubicacion,@fila,@asiento,@fecha_evento)
 		else
-			insert into ESECUELE.Entrada(entrada_compra, entrada_ubicacion, entrada_asiento)
-			values (@compra_id,@ubicacion,@asiento)
+			while @asiento >0
+			begin
+				insert into ESECUELE.Entrada(entrada_compra, entrada_ubicacion, entrada_fecha_evento)
+				values (@compra_id,@ubicacion, @fecha_evento)
+				set @asiento -= 1
+			end
 
 		update ESECUELE.Ubicacion
 		set ubicacion_asientos_ocupados = ubicacion_asientos_ocupados + @asiento
@@ -1630,7 +1653,9 @@ go
 
 create procedure ESECUELE.deleteRubro(@codigo int) as
 begin
-	delete from ESECUELE.Rubro where rubro_codigo = @codigo
+	update ESECUELE.Rubro
+	set rubro_habilitado = 0
+	where rubro_codigo = @codigo
 end
 go
 
@@ -1649,38 +1674,23 @@ go
 
 create procedure ESECUELE.deleteGrado(@id int) as
 begin
-	delete from ESECUELE.Grado where grado_id = @id
+	update ESECUELE.Grado 
+	set grado_habilitado = 0
+	where grado_id = @id
 end
 go
-
-create procedure ESECUELE.Ticket_Compra(@compra int)
-as begin
-	select cliente_nombre, cliente_apellido
-		  ,compra_id, compra_fecha, compra_total
-		  ,publicacion_descripcion, publicacion_direccion
-		  ,entrada_fila,entrada_fila
-		  ,ubicacion_sin_numerar,ubicacion_precio
-		  ,tipo_ubicacion_desc
-	from ESECUELE.Compra join ESECUELE.Entrada on entrada_compra = compra_id
-								  join ESECUELE.Cliente on cliente_id = compra_cliente
-								  join ESECUELE.Medio_de_Pago on medio_pago_id = compra_medio_pago
-								  join ESECUELE.Ubicacion on ubicacion_id = entrada_ubicacion
-								  join ESECUELE.Tipo_Ubicacion on tipo_ubicacion_id = ubicacion_tipo
-								  join ESECUELE.Publicacion on publicacion_codigo = ubicacion_publicacion
-	where compra_id = @compra
-end
-go
-
 
 create procedure ESECUELE.GetEntradasCompra(@compra int)
 as begin
 	select entrada_id,entrada_fila,entrada_asiento
 		  ,ubicacion_sin_numerar,ubicacion_precio
 		  ,tipo_ubicacion_desc
+		  ,fecha_evento
 	from ESECUELE.Compra join ESECUELE.Entrada on entrada_compra = compra_id
 								  join ESECUELE.Ubicacion on ubicacion_id = entrada_ubicacion
 								  join ESECUELE.Tipo_Ubicacion on tipo_ubicacion_id = ubicacion_tipo
 								  join ESECUELE.Publicacion on publicacion_codigo = ubicacion_publicacion
+								  join ESECUELE.Fecha_Evento on fecha_evento_id = entrada_fecha_evento
 	where compra_id = @compra
 end
 go
@@ -1762,7 +1772,6 @@ as begin
 	select distinct compra_id, compra_fecha, compra_total
 				    ,medio_pago_nro_tarjeta
 					,publicacion_descripcion,publicacion_direccion
-
 	from ESECUELE.Compra join ESECUELE.Entrada on entrada_compra = compra_id
 								  left join ESECUELE.Medio_de_Pago on medio_pago_id = compra_medio_pago
 								  join ESECUELE.Ubicacion on ubicacion_id = entrada_ubicacion
@@ -1773,6 +1782,7 @@ as begin
 end
 go
 
+<<<<<<< HEAD
 create procedure ESECUELE.saveItemFactura(
 						@factura int, 
 						@monto decimal, 
@@ -1812,5 +1822,93 @@ go
 create procedure ESECUELE.getFacturasByEmpresa(@empresaId int) as
 begin
 	select * from ESECUELE.Factura f where f.fact_empresa = @empresaId
+=======
+create procedure ESECUELE.GetPuntaje(@cliente int, @fechaActual datetime, @return_val int output)
+as begin
+	
+	set @return_val = (select  sum(punto_valor - punto_usados)
+						from ESECUELE.Punto
+						where punto_cliente = @cliente and punto_fecha_vencimiento >= @fechaActual)
+
+end
+go
+
+create procedure ESECUELE.GetPuntajeVencido(@cliente int, @fechaActual datetime, @return_val int output)
+as begin
+	
+	set @return_val = (select  sum(punto_valor - punto_usados)
+						from ESECUELE.Punto
+						where punto_cliente = @cliente and punto_fecha_vencimiento < @fechaActual)
+
+end
+go
+
+create procedure ESECUELE.CanjearProducto(@cliente int, @producto int, @valor int, @fecha datetime)
+as begin tran
+
+	begin try
+
+	insert into ESECUELE.Canje(canje_cliente, canje_fecha, canje_producto)
+	values(@cliente, @fecha, @producto)
+
+	declare @restantes int
+	declare @totalRestante int
+
+	set @totalRestante = @valor
+
+	declare @id int
+	declare @puntos int
+	declare @usados int
+	declare cursorPuntos cursor for select punto_id,punto_valor, punto_usados 
+										from ESECUELE.Punto 
+										where punto_cliente = @cliente and punto_fecha_vencimiento >= @fecha
+										and punto_valor > punto_usados
+										order by punto_fecha_vencimiento asc
+	open cursorPuntos
+	fetch next from cursorPuntos into @id, @puntos, @usados
+	while @@FETCH_STATUS = 0
+	begin
+		
+		set @restantes = @puntos - @usados
+
+		if( @restantes - @totalRestante > 0)
+		begin
+			update ESECUELE.Punto
+			set punto_usados = @usados + (@restantes - @totalRestante)
+			where punto_id = @id
+			break
+		end
+		else
+		begin
+			update ESECUELE.Punto
+			set punto_usados = @usados + @restantes
+			where punto_id = @id
+
+			set @totalRestante -= @restantes
+
+			if(@totalRestante = 0)
+				break
+		end
+
+		fetch next from cursorPuntos into @id, @puntos, @usados
+	end
+	close cursorPuntos
+	deallocate cursorPuntos
+	end try
+	begin catch
+		raiserror('Error insert de puntos', 18, 10)
+		rollback
+		return
+	end catch
+commit tran
+go
+
+create procedure ESECUELE.CanjeHistorial(@cliente int)
+as begin
+	select canje_id, canje_fecha, prod_descripcion
+	from ESECUELE.Canje join ESECUELE.Producto on prod_id = canje_producto
+	where canje_cliente = @cliente
+	order by canje_fecha desc
+>>>>>>> puntos
 end
 go

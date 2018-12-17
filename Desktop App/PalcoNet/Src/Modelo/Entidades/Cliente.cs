@@ -19,7 +19,7 @@ namespace PalcoNet.Src.Modelo.Entidades
         public string FechaNacimiento { get; set; }
         public string DatosTarjeta { get; set; }
         public Usuario UsuarioObj { get; set; }
-        
-
+        public int Puntos { get; set; }
+        public int PuntosVencidos { get; set; }
     }
 }

@@ -82,5 +82,21 @@ namespace PalcoNet.Src.Modelo.Daos
                 throw ex;
             }
         }
+
+        public int getPuntaje(int idCliente)
+        {
+            return this.spExecuteScalar(this.schema + ".GetPuntaje", new List<SqlParameter> { 
+            new SqlParameter("@cliente", idCliente),
+            new SqlParameter("@fechaActual",Utils.Utilities.getCurrentDate())
+            });
+        }
+
+        public int getPuntajeVencido(int idCliente)
+        {
+            return this.spExecuteScalar(this.schema + ".GetPuntajeVencido", new List<SqlParameter> { 
+            new SqlParameter("@cliente", idCliente),
+            new SqlParameter("@fechaActual",Utils.Utilities.getCurrentDate())
+            });
+        }
     }
 }

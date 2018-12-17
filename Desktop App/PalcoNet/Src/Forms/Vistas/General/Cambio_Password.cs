@@ -23,6 +23,15 @@ namespace PalcoNet.Src.Forms.Vistas.General
         {
             this.username = username;
             InitializeComponent();
+            this.repeticionPassword.KeyDown += repeticionPassword_KeyDown;
+        }
+
+        void repeticionPassword_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                this.btn_cambiarPass_Click(sender, new EventArgs());
+            }
         }
 
         private void btn_cambiarPass_Click(object sender, EventArgs e)

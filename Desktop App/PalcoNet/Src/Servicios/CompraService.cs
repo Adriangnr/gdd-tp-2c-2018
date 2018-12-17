@@ -54,7 +54,7 @@ namespace PalcoNet.Src.Servicios
           //  Console.WriteLine(row.Count);
         }
 
-        public void save(Cliente cliente,List<Entrada> entradas, double montoTotal)
+        public void save(Cliente cliente,List<Entrada> entradas, double montoTotal, int fecha_evento)
         {
             DatabaseEntity dbEntity = new DatabaseEntity();
 
@@ -66,6 +66,7 @@ namespace PalcoNet.Src.Servicios
             dt.Columns.Add("entrada_ubicacion", typeof(int));
             dt.Columns.Add("entrada_fila", typeof(int));
             dt.Columns.Add("entrada_asiento", typeof(int));
+            dt.Columns.Add("compra_fecha_evento", typeof(int));
 
             foreach (Entrada entrada in entradas)
             {
@@ -110,7 +111,7 @@ namespace PalcoNet.Src.Servicios
             }
         }
 
-        public List<Compra> getAllCompras(Cliente cliente)
+        public List<Compra_Ticket> getAllCompras(Cliente cliente)
         {
             DaoCompra daoCompra = new DaoCompra();
 
@@ -118,11 +119,11 @@ namespace PalcoNet.Src.Servicios
             {
                 List<List<Object>> listas = daoCompra.getAllCompras(cliente.Id);
 
-                List<Compra> compras = new List<Compra>();
+                List<Compra_Ticket> compras = new List<Compra_Ticket>();
 
                 foreach (List<object> row in listas)
                 {
-                    Compra compraObj = new Compra();
+                    Compra_Ticket compraObj = new Compra_Ticket();
 
                     compraObj.Id = (int)row[0];
                     compraObj.Fecha = (DateTime)row[1];
@@ -130,8 +131,6 @@ namespace PalcoNet.Src.Servicios
                     compraObj.Tarjeta = (row[3].GetType() != typeof(DBNull)) ? (string)row[3] : this.SININFO;
                     compraObj.Publicacion = (string)row[4];
                     compraObj.Direccion = (row[5].GetType() != typeof(DBNull)) ? (string)row[5] : this.SININFO;
-                    compraObj.ClienteNombre = cliente.Nombre;
-                    compraObj.ClienteApellido = cliente.Apellido;
 
                     compras.Add(compraObj);
                 }
@@ -144,7 +143,7 @@ namespace PalcoNet.Src.Servicios
             }
         }
 
-        public void getDetallesCompra(Compra compra)
+        public void getDetallesCompra(Compra_Ticket compra)
         {
             try
             {
@@ -161,7 +160,7 @@ namespace PalcoNet.Src.Servicios
             }
         }
 
-        private void loadCompra(Compra compra, List<List<Object>> listas)
+        private void loadCompra(Compra_Ticket compra, List<List<Object>> listas)
         {
             foreach (List<object> row in listas)
             {
@@ -175,6 +174,7 @@ namespace PalcoNet.Src.Servicios
 
                 entrada.Precio = Convert.ToDouble(row[4]);
                 entrada.Tipo = (string)row[5];
+                entrada.FechaEvento = (DateTime)row[6];
 
                 compra.addEntrada(entrada);
             }
