@@ -1782,7 +1782,6 @@ as begin
 end
 go
 
-<<<<<<< HEAD
 create procedure ESECUELE.saveItemFactura(
 						@factura int, 
 						@monto decimal, 
@@ -1909,6 +1908,5 @@ as begin
 	from ESECUELE.Canje join ESECUELE.Producto on prod_id = canje_producto
 	where canje_cliente = @cliente
 	order by canje_fecha desc
->>>>>>> puntos
 end
 go
