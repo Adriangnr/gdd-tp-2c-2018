@@ -1704,7 +1704,7 @@ begin
 	from ESECUELE.Empresa em join ESECUELE.Publicacion p on em.empresa_id = publicacion_empresa
 	join ESECUELE.Ubicacion u on u.ubicacion_publicacion = p.publicacion_codigo  
 	join ESECUELE.Entrada e on e.entrada_ubicacion = u.ubicacion_id
-	where e.entrada_facturada = 0 order by empresa_id
+	order by empresa_id
 end
 go
 
@@ -1806,5 +1806,11 @@ create procedure ESECUELE.updateEntrada(@id int, @facturada bit) as
 begin	
 	update ESECUELE.Entrada set entrada_facturada = @facturada
 	where entrada_id = @id
+end
+go
+
+create procedure ESECUELE.getFacturasByEmpresa(@empresaId int) as
+begin
+	select * from ESECUELE.Factura f where f.fact_empresa = @empresaId
 end
 go

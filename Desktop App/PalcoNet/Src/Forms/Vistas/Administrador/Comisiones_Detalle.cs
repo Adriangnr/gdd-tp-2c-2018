@@ -70,15 +70,14 @@ namespace PalcoNet.Src.Forms.Vistas.Administrador
                 {
                     PalcoNet.Src.Modelo.Entidades.Empresa empresa = 
                         (PalcoNet.Src.Modelo.Entidades.Empresa) this.dataGridViewEmpresas.CurrentRow.DataBoundItem;
-                    Selector_Comisiones selectorComisiones = new Selector_Comisiones(empresa);
-                    selectorComisiones.previous = this;
+                    Selector_Comisiones selectorComisiones = new Selector_Comisiones(empresa, this);
                     selectorComisiones.Show();
                     this.Hide();
                 }
                 catch (Exception ex)
                 {
                     Console.WriteLine(ex.Message);
-                    MessageBox.Show("Error al deshabilitar la empresa!", "Error!",
+                    MessageBox.Show("Error al rendir comisiones!", "Error!",
                                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }

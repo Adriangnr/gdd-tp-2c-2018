@@ -32,8 +32,13 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btn_cancel = new System.Windows.Forms.Button();
             this.dataGridViewEmpresas = new System.Windows.Forms.DataGridView();
+            this.btnVerFacturas = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewEmpresas)).BeginInit();
             this.SuspendLayout();
+            // 
+            // footer
+            // 
+            this.footer.Location = new System.Drawing.Point(691, 649);
             // 
             // btn_comisionar
             // 
@@ -41,12 +46,12 @@
             this.btn_comisionar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_comisionar.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_comisionar.ForeColor = System.Drawing.SystemColors.Window;
-            this.btn_comisionar.Location = new System.Drawing.Point(933, 166);
+            this.btn_comisionar.Location = new System.Drawing.Point(850, 175);
             this.btn_comisionar.Margin = new System.Windows.Forms.Padding(0);
             this.btn_comisionar.Name = "btn_comisionar";
             this.btn_comisionar.Size = new System.Drawing.Size(194, 69);
             this.btn_comisionar.TabIndex = 5;
-            this.btn_comisionar.Text = "Comisionar";
+            this.btn_comisionar.Text = "Rendir Comisiones";
             this.btn_comisionar.UseVisualStyleBackColor = false;
             this.btn_comisionar.Click += new System.EventHandler(this.btn_comisionar_Click);
             // 
@@ -67,7 +72,7 @@
             this.btn_cancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_cancel.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_cancel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.btn_cancel.Location = new System.Drawing.Point(933, 542);
+            this.btn_cancel.Location = new System.Drawing.Point(850, 542);
             this.btn_cancel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btn_cancel.Name = "btn_cancel";
             this.btn_cancel.Size = new System.Drawing.Size(194, 69);
@@ -90,15 +95,30 @@
             this.dataGridViewEmpresas.RowHeadersVisible = false;
             this.dataGridViewEmpresas.RowTemplate.Height = 28;
             this.dataGridViewEmpresas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewEmpresas.Size = new System.Drawing.Size(726, 445);
+            this.dataGridViewEmpresas.Size = new System.Drawing.Size(649, 445);
             this.dataGridViewEmpresas.TabIndex = 58;
+            // 
+            // btnVerFacturas
+            // 
+            this.btnVerFacturas.BackColor = System.Drawing.SystemColors.Highlight;
+            this.btnVerFacturas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnVerFacturas.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnVerFacturas.ForeColor = System.Drawing.SystemColors.Window;
+            this.btnVerFacturas.Location = new System.Drawing.Point(850, 303);
+            this.btnVerFacturas.Margin = new System.Windows.Forms.Padding(0);
+            this.btnVerFacturas.Name = "btnVerFacturas";
+            this.btnVerFacturas.Size = new System.Drawing.Size(194, 69);
+            this.btnVerFacturas.TabIndex = 59;
+            this.btnVerFacturas.Text = "Ver Facturas";
+            this.btnVerFacturas.UseVisualStyleBackColor = false;
             // 
             // Comisiones_Detalle
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.HighlightText;
-            this.ClientSize = new System.Drawing.Size(1176, 678);
+            this.ClientSize = new System.Drawing.Size(1064, 678);
+            this.Controls.Add(this.btnVerFacturas);
             this.Controls.Add(this.dataGridViewEmpresas);
             this.Controls.Add(this.btn_cancel);
             this.Controls.Add(this.label1);
@@ -112,6 +132,7 @@
             this.Controls.SetChildIndex(this.label1, 0);
             this.Controls.SetChildIndex(this.btn_cancel, 0);
             this.Controls.SetChildIndex(this.dataGridViewEmpresas, 0);
+            this.Controls.SetChildIndex(this.btnVerFacturas, 0);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewEmpresas)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -123,5 +144,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btn_cancel;
         private System.Windows.Forms.DataGridView dataGridViewEmpresas;
+        public System.Windows.Forms.Button btnVerFacturas;
     }
 }
