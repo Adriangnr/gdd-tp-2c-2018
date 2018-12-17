@@ -46,6 +46,8 @@ namespace PalcoNet.Src.Servicios
                         itemFactura.comision = (itemFactura.monto) * ((decimal)compra.publicacion.Grado.comision);
                         itemFactura.id = this.itemFacturaService.save(itemFactura);
                         totalComision += itemFactura.comision;
+                        entrada.facturada = true;
+                        this.entradaService.update(entrada);
                     }
                     factura.total = total;
                     factura.totalComision = totalComision;

@@ -41,5 +41,21 @@ namespace PalcoNet.Src.Modelo.Daos
                 throw e;
             }
         }
+
+        public void update(Entrada entrada)
+        {
+            try
+            {
+                this.spExecute("ESECUELE.updateEntrada", new List<SqlParameter>()
+                {
+                    new SqlParameter("@id", entrada.Id),
+                    new SqlParameter("@facturada", entrada.facturada)
+                });
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
     }
 }

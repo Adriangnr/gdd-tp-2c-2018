@@ -107,5 +107,17 @@ namespace PalcoNet.Src.Servicios
             }
             return entradas;
         }
+
+        public void update(Entrada entrada)
+        {
+            try
+            {
+                this.daoEntrada.update(entrada);
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

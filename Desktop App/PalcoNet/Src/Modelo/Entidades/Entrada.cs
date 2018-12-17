@@ -19,6 +19,7 @@ namespace PalcoNet.Src.Modelo.Entidades
         public double Precio { get; set; }
         public bool sinNumerar { get; set; }
         public int Ocupados { get; set; }
+        public bool facturada { get; set; }
 
         public Entrada() { }
 

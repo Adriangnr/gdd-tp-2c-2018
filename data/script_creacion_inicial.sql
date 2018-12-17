@@ -1685,16 +1685,14 @@ as begin
 end
 go
 
-alter procedure ESECUELE.getCountComprasOfEmpresa(@empresaId int, @return_val int output) as
+create procedure ESECUELE.getCountComprasOfEmpresa(@empresaId int, @return_val int output) as
 begin
-	select @return_val = count(distinct compra_id) from ESECUELE.Compra c 
+	select @return_val = count(distinct c.compra_id) from ESECUELE.Compra c 
 	join ESECUELE.Entrada e on c.compra_id=e.entrada_compra
 	join ESECUELE.Ubicacion u on u.ubicacion_id = e.entrada_ubicacion
 	join ESECUELE.Publicacion p on p.publicacion_codigo = u.ubicacion_publicacion
 	join ESECUELE.Empresa em on em.empresa_id = p.publicacion_empresa
-	where em.empresa_id=@empresaId
-	group by c.compra_id
-	order by c.compra_id
+	where em.empresa_id = @empresaId and e.entrada_facturada = 0
 	
 	return @return_val
 end
@@ -1706,6 +1704,7 @@ begin
 	from ESECUELE.Empresa em join ESECUELE.Publicacion p on em.empresa_id = publicacion_empresa
 	join ESECUELE.Ubicacion u on u.ubicacion_publicacion = p.publicacion_codigo  
 	join ESECUELE.Entrada e on e.entrada_ubicacion = u.ubicacion_id
+	where e.entrada_facturada = 0 order by empresa_id
 end
 go
 
@@ -1800,5 +1799,12 @@ create procedure ESECUELE.updateFactura(@id int,
 begin
 	update ESECUELE.Factura set fact_fecha=@fecha, fact_empresa=@empresa, fact_estado=@estado, fact_total=@total, fact_total_comision=@totalComision,
 	fact_forma_pago=@formaPago where fact_id=@id
+end
+go
+
+create procedure ESECUELE.updateEntrada(@id int, @facturada bit) as
+begin	
+	update ESECUELE.Entrada set entrada_facturada = @facturada
+	where entrada_id = @id
 end
 go

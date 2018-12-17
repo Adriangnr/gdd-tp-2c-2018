@@ -40,21 +40,21 @@
             // 
             // footer
             // 
-            this.footer.Location = new System.Drawing.Point(257, 378);
+            this.footer.Location = new System.Drawing.Point(149, 378);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(42, 162);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(461, 20);
+            this.label1.Size = new System.Drawing.Size(319, 20);
             this.label1.TabIndex = 2;
-            this.label1.Text = "Cantidad de compras realizadas a publicaciones de la empresa: ";
+            this.label1.Text = "Cantidad de compras sin rendir comisiones: ";
             // 
             // labelCanCompras
             // 
             this.labelCanCompras.AutoSize = true;
-            this.labelCanCompras.Location = new System.Drawing.Point(500, 162);
+            this.labelCanCompras.Location = new System.Drawing.Point(380, 162);
             this.labelCanCompras.Name = "labelCanCompras";
             this.labelCanCompras.Size = new System.Drawing.Size(122, 20);
             this.labelCanCompras.TabIndex = 3;
@@ -74,13 +74,13 @@
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(44, 213);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(273, 20);
+            this.label5.Size = new System.Drawing.Size(271, 20);
             this.label5.TabIndex = 6;
-            this.label5.Text = "Cuentas entradas desea comisionar?";
+            this.label5.Text = "Cuentas compras desea comisionar?";
             // 
             // txtCantComisiones
             // 
-            this.txtCantComisiones.Location = new System.Drawing.Point(340, 213);
+            this.txtCantComisiones.Location = new System.Drawing.Point(441, 207);
             this.txtCantComisiones.Name = "txtCantComisiones";
             this.txtCantComisiones.Size = new System.Drawing.Size(61, 26);
             this.txtCantComisiones.TabIndex = 7;
@@ -105,7 +105,7 @@
             this.btnComisiones.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnComisiones.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnComisiones.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnComisiones.Location = new System.Drawing.Point(461, 301);
+            this.btnComisiones.Location = new System.Drawing.Point(353, 301);
             this.btnComisiones.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnComisiones.Name = "btnComisiones";
             this.btnComisiones.Size = new System.Drawing.Size(149, 58);
@@ -126,7 +126,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(623, 407);
+            this.ClientSize = new System.Drawing.Size(521, 407);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnComisiones);
