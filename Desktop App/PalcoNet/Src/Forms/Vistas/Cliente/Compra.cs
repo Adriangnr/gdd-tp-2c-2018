@@ -99,7 +99,7 @@ namespace PalcoNet.Src.Forms.Vistas.Cliente
                 {
                     List<int> esconder = new List<int>(new int[] {0,3,6,8});
 
-                    if (  esconder.Contains(column.Index) )
+                    if (  esconder.Contains(column.Index) || column.HeaderText == "FechaEventoId")
                         column.Visible = false;
                     //if (column.HeaderText == "Habilitado")
                       //  column.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;

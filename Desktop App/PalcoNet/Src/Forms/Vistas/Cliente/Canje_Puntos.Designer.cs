@@ -29,12 +29,14 @@
         private void InitializeComponent()
         {
             this.btn_cancel = new System.Windows.Forms.Button();
-            this.premios = new System.Windows.Forms.ListBox();
             this.btn_canjear = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.points = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.dataGridPremios = new System.Windows.Forms.DataGridView();
+            this.Premios = new System.Windows.Forms.Label();
+            this.btn_historial = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridPremios)).BeginInit();
             this.SuspendLayout();
             // 
             // btn_cancel
@@ -48,14 +50,7 @@
             this.btn_cancel.TabIndex = 60;
             this.btn_cancel.Text = "Cancelar";
             this.btn_cancel.UseVisualStyleBackColor = true;
-            // 
-            // premios
-            // 
-            this.premios.FormattingEnabled = true;
-            this.premios.Location = new System.Drawing.Point(245, 83);
-            this.premios.Name = "premios";
-            this.premios.Size = new System.Drawing.Size(366, 316);
-            this.premios.TabIndex = 59;
+            this.btn_cancel.Click += new System.EventHandler(this.btn_cancel_Click);
             // 
             // btn_canjear
             // 
@@ -70,6 +65,7 @@
             this.btn_canjear.TabIndex = 57;
             this.btn_canjear.Text = "Canjear";
             this.btn_canjear.UseVisualStyleBackColor = false;
+            this.btn_canjear.Click += new System.EventHandler(this.btn_canjear_Click);
             // 
             // groupBox1
             // 
@@ -93,35 +89,68 @@
             this.points.TabIndex = 0;
             this.points.Text = "999999";
             // 
-            // label1
+            // dataGridPremios
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(0, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
-            this.label1.TabIndex = 62;
-            this.label1.Text = "label1";
+            this.dataGridPremios.AllowUserToAddRows = false;
+            this.dataGridPremios.AllowUserToDeleteRows = false;
+            this.dataGridPremios.AllowUserToResizeRows = false;
+            this.dataGridPremios.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridPremios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridPremios.Location = new System.Drawing.Point(246, 80);
+            this.dataGridPremios.MultiSelect = false;
+            this.dataGridPremios.Name = "dataGridPremios";
+            this.dataGridPremios.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridPremios.Size = new System.Drawing.Size(364, 319);
+            this.dataGridPremios.TabIndex = 62;
+            // 
+            // Premios
+            // 
+            this.Premios.AutoSize = true;
+            this.Premios.Location = new System.Drawing.Point(246, 49);
+            this.Premios.Name = "Premios";
+            this.Premios.Size = new System.Drawing.Size(44, 13);
+            this.Premios.TabIndex = 63;
+            this.Premios.Text = "Premios";
+            // 
+            // btn_historial
+            // 
+            this.btn_historial.BackColor = System.Drawing.SystemColors.Highlight;
+            this.btn_historial.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_historial.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_historial.ForeColor = System.Drawing.SystemColors.Window;
+            this.btn_historial.Location = new System.Drawing.Point(632, 146);
+            this.btn_historial.Margin = new System.Windows.Forms.Padding(0);
+            this.btn_historial.Name = "btn_historial";
+            this.btn_historial.Size = new System.Drawing.Size(129, 45);
+            this.btn_historial.TabIndex = 64;
+            this.btn_historial.Text = "Historial";
+            this.btn_historial.UseVisualStyleBackColor = false;
+            this.btn_historial.Click += new System.EventHandler(this.btn_historial_Click);
             // 
             // Canje_Puntos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 441);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.btn_historial);
+            this.Controls.Add(this.Premios);
+            this.Controls.Add(this.dataGridPremios);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btn_cancel);
-            this.Controls.Add(this.premios);
             this.Controls.Add(this.btn_canjear);
             this.Name = "Canje_Puntos";
             this.Text = "Palco.NET - Canjear Puntos";
             this.Load += new System.EventHandler(this.Canje_Puntos_Load);
             this.Controls.SetChildIndex(this.btn_canjear, 0);
-            this.Controls.SetChildIndex(this.premios, 0);
             this.Controls.SetChildIndex(this.btn_cancel, 0);
             this.Controls.SetChildIndex(this.groupBox1, 0);
-            this.Controls.SetChildIndex(this.label1, 0);
+            this.Controls.SetChildIndex(this.footer, 0);
+            this.Controls.SetChildIndex(this.dataGridPremios, 0);
+            this.Controls.SetChildIndex(this.Premios, 0);
+            this.Controls.SetChildIndex(this.btn_historial, 0);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridPremios)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -130,10 +159,11 @@
         #endregion
 
         private System.Windows.Forms.Button btn_cancel;
-        public System.Windows.Forms.ListBox premios;
         public System.Windows.Forms.Button btn_canjear;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label points;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.DataGridView dataGridPremios;
+        private System.Windows.Forms.Label Premios;
+        public System.Windows.Forms.Button btn_historial;
     }
 }

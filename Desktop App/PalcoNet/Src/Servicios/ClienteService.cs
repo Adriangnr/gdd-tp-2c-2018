@@ -97,7 +97,7 @@ namespace PalcoNet.Src.Servicios
             clienteObj.NumDoc = (row[4].GetType() != typeof(DBNull)) ? (string)row[4] : "";
             clienteObj.Cuil = (row[5].GetType() != typeof(DBNull)) ? (string)row[5] : "";
             clienteObj.FechaNacimiento = (row[6].GetType() != typeof(DBNull)) ? ((DateTime)row[6]).ToString() : null;
-            clienteObj.DatosTarjeta = (row[7].GetType() != typeof(DBNull)) ? (string)row[7]: null;
+            clienteObj.DatosTarjeta = (row[7].GetType() != typeof(DBNull)) ? (string)row[7]: "Sin información";
             clienteObj.Usuario = (string)row[8];
             clienteObj.Email = (row[17].GetType() != typeof(DBNull)) ? (string)row[17] : "";
             this.loadUsuarioOfClient(clienteObj, row);
@@ -106,6 +106,16 @@ namespace PalcoNet.Src.Servicios
         public void updateTarjeta(int clienteId, string tarjeta)
         {
             this.daoCliente.updateTarjeta(clienteId, tarjeta);
+        }
+
+        public void getPuntaje(Cliente cliente)
+        {
+            cliente.Puntos = daoCliente.getPuntaje(cliente.Id);
+        }
+
+        public void getPuntajeVencido(Cliente cliente)
+        {
+            cliente.PuntosVencidos = daoCliente.getPuntajeVencido(cliente.Id);
         }
     }
 }

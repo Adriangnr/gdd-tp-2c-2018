@@ -17,6 +17,7 @@ namespace PalcoNet.Src.Modelo.Entidades
         public double Precio { get; set; }
         [DisplayName("Numeración")]
         public string SinNumerar { get; set; }
+        public DateTime FechaEvento { get; set; }
 
         public Entrada_Ticket() { }
     }

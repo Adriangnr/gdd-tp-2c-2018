@@ -208,8 +208,9 @@
             this.dataGridHistorialEntradas.AllowUserToAddRows = false;
             this.dataGridHistorialEntradas.AllowUserToDeleteRows = false;
             this.dataGridHistorialEntradas.AllowUserToResizeRows = false;
+            this.dataGridHistorialEntradas.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridHistorialEntradas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridHistorialEntradas.Location = new System.Drawing.Point(311, 83);
+            this.dataGridHistorialEntradas.Location = new System.Drawing.Point(359, 83);
             this.dataGridHistorialEntradas.MultiSelect = false;
             this.dataGridHistorialEntradas.Name = "dataGridHistorialEntradas";
             this.dataGridHistorialEntradas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -233,7 +234,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(307, 43);
+            this.label9.Location = new System.Drawing.Point(355, 43);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(74, 20);
             this.label9.TabIndex = 100;
