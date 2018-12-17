@@ -1821,7 +1821,9 @@ go
 create procedure ESECUELE.getFacturasByEmpresa(@empresaId int) as
 begin
 	select * from ESECUELE.Factura f where f.fact_empresa = @empresaId
-=======
+end
+go
+
 create procedure ESECUELE.GetPuntaje(@cliente int, @fechaActual datetime, @return_val int output)
 as begin
 	
