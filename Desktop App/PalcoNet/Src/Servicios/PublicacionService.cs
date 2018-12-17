@@ -136,12 +136,15 @@ namespace PalcoNet.Src.Servicios
                     Tipo_Ubicacion tipo = new Tipo_Ubicacion(((Tipo_Ubicacion)ubicacionData["descripcion"]).id,((Tipo_Ubicacion)ubicacionData["descripcion"]).descripcion);
                     
                     ubicacion.tipo = tipo;
-
-                    ubicacion.filas = Convert.ToInt16(ubicacionData["fila"]);
-
-                    ubicacion.asientos = Convert.ToInt16(ubicacionData["asiento"]);
+                    ubicacion.filas = (int)ubicacionData["fila"];
                     ubicacion.precio = (double)ubicacionData["precio"];
                     ubicacion.sinNumerar = (bool)ubicacionData["sinNumerar"];
+
+                    if(ubicacion.sinNumerar)
+                        ubicacion.asientos = (int)ubicacionData["cantidad"];
+                    else
+                        ubicacion.asientos = (int)ubicacionData["asiento"];
+
                     ubicacion.ocupados = 0;
 
                     this.daoPublicaion.saveUbicacion(ubicacion);

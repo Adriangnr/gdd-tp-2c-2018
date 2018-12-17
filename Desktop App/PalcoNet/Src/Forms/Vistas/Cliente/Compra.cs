@@ -94,10 +94,10 @@ namespace PalcoNet.Src.Forms.Vistas.Cliente
                     MessageBox.Show("No se encontraron publicaciones!", "Listado de publicaciones activas.",
                                 MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+                List<int> esconder = new List<int>(new int[] { 0, 3, 6, 8 });
 
                 foreach (DataGridViewColumn column in this.dataGridPublicaciones.Columns)
                 {
-                    List<int> esconder = new List<int>(new int[] {0,3,6,8});
 
                     if (  esconder.Contains(column.Index) || column.HeaderText == "FechaEventoId")
                         column.Visible = false;

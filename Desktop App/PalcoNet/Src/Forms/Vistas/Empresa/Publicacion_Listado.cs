@@ -56,7 +56,15 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
                 {
                     this.dataGridPublicaciones.DataSource = null;
                     this.dataGridPublicaciones.DataSource = this.publicaciones;
-                    this.dataGridPublicaciones.Columns[4].Visible = false;
+
+                    List<string> esconder = new List<string>() { "FechaEvento", "FechaEventoId"};
+
+                    foreach (DataGridViewColumn column in this.dataGridPublicaciones.Columns)
+                    {
+
+                        if (esconder.Contains(column.HeaderText))
+                            column.Visible = false;
+                    }
                     this.dataGridPublicaciones.ClearSelection();
                 }
             }
@@ -78,7 +86,7 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
         private void btn_cancel_Click(object sender, EventArgs e)
         {
             this.previous.Show();
-            this.Hide();
+            this.Close();
         }
 
         private void btn_create_Click(object sender, EventArgs e)
@@ -105,8 +113,6 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
                 detailForm.setUsuario(this.usuario);
                 detailForm.loadFields();
                 detailForm.Show();
-                System.Drawing.Size size = new System.Drawing.Size(1100, 500);
-                detailForm.Size = size;
                 this.Hide();
             }
             catch (Exception ex)

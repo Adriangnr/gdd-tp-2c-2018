@@ -61,16 +61,16 @@ namespace PalcoNet.Src.Servicios
             DataTable dt = new DataTable("Nueva_compra");
             dt.Columns.Add("compra_cliente", typeof(int));
             dt.Columns.Add("compra_fecha", typeof(DateTime));
+            dt.Columns.Add("compra_fecha_evento", typeof(int));
             dt.Columns.Add("compra_monto_total", typeof(double));
             dt.Columns.Add("compra_tarjeta", typeof(string));
             dt.Columns.Add("entrada_ubicacion", typeof(int));
             dt.Columns.Add("entrada_fila", typeof(int));
             dt.Columns.Add("entrada_asiento", typeof(int));
-            dt.Columns.Add("compra_fecha_evento", typeof(int));
 
             foreach (Entrada entrada in entradas)
             {
-                dt.Rows.Add(cliente.Id,Utilities.getCurrentDate(),montoTotal,cliente.DatosTarjeta,entrada.UbicacionId,entrada.Fila,entrada.Asiento);
+                dt.Rows.Add(cliente.Id,Utilities.getCurrentDate(),montoTotal,fecha_evento,cliente.DatosTarjeta,entrada.UbicacionId,entrada.Fila,entrada.Asiento);
             }
 
             var sqlParam = new SqlParameter("@compra", SqlDbType.Structured);

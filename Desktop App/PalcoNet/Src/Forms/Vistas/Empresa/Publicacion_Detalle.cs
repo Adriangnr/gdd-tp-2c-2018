@@ -150,7 +150,7 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
         private void btn_cancel_Click(object sender, EventArgs e)
         {
             this.previous.Show();
-            this.Hide();
+            this.Close();
         }
 
         private void registerLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -256,9 +256,6 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
                     this.publicacionService.save(this.publicacionService.loadData(data), this.getFechas(), this.getUbicaciones());
                     MessageBox.Show("Publicacion cargada con exito!", "Cagar publicación.",
                                     MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    this.Hide();
-                    ((Publicacion_Listado)this.previous).reload();
-                    this.previous.Show();
                 }
                 else
                 {
@@ -272,13 +269,16 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
                     MessageBox.Show("Publicacion actualizada con exito!", "Actualizar publicación.",
                                     MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    this.Hide();
-                    Publicacion_Listado listado = new Publicacion_Listado();
+                    /*Publicacion_Listado listado = new Publicacion_Listado();
                     listado.usuario = this.usuario;
                     this.previous.Close();
                     this.previous = listado;
                     listado.Show();
+                    this.Hide();*/
                 }
+                ((Publicacion_Listado)this.previous).reload();
+                this.previous.Show();
+                this.Close();
                 
             }
             catch(ValidadorException ex)

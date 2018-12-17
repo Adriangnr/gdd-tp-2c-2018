@@ -174,7 +174,7 @@ namespace PalcoNet.Src.Forms.Vistas.Cliente
             if(this.entradasCompradasN.Count == 0)
                 MessageBox.Show("Debes elegir al menos una ubicación!", "Error compra.",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
-            else if (this.cliente.DatosTarjeta == null)
+            else if (this.cliente.DatosTarjeta == "Sin información")
             {
                 MessageBox.Show("Debes ingresar una tarjeta!", "Error compra.",
                                     MessageBoxButtons.OK, MessageBoxIcon.Information);
