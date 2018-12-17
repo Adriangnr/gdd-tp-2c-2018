@@ -46,5 +46,17 @@ namespace PalcoNet.Src.Modelo.Daos
                 throw ex;
             }
         }
+
+        public List<List<object>> getFacturasByEmpresa(int id){
+            try
+            {
+                return this.spExecuteDataReader("ESECUELE.getFacturasByEmpresa", new List<SqlParameter>(){
+                    new SqlParameter("@empresaId", id)
+                });    
+            }
+            catch(Exception ex){
+                throw ex;
+            }
+        }
     }
 }

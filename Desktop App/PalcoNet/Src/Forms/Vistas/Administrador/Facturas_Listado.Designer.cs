@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dataGridViewFacturas = new System.Windows.Forms.DataGridView();
             this.btnVerDetalle = new System.Windows.Forms.Button();
             this.btn_cancel = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewFacturas)).BeginInit();
             this.SuspendLayout();
             // 
             // footer
@@ -40,12 +40,12 @@
             // 
             // dataGridView1
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(48, 122);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowTemplate.Height = 28;
-            this.dataGridView1.Size = new System.Drawing.Size(428, 307);
-            this.dataGridView1.TabIndex = 2;
+            this.dataGridViewFacturas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewFacturas.Location = new System.Drawing.Point(48, 122);
+            this.dataGridViewFacturas.Name = "dataGridView1";
+            this.dataGridViewFacturas.RowTemplate.Height = 28;
+            this.dataGridViewFacturas.Size = new System.Drawing.Size(428, 307);
+            this.dataGridViewFacturas.TabIndex = 2;
             // 
             // btnVerDetalle
             // 
@@ -73,6 +73,7 @@
             this.btn_cancel.TabIndex = 60;
             this.btn_cancel.Text = "Cancelar";
             this.btn_cancel.UseVisualStyleBackColor = true;
+            this.btn_cancel.Click += new System.EventHandler(this.btn_cancel_Click);
             // 
             // Facturas_Listado
             // 
@@ -81,14 +82,14 @@
             this.ClientSize = new System.Drawing.Size(706, 536);
             this.Controls.Add(this.btnVerDetalle);
             this.Controls.Add(this.btn_cancel);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dataGridViewFacturas);
             this.Name = "Facturas_Listado";
             this.Text = "Facturas_Listado";
             this.Controls.SetChildIndex(this.footer, 0);
-            this.Controls.SetChildIndex(this.dataGridView1, 0);
+            this.Controls.SetChildIndex(this.dataGridViewFacturas, 0);
             this.Controls.SetChildIndex(this.btn_cancel, 0);
             this.Controls.SetChildIndex(this.btnVerDetalle, 0);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewFacturas)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -96,7 +97,7 @@
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dataGridViewFacturas;
         public System.Windows.Forms.Button btnVerDetalle;
         private System.Windows.Forms.Button btn_cancel;
     }
