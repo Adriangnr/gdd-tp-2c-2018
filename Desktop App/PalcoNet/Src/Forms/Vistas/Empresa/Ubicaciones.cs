@@ -23,6 +23,8 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
         {
             InitializeComponent();
             this.comboBoxTipos.Items.AddRange(this.ubicacionService.getTiposUbicaciones().ToArray());
+            this.txt_cantidad.Enabled = false;
+            txt_cantidad.Text = "0";
         }
 
         private void label4_Click(object sender, EventArgs e)
@@ -39,16 +41,22 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
         {
             try
             {
+                Dictionary<string, object> newUbicacion = new Dictionary<string, object>();
+
+                if(!this.chkSinNumerar.Checked)
+                    this.txt_cantidad.Text = (Convert.ToInt16(this.txt_filas.Text) * Convert.ToInt16(this.txt_asientos.Text)).ToString();
+
                 ValidadorCargaPublicacion validador = new ValidadorCargaPublicacion();
                 validador.validar(this.Controls);
-                Dictionary<string, object> newUbicacion = new Dictionary<string, object>();
                 newUbicacion.Add("descripcion", this.comboBoxTipos.SelectedItem);
                 newUbicacion.Add("tipo", (int)((Tipo_Ubicacion)this.comboBoxTipos.SelectedItem).id);
-                newUbicacion.Add("filas", (string)this.txt_filas.Text);
-                newUbicacion.Add("asientos", (string)this.txt_asientos.Text);
-                newUbicacion.Add("precio", Convert.ToDouble(this.txt_precio.Text));
-                newUbicacion.Add("cantidad", Convert.ToInt16(this.txt_cantidad.Text));
+                newUbicacion.Add("filas", int.Parse(this.txt_filas.Text));
+                newUbicacion.Add("asientos", int.Parse(this.txt_asientos.Text));
+
+                newUbicacion.Add("precio", Double.Parse(this.txt_precio.Text,System.Globalization.CultureInfo.InvariantCulture));
                 newUbicacion.Add("sinNumerar", this.chkSinNumerar.Checked);
+
+                newUbicacion.Add("cantidad", int.Parse(this.txt_cantidad.Text));
 
                 this.parent.AddUbicacion(newUbicacion);
             }
@@ -67,17 +75,20 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
 
         private void chkSinNumerar_CheckedChanged(object sender, EventArgs e)
         {
+            this.txt_filas.Text = "0";
+            this.txt_asientos.Text = "0";
+
             if (this.chkSinNumerar.Checked)
             {
-                this.txt_asientos.Text = "0";
                 this.txt_asientos.Enabled = false;
-                this.txt_filas.Text = "0";
                 this.txt_filas.Enabled = false;
+                this.txt_cantidad.Enabled = true;
             }
             else
             {
                 this.txt_asientos.Enabled = true;
                 this.txt_filas.Enabled = true;
+                this.txt_cantidad.Enabled = false;
             }
         }
     }

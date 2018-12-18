@@ -53,6 +53,7 @@ namespace PalcoNet.Src.Servicios
             List<Ubicacion> ubicaciones = ubicacionService.getAllUbicacionesDisponibles(publicacion);
             //SortableBindingList<Entrada> entradasDisponibles = new SortableBindingList<Entrada>();
             List<Entrada> entradasDisponibles = new List<Entrada>();
+
             if (ubicaciones.Any(u => u.asientos * u.filas > u.ocupados))
             {
                 SortableBindingList<Entrada> entradasVendidas = this.GetEntradasVendidas(publicacion);
@@ -69,22 +70,38 @@ namespace PalcoNet.Src.Servicios
         {
             int fila = u.filas, asiento = u.asientos;
 
-            if (fila * asiento == u.ocupados)
+            if (!u.sinNumerar) // Si es numerada
+            {
+                if (fila * asiento == u.ocupados)
+                    return;
+
+                while (fila > 0)
+                {
+                    while (asiento > 0)
+                    {
+                        Entrada entradaNueva = new Entrada(u.id, fila, asiento, u);
+
+                        if (!entradasVendidas.Any(e => e.EsIgual(entradaNueva)))
+                            entradasDisponibles.Add(entradaNueva);
+
+                        asiento -= 1;
+                    }
+                    asiento = u.asientos;
+                    fila -= 1;
+                }
+            }
+            else
+            {
+                if (asiento == u.ocupados)
                 return;
 
-            while (fila > 0)
-            {
-                while (asiento > 0)
+                if (asiento > 0)
                 {
                     Entrada entradaNueva = new Entrada(u.id, fila, asiento, u);
 
-                    if( !entradasVendidas.Any(e => e.EsIgual(entradaNueva) ))
+                    if (!entradasVendidas.Any(e => e.EsIgual(entradaNueva)))
                         entradasDisponibles.Add(entradaNueva);
-
-                    asiento -= 1;
                 }
-                asiento = u.asientos;
-                fila -= 1;
             }
 
         }

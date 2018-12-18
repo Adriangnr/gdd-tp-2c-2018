@@ -27,9 +27,10 @@ namespace PalcoNet.Src.Forms.Vistas.Cliente
             this.publicacion = ubicacionId;
             this.entradasCompradas = entradasCompradas;
             this.entradasDisponibles = entradasDisponibles;
+            InitializeComponent();
+            this.loadEntradas();
             this.comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
             this.textBox1.TextChanged += textBox1_TextChanged;
-            InitializeComponent();
         }
 
         void textBox1_TextChanged(object sender, EventArgs e)
@@ -52,8 +53,10 @@ namespace PalcoNet.Src.Forms.Vistas.Cliente
 
         private void Compra_Sin_Numerar_Load(object sender, EventArgs e)
         {
-            IEnumerable<Entrada> entradas = entradasDisponibles.Where( en => en.Asiento > en.Ocupados);
-            this.comboBox1.DataSource = entradas;
+            Entrada entrada = this.comboBox1.SelectedItem as Entrada;
+            this.precio = entrada.Precio;
+            this.label_precio.Text = this.precio.ToString();
+
         }
 
 
@@ -70,8 +73,13 @@ namespace PalcoNet.Src.Forms.Vistas.Cliente
             if (cantidad <= (entrada.Asiento - entrada.Ocupados))
             {
                 entrada.cantSinNumerar = cantidad;
-                entrada.Ocupados += cantidad;
-                this.entradasCompradas.Add(entrada);
+                entrada.Ocupados = cantidad;
+                if(!this.entradasCompradas.Contains(entrada))
+                    this.entradasCompradas.Add(entrada);
+
+                this.textBox1.Clear();
+                ((Compra_Detalle)this.previous).load_entradasSN();
+                ((Compra_Detalle)this.previous).dataGridEntradasSinNumerar.Refresh();
                 this.Hide();
             }
             else
@@ -80,6 +88,11 @@ namespace PalcoNet.Src.Forms.Vistas.Cliente
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
                 this.textBox1.Text = "";
             }
+        }
+
+        private void loadEntradas()
+        {
+            this.comboBox1.DataSource = entradasDisponibles.Where(en => en.Asiento > en.Ocupados).ToList();
         }
     }
 }

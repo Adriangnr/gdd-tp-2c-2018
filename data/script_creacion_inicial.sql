@@ -1509,21 +1509,28 @@ go
 create procedure ESECUELE.saveUbicacion( @publicacion int,
 										 @filas int,
 										 @asientos int,
-										 @precio decimal,
+										 @precio numeric(18,2),
 										 @sinNumerar bit,
 										 @ocupados int,
 										 @tipo int ) as
-begin
-	insert into ESECUELE.Ubicacion (ubicacion_publicacion, 
-									ubicacion_cant_filas, 
-									ubicacion_cant_asientos, 
-									ubicacion_precio, 
-									ubicacion_sin_numerar,
-									ubicacion_asientos_ocupados,
-									ubicacion_tipo)
-	values
-	(@publicacion, @filas, @asientos, @precio, @sinNumerar, @ocupados, @tipo)
-end
+begin tran
+	begin try
+		insert into ESECUELE.Ubicacion (ubicacion_publicacion, 
+										ubicacion_cant_filas, 
+										ubicacion_cant_asientos, 
+										ubicacion_precio, 
+										ubicacion_sin_numerar,
+										ubicacion_asientos_ocupados,
+										ubicacion_tipo)
+		values
+		(@publicacion, @filas, @asientos, @precio, @sinNumerar, @ocupados, @tipo)
+	end try
+	begin catch
+		raiserror('Error insertando ubicacion',19,10)
+		rollback
+		return
+	end catch
+commit tran
 go 
 
 create procedure ESECUELE.getClienteByUsername(@username varchar(50))
@@ -1582,26 +1589,32 @@ as begin
 	declare @fila int
 	declare @ubicacion int
 	declare @fecha_evento int
+	declare @ocupado int
+	set @ocupado = 0
 	declare cursorUbicacion cursor for select entrada_ubicacion, entrada_fila, entrada_asiento, compra_fecha_evento from @compra
 	open cursorUbicacion
-	fetch next from cursorUbicacion into @ubicacion, @fila, @asiento
+	fetch next from cursorUbicacion into @ubicacion, @fila, @asiento, @fecha_evento
 	while @@FETCH_STATUS = 0
 	begin
 		if (select ubicacion_sin_numerar from ESECUELE.Ubicacion where ubicacion_id = @ubicacion) = 0
+		begin
 			insert into ESECUELE.Entrada(entrada_compra, entrada_ubicacion, entrada_fila, entrada_asiento, entrada_fecha_evento)
 			values (@compra_id,@ubicacion,@fila,@asiento,@fecha_evento)
+			set @ocupado = 1
+		end
 		else
-			while @asiento >0
+			while @asiento > 0
 			begin
 				insert into ESECUELE.Entrada(entrada_compra, entrada_ubicacion, entrada_fecha_evento)
 				values (@compra_id,@ubicacion, @fecha_evento)
 				set @asiento -= 1
+				set @ocupado +=1
 			end
 
 		update ESECUELE.Ubicacion
-		set ubicacion_asientos_ocupados = ubicacion_asientos_ocupados + @asiento
+		set ubicacion_asientos_ocupados += @ocupado
 		where ubicacion_id = @ubicacion
-		fetch next from cursorUbicacion into @ubicacion, @fila, @asiento
+		fetch next from cursorUbicacion into @ubicacion, @fila, @asiento, @fecha_evento
 	end
 	close cursorUbicacion
 	deallocate cursorUbicacion
@@ -1761,7 +1774,7 @@ go
 create procedure ESECUELE.saveFactura(@fecha datetime,
 									  @empresa int, 
 									  @estado bit, 
-									  @total decimal, 
+									  @total numeric(18,2), 
 									  @formaPago int, 
 									  @return_val int output) as
 begin
@@ -1799,11 +1812,11 @@ go
 
 create procedure ESECUELE.saveItemFactura(
 						@factura int, 
-						@monto decimal, 
+						@monto numeric(18,2), 
 						@descripcion varchar(50), 
 						@cantidad int, 
 						@entrada int,
-						@comision decimal,
+						@comision numeric(18,2),
 						@return_val int output) as
 begin
 	insert into ESECUELE.Item_Factura (item_id_factura, item_monto, item_descripcion, item_cantidad, item_entrada, item_total_comision)
@@ -1817,8 +1830,8 @@ create procedure ESECUELE.updateFactura(@id int,
 									    @fecha datetime, 
 										@empresa int, 
 										@estado bit, 
-										@total decimal, 
-										@totalComision decimal,
+										@total numeric(18,2), 
+										@totalComision numeric(18,2),
 										@formaPago int) as
 begin
 	update ESECUELE.Factura set fact_fecha=@fecha, fact_empresa=@empresa, fact_estado=@estado, fact_total=@total, fact_total_comision=@totalComision,

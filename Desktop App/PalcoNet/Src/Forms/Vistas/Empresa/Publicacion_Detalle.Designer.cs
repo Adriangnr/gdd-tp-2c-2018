@@ -64,35 +64,33 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
             // 
             // footer
             // 
-            this.footer.Location = new System.Drawing.Point(1143, 628);
+            this.footer.Location = new System.Drawing.Point(927, 407);
+            this.footer.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label1.Location = new System.Drawing.Point(48, 127);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(32, 83);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(96, 20);
+            this.label1.Size = new System.Drawing.Size(66, 13);
             this.label1.TabIndex = 33;
             this.label1.Text = "Descripción:";
             // 
             // descripcion
             // 
-            this.descripcion.Location = new System.Drawing.Point(225, 121);
-            this.descripcion.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.descripcion.Location = new System.Drawing.Point(150, 79);
             this.descripcion.Name = "descripcion";
-            this.descripcion.Size = new System.Drawing.Size(270, 26);
-            this.descripcion.TabIndex = 32;
+            this.descripcion.Size = new System.Drawing.Size(181, 20);
+            this.descripcion.TabIndex = 0;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label6.Location = new System.Drawing.Point(48, 230);
-            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label6.Location = new System.Drawing.Point(32, 149);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(57, 20);
+            this.label6.Size = new System.Drawing.Size(39, 13);
             this.label6.TabIndex = 42;
             this.label6.Text = "Rubro:";
             // 
@@ -100,29 +98,26 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
             // 
             this.label7.AutoSize = true;
             this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label7.Location = new System.Drawing.Point(48, 180);
-            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label7.Location = new System.Drawing.Point(32, 117);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(79, 20);
+            this.label7.Size = new System.Drawing.Size(55, 13);
             this.label7.TabIndex = 44;
             this.label7.Text = "Dirección:";
             // 
             // direccion
             // 
-            this.direccion.Location = new System.Drawing.Point(225, 174);
-            this.direccion.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.direccion.Location = new System.Drawing.Point(150, 113);
             this.direccion.Name = "direccion";
-            this.direccion.Size = new System.Drawing.Size(270, 26);
-            this.direccion.TabIndex = 43;
+            this.direccion.Size = new System.Drawing.Size(181, 20);
+            this.direccion.TabIndex = 1;
             // 
             // label8
             // 
             this.label8.AutoSize = true;
             this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label8.Location = new System.Drawing.Point(48, 282);
-            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label8.Location = new System.Drawing.Point(32, 183);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(163, 20);
+            this.label8.Size = new System.Drawing.Size(111, 13);
             this.label8.TabIndex = 46;
             this.label8.Text = "Grado de publicación:";
             // 
@@ -130,30 +125,27 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
             // 
             this.grado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.grado.FormattingEnabled = true;
-            this.grado.Location = new System.Drawing.Point(227, 277);
-            this.grado.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.grado.Location = new System.Drawing.Point(151, 180);
             this.grado.Name = "grado";
-            this.grado.Size = new System.Drawing.Size(268, 28);
-            this.grado.TabIndex = 47;
+            this.grado.Size = new System.Drawing.Size(180, 21);
+            this.grado.TabIndex = 3;
             // 
             // estado
             // 
             this.estado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.estado.FormattingEnabled = true;
-            this.estado.Location = new System.Drawing.Point(227, 344);
-            this.estado.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.estado.Location = new System.Drawing.Point(151, 224);
             this.estado.Name = "estado";
-            this.estado.Size = new System.Drawing.Size(268, 28);
-            this.estado.TabIndex = 49;
+            this.estado.Size = new System.Drawing.Size(180, 21);
+            this.estado.TabIndex = 4;
             // 
             // label9
             // 
             this.label9.AutoSize = true;
             this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label9.Location = new System.Drawing.Point(48, 352);
-            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label9.Location = new System.Drawing.Point(32, 229);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(64, 20);
+            this.label9.Size = new System.Drawing.Size(43, 13);
             this.label9.TabIndex = 48;
             this.label9.Text = "Estado:";
             // 
@@ -161,11 +153,10 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
             // 
             this.rubro.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.rubro.FormattingEnabled = true;
-            this.rubro.Location = new System.Drawing.Point(225, 222);
-            this.rubro.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.rubro.Location = new System.Drawing.Point(150, 144);
             this.rubro.Name = "rubro";
-            this.rubro.Size = new System.Drawing.Size(270, 28);
-            this.rubro.TabIndex = 52;
+            this.rubro.Size = new System.Drawing.Size(181, 21);
+            this.rubro.TabIndex = 2;
             // 
             // registerLink
             // 
@@ -174,10 +165,9 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
             this.registerLink.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.registerLink.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
             this.registerLink.LinkColor = System.Drawing.SystemColors.MenuHighlight;
-            this.registerLink.Location = new System.Drawing.Point(47, 571);
-            this.registerLink.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.registerLink.Location = new System.Drawing.Point(31, 371);
             this.registerLink.Name = "registerLink";
-            this.registerLink.Size = new System.Drawing.Size(172, 25);
+            this.registerLink.Size = new System.Drawing.Size(119, 16);
             this.registerLink.TabIndex = 55;
             this.registerLink.TabStop = true;
             this.registerLink.Text = "Limpiar Formulario";
@@ -188,11 +178,10 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
             this.btn_cancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_cancel.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_cancel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.btn_cancel.Location = new System.Drawing.Point(1096, 527);
-            this.btn_cancel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btn_cancel.Location = new System.Drawing.Point(896, 342);
             this.btn_cancel.Name = "btn_cancel";
-            this.btn_cancel.Size = new System.Drawing.Size(194, 69);
-            this.btn_cancel.TabIndex = 54;
+            this.btn_cancel.Size = new System.Drawing.Size(129, 45);
+            this.btn_cancel.TabIndex = 8;
             this.btn_cancel.Text = "Cancelar";
             this.btn_cancel.UseVisualStyleBackColor = true;
             this.btn_cancel.Click += new System.EventHandler(this.btn_cancel_Click);
@@ -203,11 +192,10 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
             this.btn_guardar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_guardar.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_guardar.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btn_guardar.Location = new System.Drawing.Point(1302, 527);
-            this.btn_guardar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btn_guardar.Location = new System.Drawing.Point(1033, 342);
             this.btn_guardar.Name = "btn_guardar";
-            this.btn_guardar.Size = new System.Drawing.Size(194, 69);
-            this.btn_guardar.TabIndex = 53;
+            this.btn_guardar.Size = new System.Drawing.Size(129, 45);
+            this.btn_guardar.TabIndex = 7;
             this.btn_guardar.Text = "Guardar";
             this.btn_guardar.UseVisualStyleBackColor = false;
             this.btn_guardar.Click += new System.EventHandler(this.btn_guardar_Click);
@@ -215,9 +203,10 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(588, 119);
+            this.label2.Location = new System.Drawing.Point(392, 77);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(134, 20);
+            this.label2.Size = new System.Drawing.Size(90, 13);
             this.label2.TabIndex = 57;
             this.label2.Text = "Fechas y horarios";
             this.label2.Click += new System.EventHandler(this.label2_Click);
@@ -225,9 +214,10 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(958, 119);
+            this.label3.Location = new System.Drawing.Point(639, 77);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(269, 20);
+            this.label3.Size = new System.Drawing.Size(182, 13);
             this.label3.TabIndex = 59;
             this.label3.Text = "Tipos de entradas de su espectaculo";
             // 
@@ -236,11 +226,10 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
             this.btn_pub_cargarFechasHoras.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_pub_cargarFechasHoras.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_pub_cargarFechasHoras.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.btn_pub_cargarFechasHoras.Location = new System.Drawing.Point(52, 419);
-            this.btn_pub_cargarFechasHoras.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btn_pub_cargarFechasHoras.Location = new System.Drawing.Point(35, 272);
             this.btn_pub_cargarFechasHoras.Name = "btn_pub_cargarFechasHoras";
-            this.btn_pub_cargarFechasHoras.Size = new System.Drawing.Size(194, 69);
-            this.btn_pub_cargarFechasHoras.TabIndex = 60;
+            this.btn_pub_cargarFechasHoras.Size = new System.Drawing.Size(129, 45);
+            this.btn_pub_cargarFechasHoras.TabIndex = 5;
             this.btn_pub_cargarFechasHoras.Text = "Cargar Fechas y Horarios";
             this.btn_pub_cargarFechasHoras.UseVisualStyleBackColor = true;
             this.btn_pub_cargarFechasHoras.Click += new System.EventHandler(this.btn_pub_cargarFechasHoras_Click);
@@ -255,13 +244,14 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
             this.dataGridView_fechaHora.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.fechaHora,
             this.btnEliminar});
-            this.dataGridView_fechaHora.Location = new System.Drawing.Point(592, 153);
+            this.dataGridView_fechaHora.Location = new System.Drawing.Point(395, 99);
+            this.dataGridView_fechaHora.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView_fechaHora.Name = "dataGridView_fechaHora";
             this.dataGridView_fechaHora.ReadOnly = true;
             this.dataGridView_fechaHora.RowHeadersVisible = false;
             this.dataGridView_fechaHora.RowTemplate.Height = 28;
             this.dataGridView_fechaHora.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView_fechaHora.Size = new System.Drawing.Size(343, 335);
+            this.dataGridView_fechaHora.Size = new System.Drawing.Size(229, 218);
             this.dataGridView_fechaHora.TabIndex = 66;
             this.dataGridView_fechaHora.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_fechaHora_CellContentClick);
             // 
@@ -283,6 +273,8 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
             // dataGridViewUbicaciones
             // 
             this.dataGridViewUbicaciones.AllowUserToAddRows = false;
+            this.dataGridViewUbicaciones.AllowUserToResizeRows = false;
+            this.dataGridViewUbicaciones.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridViewUbicaciones.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewUbicaciones.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.txtTipoUbicacion,
@@ -292,11 +284,13 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
             this.txtCantidad,
             this.sinNumerar,
             this.btnQuitar});
-            this.dataGridViewUbicaciones.Location = new System.Drawing.Point(962, 152);
+            this.dataGridViewUbicaciones.Location = new System.Drawing.Point(641, 99);
+            this.dataGridViewUbicaciones.Margin = new System.Windows.Forms.Padding(2);
+            this.dataGridViewUbicaciones.MultiSelect = false;
             this.dataGridViewUbicaciones.Name = "dataGridViewUbicaciones";
             this.dataGridViewUbicaciones.RowHeadersVisible = false;
             this.dataGridViewUbicaciones.RowTemplate.Height = 28;
-            this.dataGridViewUbicaciones.Size = new System.Drawing.Size(534, 336);
+            this.dataGridViewUbicaciones.Size = new System.Drawing.Size(521, 218);
             this.dataGridViewUbicaciones.TabIndex = 67;
             this.dataGridViewUbicaciones.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewUbicaciones_CellContentClick);
             // 
@@ -305,31 +299,26 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
             this.txtTipoUbicacion.HeaderText = "Tipo de Ubicacion";
             this.txtTipoUbicacion.Name = "txtTipoUbicacion";
             this.txtTipoUbicacion.ReadOnly = true;
-            this.txtTipoUbicacion.Width = 200;
             // 
             // fila
             // 
             this.fila.HeaderText = "Filas";
             this.fila.Name = "fila";
-            this.fila.Width = 60;
             // 
             // asiento
             // 
             this.asiento.HeaderText = "Asientos";
             this.asiento.Name = "asiento";
-            this.asiento.Width = 70;
             // 
             // txtPrecio
             // 
             this.txtPrecio.HeaderText = "Precio";
             this.txtPrecio.Name = "txtPrecio";
-            this.txtPrecio.Width = 60;
             // 
             // txtCantidad
             // 
             this.txtCantidad.HeaderText = "Cantidad";
             this.txtCantidad.Name = "txtCantidad";
-            this.txtCantidad.Width = 80;
             // 
             // sinNumerar
             // 
@@ -343,28 +332,25 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
             this.btnQuitar.Name = "btnQuitar";
             this.btnQuitar.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.btnQuitar.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.btnQuitar.Width = 60;
             // 
             // btnCargarUbicaciones
             // 
             this.btnCargarUbicaciones.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCargarUbicaciones.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCargarUbicaciones.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.btnCargarUbicaciones.Location = new System.Drawing.Point(301, 419);
-            this.btnCargarUbicaciones.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnCargarUbicaciones.Location = new System.Drawing.Point(201, 272);
             this.btnCargarUbicaciones.Name = "btnCargarUbicaciones";
-            this.btnCargarUbicaciones.Size = new System.Drawing.Size(194, 69);
-            this.btnCargarUbicaciones.TabIndex = 68;
+            this.btnCargarUbicaciones.Size = new System.Drawing.Size(129, 45);
+            this.btnCargarUbicaciones.TabIndex = 6;
             this.btnCargarUbicaciones.Text = "Cargar Ubicaciones";
             this.btnCargarUbicaciones.UseVisualStyleBackColor = true;
             this.btnCargarUbicaciones.Click += new System.EventHandler(this.btnCargarUbicaciones_Click);
             // 
             // Publicacion_Detalle
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(1518, 678);
+            this.ClientSize = new System.Drawing.Size(1184, 441);
             this.Controls.Add(this.btnCargarUbicaciones);
             this.Controls.Add(this.dataGridViewUbicaciones);
             this.Controls.Add(this.dataGridView_fechaHora);
@@ -384,8 +370,7 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.descripcion);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Sizable;
-            this.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "Publicacion_Detalle";
             this.Text = "Palco.NET - Creación de Publicación";
             this.Load += new System.EventHandler(this.Publicacion_Detalle_Load);

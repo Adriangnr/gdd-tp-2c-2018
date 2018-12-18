@@ -116,7 +116,7 @@ namespace PalcoNet.Src.Validadores
 
         public void txt_cantidad(TextBox cantidad)
         {
-            if (cantidad.Text == "")
+            if (cantidad.Text == "" || (int.Parse(cantidad.Text) <= 0))
             {
                 throw new ValidadorException("Ingrese el stock de su ubicación!");
             }

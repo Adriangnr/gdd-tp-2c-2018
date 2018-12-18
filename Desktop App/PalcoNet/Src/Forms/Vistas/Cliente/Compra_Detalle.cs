@@ -128,7 +128,7 @@ namespace PalcoNet.Src.Forms.Vistas.Cliente
             else if (this.dataGridEntradasSinNumerar.SelectedRows.Count != 0 || this.dataGridEntradasSinNumerar.CurrentRow != null)
             {
                 Entrada entrada = (Entrada)this.dataGridEntradasSinNumerar.CurrentRow.DataBoundItem;
-                this.entradasDisponiblesSN.Remove(entrada);
+                this.entradasCompradasSN.Remove(entrada);
                 entrada.Ocupados -= entrada.cantSinNumerar;
                 entrada.cantSinNumerar = 0;
                 this.load_entradasSN();
@@ -174,7 +174,7 @@ namespace PalcoNet.Src.Forms.Vistas.Cliente
             if(this.entradasCompradasN.Count == 0)
                 MessageBox.Show("Debes elegir al menos una ubicación!", "Error compra.",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
-            else if (this.cliente.DatosTarjeta == null)
+            else if (this.cliente.DatosTarjeta == "Sin información")
             {
                 MessageBox.Show("Debes ingresar una tarjeta!", "Error compra.",
                                     MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -195,8 +195,9 @@ namespace PalcoNet.Src.Forms.Vistas.Cliente
                         compraService.save(this.cliente, entradasTotal, this.precioTotal, this.publicacion);
                         MessageBox.Show("Compra realizada con exito!", "Compra", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         form_ubicacion.Close();
-                        this.Close();
+                        form_compraSN.Close();
                         this.previous.Show();
+                        this.Close();
                     }
                     catch (SqlException exception)
                     {
@@ -244,7 +245,7 @@ namespace PalcoNet.Src.Forms.Vistas.Cliente
 
         private bool hayEntradas(SortableBindingList<Entrada> entradas)
         {
-            return entradas.Count > 0 || entradas == null;
+            return entradas == null || entradas.Count > 0;
         }
 
         public void setTarjeta()

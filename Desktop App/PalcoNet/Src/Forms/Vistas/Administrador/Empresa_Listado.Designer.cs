@@ -52,6 +52,7 @@
             this.groupBox1.Controls.Add(this.label_razon_social);
             this.groupBox1.Controls.Add(this.label_cuit);
             this.groupBox1.Controls.Add(this.cuit);
+            this.groupBox1.Controls.SetChildIndex(this.linkLabel1, 0);
             this.groupBox1.Controls.SetChildIndex(this.cuit, 0);
             this.groupBox1.Controls.SetChildIndex(this.label_cuit, 0);
             this.groupBox1.Controls.SetChildIndex(this.label_razon_social, 0);
@@ -79,7 +80,6 @@
             // footer
             // 
             this.footer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.footer.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             // 
             // email
             // 
@@ -210,8 +210,8 @@
             this.dataGridEmpresas.AllowUserToDeleteRows = false;
             this.dataGridEmpresas.AllowUserToOrderColumns = true;
             this.dataGridEmpresas.AllowUserToResizeRows = false;
-            this.dataGridEmpresas.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.dataGridEmpresas.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridEmpresas.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridEmpresas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -258,6 +258,7 @@
             this.Controls.Add(this.btn_habilitar);
             this.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
             this.Name = "Empresa_Listado";
+            this.Text = "Palco.NET - Listado Empresas";
             this.Load += new System.EventHandler(this.Empresa_Listado_Load);
             this.Controls.SetChildIndex(this.footer, 0);
             this.Controls.SetChildIndex(this.btn_cancel, 0);
