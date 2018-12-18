@@ -50,7 +50,9 @@ namespace PalcoNet.Src.Forms.Vistas.Administrador
                 MessageBox.Show("Debe seleccionr un rol!", "Listado roles", MessageBoxButtons.OK, MessageBoxIcon.Error);
             else
             {
-                new Rol_Detalle(this, (Rol)list_Roles.SelectedItem).Show();
+                Rol_Detalle rolDetalle = new Rol_Detalle(this, (Rol)list_Roles.SelectedItem);
+                rolDetalle.previous = this;
+                rolDetalle.Show();
                 Hide();
             }
         }

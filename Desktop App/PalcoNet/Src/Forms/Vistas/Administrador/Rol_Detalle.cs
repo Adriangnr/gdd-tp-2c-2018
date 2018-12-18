@@ -105,7 +105,8 @@ namespace PalcoNet.Src.Forms.Vistas.Administrador
             }
 
             if (huboCambios) MessageBox.Show("Modificación del rol correcta");
-
+            this.previous.Show();
+            this.Hide();
         }
     }
 }
