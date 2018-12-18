@@ -18,6 +18,7 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
         public Fecha_Hora()
         {
             InitializeComponent();
+            this.dateTimePicker_pubFecha.Value = Utils.Utilities.getCurrentDate();
         }
 
         private void btn_cancel_Click(object sender, EventArgs e)
