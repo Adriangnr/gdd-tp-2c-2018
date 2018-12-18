@@ -1,6 +1,7 @@
 ﻿using PalcoNet.Src.Excepciones;
 using PalcoNet.Src.Forms.Layouts;
 using PalcoNet.Src.Modelo.Daos;
+using PalcoNet.Src.Modelo.Entidades;
 using PalcoNet.Src.Servicios;
 using PalcoNet.Src.Servicios.ServiceFactory;
 using PalcoNet.Src.Validadores;
@@ -14,6 +15,18 @@ namespace PalcoNet.Src.Forms.Vistas.Administrador
         PalcoNet.Src.Modelo.Entidades.Cliente client;
         ClienteService clienteService = (ClienteService)ServiceFactory.GetService("Cliente");
 
+        public Cliente_Edicion(Usuario usuario)
+        {
+            InitializeComponent();
+            this.usuario = usuario;
+            this.panel_datacliente.Controls.Add(new Cliente_Registro());
+            if (this.client == null && this.usuario != null)
+            {
+                this.client = this.clienteService.GetCliente(this.usuario.getClienteId());
+                this.loadData(this.client);
+            }
+        }
+
         public Cliente_Edicion()
         {
             InitializeComponent();
@@ -26,9 +39,9 @@ namespace PalcoNet.Src.Forms.Vistas.Administrador
             this.textBox_usuario.Text = client.Usuario;
             this.textBox_mail.Text = client.UsuarioObj.Email;
             this.textBox_telefono.Text = client.UsuarioObj.Telefono;
-            this.textBox_calle.Text = client.UsuarioObj.Direccion.Split(',')[0];
+            this.textBox_calle.Text = (client.Usuario != "admin")? client.UsuarioObj.Direccion.Split(',')[0] : "";
             this.textBox_cp.Text = client.UsuarioObj.CodigoPostal;
-            this.textBox_depto.Text = client.UsuarioObj.Direccion.Split(',')[2];
+            this.textBox_depto.Text = (client.Usuario != "admin") ? client.UsuarioObj.Direccion.Split(',')[2] : "";
             try
             {
                 this.textBox_localidad.Text = client.UsuarioObj.Direccion.Split(',')[3];

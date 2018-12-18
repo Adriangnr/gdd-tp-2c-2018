@@ -384,7 +384,9 @@ insert into ESECUELE.Funcionalidad (func_nombre, func_desc) values
   ('Canje_Puntos', 'Canje de Puntos.'),
   ('Compra', 'Compras.'),
   ('Historial', 'Historial.'),
-  ('Publicacion_Listado', 'Publicaciones.')
+  ('Publicacion_Listado', 'Publicaciones.'),
+  ('Cliente_Edicion', 'Ver Perfil'),
+  ('Empresa_Edicion', 'Ver Perfil')
 go
 
 -- Ingreso de valores para Funcionalidad - Rol
@@ -397,8 +399,9 @@ insert into ESECUELE.Funcionalidad_Rol (frol_rol_id, frol_func_id) values (1,6)
 insert into ESECUELE.Funcionalidad_Rol (frol_rol_id, frol_func_id) values (2,7)
 insert into ESECUELE.Funcionalidad_Rol (frol_rol_id, frol_func_id) values (2,8)
 insert into ESECUELE.Funcionalidad_Rol (frol_rol_id, frol_func_id) values (2,9)
+insert into ESECUELE.Funcionalidad_Rol (frol_rol_id, frol_func_id) values (2,11)
 insert into ESECUELE.Funcionalidad_Rol (frol_rol_id, frol_func_id) values (3,10)
-
+insert into ESECUELE.Funcionalidad_Rol (frol_rol_id, frol_func_id) values (3,12)
 -- Ingreso valores para el administrador greneral
 insert into ESECUELE.Rol_Usuario (rol_usr_rol_id, rol_usr_username) 
 values (1,'admin'),(2,'admin'),(3,'admin')

@@ -3,6 +3,7 @@ using PalcoNet.Src.Forms.Layouts;
 using System.Drawing;
 using PalcoNet.Src.Utils;
 using System.Windows.Forms;
+using PalcoNet.Src.Forms.Vistas.Administrador;
 
 namespace PalcoNet.Src.Forms.Vistas.General
 {
@@ -65,6 +66,16 @@ namespace PalcoNet.Src.Forms.Vistas.General
                     {
                         Master funcForm = Utilities.createInstance("PalcoNet.Src.Forms.Vistas." +
                         rol.Nombre + "." + f.GetNombre()) as Master;
+                        if( funcForm == null ) funcForm = Utilities.createInstance("PalcoNet.Src.Forms.Vistas.Administrador" + "." + f.GetNombre()) as Master;
+                        if(f.GetNombre() == "Cliente_Edicion")
+                        {
+                            funcForm = new Cliente_Edicion(this.user);
+                        }
+
+                        if (f.GetNombre() == "Empresa_Edicion")
+                        {
+                            funcForm = new Empresa_Edicion(this.user);
+                        }
                         funcForm.setPrevious(this);
                         funcForm.setUsuario(this.user);
                         funcForm.Show();
