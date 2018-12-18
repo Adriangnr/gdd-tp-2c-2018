@@ -274,7 +274,8 @@ create table ESECUELE.Compra(
 	compra_total numeric(18,2) not null,
 	compra_cliente int default null,
 	compra_fecha datetime default null,
-	compra_medio_pago tinyint default null
+	compra_medio_pago tinyint default null,
+	compra_empresa int
 )
 go
 
@@ -341,6 +342,14 @@ as begin
 end
 go
 
+create function ESECUELE.ObtenerEmpresaId(@empresa varchar(60))
+returns int
+as begin
+	return 	(select e.empresa_id
+			from ESECUELE.Empresa e
+			where e.empresa_razon_social = @empresa)
+end
+go
 /*
 * --------------------- Fin Creacion de funciones. ----------------------------------
 */
@@ -553,11 +562,13 @@ Ubicacion_Asiento [asiento],
 Ubicacion_Fila [fila],
 Ubicacion_Sin_numerar [sin_numerar],
 Ubicacion_Precio [precio],
-Ubicacion_Tipo_Codigo [ubicacion_tipo]
+Ubicacion_Tipo_Codigo [ubicacion_tipo],
+Espec_Empresa_Razon_Social [empresa]
 INTO #EntradasTemporales
 from gd_esquema.Maestra 
 where Cli_Dni is not null and Item_Factura_Monto is null
-group by Compra_Fecha,Compra_Cantidad, Ubicacion_Precio, Cli_Dni, Espectaculo_Cod,Ubicacion_Asiento,Ubicacion_Fila,Ubicacion_Sin_numerar,Ubicacion_Precio,Ubicacion_Tipo_Codigo
+group by Compra_Fecha,Compra_Cantidad, Ubicacion_Precio, Cli_Dni, Espectaculo_Cod
+,Ubicacion_Asiento,Ubicacion_Fila,Ubicacion_Sin_numerar,Ubicacion_Precio,Ubicacion_Tipo_Codigo, Espec_Empresa_Razon_Social
 order by 1 ASC
 
 -- Carga de Compras
@@ -566,13 +577,15 @@ insert into ESECUELE.Compra
 (	compra_id,
 	compra_total,
 	compra_cliente,
-	compra_fecha
+	compra_fecha,
+	compra_empresa
 )
 select
 compra,
 precio * compra_cantidad,
 ESECUELE.ObtenerClienteId(cliente_dni),
-compra_fecha
+compra_fecha,
+ESECUELE.ObtenerEmpresaId(empresa)
 from #EntradasTemporales
 SET IDENTITY_INSERT ESECUELE.Compra Off
 
@@ -1535,6 +1548,7 @@ CREATE TYPE ESECUELE.Compra_Nueva AS TABLE
 	compra_fecha_evento int,
 	compra_monto_total numeric(18,2),
 	compra_tarjeta varchar(20),
+	compra_empresa int,
 	entrada_ubicacion int,
 	entrada_fila int,
 	entrada_asiento int
@@ -1555,8 +1569,8 @@ as begin
 	
 	select top 1 @cliente = compra_cliente, @total = compra_monto_total, @date = compra_fecha from @compra
 
-	insert into ESECUELE.Compra(compra_cliente,compra_fecha,compra_total, compra_medio_pago) 
-	select top 1 c.compra_cliente, c.compra_fecha, c.compra_monto_total, @medioPago from @compra c
+	insert into ESECUELE.Compra(compra_cliente,compra_fecha,compra_total, compra_medio_pago, compra_empresa) 
+	select top 1 c.compra_cliente, c.compra_fecha, c.compra_monto_total, @medioPago, c.compra_empresa from @compra c
 
 	declare @compra_id int
 	set @compra_id = SCOPE_IDENTITY()
@@ -1948,5 +1962,38 @@ as begin
 	where compra_cliente = @cliente and compra_fecha <= @fechaActual
 	order by compra_fecha desc
 	offset @offset rows fetch next @itemsPerPage rows only
+end
+go
+
+create procedure ESECUELE.ReporteUno(@anio int, @trimestre int, @grado int, @fechaActual datetime)
+as begin
+select top 5 cliente_id, cliente_nombre, sum(punto_valor - punto_usados)
+						from ESECUELE.Punto join ESECUELE.Cliente on punto_cliente = cliente_id
+						where punto_fecha_vencimiento < @fechaActual and year(punto_fecha_vencimiento) = @anio
+						and datepart(quarter,punto_fecha_vencimiento) = @trimestre
+						group by cliente_id, cliente_nombre
+						order by 3 desc
+end
+go
+
+create procedure ESECUELE.ReporteDos(@anio int, @trimestre int, @fechaActual datetime)
+as begin
+select top 5 cliente_id, cliente_nombre, sum(punto_valor - punto_usados)
+						from ESECUELE.Punto join ESECUELE.Cliente on punto_cliente = cliente_id
+						where punto_fecha_vencimiento < @fechaActual and year(punto_fecha_vencimiento) = @anio
+						and datepart(quarter,punto_fecha_vencimiento) = @trimestre
+						group by cliente_id, cliente_nombre
+						order by 3 desc
+end
+go
+
+create procedure ESECUELE.ReporteTres(@anio int, @trimestre int, @fechaActual datetime)
+as begin
+select top 5 cliente_id, cliente_nombre, sum(punto_valor - punto_usados)
+						from ESECUELE.Punto join ESECUELE.Cliente on punto_cliente = cliente_id
+						where punto_fecha_vencimiento < GETDATE() and year(punto_fecha_vencimiento) = @anio
+						and datepart(quarter,punto_fecha_vencimiento) = @trimestre
+						group by cliente_id, cliente_nombre
+						order by 3 desc
 end
 go

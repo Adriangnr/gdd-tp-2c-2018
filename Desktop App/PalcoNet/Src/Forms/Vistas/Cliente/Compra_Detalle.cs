@@ -192,7 +192,7 @@ namespace PalcoNet.Src.Forms.Vistas.Cliente
                         entradasTotal.AddRange(entradasCompradasN);
                         entradasTotal.AddRange(entradasCompradasSN);
                         CompraService compraService = (CompraService)ServiceFactory.GetService("Compra");
-                        compraService.save(this.cliente, entradasTotal, this.precioTotal, this.publicacion.FechaEventoId);
+                        compraService.save(this.cliente, entradasTotal, this.precioTotal, this.publicacion);
                         MessageBox.Show("Compra realizada con exito!", "Compra", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         form_ubicacion.Close();
                         this.Close();

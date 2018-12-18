@@ -54,7 +54,7 @@ namespace PalcoNet.Src.Servicios
           //  Console.WriteLine(row.Count);
         }
 
-        public void save(Cliente cliente,List<Entrada> entradas, double montoTotal, int fecha_evento)
+        public void save(Cliente cliente,List<Entrada> entradas, double montoTotal, Publicacion publicacion)
         {
             DatabaseEntity dbEntity = new DatabaseEntity();
 
@@ -67,10 +67,12 @@ namespace PalcoNet.Src.Servicios
             dt.Columns.Add("entrada_fila", typeof(int));
             dt.Columns.Add("entrada_asiento", typeof(int));
             dt.Columns.Add("compra_fecha_evento", typeof(int));
+            dt.Columns.Add("compra_empresa", typeof(int));
 
             foreach (Entrada entrada in entradas)
             {
-                dt.Rows.Add(cliente.Id,Utilities.getCurrentDate(),montoTotal,cliente.DatosTarjeta,entrada.UbicacionId,entrada.Fila,entrada.Asiento);
+                dt.Rows.Add(cliente.Id,Utilities.getCurrentDate(),montoTotal,cliente.DatosTarjeta,entrada.UbicacionId
+                    ,entrada.Fila,entrada.Asiento, publicacion.FechaEventoId, publicacion.Empresa.Id);
             }
 
             var sqlParam = new SqlParameter("@compra", SqlDbType.Structured);
