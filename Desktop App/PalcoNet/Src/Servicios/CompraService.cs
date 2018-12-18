@@ -70,7 +70,8 @@ namespace PalcoNet.Src.Servicios
 
             foreach (Entrada entrada in entradas)
             {
-                dt.Rows.Add(cliente.Id,Utilities.getCurrentDate(),montoTotal,fecha_evento,cliente.DatosTarjeta,entrada.UbicacionId,entrada.Fila,entrada.Asiento);
+                dt.Rows.Add(cliente.Id,Utilities.getCurrentDate(),montoTotal,fecha_evento,cliente.DatosTarjeta,entrada.UbicacionId
+                    ,entrada.Fila,entrada.sinNumerar? entrada.cantSinNumerar:entrada.Asiento);
             }
 
             var sqlParam = new SqlParameter("@compra", SqlDbType.Structured);

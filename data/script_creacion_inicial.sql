@@ -1574,24 +1574,30 @@ as begin
 	declare @fila int
 	declare @ubicacion int
 	declare @fecha_evento int
+	declare @ocupado int
+	set @ocupado = 0
 	declare cursorUbicacion cursor for select entrada_ubicacion, entrada_fila, entrada_asiento, compra_fecha_evento from @compra
 	open cursorUbicacion
 	fetch next from cursorUbicacion into @ubicacion, @fila, @asiento, @fecha_evento
 	while @@FETCH_STATUS = 0
 	begin
 		if (select ubicacion_sin_numerar from ESECUELE.Ubicacion where ubicacion_id = @ubicacion) = 0
+		begin
 			insert into ESECUELE.Entrada(entrada_compra, entrada_ubicacion, entrada_fila, entrada_asiento, entrada_fecha_evento)
 			values (@compra_id,@ubicacion,@fila,@asiento,@fecha_evento)
+			set @ocupado = 1
+		end
 		else
-			while @asiento >0
+			while @asiento > 0
 			begin
 				insert into ESECUELE.Entrada(entrada_compra, entrada_ubicacion, entrada_fecha_evento)
 				values (@compra_id,@ubicacion, @fecha_evento)
 				set @asiento -= 1
+				set @ocupado +=1
 			end
 
 		update ESECUELE.Ubicacion
-		set ubicacion_asientos_ocupados = ubicacion_asientos_ocupados + @asiento
+		set ubicacion_asientos_ocupados += @ocupado
 		where ubicacion_id = @ubicacion
 		fetch next from cursorUbicacion into @ubicacion, @fila, @asiento, @fecha_evento
 	end

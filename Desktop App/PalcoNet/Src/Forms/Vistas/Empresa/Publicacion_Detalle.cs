@@ -198,7 +198,7 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
 
         private void dataGridViewUbicaciones_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == 5)
+            if (e.ColumnIndex == 6)
             {
                 this.dataGridViewUbicaciones.Rows.RemoveAt(e.RowIndex);
                 this.dataGridViewUbicaciones.Refresh();
