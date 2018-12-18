@@ -24,7 +24,7 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
         private void loadPaginator()
         {
             this.paginator = new EmpresaPublicacionPaginator(this);
-            this.paginator.ItemsPerPage = 10;
+            this.paginator.ItemsPerPage = Utils.Utilities.getTamPagina();
             EmpresaService empresaService = ((EmpresaService)ServiceFactory.GetService("Empresa"));
 
             this.paginator.Entity = empresaService.GetEmpresaFromUsername(this.usuario.Username);

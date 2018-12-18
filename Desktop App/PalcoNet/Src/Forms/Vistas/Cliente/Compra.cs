@@ -78,7 +78,7 @@ namespace PalcoNet.Src.Forms.Vistas.Cliente
 
                 /*------------ Paginador ---------------*/
                 this.paginator = new CompraPublicacionPaginator(this);
-                this.paginator.ItemsPerPage = 10;
+                this.paginator.ItemsPerPage = Utils.Utilities.getTamPagina();
                 this.panelPaginatorControls.Controls.Clear();
                 this.panelPaginatorControls.Controls.Add(this.paginator.controls);
                 Page currentPage = this.paginator.NextPage();

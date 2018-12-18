@@ -271,6 +271,7 @@
     <Compile Include="Src\Forms\Vistas\General\Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
+    <Compile Include="Src\Forms\Vistas\Paginador\ClienteHistorialPaginator.cs" />
     <Compile Include="Src\Forms\Vistas\Paginador\CompraPublicacionPaginator.cs" />
     <Compile Include="Src\Forms\Vistas\Paginador\EmpresaPublicacionPaginator.cs" />
     <Compile Include="Src\Forms\Vistas\Paginador\Page.cs" />
