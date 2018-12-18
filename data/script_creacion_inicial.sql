@@ -596,7 +596,7 @@ from ESECUELE.Compra
 
 -- Carga Entradas
 insert into ESECUELE.Entrada
-(entrada_compra,entrada_ubicacion, entrada_fila, entrada_asiento, entrada_fecha_evento)
+(entrada_compra,entrada_ubicacion, entrada_fila, entrada_asiento, entrada_fecha_evento, entrada_facturada)
 select
 compra,
 (
@@ -611,7 +611,8 @@ asiento,
 	select fecha_evento_id
 	from ESECUELE.Fecha_Evento
 	where fecha_evento_publicacion = t.publicacion
-)
+),
+1
 from #EntradasTemporales t
 -- Fin de carga de Entradas
 
@@ -1910,5 +1911,25 @@ as begin
 	from ESECUELE.Canje join ESECUELE.Producto on prod_id = canje_producto
 	where canje_cliente = @cliente
 	order by canje_fecha desc
+end
+go
+
+create procedure ESECUELE.getItemsFactura(@facturaId int) as
+begin
+	select it.item_id, it.item_monto, it.item_total_comision, it.item_descripcion, it.item_cantidad,it.item_entrada
+	from ESECUELE.Factura f join ESECUELE.Item_Factura it on f.fact_id = it.item_id_factura where f.fact_id=@facturaId
+	order by f.fact_id, f.fact_fecha
+end
+go
+
+create procedure ESECUELE.getItemDetail(@itemId int) as
+begin
+	select e.entrada_compra, e.entrada_fila, e.entrada_asiento, fe.fecha_evento, u.ubicacion_publicacion, tu.tipo_ubicacion_desc
+	from ESECUELE.Item_Factura it
+	join ESECUELE.Entrada e on it.item_entrada = e.entrada_id
+	join ESECUELE.Fecha_Evento fe on fe.fecha_evento_id = e.entrada_fecha_evento
+	join ESECUELE.Ubicacion u on u.ubicacion_id = e.entrada_ubicacion
+	join ESECUELE.Tipo_Ubicacion tu on tu.tipo_ubicacion_id = u.ubicacion_tipo
+	where it.item_id = @itemId 
 end
 go

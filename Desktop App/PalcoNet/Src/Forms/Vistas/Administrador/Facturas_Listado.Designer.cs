@@ -1,6 +1,8 @@
-﻿namespace PalcoNet.Src.Forms.Vistas.Administrador
+﻿using PalcoNet.Src.Forms.Layouts;
+
+namespace PalcoNet.Src.Forms.Vistas.Administrador
 {
-    partial class Facturas_Listado
+    partial class Facturas_Listado : Master
     {
         /// <summary>
         /// Required designer variable.
@@ -36,15 +38,21 @@
             // 
             // footer
             // 
-            this.footer.Location = new System.Drawing.Point(293, 504);
+            this.footer.Location = new System.Drawing.Point(755, 629);
             // 
-            // dataGridView1
+            // dataGridViewFacturas
             // 
+            this.dataGridViewFacturas.AllowUserToAddRows = false;
+            this.dataGridViewFacturas.AllowUserToDeleteRows = false;
+            this.dataGridViewFacturas.AllowUserToOrderColumns = true;
+            this.dataGridViewFacturas.AllowUserToResizeRows = false;
             this.dataGridViewFacturas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewFacturas.Location = new System.Drawing.Point(48, 122);
-            this.dataGridViewFacturas.Name = "dataGridView1";
+            this.dataGridViewFacturas.Name = "dataGridViewFacturas";
+            this.dataGridViewFacturas.RowHeadersVisible = false;
             this.dataGridViewFacturas.RowTemplate.Height = 28;
-            this.dataGridViewFacturas.Size = new System.Drawing.Size(428, 307);
+            this.dataGridViewFacturas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridViewFacturas.Size = new System.Drawing.Size(889, 489);
             this.dataGridViewFacturas.TabIndex = 2;
             // 
             // btnVerDetalle
@@ -53,20 +61,21 @@
             this.btnVerDetalle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnVerDetalle.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnVerDetalle.ForeColor = System.Drawing.SystemColors.Window;
-            this.btnVerDetalle.Location = new System.Drawing.Point(542, 122);
+            this.btnVerDetalle.Location = new System.Drawing.Point(957, 122);
             this.btnVerDetalle.Margin = new System.Windows.Forms.Padding(0);
             this.btnVerDetalle.Name = "btnVerDetalle";
             this.btnVerDetalle.Size = new System.Drawing.Size(155, 54);
             this.btnVerDetalle.TabIndex = 61;
             this.btnVerDetalle.Text = "Ver Detalle";
             this.btnVerDetalle.UseVisualStyleBackColor = false;
+            this.btnVerDetalle.Click += new System.EventHandler(this.btnVerDetalle_Click);
             // 
             // btn_cancel
             // 
             this.btn_cancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_cancel.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_cancel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.btn_cancel.Location = new System.Drawing.Point(543, 374);
+            this.btn_cancel.Location = new System.Drawing.Point(954, 556);
             this.btn_cancel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btn_cancel.Name = "btn_cancel";
             this.btn_cancel.Size = new System.Drawing.Size(154, 55);
@@ -79,7 +88,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(706, 536);
+            this.ClientSize = new System.Drawing.Size(1121, 658);
             this.Controls.Add(this.btnVerDetalle);
             this.Controls.Add(this.btn_cancel);
             this.Controls.Add(this.dataGridViewFacturas);

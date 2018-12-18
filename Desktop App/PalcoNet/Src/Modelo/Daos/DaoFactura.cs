@@ -58,5 +58,33 @@ namespace PalcoNet.Src.Modelo.Daos
                 throw ex;
             }
         }
+
+        public List<List<object>> getItems(int id)
+        {
+            try
+            {
+                return this.spExecuteDataReader("ESECUELE.getItemsFactura", new List<SqlParameter>(){
+                    new SqlParameter("@facturaId", id)
+                });
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public List<List<object>> getItemDetail(int id)
+        {
+            try
+            {
+                return this.spExecuteDataReader("ESECUELE.getItemDetail", new List<SqlParameter>(){
+                    new SqlParameter("@itemId", id)
+                });
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }
