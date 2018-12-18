@@ -111,13 +111,13 @@ namespace PalcoNet.Src.Servicios
             }
         }
 
-        public List<Compra_Ticket> getAllCompras(Cliente cliente)
+        public List<Compra_Ticket> getAllCompras(Cliente cliente, int offset, int itemsPerPage)
         {
             DaoCompra daoCompra = new DaoCompra();
 
             try
             {
-                List<List<Object>> listas = daoCompra.getAllCompras(cliente.Id);
+                List<List<Object>> listas = daoCompra.getAllCompras(cliente.Id, offset, itemsPerPage);
 
                 List<Compra_Ticket> compras = new List<Compra_Ticket>();
 
@@ -131,7 +131,7 @@ namespace PalcoNet.Src.Servicios
                     compraObj.Tarjeta = (row[3].GetType() != typeof(DBNull)) ? (string)row[3] : this.SININFO;
                     compraObj.Publicacion = (string)row[4];
                     compraObj.Direccion = (row[5].GetType() != typeof(DBNull)) ? (string)row[5] : this.SININFO;
-
+                    compraObj.cantidadTotalPaginador = (int)row[6];
                     compras.Add(compraObj);
                 }
 

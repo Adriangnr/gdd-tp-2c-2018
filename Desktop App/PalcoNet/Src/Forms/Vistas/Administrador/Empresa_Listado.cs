@@ -27,9 +27,9 @@ namespace PalcoNet.Src.Forms.Vistas.Administrador
             {
                 this.dataGridEmpresas.DataSource = empresaService.Search(this.groupBox1.Controls);
 
-                if (this.dataGridEmpresas.Rows.Count == 0)
+                /*if (this.dataGridEmpresas.Rows.Count == 0)
                     MessageBox.Show("No se encontraron empresas!", "Listado de empresas.",
-                                MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                MessageBoxButtons.OK, MessageBoxIcon.Information);*/
 
 
                 foreach (DataGridViewColumn column in this.dataGridEmpresas.Columns)

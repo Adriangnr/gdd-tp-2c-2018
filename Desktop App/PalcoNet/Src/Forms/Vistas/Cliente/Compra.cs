@@ -90,9 +90,9 @@ namespace PalcoNet.Src.Forms.Vistas.Cliente
                 this.dataGridPublicaciones.DataSource = null;
                 this.dataGridPublicaciones.DataSource = publicaciones;
 
-                if (this.dataGridPublicaciones.Rows.Count == 0)
+                /*if (this.dataGridPublicaciones.Rows.Count == 0)
                     MessageBox.Show("No se encontraron publicaciones!", "Listado de publicaciones activas.",
-                                MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                MessageBoxButtons.OK, MessageBoxIcon.Information);*/
 
 
                 foreach (DataGridViewColumn column in this.dataGridPublicaciones.Columns)
@@ -170,52 +170,34 @@ namespace PalcoNet.Src.Forms.Vistas.Cliente
 
         public void btn_nextPage_Click(object sender, EventArgs e)
         {
-            Page currentPage = this.paginator.NextPage();
-
-            List<object> objects = currentPage.GetItems();
-            List<Publicacion> publicaciones = objects.Cast<Publicacion>().ToList();
-
-            this.dataGridPublicaciones.DataSource = null;
-            this.dataGridPublicaciones.Refresh();
-            this.dataGridPublicaciones.DataSource = publicaciones;
-            this.dataGridPublicaciones.ClearSelection();
-            this.dataGridPublicaciones.Refresh();
+            this.changePage(this.paginator.NextPage());
         }
 
         public void btn_firstPage_Click(object sender, EventArgs e)
         {
-            Page currentPage = this.paginator.FirstPage();
-
-            List<object> objects = currentPage.GetItems();
-            List<Publicacion> publicaciones = objects.Cast<Publicacion>().ToList();
-
-            this.dataGridPublicaciones.DataSource = null;
-            this.dataGridPublicaciones.DataSource = publicaciones;
-            this.dataGridPublicaciones.ClearSelection();
+            this.changePage(this.paginator.FirstPage());
         }
 
         public void btn_previousPage_Click(object sender, EventArgs e)
         {
-            Page currentPage = this.paginator.PreviousPage();
-
-            List<object> objects = currentPage.GetItems();
-            List<Publicacion> publicaciones = objects.Cast<Publicacion>().ToList();
-
-            this.dataGridPublicaciones.DataSource = null;
-            this.dataGridPublicaciones.DataSource = publicaciones;
-            this.dataGridPublicaciones.ClearSelection();
+            this.changePage(this.paginator.PreviousPage());
         }
 
         public void btn_lastPage_Click(object sender, EventArgs e)
         {
-            Page currentPage = this.paginator.LastPage();
+            this.changePage(this.paginator.LastPage());
+        }
 
+        private void changePage(Page currentPage)
+        {
             List<object> objects = currentPage.GetItems();
             List<Publicacion> publicaciones = objects.Cast<Publicacion>().ToList();
 
             this.dataGridPublicaciones.DataSource = null;
+            this.dataGridPublicaciones.Refresh();
             this.dataGridPublicaciones.DataSource = publicaciones;
             this.dataGridPublicaciones.ClearSelection();
+            this.dataGridPublicaciones.Refresh();
         }
 
         private void btn_buy_Click(object sender, EventArgs e)

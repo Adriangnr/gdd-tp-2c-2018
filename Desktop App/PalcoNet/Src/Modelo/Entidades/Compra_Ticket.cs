@@ -15,6 +15,7 @@ namespace PalcoNet.Src.Modelo.Entidades
         public string Publicacion { get; set; }
         public string Direccion { get; set; }
         public string Tarjeta { get; set; }
+        public int cantidadTotalPaginador { get; set; }
 
         public List<Entrada_Ticket> Entradas { get; set; }
 

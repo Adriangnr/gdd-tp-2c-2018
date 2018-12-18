@@ -1933,3 +1933,20 @@ begin
 	where it.item_id = @itemId 
 end
 go
+
+create procedure ESECUELE.GetAllComprasPaged(@cliente int, @fechaActual datetime, @offset int, @itemsPerPage int)
+as begin
+	select distinct compra_id, compra_fecha, compra_total
+				    ,medio_pago_nro_tarjeta
+					,publicacion_descripcion,publicacion_direccion,
+					COUNT(*) OVER() 
+	from ESECUELE.Compra join ESECUELE.Entrada on entrada_compra = compra_id
+								  left join ESECUELE.Medio_de_Pago on medio_pago_id = compra_medio_pago
+								  join ESECUELE.Ubicacion on ubicacion_id = entrada_ubicacion
+								  join ESECUELE.Publicacion on publicacion_codigo = ubicacion_publicacion
+								  join ESECUELE.Fecha_Evento on fecha_evento_publicacion = publicacion_codigo
+	where compra_cliente = @cliente and compra_fecha <= @fechaActual
+	order by compra_fecha desc
+	offset @offset rows fetch next @itemsPerPage rows only
+end
+go

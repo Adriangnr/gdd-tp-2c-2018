@@ -30,9 +30,9 @@ namespace PalcoNet.Src.Forms.Vistas.Administrador
                 this.dataGridClientes.AutoSize = false;
                 this.dataGridClientes.ScrollBars = ScrollBars.Both;
 
-                if (this.dataGridClientes.Rows.Count == 0)
+                /*if (this.dataGridClientes.Rows.Count == 0)
                     MessageBox.Show("No se encontraron clientes!", "Listado de clientes.",
-                                MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                MessageBoxButtons.OK, MessageBoxIcon.Information);*/
 
                foreach (DataGridViewColumn column in this.dataGridClientes.Columns)
                {

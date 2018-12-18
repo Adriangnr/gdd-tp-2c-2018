@@ -1,14 +1,18 @@
 ﻿using PalcoNet.Src.Forms.Layouts;
+using PalcoNet.Src.Forms.Vistas.Paginador;
 using PalcoNet.Src.Servicios;
+using PalcoNet.Src.Utils;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace PalcoNet.Src.Forms.Vistas.Cliente
 {
-    public partial class Historial : Master
+    public partial class Historial : Master, Pageable
     {
         private Src.Modelo.Entidades.Cliente Cliente;
+        private ClienteHistorialPaginator paginator;
 
         public Historial()
         {
@@ -25,7 +29,17 @@ namespace PalcoNet.Src.Forms.Vistas.Cliente
             CompraService compraService = new CompraService();
             try
             {
-                this.dataGridHistorial.DataSource = compraService.getAllCompras(cliente);
+                /*------------ Paginador ---------------*/
+                this.paginator = new ClienteHistorialPaginator(this);
+                this.paginator.Entity = this.Cliente;
+                this.paginator.ItemsPerPage = Utils.Utilities.getTamPagina();
+                this.panelPaginatorControls.Controls.Clear();
+                this.panelPaginatorControls.Controls.Add(this.paginator.controls);
+                Page currentPage = this.paginator.NextPage();
+                List<object> objects = currentPage.GetItems();
+                List<PalcoNet.Src.Modelo.Entidades.Compra_Ticket> compras = objects.Cast<PalcoNet.Src.Modelo.Entidades.Compra_Ticket>().ToList();
+                this.dataGridHistorial.DataSource = compras;
+                /*------------- Fin Paginador ----------*/
 
                 List<string> encabezados = new List<string>(new string[] {"ClienteNombre", "ClienteApellido"});
 
@@ -65,6 +79,38 @@ namespace PalcoNet.Src.Forms.Vistas.Cliente
                 compra_ticket.ShowDialog();
 
             }
+            this.dataGridHistorial.ClearSelection();
+        }
+
+        public void btn_nextPage_Click(object sender, EventArgs e)
+        {
+            this.changePage(this.paginator.NextPage());
+        }
+
+        public void btn_firstPage_Click(object sender, EventArgs e)
+        {
+            this.changePage(this.paginator.FirstPage());
+        }
+
+        public void btn_previousPage_Click(object sender, EventArgs e)
+        {
+            this.changePage(this.paginator.PreviousPage());
+        }
+
+        public void btn_lastPage_Click(object sender, EventArgs e)
+        {
+            this.changePage(this.paginator.LastPage());   
+        }
+
+        private void changePage(Page currentPage)
+        {
+            List<object> objects = currentPage.GetItems();
+            List<PalcoNet.Src.Modelo.Entidades.Compra_Ticket> publicaciones = objects.Cast<PalcoNet.Src.Modelo.Entidades.Compra_Ticket>().ToList();
+
+            this.dataGridHistorial.DataSource = null;
+            this.dataGridHistorial.Refresh();
+            this.dataGridHistorial.DataSource = publicaciones;
+            this.dataGridHistorial.Refresh();
             this.dataGridHistorial.ClearSelection();
         }
     }

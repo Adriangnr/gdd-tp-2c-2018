@@ -40,16 +40,18 @@ namespace PalcoNet.Src.Modelo.Daos
             }
         }
 		
-		public List<List<Object>> getAllCompras(int cliente)
+		public List<List<Object>> getAllCompras(int cliente, int offset, int itemsPerPage)
         {
             try
             {
                 List<SqlParameter> parameters = new List<SqlParameter>() {
                     new SqlParameter("@cliente", cliente),
-                    new SqlParameter("@fechaActual",Utils.Utilities.getCurrentDate())
+                    new SqlParameter("@fechaActual",Utils.Utilities.getCurrentDate()),
+                    new SqlParameter("@offset", offset),
+                    new SqlParameter("@itemsPerPage", itemsPerPage),
                 };
 
-                return this.spExecuteDataReader(this.schema + ".GetAllCompras", parameters);
+                return this.spExecuteDataReader(this.schema + ".GetAllComprasPaged", parameters);
             }
             catch (Exception e)
             {

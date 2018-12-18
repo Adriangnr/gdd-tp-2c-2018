@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PalcoNet.Src.Servicios;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,8 @@ namespace PalcoNet.Src.Forms.Vistas.Paginador
 {
     public class ClienteHistorialPaginator : Paginator
     {
+        CompraService compraService = new CompraService();
+
         public ClienteHistorialPaginator(Pageable form)
         {
             this.initialize(form);
@@ -16,29 +19,12 @@ namespace PalcoNet.Src.Forms.Vistas.Paginador
         public override Page SearchPaged(int offset, int itemsPerPage)
         {
             Page page = new Page();
-            List<List<object>> items = null;
+            List<PalcoNet.Src.Modelo.Entidades.Compra_Ticket> items = compraService.getAllCompras((PalcoNet.Src.Modelo.Entidades.Cliente)this.Entity, offset, itemsPerPage);
+            page.TotalItems = items[0].cantidadTotalPaginador;
 
-            items = this.SearchPagedPublicacionesParaCompra(offset, itemsPerPage);
-
-
-            EmpresaService empresaService = new EmpresaService();
-            GradoService gradoService = new GradoService();
-            RubroService rubroService = new RubroService();
-            foreach (List<object> row in items)
+            foreach (PalcoNet.Src.Modelo.Entidades.Compra_Ticket compraTicket in items)
             {
-                Publicacion publicacion = new Publicacion();
-                publicacion.Codigo = (int)row[0];
-                publicacion.FechaPublicacion = (DateTime)row[1];
-                publicacion.Descripcion = (string)row[2];
-                publicacion.Rubro = rubroService.GetRubro((int)row[3]);
-                publicacion.Direccion = (row[4].GetType() != typeof(DBNull)) ? (string)row[4] : "Indeterminado";
-                publicacion.Grado = (row[5].GetType() != typeof(DBNull)) ? gradoService.GetGrado((int)row[5]) : null;
-                publicacion.Empresa = empresaService.GetEmpresa((int)row[6]);
-                publicacion.Estado = EstadoFactory.getEstado((string)row[7]);
-                publicacion.FechaEventoId = (int)row[15];
-                publicacion.FechaEvento = (DateTime)row[17];
-                page.TotalItems = (int)row[18];
-                page.AddItem(publicacion);
+                page.AddItem(compraTicket);
             }
 
             return page;
