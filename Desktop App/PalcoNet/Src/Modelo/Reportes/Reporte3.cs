@@ -13,7 +13,6 @@ namespace PalcoNet.Src.Modelo.Reportes
         public string ClienteNombre { get; set; }
         public string ClienteApellido { get; set; }
         public string Empresa { get; set; }
-        public string CUIL { get; set; }
         public int CantidadComprada { get; set; }
     }
 }
