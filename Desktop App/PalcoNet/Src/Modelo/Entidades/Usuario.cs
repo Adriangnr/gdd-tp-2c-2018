@@ -22,6 +22,7 @@ namespace PalcoNet.Src.Modelo.Entidades
         public string Direccion { get; set; }
         public string Telefono { get; set; }
         public string CodigoPostal { get; set; }
+        public bool primerLogin { get; set; }
 
         //constructor por defecto para crear nuevos usuarios
         public Usuario(){}

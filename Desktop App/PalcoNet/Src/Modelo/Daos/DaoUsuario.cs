@@ -35,6 +35,7 @@ namespace PalcoNet.Src.Modelo.Daos
                     new SqlParameter("@usr_direccion", usuario.Direccion),
                     new SqlParameter("@usr_creacion", Utils.Utilities.getCurrentDate()),
                     new SqlParameter("@usr_codigo_postal", usuario.CodigoPostal),
+                    new SqlParameter("@usr_primer_login", usuario.primerLogin),
                 });
             }
             catch (Exception exception)

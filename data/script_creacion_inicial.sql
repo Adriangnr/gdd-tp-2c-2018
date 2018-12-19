@@ -375,16 +375,16 @@ values ('admin','admin',convert(varchar(25),'01/01/1900',121) ,'ADMIN', '0000000
 
 -- Se ingresan todas las funcionalidades
 insert into ESECUELE.Funcionalidad (func_nombre, func_desc) values
-  ('Cliente_Listado', 'Clientes.'),
-  ('Comisiones_Detalle', 'Comisiones.'),
-  ('Empresa_Listado', 'Empresas.'),
-  ('Estadisticas', 'Estadisticas.'),
-  ('Rol_Listado', 'Roles.'),
-  ('Grado_Publicacion', 'Grados de publicación.'),
-  ('Canje_Puntos', 'Canje de Puntos.'),
-  ('Compra', 'Compras.'),
-  ('Historial', 'Historial.'),
-  ('Publicacion_Listado', 'Publicaciones.'),
+  ('Cliente_Listado', 'Clientes'),
+  ('Comisiones_Detalle', 'Comisiones'),
+  ('Empresa_Listado', 'Empresas'),
+  ('Estadisticas', 'Estadisticas'),
+  ('Rol_Listado', 'Roles'),
+  ('Grado_Publicacion', 'Grados de publicación'),
+  ('Canje_Puntos', 'Canje de Puntos'),
+  ('Compra', 'Compras'),
+  ('Historial', 'Historial'),
+  ('Publicacion_Listado', 'Publicaciones'),
   ('Cliente_Edicion', 'Ver Perfil'),
   ('Empresa_Edicion', 'Ver Perfil')
 go
@@ -984,13 +984,14 @@ create procedure ESECUELE.SaveUsuario(@usr_username varchar(50),
 								   @usr_telefono varchar(20),
 								   @usr_direccion varchar(150),
 								   @usr_codigo_postal varchar(10),
-								   @usr_creacion datetime, 
+								   @usr_creacion datetime,
+								   @usr_primer_login bit,
 								   @return_val int output) as
 begin 
 	begin try
 		insert into ESECUELE.Usuario
 		(usr_username, usr_pass, usr_estado, usr_primer_login, usr_fecha_creacion, usr_tipo, usr_email, usr_telefono, usr_direccion, usr_codigo_postal) 
-		values(@usr_username, @usr_pass, 1, 0, @usr_creacion, @usr_tipo, @usr_email, @usr_telefono, @usr_direccion, @usr_codigo_postal)
+		values(@usr_username, @usr_pass, 1, @usr_primer_login, @usr_creacion, @usr_tipo, @usr_email, @usr_telefono, @usr_direccion, @usr_codigo_postal)
 		set @return_val = (SELECT SCOPE_IDENTITY())
 	end try
 	begin catch

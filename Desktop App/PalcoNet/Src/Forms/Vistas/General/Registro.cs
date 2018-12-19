@@ -15,6 +15,8 @@ namespace PalcoNet.Src.Forms.Vistas.General
     {
         public Registro() { }
 
+        public bool fromAdmin { get; set; }
+
         public Registro(Form previous)
         {
             this.previous = previous;
@@ -50,6 +52,15 @@ namespace PalcoNet.Src.Forms.Vistas.General
             userParams.Add("usr_direccion", textBox_calle.Text + "," + textBox_piso.Text + ","
                 + textBox_depto.Text + "," + textBox_localidad.Text);
             userParams.Add("usr_codigo_postal", textBox_cp.Text);
+
+            if (this.fromAdmin)
+            {
+                userParams.Add("usr_primer_login", "true");
+            }
+            else
+            {
+                userParams.Add("usr_primer_login", "false");
+            }
 
             this.loadUserTypeParams(userParams);
 

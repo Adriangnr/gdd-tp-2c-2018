@@ -80,6 +80,7 @@ namespace PalcoNet.Src.Servicios
             usuario.Telefono = userParams["usr_telefono"];
             usuario.Direccion = userParams["usr_direccion"];
             usuario.CodigoPostal = userParams["usr_codigo_postal"];
+            usuario.primerLogin = Convert.ToBoolean(userParams["usr_primer_login"]);
             try
             {
                 this.daoUsuario.save(usuario);

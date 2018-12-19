@@ -155,6 +155,7 @@ namespace PalcoNet.Src.Forms.Vistas.Administrador
         {
             Registro formRegistro = new Registro(this);
             formRegistro.setearTipoUsuario("Cliente");
+            formRegistro.fromAdmin = true;
             formRegistro.Show();
             this.Hide();
         }
