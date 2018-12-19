@@ -44,6 +44,8 @@ namespace PalcoNet.Src.Servicios
             entrada.UbicacionId = (int)row[2];
             entrada.Fila = (int)row[3];
             entrada.Asiento = (int)row[4];
+            entrada.FechaEventoId = (int)row[5];
+            entrada.FechaEvento = (DateTime)row[6];
         }
 
         public List<Entrada> GetAllEntradasDisponibles(int publicacion)

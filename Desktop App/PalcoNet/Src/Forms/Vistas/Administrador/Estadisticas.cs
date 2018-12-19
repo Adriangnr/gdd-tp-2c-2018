@@ -20,5 +20,10 @@ namespace PalcoNet.Src.Forms.Vistas.Administrador
             this.previous.Show();
             this.Hide();
         }
+
+        private void btn_search_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

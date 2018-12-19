@@ -335,6 +335,9 @@
     <Compile Include="Src\Modelo\Estados\EstadoFactory.cs" />
     <Compile Include="Src\Modelo\Estados\Finalizada.cs" />
     <Compile Include="Src\Modelo\Estados\Publicada.cs" />
+    <Compile Include="Src\Modelo\Reportes\Reporte1.cs" />
+    <Compile Include="Src\Modelo\Reportes\Reporte2.cs" />
+    <Compile Include="Src\Modelo\Reportes\Reporte3.cs" />
     <Compile Include="Src\Servicios\ClienteService.cs" />
     <Compile Include="Src\Servicios\CompraService.cs" />
     <Compile Include="Src\Servicios\DatabaseService.cs" />
@@ -349,6 +352,7 @@
     <Compile Include="Src\Servicios\LoginService.cs" />
     <Compile Include="Src\Servicios\ProductoService.cs" />
     <Compile Include="Src\Servicios\PublicacionService.cs" />
+    <Compile Include="Src\Servicios\ReporteService.cs" />
     <Compile Include="Src\Servicios\RolService.cs" />
     <Compile Include="Src\Servicios\RubroService.cs" />
     <Compile Include="Src\Servicios\ServiceFactory\ServiceFactory.cs" />
