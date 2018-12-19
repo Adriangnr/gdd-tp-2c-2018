@@ -103,7 +103,7 @@ create table ESECUELE.Usuario(
 	usr_fallas tinyint default 0,
 	usr_fecha_creacion datetime default null,
 	usr_tipo varchar(7) default null,
-	usr_email varchar(50) default null,
+	usr_email varchar(50),
 	usr_telefono varchar(20) default null,
 	usr_direccion varchar(150) default null,
 	usr_codigo_postal varchar(10) null
@@ -204,7 +204,7 @@ go
 
 --FechaEvento
 create table ESECUELE.Fecha_Evento(
-	fecha_evento_id int identity(1,1),
+	fecha_evento_id int identity(1,1) primary key,
 	fecha_evento_publicacion int not null,
 	fecha_evento datetime not null
 )
@@ -412,7 +412,7 @@ insert into ESECUELE.Rubro (rubro_descripcion) values
 
 -- Ingreso Grados
 insert into ESECUELE.Grado (grado_descripcion, grado_comision) values
-('Alta', 0.30), ('Media', 0.2), ('Baja', 0.1)
+('Alta', 0.30), ('Media', 0.2), ('Baja', 0.1), ('Indefinido', 0)
 
 
 -- Ingreso Productos
@@ -505,7 +505,8 @@ publicacion_fecha_inicio,
 publicacion_descripcion, 
 publicacion_rubro,
 publicacion_empresa, 
-publicacion_estado)
+publicacion_estado,
+publicacion_grado)
 
 select distinct
 Espectaculo_Cod, 
@@ -513,7 +514,8 @@ Espectaculo_Fecha_Venc,
 Espectaculo_Descripcion,
 case when Espectaculo_Rubro_Descripcion = '' then 7 end,
 (select empresa_id from ESECUELE.Empresa where empresa_usuario = CONCAT('usr_', Espec_Empresa_Cuit)),
-Espectaculo_Estado
+Espectaculo_Estado,
+4 -- Como ninguna publicacion tiene grado, le asignamos el indeterminado
  from gd_esquema.Maestra
  SET IDENTITY_INSERT ESECUELE.Publicacion OFF
 -- Fin de Carga de Espectaculos
@@ -715,11 +717,14 @@ alter table ESECUELE.Funcionalidad_Rol add constraint FK_FR_RolId foreign key(fr
 -- Relacion Empresa - Usuario
 alter table ESECUELE.Empresa add constraint FK_Emp_UserName foreign key (empresa_usuario) references ESECUELE.Usuario(usr_username) ON UPDATE CASCADE ON DELETE CASCADE
 
--- Relacion Publicacion -Empresa
+-- Relacion Publicacion - Empresa
 alter table ESECUELE.Publicacion add constraint FK_EmpId foreign key (publicacion_empresa) references ESECUELE.Empresa(empresa_id) ON UPDATE CASCADE ON DELETE NO ACTION
 
--- Relacion Fecha_Evento - Publicacion
---alter table ESECUELE.Fecha_Evento
+-- Relacion Publicacion - Grado
+alter table ESECUELE.Publicacion add constraint FK_Emp_Grado foreign key (publicacion_grado) references ESECUELE.Grado(grado_id)
+
+-- Relacion Publicacion - Rubro
+alter table ESECUELE.Publicacion add constraint FK_Emp_Rubro foreign key (publicacion_rubro) references ESECUELE.Rubro(rubro_codigo)
 
 -- Relacion Ubicacion - Tipo_Ubicacion
 alter table ESECUELE.Ubicacion add constraint FK_Tipo_Ubicacion foreign key(ubicacion_tipo) references ESECUELE.Tipo_Ubicacion(tipo_ubicacion_id)
@@ -729,6 +734,9 @@ alter table ESECUELE.Cliente add constraint FK_Cli_UserName foreign key (cliente
 
 -- Relacion Compra - Cliente
 alter table ESECUELE.Compra add constraint FK_Comp_Clie foreign key (compra_cliente) references ESECUELE.Cliente(cliente_id) ON UPDATE CASCADE ON DELETE NO ACTION
+
+-- Relacion Compra - Empresa
+alter table ESECUELE.Compra add constraint FK_Comp_Emp foreign key (compra_empresa) references ESECUELE.Empresa(empresa_id)
 
 -- Relacion Entrada - Compra
 alter table ESECUELE.Entrada add constraint FK_Entrada_Compra foreign key (entrada_compra) references ESECUELE.Compra(compra_id)
@@ -747,6 +755,16 @@ alter table ESECUELE.Punto add constraint FK_P_ClieId foreign key(punto_cliente)
 
 -- Relacion Factura - Empresa
 alter table ESECUELE.Factura add constraint FK_F_EmpId foreign key(fact_empresa) references ESECUELE.Empresa(empresa_id) ON DELETE SET NULL ON UPDATE CASCADE
+
+-- Relacion Item Factura
+alter table ESECUELE.Item_Factura add constraint FK_IF_Fact foreign key(item_id_factura) references ESECUELE.Factura(fact_id)
+alter table ESECUELE.Item_Factura add constraint FK_IF_Ent foreign key(item_entrada) references ESECUELE.Entrada(entrada_id)
+
+-- Relacion Fecha evento - Publicacion
+alter table ESECUELE.Fecha_Evento add constraint FK_FE_Pub foreign key(fecha_evento_publicacion) references ESECUELE.Publicacion(publicacion_codigo)
+
+-- Relacion Entrada - Fecha evento
+alter table ESECUELE.Entrada add constraint FK_Entrada_FE foreign key (entrada_fecha_evento) references ESECUELE.Fecha_Evento(fecha_evento_id)
 
 go
 /*------------------------Fin Creacion de restricciones -------------------------*/
@@ -1504,7 +1522,9 @@ go
 
 create procedure ESECUELE.GetEntradasVendidas(@publicacion_codigo int)
 as begin
-	select * from ESECUELE.Entrada join ESECUELE.Ubicacion on entrada_ubicacion = ubicacion_id
+	select entrada_id,entrada_compra,entrada_ubicacion,entrada_fila,entrada_asiento, entrada_fecha_evento, fecha_evento_publicacion
+	from ESECUELE.Entrada join ESECUELE.Fecha_Evento on fecha_evento_id = entrada_fecha_evento
+						  join ESECUELE.Ubicacion on entrada_ubicacion = ubicacion_id
 	where ubicacion_publicacion = @publicacion_codigo
 end
 go
@@ -1981,35 +2001,44 @@ as begin
 end
 go
 
+-- Como las ubicaciones sin numerar no usan filas y
+-- las vendidas historicas no encontre que compartieran fila, no multiplican por filas
+-- las publicaciones nuevas si lo haran mientras sean ubicaciones numeradas
 create procedure ESECUELE.ReporteUno(@anio int, @trimestre int, @grado int, @fechaActual datetime)
 as begin
-select top 5 cliente_id, cliente_nombre, sum(punto_valor - punto_usados)
-						from ESECUELE.Punto join ESECUELE.Cliente on punto_cliente = cliente_id
-						where punto_fecha_vencimiento < @fechaActual and year(punto_fecha_vencimiento) = @anio
-						and datepart(quarter,punto_fecha_vencimiento) = @trimestre
-						group by cliente_id, cliente_nombre
-						order by 3 desc
+select top 5 fecha_evento, empresa_razon_social, publicacion_codigo, publicacion_descripcion, grado_descripcion,
+ case when (publicacion_grado = 4 or ubicacion_sin_numerar = 1) then sum(ubicacion_cant_asientos - ubicacion_asientos_ocupados)
+ else sum(ubicacion_cant_filas*ubicacion_cant_asientos - ubicacion_asientos_ocupados)
+ end
+from ESECUELE.Empresa join ESECUELE.Publicacion on publicacion_empresa = empresa_id
+					  join ESECUELE.Fecha_Evento on fecha_evento_publicacion = publicacion_codigo
+					  join ESECUELE.Ubicacion on ubicacion_publicacion = publicacion_codigo
+					  join ESECUELE.Grado on grado_id = publicacion_grado				
+where fecha_evento < @fechaActual and year(fecha_evento) = @anio
+and datepart(quarter,fecha_evento) = @trimestre
+group by empresa_id, empresa_razon_social, publicacion_codigo, publicacion_descripcion, publicacion_grado, fecha_evento, ubicacion_sin_numerar
+order by fecha_evento asc, publicacion_grado asc, 6 desc
 end
 go
 
 create procedure ESECUELE.ReporteDos(@anio int, @trimestre int, @fechaActual datetime)
 as begin
-select top 5 cliente_id, cliente_nombre, sum(punto_valor - punto_usados)
+select top 5 cliente_id, cliente_nombre, cliente_apellido,cliente_cuil,sum(punto_valor - punto_usados)
 						from ESECUELE.Punto join ESECUELE.Cliente on punto_cliente = cliente_id
 						where punto_fecha_vencimiento < @fechaActual and year(punto_fecha_vencimiento) = @anio
 						and datepart(quarter,punto_fecha_vencimiento) = @trimestre
-						group by cliente_id, cliente_nombre
-						order by 3 desc
+						group by cliente_id, cliente_nombre, cliente_apellido,cliente_cuil
+						order by sum(punto_valor - punto_usados) desc
 end
 go
 
 create procedure ESECUELE.ReporteTres(@anio int, @trimestre int, @fechaActual datetime)
 as begin
-select top 5 cliente_id, cliente_nombre, sum(punto_valor - punto_usados)
-						from ESECUELE.Punto join ESECUELE.Cliente on punto_cliente = cliente_id
-						where punto_fecha_vencimiento < GETDATE() and year(punto_fecha_vencimiento) = @anio
-						and datepart(quarter,punto_fecha_vencimiento) = @trimestre
-						group by cliente_id, cliente_nombre
-						order by 3 desc
+select top 5 cliente_cuil,compra_cliente,cliente_nombre, cliente_apellido,empresa_razon_social, empresa_cuit, count(1)
+from ESECUELE.Compra join ESECUELE.Cliente on cliente_id = compra_cliente
+					 join ESECUELE.Empresa on empresa_id = compra_empresa
+where compra_fecha < @fechaActual and year(compra_fecha) = @anio and datepart(quarter,compra_fecha) = @trimestre
+group by cliente_cuil,compra_cliente,compra_empresa, cliente_nombre, cliente_nombre, cliente_apellido, empresa_razon_social, empresa_cuit
+order by count(1) desc
 end
 go

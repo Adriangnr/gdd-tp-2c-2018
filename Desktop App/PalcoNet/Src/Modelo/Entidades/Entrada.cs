@@ -21,6 +21,9 @@ namespace PalcoNet.Src.Modelo.Entidades
         public int Ocupados { get; set; }
         public bool facturada { get; set; }
 
+        public int FechaEventoId { get; set; }
+        public DateTime FechaEvento { get; set; }
+
         public Entrada() { }
 
         public Entrada( int UbicacionId, int Fila, int Asiento, Ubicacion Ubicacion)

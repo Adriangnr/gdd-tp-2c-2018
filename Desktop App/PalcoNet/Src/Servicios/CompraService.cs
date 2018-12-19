@@ -64,6 +64,7 @@ namespace PalcoNet.Src.Servicios
             dt.Columns.Add("compra_fecha_evento", typeof(int));
             dt.Columns.Add("compra_monto_total", typeof(double));
             dt.Columns.Add("compra_tarjeta", typeof(string));
+            dt.Columns.Add("compra_empresa", typeof(int));
             dt.Columns.Add("entrada_ubicacion", typeof(int));
             dt.Columns.Add("entrada_fila", typeof(int));
             dt.Columns.Add("entrada_asiento", typeof(int));
@@ -71,8 +72,8 @@ namespace PalcoNet.Src.Servicios
 
             foreach (Entrada entrada in entradas)
             {
-                dt.Rows.Add(cliente.Id,Utilities.getCurrentDate(),montoTotal,cliente.DatosTarjeta,entrada.UbicacionId, 
-				entrada.Fila,entrada.sinNumerar? entrada.cantSinNumerar:entrada.Asiento);
+                dt.Rows.Add(cliente.Id,Utilities.getCurrentDate(),publicacion.FechaEventoId,montoTotal,cliente.DatosTarjeta, publicacion.Empresa.Id
+                    ,entrada.UbicacionId,entrada.Fila,entrada.sinNumerar? entrada.cantSinNumerar:entrada.Asiento);
             }
 
             var sqlParam = new SqlParameter("@compra", SqlDbType.Structured);
