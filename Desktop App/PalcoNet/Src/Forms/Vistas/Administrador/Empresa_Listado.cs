@@ -13,6 +13,9 @@ namespace PalcoNet.Src.Forms.Vistas.Administrador
         public Empresa_Listado()
         {
             InitializeComponent();
+            this.btn_comisionar.Visible = false;
+            System.Drawing.Size size = new System.Drawing.Size(1000, 500);
+            this.Size = size;
         }
 
         private void Empresa_Listado_Load(object sender, EventArgs e)

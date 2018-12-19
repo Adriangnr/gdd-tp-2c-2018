@@ -17,6 +17,8 @@ namespace PalcoNet.Src.Forms.Vistas.Cliente
         public Historial()
         {
             InitializeComponent();
+            System.Drawing.Size size = new System.Drawing.Size(1000, 500);
+            this.Size = size;
         }
 
         private void Historial_Load(object sender, EventArgs e)
