@@ -35,27 +35,38 @@ namespace PalcoNet.Src.Forms.Vistas.Paginador
         {
             Page currentPage = null;
             this.PageNumber += 1;
-            if (this.Pages.Count == 0)
+            try
             {
-                int offset = this.PageNumber * this.ItemsPerPage;
-                currentPage = this.SearchPaged(offset, this.ItemsPerPage);
-                this.TotalRecords = currentPage.TotalItems;
-                this.TotalPages = (int)Math.Ceiling((decimal)this.TotalRecords / (decimal)this.ItemsPerPage);
-                this.Pages.Add(this.PageNumber, currentPage);
-            }
-            else
-            {
-                try
-                {
-                    currentPage = this.Pages[this.PageNumber];
-                }
-                catch (Exception)
+                if (this.Pages.Count == 0)
                 {
                     int offset = this.PageNumber * this.ItemsPerPage;
                     currentPage = this.SearchPaged(offset, this.ItemsPerPage);
+                    this.TotalRecords = currentPage.TotalItems;
+                    this.TotalPages = (int)Math.Ceiling((decimal)this.TotalRecords / (decimal)this.ItemsPerPage);
                     this.Pages.Add(this.PageNumber, currentPage);
                 }
+                else
+                {
+                    try
+                    {
+                        currentPage = this.Pages[this.PageNumber];
+                    }
+                    catch (Exception)
+                    {
+                        int offset = this.PageNumber * this.ItemsPerPage;
+                        currentPage = this.SearchPaged(offset, this.ItemsPerPage);
+                        this.Pages.Add(this.PageNumber, currentPage);
+                    }
+                }
             }
+            catch(Exception ex)
+            {
+                this.PageNumber = -1;
+                this.updateControls();
+                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.StackTrace);
+            }
+            
             this.updateControls();
             return this.Pages[this.PageNumber];
         }

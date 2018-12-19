@@ -122,6 +122,7 @@ namespace PalcoNet.Src.Forms.Vistas.Administrador
         {
             Registro formRegistro = new Registro(this);
             formRegistro.setearTipoUsuario("Empresa");
+            formRegistro.fromAdmin = true;
             formRegistro.Show();
             this.Hide();
         }

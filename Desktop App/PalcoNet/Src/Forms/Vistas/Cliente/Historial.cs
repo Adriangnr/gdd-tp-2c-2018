@@ -39,6 +39,7 @@ namespace PalcoNet.Src.Forms.Vistas.Cliente
                 List<object> objects = currentPage.GetItems();
                 List<PalcoNet.Src.Modelo.Entidades.Compra_Ticket> compras = objects.Cast<PalcoNet.Src.Modelo.Entidades.Compra_Ticket>().ToList();
                 this.dataGridHistorial.DataSource = compras;
+                this.dataGridHistorial.Columns[6].Visible = false;
                 /*------------- Fin Paginador ----------*/
 
                 List<string> encabezados = new List<string>(new string[] {"ClienteNombre", "ClienteApellido"});
