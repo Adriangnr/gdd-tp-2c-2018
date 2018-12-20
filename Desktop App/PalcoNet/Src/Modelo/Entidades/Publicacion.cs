@@ -38,5 +38,15 @@ namespace PalcoNet.Src.Modelo.Entidades
         {
             return this.empresaId;
         }
+
+        public bool vencida()
+        {
+            foreach(DateTime fecha in fechas)
+            {
+                DateTime today = Utils.Utilities.getCurrentDate();
+                if (fecha < today) return true;
+            }
+            return false;
+        }
     }
 }

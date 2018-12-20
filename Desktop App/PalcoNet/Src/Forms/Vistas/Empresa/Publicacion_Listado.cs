@@ -19,6 +19,8 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
         public Publicacion_Listado()
         {
             InitializeComponent();
+            System.Drawing.Size size = new System.Drawing.Size(1000, 500);
+            this.Size = size;
         }
 
         private void loadPaginator()
@@ -40,6 +42,18 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
             this.publicaciones = objects.Cast<Publicacion>().ToList();
         }
 
+        private void hideColumns()
+        {
+            List<string> esconder = new List<string>() { "FechaEvento", "FechaEventoId" };
+
+            foreach (DataGridViewColumn column in this.dataGridPublicaciones.Columns)
+            {
+
+                if (esconder.Contains(column.HeaderText))
+                    column.Visible = false;
+            }
+        }
+
         private void Pulicacion_Listado_Load(object sender, EventArgs e)
         {
             try
@@ -47,19 +61,10 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
                 this.loadPaginator();
                 this.getPage();
                 
-                    this.dataGridPublicaciones.DataSource = null;
-                    this.dataGridPublicaciones.DataSource = this.publicaciones;
-
-                    List<string> esconder = new List<string>() { "FechaEvento", "FechaEventoId"};
-
-                    foreach (DataGridViewColumn column in this.dataGridPublicaciones.Columns)
-                    {
-
-                        if (esconder.Contains(column.HeaderText))
-                            column.Visible = false;
-                    }
-                    this.dataGridPublicaciones.ClearSelection();
-                
+                this.dataGridPublicaciones.DataSource = null;
+                this.dataGridPublicaciones.DataSource = this.publicaciones;
+                this.hideColumns();
+                this.dataGridPublicaciones.ClearSelection();
             }
             catch (Exception ex)
             {
@@ -150,22 +155,36 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
             this.dataGridPublicaciones.DataSource = null;
             this.dataGridPublicaciones.Refresh();
             this.dataGridPublicaciones.DataSource = publicaciones;
+            this.hideColumns();
             this.dataGridPublicaciones.Refresh();
             this.dataGridPublicaciones.ClearSelection();
         }
 
         private void dataGridPublicaciones_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            this.btnPublicar.Visible = false;
+            this.btnFinalizar.Visible = false;
             Publicacion currentPublicacion = (Publicacion)this.dataGridPublicaciones.SelectedRows[0].DataBoundItem;
-            if (!currentPublicacion.Estado.puedeModificarse())
+            if (currentPublicacion.Estado.puedeModificarse())
             {
-                this.btn_edit.Text = "Ver";
-                this.btnFinalizar.Visible = true;
+                this.btn_edit.Text = "Editar";
+                this.btnPublicar.Visible = true;
+                this.btnFinalizar.Visible = false;
             }
             else
             {
-                this.btn_edit.Text = "Editar";
-                if(currentPublicacion.FechaEvento < Utils.Utilities.getCurrentDate()) this.btnFinalizar.Visible = false;
+                this.btn_edit.Text = "Ver";
+                string state = currentPublicacion.Estado.ToString();
+                if ( state == "Publicada")
+                {
+                    this.btnPublicar.Visible = false;
+                    if (currentPublicacion.vencida()) this.btnFinalizar.Visible = true;
+                }
+                else
+                {
+                    this.btnFinalizar.Visible = false;
+                    this.btnPublicar.Visible = false;
+                }
             }
         }
 
@@ -198,6 +217,11 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
             {
                 return;
             }
+        }
+
+        private void btnPublicar_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

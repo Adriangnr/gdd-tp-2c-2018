@@ -26,6 +26,7 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
         {
             this.previous = previous;
             InitializeComponent();
+            this.Size = new System.Drawing.Size(1200, 500);
             this.loadLists();
         }
 
@@ -41,8 +42,18 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
 
         public void AddUbicacion(Dictionary<string, object> newUbicacion)
         {
-            this.dataGridViewUbicaciones.Rows.Add(newUbicacion["descripcion"], newUbicacion["filas"],
+            if (!this.ubicacionExists(((Tipo_Ubicacion)newUbicacion["descripcion"]).ToString(), (int)newUbicacion["filas"],
+                (int)newUbicacion["asientos"]))
+            {
+                this.dataGridViewUbicaciones.Rows.Add(newUbicacion["descripcion"], newUbicacion["filas"],
                 newUbicacion["asientos"], newUbicacion["precio"], newUbicacion["cantidad"], newUbicacion["sinNumerar"], "Quitar");
+            }
+            else
+            {
+                MessageBox.Show("La ubicación ingresada ya existe!", "Error!",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
         }
 
         public void loadFields()
@@ -57,11 +68,6 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
             foreach (object item in this.grado.Items)
             {
                 if (((Grado)item).id == this.publicacion.Grado.id) this.grado.SelectedItem = item;
-            }
-
-            foreach (object item in this.estado.Items)
-            {
-                if (((Estado)item).ToString() == this.publicacion.Estado.ToString()) this.estado.SelectedItem = item;
             }
             
             this.addListFechaHora(this.publicacion.fechas);
@@ -108,10 +114,22 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
             return this.dataGridView_fechaHora;
         }
 
+        private bool ubicacionExists(string desc, int filas, int asientos)
+        {
+            foreach(DataGridViewRow row in this.dataGridViewUbicaciones.Rows)
+            {
+                if((((Tipo_Ubicacion)row.Cells[0].Value).ToString() == desc) && ((int)row.Cells[1].Value == filas) 
+                    && (int)row.Cells[2].Value == asientos)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         private void loadLists(){
             this.GetRubros();
             this.GetGrados();
-            this.GetEstados();
         }
 
         private void GetUbicaciones()
@@ -130,12 +148,6 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
         {
             GradoService gradoService = (GradoService)ServiceFactory.GetService("Grado");
             this.grado.Items.AddRange(gradoService.GetGrados().ToArray());
-        }
-
-        private void GetEstados()
-        {
-            EstadoService estadoService = (EstadoService)ServiceFactory.GetService("Estado");
-            this.estado.Items.AddRange(estadoService.GetEstados().ToArray());
         }
 
         private void Publicacion_Detalle_Load(object sender, EventArgs e)
@@ -249,7 +261,7 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
                 data.Add("Direccion", this.direccion.Text);
                 data.Add("Rubro", (Rubro)this.rubro.SelectedItem);
                 data.Add("Grado", (Grado)this.grado.SelectedItem);
-                data.Add("Estado", (Estado)this.estado.SelectedItem);
+                data.Add("Estado", new Borrador());
                 data.Add("EmpresaId", this.usuario.getEmpresaId());
                 if(this.publicacion == null)
                 {
@@ -263,18 +275,10 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
                     this.publicacion.Direccion = this.direccion.Text;
                     this.publicacion.Rubro = (Rubro)this.rubro.SelectedItem;
                     this.publicacion.Grado = (Grado)this.grado.SelectedItem;
-                    this.publicacion.Estado = (Estado)this.estado.SelectedItem;
 
                     this.publicacionService.update(this.publicacion, this.getFechas(), this.getUbicaciones());
                     MessageBox.Show("Publicacion actualizada con exito!", "Actualizar publicación.",
                                     MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                    /*Publicacion_Listado listado = new Publicacion_Listado();
-                    listado.usuario = this.usuario;
-                    this.previous.Close();
-                    this.previous = listado;
-                    listado.Show();
-                    this.Hide();*/
                 }
                 ((Publicacion_Listado)this.previous).reload();
                 this.previous.Show();
