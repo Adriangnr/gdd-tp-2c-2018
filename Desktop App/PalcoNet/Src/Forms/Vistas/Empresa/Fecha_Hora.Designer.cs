@@ -40,46 +40,41 @@
             // pub_fecha
             // 
             this.pub_fecha.AutoSize = true;
-            this.pub_fecha.Location = new System.Drawing.Point(45, 50);
-            this.pub_fecha.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.pub_fecha.Location = new System.Drawing.Point(68, 77);
             this.pub_fecha.Name = "pub_fecha";
-            this.pub_fecha.Size = new System.Drawing.Size(37, 13);
+            this.pub_fecha.Size = new System.Drawing.Size(54, 20);
             this.pub_fecha.TabIndex = 0;
             this.pub_fecha.Text = "Fecha";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(45, 79);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Location = new System.Drawing.Point(68, 122);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(123, 13);
+            this.label2.Size = new System.Drawing.Size(184, 20);
             this.label2.TabIndex = 1;
             this.label2.Text = "Horario de inicio (hh:mm)";
             // 
             // dateTimePicker_pubFecha
             // 
-            this.dateTimePicker_pubFecha.Location = new System.Drawing.Point(85, 46);
-            this.dateTimePicker_pubFecha.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dateTimePicker_pubFecha.Location = new System.Drawing.Point(128, 71);
             this.dateTimePicker_pubFecha.Name = "dateTimePicker_pubFecha";
-            this.dateTimePicker_pubFecha.Size = new System.Drawing.Size(195, 20);
+            this.dateTimePicker_pubFecha.Size = new System.Drawing.Size(290, 26);
             this.dateTimePicker_pubFecha.TabIndex = 3;
             // 
             // text_inicio
             // 
-            this.text_inicio.Location = new System.Drawing.Point(212, 75);
-            this.text_inicio.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.text_inicio.Location = new System.Drawing.Point(318, 115);
             this.text_inicio.Name = "text_inicio";
-            this.text_inicio.Size = new System.Drawing.Size(68, 20);
+            this.text_inicio.Size = new System.Drawing.Size(100, 26);
             this.text_inicio.TabIndex = 4;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(45, 18);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Location = new System.Drawing.Point(68, 28);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(90, 13);
+            this.label1.Size = new System.Drawing.Size(135, 20);
             this.label1.TabIndex = 6;
             this.label1.Text = "Cargar Funciones";
             // 
@@ -88,9 +83,10 @@
             this.btn_cancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_cancel.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_cancel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.btn_cancel.Location = new System.Drawing.Point(47, 148);
+            this.btn_cancel.Location = new System.Drawing.Point(70, 228);
+            this.btn_cancel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btn_cancel.Name = "btn_cancel";
-            this.btn_cancel.Size = new System.Drawing.Size(82, 35);
+            this.btn_cancel.Size = new System.Drawing.Size(123, 54);
             this.btn_cancel.TabIndex = 56;
             this.btn_cancel.Text = "Cancelar";
             this.btn_cancel.UseVisualStyleBackColor = true;
@@ -102,9 +98,10 @@
             this.btn_cargar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_cargar.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_cargar.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btn_cargar.Location = new System.Drawing.Point(197, 148);
+            this.btn_cargar.Location = new System.Drawing.Point(296, 228);
+            this.btn_cargar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btn_cargar.Name = "btn_cargar";
-            this.btn_cargar.Size = new System.Drawing.Size(82, 35);
+            this.btn_cargar.Size = new System.Drawing.Size(123, 54);
             this.btn_cargar.TabIndex = 57;
             this.btn_cargar.Text = "Cargar";
             this.btn_cargar.UseVisualStyleBackColor = false;
@@ -112,10 +109,10 @@
             // 
             // Fecha_Hora
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.ClientSize = new System.Drawing.Size(326, 219);
+            this.ClientSize = new System.Drawing.Size(489, 337);
             this.Controls.Add(this.btn_cargar);
             this.Controls.Add(this.btn_cancel);
             this.Controls.Add(this.label1);
@@ -123,9 +120,8 @@
             this.Controls.Add(this.dateTimePicker_pubFecha);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.pub_fecha);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "Fecha_Hora";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cargar Fecha y horario";
             this.ResumeLayout(false);
             this.PerformLayout();

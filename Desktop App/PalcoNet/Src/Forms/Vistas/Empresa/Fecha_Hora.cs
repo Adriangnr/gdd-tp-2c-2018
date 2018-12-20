@@ -1,4 +1,5 @@
 ﻿using PalcoNet.Src.Excepciones;
+using PalcoNet.Src.Forms.Layouts;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,7 +15,6 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
     public partial class Fecha_Hora : Form
     {
         public Publicacion_Detalle parent { get; set; }
-
         public Fecha_Hora()
         {
             InitializeComponent();
@@ -23,6 +23,7 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
 
         private void btn_cancel_Click(object sender, EventArgs e)
         {
+            this.parent.Enabled = true;
             this.Hide();
         }
         

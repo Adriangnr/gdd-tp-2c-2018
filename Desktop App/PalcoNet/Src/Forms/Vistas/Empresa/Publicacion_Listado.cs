@@ -58,6 +58,8 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
         {
             try
             {
+                this.btnPublicar.Visible = false;
+                this.btnFinalizar.Visible = false;
                 this.loadPaginator();
                 this.getPage();
                 
@@ -221,7 +223,33 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
 
         private void btnPublicar_Click(object sender, EventArgs e)
         {
-
+            DialogResult dialogResult = MessageBox.Show("Realmente quiere publicar esta publicación?",
+                "Publicar Publicación", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                try
+                {
+                    Publicacion currentPublicacion = (Publicacion)this.dataGridPublicaciones.CurrentRow.DataBoundItem;
+                    PublicacionService publicacionService = new PublicacionService();
+                    currentPublicacion.Estado = new Publicada();
+                    publicacionService.update(currentPublicacion, null, null);
+                    MessageBox.Show("Publicacion Publicada con exito!", "Publicar publicación.",
+                                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.Pulicacion_Listado_Load(null, null);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    Console.WriteLine(ex.StackTrace);
+                    MessageBox.Show("Error al publicar la publicación!", "Error!",
+                                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+            }
+            else if (dialogResult == DialogResult.No)
+            {
+                return;
+            }
         }
     }
 }

@@ -34,6 +34,7 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
 
         private void btn_cancel_Click(object sender, EventArgs e)
         {
+            this.parent.Enabled = true;
             this.Hide();
         }
 

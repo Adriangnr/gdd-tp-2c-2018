@@ -186,6 +186,7 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
             Fecha_Hora fechaHoraForm = new Fecha_Hora();
             fechaHoraForm.parent = this;
             fechaHoraForm.Show();
+            this.Enabled = false;
         }
 
         private void dataGridView_fechaHora_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -206,6 +207,7 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
             Ubicaciones ubicaciones = new Ubicaciones();
             ubicaciones.parent = this;
             ubicaciones.Show();
+            this.Enabled = false;
         }
 
         private void dataGridViewUbicaciones_CellContentClick(object sender, DataGridViewCellEventArgs e)
