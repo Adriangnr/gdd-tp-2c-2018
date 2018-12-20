@@ -214,6 +214,7 @@
             this.dataGridHistorialEntradas.Location = new System.Drawing.Point(407, 83);
             this.dataGridHistorialEntradas.MultiSelect = false;
             this.dataGridHistorialEntradas.Name = "dataGridHistorialEntradas";
+            this.dataGridHistorialEntradas.ReadOnly = true;
             this.dataGridHistorialEntradas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridHistorialEntradas.Size = new System.Drawing.Size(669, 427);
             this.dataGridHistorialEntradas.TabIndex = 98;

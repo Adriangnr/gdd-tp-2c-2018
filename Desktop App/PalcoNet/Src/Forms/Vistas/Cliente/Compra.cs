@@ -222,5 +222,11 @@ namespace PalcoNet.Src.Forms.Vistas.Cliente
             this.paginator = null;
             this.cargarListaCompras();
         }
+
+        public void noHayUbicaciones()
+        {
+            MessageBox.Show("No hay más ubicaciones disponibles!", "Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
     }
 }

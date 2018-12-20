@@ -59,7 +59,7 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
 
                 newUbicacion.Add("cantidad", int.Parse(this.txt_cantidad.Text));
 
-                this.parent.AddUbicacion(newUbicacion);
+                this.parent.AddUbicacion(newUbicacion, true);
             }
             catch(Exception ex)
             {

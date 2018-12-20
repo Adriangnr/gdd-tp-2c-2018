@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data.SqlClient;
 
 namespace PalcoNet.Src.Modelo.Entidades
@@ -11,6 +12,7 @@ namespace PalcoNet.Src.Modelo.Entidades
         public byte Id { get; set; }
         public string Nombre { get; set; }
         public bool Seleccionado { get; set; }
+        [DisplayName("Habilitado")]
         public bool Estado { get; set; }
 
         public Rol() {

@@ -36,6 +36,8 @@ namespace PalcoNet.Src.Forms.Vistas.Cliente
             this.loadCliente(usuario);
 
             InitializeComponent();
+            this.loadEntradas();
+
         }
 
         private void Compra_Detalle_Load(object sender, EventArgs e)
@@ -50,8 +52,6 @@ namespace PalcoNet.Src.Forms.Vistas.Cliente
                 this.label_tarjeta.Text = this.cliente.DatosTarjeta;
             else
                 this.label_tarjeta.Text = "No hay tarjeta registrada.";
-
-            this.loadEntradas();
 
         }
 
@@ -229,22 +229,33 @@ namespace PalcoNet.Src.Forms.Vistas.Cliente
         public void loadEntradas()
         {
             EntradaService entradaService = new EntradaService();
-            List<Entrada> listaCompleta = entradaService.GetAllEntradasDisponibles(this.publicacion.Codigo);
 
-            this.entradasDisponiblesN = new SortableBindingList<Entrada>(listaCompleta.FindAll(e => !e.sinNumerar));
-
-            this.entradasDisponiblesSN = new SortableBindingList<Entrada>(listaCompleta.FindAll(e => e.sinNumerar));
-
-            if (hayEntradas(entradasDisponiblesN))
+            try
             {
-                Compra_Ubicacion compra_ubicacion = new Compra_Ubicacion(this, publicacion.Codigo, entradasCompradasN, this.entradasDisponiblesN);
-                this.form_ubicacion = compra_ubicacion;
+                List<Entrada> listaCompleta = entradaService.GetAllEntradasDisponibles(this.publicacion.Codigo);
+
+                this.entradasDisponiblesN = new SortableBindingList<Entrada>(listaCompleta.FindAll(e => !e.sinNumerar));
+
+                this.entradasDisponiblesSN = new SortableBindingList<Entrada>(listaCompleta.FindAll(e => e.sinNumerar));
+
+                if (hayEntradas(entradasDisponiblesN))
+                {
+                    Compra_Ubicacion compra_ubicacion = new Compra_Ubicacion(this, publicacion.Codigo, entradasCompradasN, this.entradasDisponiblesN);
+                    this.form_ubicacion = compra_ubicacion;
+                }
+
+                if (hayEntradas(entradasDisponiblesSN))
+                {
+                    Compra_Sin_Numerar form_compraSN = new Compra_Sin_Numerar(this, publicacion.Codigo, this.entradasCompradasSN, this.entradasDisponiblesSN);
+                    this.form_compraSN = form_compraSN;
+                }
             }
-
-            if (hayEntradas(entradasDisponiblesSN))
+            catch (Exception ex)
             {
-                Compra_Sin_Numerar form_compraSN = new Compra_Sin_Numerar(this, publicacion.Codigo, this.entradasCompradasSN, this.entradasDisponiblesSN);
-                this.form_compraSN = form_compraSN;
+                Console.WriteLine(ex);
+                ((Compra)this.previous).noHayUbicaciones();
+                this.previous.Show();
+                this.Close();
             }
         }
 

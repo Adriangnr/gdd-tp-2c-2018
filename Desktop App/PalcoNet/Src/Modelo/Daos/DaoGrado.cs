@@ -54,5 +54,20 @@ namespace PalcoNet.Src.Modelo.Daos
                 throw ex;
             }
         }
+
+        public void habilitar(Grado grado)
+        {
+            try
+            {
+                this.spExecute("ESECUELE.habilitarGrado", new List<SqlParameter>()
+                {
+                    new SqlParameter("@id", grado.id)
+                });
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

@@ -46,7 +46,7 @@
             this.dataGridGrados.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridGrados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridGrados.Location = new System.Drawing.Point(32, 86);
-            this.dataGridGrados.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dataGridGrados.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridGrados.MultiSelect = false;
             this.dataGridGrados.Name = "dataGridGrados";
             this.dataGridGrados.ReadOnly = true;
@@ -66,7 +66,7 @@
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(129, 45);
             this.btnEliminar.TabIndex = 77;
-            this.btnEliminar.Text = "Eliminar";
+            this.btnEliminar.Text = "Des/Habilitar";
             this.btnEliminar.UseVisualStyleBackColor = false;
             this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
@@ -124,7 +124,7 @@
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnAgregarGrado);
             this.Controls.Add(this.dataGridGrados);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Grado_Publicacion";
             this.Text = "Grados de publicaciones";
             this.Controls.SetChildIndex(this.footer, 0);

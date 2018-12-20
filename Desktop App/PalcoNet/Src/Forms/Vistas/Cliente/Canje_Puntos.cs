@@ -77,7 +77,7 @@ namespace PalcoNet.Src.Forms.Vistas.Cliente
                         this.Cliente.Puntos -= producto.Valor;
                         this.points.Text = this.Cliente.Puntos.ToString();
                         MessageBox.Show("Canje exitoso! Recibirá un email con instrucciones para su retiro."
-                            , "Canje de productos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            , "Canje de productos", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     catch (Exception ex)
                     {

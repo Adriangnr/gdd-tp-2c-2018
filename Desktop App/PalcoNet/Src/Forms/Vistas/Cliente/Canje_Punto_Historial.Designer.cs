@@ -48,6 +48,7 @@
             this.dataGridPremiosHistorial.Location = new System.Drawing.Point(83, 81);
             this.dataGridPremiosHistorial.MultiSelect = false;
             this.dataGridPremiosHistorial.Name = "dataGridPremiosHistorial";
+            this.dataGridPremiosHistorial.ReadOnly = true;
             this.dataGridPremiosHistorial.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridPremiosHistorial.Size = new System.Drawing.Size(511, 328);
             this.dataGridPremiosHistorial.TabIndex = 63;
@@ -67,7 +68,7 @@
             this.btn_cancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_cancel.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_cancel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.btn_cancel.Location = new System.Drawing.Point(283, 440);
+            this.btn_cancel.Location = new System.Drawing.Point(465, 417);
             this.btn_cancel.Name = "btn_cancel";
             this.btn_cancel.Size = new System.Drawing.Size(129, 45);
             this.btn_cancel.TabIndex = 65;
@@ -79,6 +80,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(682, 497);
             this.Controls.Add(this.btn_cancel);
             this.Controls.Add(this.label1);

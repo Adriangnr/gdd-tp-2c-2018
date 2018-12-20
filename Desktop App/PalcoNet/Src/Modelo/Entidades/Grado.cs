@@ -18,6 +18,9 @@ namespace PalcoNet.Src.Modelo.Entidades
         [DisplayName("Comisión")]
         public decimal comision { get; set; }
 
+        [DisplayName("Habilitado")]
+        public bool habilitado { get; set; }
+
         public Grado() { }
 
         public Grado(string descripcion, decimal comision)

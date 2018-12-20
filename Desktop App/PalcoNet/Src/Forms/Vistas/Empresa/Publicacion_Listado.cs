@@ -180,7 +180,7 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
                 if ( state == "Publicada")
                 {
                     this.btnPublicar.Visible = false;
-                    if (currentPublicacion.vencida()) this.btnFinalizar.Visible = true;
+                    /*if (currentPublicacion.vencida())*/ this.btnFinalizar.Visible = true;
                 }
                 else
                 {

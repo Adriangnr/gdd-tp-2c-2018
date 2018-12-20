@@ -38,7 +38,8 @@
             // 
             // footer
             // 
-            this.footer.Location = new System.Drawing.Point(691, 649);
+            this.footer.Location = new System.Drawing.Point(420, 419);
+            this.footer.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             // 
             // btn_comisionar
             // 
@@ -46,10 +47,10 @@
             this.btn_comisionar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_comisionar.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_comisionar.ForeColor = System.Drawing.SystemColors.Window;
-            this.btn_comisionar.Location = new System.Drawing.Point(850, 175);
+            this.btn_comisionar.Location = new System.Drawing.Point(509, 108);
             this.btn_comisionar.Margin = new System.Windows.Forms.Padding(0);
             this.btn_comisionar.Name = "btn_comisionar";
-            this.btn_comisionar.Size = new System.Drawing.Size(194, 69);
+            this.btn_comisionar.Size = new System.Drawing.Size(129, 45);
             this.btn_comisionar.TabIndex = 5;
             this.btn_comisionar.Text = "Rendir Comisiones";
             this.btn_comisionar.UseVisualStyleBackColor = false;
@@ -60,10 +61,9 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.label1.Location = new System.Drawing.Point(42, 120);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(28, 78);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(215, 29);
+            this.label1.Size = new System.Drawing.Size(143, 20);
             this.label1.TabIndex = 20;
             this.label1.Text = "Comisionar Ventas";
             // 
@@ -72,10 +72,9 @@
             this.btn_cancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_cancel.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_cancel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.btn_cancel.Location = new System.Drawing.Point(850, 542);
-            this.btn_cancel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btn_cancel.Location = new System.Drawing.Point(509, 346);
             this.btn_cancel.Name = "btn_cancel";
-            this.btn_cancel.Size = new System.Drawing.Size(194, 69);
+            this.btn_cancel.Size = new System.Drawing.Size(129, 45);
             this.btn_cancel.TabIndex = 57;
             this.btn_cancel.Text = "Cancelar";
             this.btn_cancel.UseVisualStyleBackColor = true;
@@ -88,14 +87,17 @@
             this.dataGridViewEmpresas.AllowUserToOrderColumns = true;
             this.dataGridViewEmpresas.AllowUserToResizeColumns = false;
             this.dataGridViewEmpresas.AllowUserToResizeRows = false;
+            this.dataGridViewEmpresas.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridViewEmpresas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewEmpresas.Location = new System.Drawing.Point(47, 166);
+            this.dataGridViewEmpresas.Location = new System.Drawing.Point(31, 108);
+            this.dataGridViewEmpresas.Margin = new System.Windows.Forms.Padding(2);
+            this.dataGridViewEmpresas.MultiSelect = false;
             this.dataGridViewEmpresas.Name = "dataGridViewEmpresas";
             this.dataGridViewEmpresas.ReadOnly = true;
             this.dataGridViewEmpresas.RowHeadersVisible = false;
             this.dataGridViewEmpresas.RowTemplate.Height = 28;
             this.dataGridViewEmpresas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewEmpresas.Size = new System.Drawing.Size(649, 445);
+            this.dataGridViewEmpresas.Size = new System.Drawing.Size(433, 289);
             this.dataGridViewEmpresas.TabIndex = 58;
             // 
             // btnVerFacturas
@@ -104,10 +106,10 @@
             this.btnVerFacturas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnVerFacturas.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnVerFacturas.ForeColor = System.Drawing.SystemColors.Window;
-            this.btnVerFacturas.Location = new System.Drawing.Point(850, 303);
+            this.btnVerFacturas.Location = new System.Drawing.Point(509, 191);
             this.btnVerFacturas.Margin = new System.Windows.Forms.Padding(0);
             this.btnVerFacturas.Name = "btnVerFacturas";
-            this.btnVerFacturas.Size = new System.Drawing.Size(194, 69);
+            this.btnVerFacturas.Size = new System.Drawing.Size(129, 45);
             this.btnVerFacturas.TabIndex = 59;
             this.btnVerFacturas.Text = "Ver Facturas";
             this.btnVerFacturas.UseVisualStyleBackColor = false;
@@ -115,16 +117,17 @@
             // 
             // Comisiones_Detalle
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
             this.BackColor = System.Drawing.SystemColors.HighlightText;
-            this.ClientSize = new System.Drawing.Size(1064, 678);
+            this.ClientSize = new System.Drawing.Size(669, 441);
             this.Controls.Add(this.btnVerFacturas);
             this.Controls.Add(this.dataGridViewEmpresas);
             this.Controls.Add(this.btn_cancel);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btn_comisionar);
-            this.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "Comisiones_Detalle";
             this.Text = "Comisiones";
             this.Load += new System.EventHandler(this.Comisiones_Detalle_Load);

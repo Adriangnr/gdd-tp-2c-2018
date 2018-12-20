@@ -36,14 +36,14 @@ namespace PalcoNet.Src.Servicios
             }
 
         }
-
+        // fila y asiento 0 es para sin numerar
         private void loadEntrada(Entrada entrada, List<object> row)
         {
             entrada.Id = (int)row[0];
             entrada.Compra = (int)row[1];
             entrada.UbicacionId = (int)row[2];
-            entrada.Fila = (int)row[3];
-            entrada.Asiento = (int)row[4];
+            entrada.Fila = (row[3].GetType() != typeof(DBNull)) ? (int)row[3] : 0;
+            entrada.Asiento = (row[4].GetType() != typeof(DBNull)) ? (int)row[4] : 0;
             entrada.FechaEventoId = (int)row[5];
             entrada.FechaEvento = (DateTime)row[6];
         }
@@ -118,8 +118,8 @@ namespace PalcoNet.Src.Servicios
                 entrada.Id = (int)row[0];
                 entrada.Compra = (int)row[1];
                 entrada.UbicacionId = (int)row[2];
-                entrada.Fila = (int)row[3];
-                entrada.Asiento = (int)row[4];
+                entrada.Fila = (row[3].GetType() != typeof(DBNull)) ? (int)row[3] : 0;
+                entrada.Asiento = (row[4].GetType() != typeof(DBNull)) ? (int)row[4] : 0;
                 entrada.Precio = decimal.ToDouble((decimal)row[6]);
 
                 entradas.Add(entrada);

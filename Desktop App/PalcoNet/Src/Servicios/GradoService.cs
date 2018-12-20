@@ -12,15 +12,14 @@ namespace PalcoNet.Src.Servicios
 
         public List<Grado> GetGrados()
         {
-            List<List<object>> grados = this.Get("AllGrado", new List<SqlParameter>());
+            List<List<object>> grados = this.Get("AllGradoHabilitado", new List<SqlParameter>());
             List<Grado> gradosList = new List<Grado>();
             foreach (List<object> row in grados)
             {
                 Grado grado = new Grado((int)row[0], (string)row[1], Convert.ToDecimal(row[2]));
+                grado.habilitado = true;
                 gradosList.Add(grado);
             }
-            //Grado gradoIndef = new Grado(-1, "Indefinido", 0);
-           // gradosList.Add(gradoIndef);
             return gradosList;
         }
 
@@ -78,5 +77,33 @@ namespace PalcoNet.Src.Servicios
             grado.descripcion = (string)row[1];
             grado.comision = (decimal)row[2];
         }
+
+        public List<Grado> GetAllGrados()
+        {
+            DatabaseEntity db = new DatabaseEntity();
+
+            List<List<object>> grados = db.queryListExecute("SELECT * FROM ESECUELE.GRADO");
+            List<Grado> gradosList = new List<Grado>();
+            foreach (List<object> row in grados)
+            {
+                Grado grado = new Grado((int)row[0], (string)row[1], Convert.ToDecimal(row[2]));
+                grado.habilitado = (bool)row[3];
+                gradosList.Add(grado);
+            }
+            return gradosList;
+        }
+
+        public void habilitar(Grado grado)
+        {
+            try
+            {
+                this.daoGrado.habilitar(grado);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
     }
 }

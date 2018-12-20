@@ -1337,7 +1337,7 @@ begin
 end
 go
 
-create procedure ESECUELE.getAllGrado as
+create procedure ESECUELE.getAllGradoHabilitado as
 begin
 	select * from ESECUELE.Grado
 	where grado_habilitado = 1
@@ -2043,5 +2043,13 @@ from ESECUELE.Compra join ESECUELE.Cliente on cliente_id = compra_cliente
 where compra_fecha < @fechaActual and year(compra_fecha) = @anio and datepart(quarter,compra_fecha) = @trimestre
 group by cliente_cuil,compra_cliente,compra_empresa, cliente_nombre, cliente_nombre, cliente_apellido, empresa_razon_social, empresa_cuit
 order by count(1) desc
+end
+go
+
+create procedure ESECUELE.habilitarGrado(@id int) as
+begin
+	update ESECUELE.Grado 
+	set grado_habilitado = 1
+	where grado_id = @id
 end
 go

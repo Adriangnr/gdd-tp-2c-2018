@@ -40,10 +40,9 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
             this.dataGridView_fechaHora.Refresh();
         }
 
-        public void AddUbicacion(Dictionary<string, object> newUbicacion)
+        public void AddUbicacion(Dictionary<string, object> newUbicacion, bool esCreacion)
         {
-            if (!this.ubicacionExists(((Tipo_Ubicacion)newUbicacion["descripcion"]).ToString(), (int)newUbicacion["filas"],
-                (int)newUbicacion["asientos"]))
+            if (!this.ubicacionExists(((Tipo_Ubicacion)newUbicacion["descripcion"]).ToString(), (bool)newUbicacion["sinNumerar"]) || !esCreacion)
             {
                 this.dataGridViewUbicaciones.Rows.Add(newUbicacion["descripcion"], newUbicacion["filas"],
                 newUbicacion["asientos"], newUbicacion["precio"], newUbicacion["cantidad"], newUbicacion["sinNumerar"], "Quitar");
@@ -95,7 +94,7 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
                     ubicacionDic.Add("cantidad", ubicacion.filas * ubicacion.asientos);
                 }
                 ubicacionDic.Add("sinNumerar", ubicacion.sinNumerar);
-                this.AddUbicacion(ubicacionDic);
+                this.AddUbicacion(ubicacionDic, false);
             }
             this.dataGridView_fechaHora.Refresh();
         }
@@ -114,12 +113,11 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
             return this.dataGridView_fechaHora;
         }
 
-        private bool ubicacionExists(string desc, int filas, int asientos)
+        private bool ubicacionExists(string desc, bool sinNumerar)
         {
             foreach(DataGridViewRow row in this.dataGridViewUbicaciones.Rows)
             {
-                if((((Tipo_Ubicacion)row.Cells[0].Value).ToString() == desc) && ((int)row.Cells[1].Value == filas) 
-                    && (int)row.Cells[2].Value == asientos)
+                if((((Tipo_Ubicacion)row.Cells[0].Value).ToString() == desc) && ((bool)row.Cells[5].Value == sinNumerar))
                 {
                     return true;
                 }

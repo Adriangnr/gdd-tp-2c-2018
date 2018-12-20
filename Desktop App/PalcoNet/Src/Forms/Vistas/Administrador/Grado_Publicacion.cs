@@ -15,14 +15,15 @@ namespace PalcoNet.Src.Forms.Vistas.Administrador
         public Grado_Publicacion()
         {
             InitializeComponent();
-            this.dataGridGrados.DataSource = gradoService.GetGrados();
+            this.dataGridGrados.DataSource = gradoService.GetAllGrados();
         }
 
         public void reload()
         {
             this.dataGridGrados.DataSource = null;
-            this.dataGridGrados.DataSource = gradoService.GetGrados();
+            this.dataGridGrados.DataSource = gradoService.GetAllGrados();
             this.dataGridGrados.Refresh();
+            this.dataGridGrados.ClearSelection();
         }
 
         public bool gradoExist(string descripcion)
@@ -63,7 +64,13 @@ namespace PalcoNet.Src.Forms.Vistas.Administrador
         {
             try
             {
-                this.gradoService.delete((Grado)this.dataGridGrados.CurrentRow.DataBoundItem);
+                Grado currentGrado = (Grado)this.dataGridGrados.CurrentRow.DataBoundItem;
+
+                if( currentGrado.habilitado )
+                    this.gradoService.delete( currentGrado );
+                else
+                    this.gradoService.habilitar( currentGrado );
+
                 this.reload();
             }
             catch (Exception ex)
