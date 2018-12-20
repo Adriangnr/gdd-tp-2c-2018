@@ -21,14 +21,6 @@ namespace PalcoNet.Src.Forms.Vistas.Cliente
             try
             {
                 ClienteService clienteService = new ClienteService();
-
-                Src.Modelo.Entidades.Cliente cliente = clienteService.GetClienteByUsername(this.usuario.Username);
-                this.Cliente = cliente;
-
-                clienteService.getPuntaje(this.Cliente);
-
-                this.points.Text = this.Cliente.Puntos.ToString();
-
                 ProductoService productoService = new ProductoService();
 
                 this.dataGridPremios.DataSource = productoService.getAllProducto();
@@ -39,6 +31,14 @@ namespace PalcoNet.Src.Forms.Vistas.Cliente
                         column.Visible = false;
                 }
 
+                Src.Modelo.Entidades.Cliente cliente = clienteService.GetClienteByUsername(this.usuario.Username);
+                this.Cliente = cliente;
+
+                clienteService.getPuntaje(this.Cliente);
+
+                this.points.Text = this.Cliente.Puntos.ToString();
+
+                
                 this.dataGridPremios.AutoSize = false;
                 this.dataGridPremios.ScrollBars = ScrollBars.Both;
                 this.dataGridPremios.ClearSelection();
@@ -63,7 +63,7 @@ namespace PalcoNet.Src.Forms.Vistas.Cliente
                     return;
                 }
 
-                DialogResult result = MessageBox.Show("Desea obtener " + producto.ToString()
+                DialogResult result = MessageBox.Show("¿Desea obtener " + producto.ToString() +"?"
                 , "Canje de productos", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation);
 
                 if (result == System.Windows.Forms.DialogResult.OK)
