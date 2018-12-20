@@ -2,6 +2,7 @@
 using PalcoNet.Src.Servicios;
 using PalcoNet.Src.Servicios.ServiceFactory;
 using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace PalcoNet.Src.Forms.Vistas.Administrador
@@ -30,11 +31,20 @@ namespace PalcoNet.Src.Forms.Vistas.Administrador
         {
             try
             {
-                this.dataGridViewEmpresas.DataSource = empresaService.getEmpresasComisiones();
+                List<PalcoNet.Src.Modelo.Entidades.Empresa> empresas = empresaService.getEmpresasComisiones();
+                if( empresas.Count == 0)
+                {
+                    MessageBox.Show("No hay empresas que requieran rendición de comisiones!", "Comisiones",
+                                MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    this.dataGridViewEmpresas.DataSource = empresas;
                 this.dataGridViewEmpresas.Columns[3].Visible = false;
-                this.dataGridViewEmpresas.Columns[5].Visible = false;
-                this.dataGridViewEmpresas.Columns[6].Visible = false;
-                this.dataGridViewEmpresas.Columns[7].Visible = false;
+                    this.dataGridViewEmpresas.Columns[5].Visible = false;
+                    this.dataGridViewEmpresas.Columns[6].Visible = false;
+                    this.dataGridViewEmpresas.Columns[7].Visible = false;
+                }
             }
             catch (Exception ex)
             {
@@ -86,10 +96,27 @@ namespace PalcoNet.Src.Forms.Vistas.Administrador
 
         private void btnVerFacturas_Click(object sender, EventArgs e)
         {
-            Facturas_Listado facturasListado = new Facturas_Listado((PalcoNet.Src.Modelo.Entidades.Empresa)this.dataGridViewEmpresas.CurrentRow.DataBoundItem);
-            facturasListado.previous = this;
-            facturasListado.Show();
-            this.Hide();
+            if (this.dataGridViewEmpresas.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("No se seleccionó ninguna empresa!", "Comisionar ventas.",
+                                MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+            else
+            {
+                try
+                {
+                    Facturas_Listado facturasListado = new Facturas_Listado((PalcoNet.Src.Modelo.Entidades.Empresa)this.dataGridViewEmpresas.CurrentRow.DataBoundItem);
+                    facturasListado.previous = this;
+                    facturasListado.Show();
+                    this.Hide();
+                }
+                catch(Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    Console.WriteLine(ex.StackTrace);
+                }
+            }
         }
     }
 }

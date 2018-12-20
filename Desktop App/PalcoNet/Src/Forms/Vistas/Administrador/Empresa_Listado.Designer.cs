@@ -214,13 +214,8 @@
             // 
             this.dataGridEmpresas.AllowUserToAddRows = false;
             this.dataGridEmpresas.AllowUserToDeleteRows = false;
-            this.dataGridEmpresas.AllowUserToOrderColumns = true;
             this.dataGridEmpresas.AllowUserToResizeRows = false;
-            this.dataGridEmpresas.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridEmpresas.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridEmpresas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridEmpresas.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dataGridEmpresas.Location = new System.Drawing.Point(358, 128);
             this.dataGridEmpresas.MultiSelect = false;
@@ -229,8 +224,13 @@
             this.dataGridEmpresas.RowHeadersVisible = false;
             this.dataGridEmpresas.RowTemplate.Height = 28;
             this.dataGridEmpresas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridEmpresas.Size = new System.Drawing.Size(1041, 472);
+            this.dataGridEmpresas.ShowCellErrors = false;
+            this.dataGridEmpresas.ShowCellToolTips = false;
+            this.dataGridEmpresas.ShowEditingIcon = false;
+            this.dataGridEmpresas.ShowRowErrors = false;
+            this.dataGridEmpresas.Size = new System.Drawing.Size(1015, 486);
             this.dataGridEmpresas.TabIndex = 64;
+            this.dataGridEmpresas.TabStop = false;
             this.dataGridEmpresas.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridEmpresas_CellContentClick);
             // 
             // btn_eliminar
