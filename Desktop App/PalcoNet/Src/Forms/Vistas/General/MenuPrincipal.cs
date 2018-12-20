@@ -70,7 +70,7 @@ namespace PalcoNet.Src.Forms.Vistas.General
                         if(f.GetNombre() == "Cliente_Edicion")
                         {
                             funcForm = new Cliente_Edicion(this.user);
-                            ((Empresa_Edicion)funcForm).fromMenu = true;
+                            ((Cliente_Edicion)funcForm).fromMenu = true;
                         }
 
                         if (f.GetNombre() == "Empresa_Edicion")
