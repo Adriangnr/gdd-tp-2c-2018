@@ -93,7 +93,7 @@ namespace PalcoNet.Src.Forms.Vistas.Administrador
             this.Controls.Add(this.btn_cancel);
             this.Controls.Add(this.dataGridViewFacturas);
             this.Name = "Facturas_Listado";
-            this.Text = "Facturas_Listado";
+            this.Text = "Facturas";
             this.Controls.SetChildIndex(this.footer, 0);
             this.Controls.SetChildIndex(this.dataGridViewFacturas, 0);
             this.Controls.SetChildIndex(this.btn_cancel, 0);

@@ -313,7 +313,8 @@
             this.Controls.Add(groupBoxDireccion);
             this.Controls.Add(this.panel_datausuario);
             this.Name = "Empresa_Edicion";
-            this.Text = "Empresa_Edicion";
+            this.Text = "Empresas";
+            this.Controls.SetChildIndex(this.footer, 0);
             this.Controls.SetChildIndex(this.panel_datausuario, 0);
             this.Controls.SetChildIndex(groupBoxDireccion, 0);
             this.Controls.SetChildIndex(this.panel_dataempresa, 0);

@@ -136,7 +136,7 @@
             this.Controls.Add(this.labelCanCompras);
             this.Controls.Add(this.label1);
             this.Name = "Selector_Comisiones";
-            this.Text = "Rendir Comisiones";
+            this.Text = "Comisiones";
             this.Controls.SetChildIndex(this.footer, 0);
             this.Controls.SetChildIndex(this.label1, 0);
             this.Controls.SetChildIndex(this.labelCanCompras, 0);

@@ -44,9 +44,10 @@
             this.btn_cancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_cancel.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_cancel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.btn_cancel.Location = new System.Drawing.Point(632, 354);
+            this.btn_cancel.Location = new System.Drawing.Point(948, 545);
+            this.btn_cancel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btn_cancel.Name = "btn_cancel";
-            this.btn_cancel.Size = new System.Drawing.Size(129, 45);
+            this.btn_cancel.Size = new System.Drawing.Size(194, 69);
             this.btn_cancel.TabIndex = 60;
             this.btn_cancel.Text = "Cancelar";
             this.btn_cancel.UseVisualStyleBackColor = true;
@@ -58,10 +59,10 @@
             this.btn_canjear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_canjear.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_canjear.ForeColor = System.Drawing.SystemColors.Window;
-            this.btn_canjear.Location = new System.Drawing.Point(632, 83);
+            this.btn_canjear.Location = new System.Drawing.Point(948, 128);
             this.btn_canjear.Margin = new System.Windows.Forms.Padding(0);
             this.btn_canjear.Name = "btn_canjear";
-            this.btn_canjear.Size = new System.Drawing.Size(129, 45);
+            this.btn_canjear.Size = new System.Drawing.Size(194, 69);
             this.btn_canjear.TabIndex = 57;
             this.btn_canjear.Text = "Canjear";
             this.btn_canjear.UseVisualStyleBackColor = false;
@@ -71,9 +72,11 @@
             // 
             this.groupBox1.Controls.Add(this.points);
             this.groupBox1.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.groupBox1.Location = new System.Drawing.Point(32, 80);
+            this.groupBox1.Location = new System.Drawing.Point(48, 123);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(188, 100);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.groupBox1.Size = new System.Drawing.Size(282, 154);
             this.groupBox1.TabIndex = 61;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Tus Puntos";
@@ -83,9 +86,10 @@
             this.points.AutoSize = true;
             this.points.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.points.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.points.Location = new System.Drawing.Point(33, 34);
+            this.points.Location = new System.Drawing.Point(50, 52);
+            this.points.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.points.Name = "points";
-            this.points.Size = new System.Drawing.Size(131, 39);
+            this.points.Size = new System.Drawing.Size(201, 61);
             this.points.TabIndex = 0;
             this.points.Text = "999999";
             // 
@@ -96,19 +100,21 @@
             this.dataGridPremios.AllowUserToResizeRows = false;
             this.dataGridPremios.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridPremios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridPremios.Location = new System.Drawing.Point(246, 80);
+            this.dataGridPremios.Location = new System.Drawing.Point(369, 123);
+            this.dataGridPremios.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dataGridPremios.MultiSelect = false;
             this.dataGridPremios.Name = "dataGridPremios";
             this.dataGridPremios.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridPremios.Size = new System.Drawing.Size(364, 319);
+            this.dataGridPremios.Size = new System.Drawing.Size(546, 491);
             this.dataGridPremios.TabIndex = 62;
             // 
             // Premios
             // 
             this.Premios.AutoSize = true;
-            this.Premios.Location = new System.Drawing.Point(246, 49);
+            this.Premios.Location = new System.Drawing.Point(369, 75);
+            this.Premios.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Premios.Name = "Premios";
-            this.Premios.Size = new System.Drawing.Size(44, 13);
+            this.Premios.Size = new System.Drawing.Size(66, 20);
             this.Premios.TabIndex = 63;
             this.Premios.Text = "Premios";
             // 
@@ -118,10 +124,10 @@
             this.btn_historial.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_historial.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_historial.ForeColor = System.Drawing.SystemColors.Window;
-            this.btn_historial.Location = new System.Drawing.Point(632, 146);
+            this.btn_historial.Location = new System.Drawing.Point(948, 225);
             this.btn_historial.Margin = new System.Windows.Forms.Padding(0);
             this.btn_historial.Name = "btn_historial";
-            this.btn_historial.Size = new System.Drawing.Size(129, 45);
+            this.btn_historial.Size = new System.Drawing.Size(194, 69);
             this.btn_historial.TabIndex = 64;
             this.btn_historial.Text = "Historial";
             this.btn_historial.UseVisualStyleBackColor = false;
@@ -129,17 +135,18 @@
             // 
             // Canje_Puntos
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(784, 441);
+            this.ClientSize = new System.Drawing.Size(1176, 678);
             this.Controls.Add(this.btn_historial);
             this.Controls.Add(this.Premios);
             this.Controls.Add(this.dataGridPremios);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btn_cancel);
             this.Controls.Add(this.btn_canjear);
+            this.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
             this.Name = "Canje_Puntos";
-            this.Text = "Palco.NET - Canjear Puntos";
+            this.Text = "Canje de puntos";
             this.Load += new System.EventHandler(this.Canje_Puntos_Load);
             this.Controls.SetChildIndex(this.btn_canjear, 0);
             this.Controls.SetChildIndex(this.btn_cancel, 0);

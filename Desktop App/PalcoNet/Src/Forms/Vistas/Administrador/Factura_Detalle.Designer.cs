@@ -202,7 +202,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnCerrar);
             this.Name = "Factura_Detalle";
-            this.Text = "Factura_Detalle";
+            this.Text = "Facturas";
             this.Controls.SetChildIndex(this.footer, 0);
             this.Controls.SetChildIndex(this.btnCerrar, 0);
             this.Controls.SetChildIndex(this.label1, 0);

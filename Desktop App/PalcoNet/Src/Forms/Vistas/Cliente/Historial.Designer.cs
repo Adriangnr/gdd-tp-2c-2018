@@ -101,7 +101,7 @@
             this.Controls.Add(this.dataGridHistorial);
             this.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
             this.Name = "Historial";
-            this.Text = "Palco.NET - Historial de cliente";
+            this.Text = "Historial";
             this.Load += new System.EventHandler(this.Historial_Load);
             this.Controls.SetChildIndex(this.footer, 0);
             this.Controls.SetChildIndex(this.dataGridHistorial, 0);

@@ -51,15 +51,17 @@
             // 
             // footer
             // 
-            this.footer.Location = new System.Drawing.Point(900, 534);
+            this.footer.Location = new System.Drawing.Point(1350, 822);
+            this.footer.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             // 
             // label8
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(12, 328);
+            this.label8.Location = new System.Drawing.Point(18, 505);
+            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(54, 20);
+            this.label8.Size = new System.Drawing.Size(80, 29);
             this.label8.TabIndex = 97;
             this.label8.Text = "Fecha";
             // 
@@ -67,9 +69,10 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(12, 286);
+            this.label7.Location = new System.Drawing.Point(18, 440);
+            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(97, 20);
+            this.label7.Size = new System.Drawing.Size(145, 29);
             this.label7.TabIndex = 96;
             this.label7.Text = "Espectaculo";
             // 
@@ -77,9 +80,10 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(12, 209);
+            this.label6.Location = new System.Drawing.Point(18, 322);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(48, 20);
+            this.label6.Size = new System.Drawing.Size(74, 29);
             this.label6.TabIndex = 95;
             this.label6.Text = "Email";
             // 
@@ -87,9 +91,10 @@
             // 
             this.label_mail.AutoSize = true;
             this.label_mail.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_mail.Location = new System.Drawing.Point(115, 209);
+            this.label_mail.Location = new System.Drawing.Point(172, 322);
+            this.label_mail.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_mail.Name = "label_mail";
-            this.label_mail.Size = new System.Drawing.Size(64, 20);
+            this.label_mail.Size = new System.Drawing.Size(100, 29);
             this.label_mail.TabIndex = 94;
             this.label_mail.Text = "[ Email ]";
             // 
@@ -97,9 +102,10 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(12, 245);
+            this.label5.Location = new System.Drawing.Point(18, 377);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(58, 20);
+            this.label5.Size = new System.Drawing.Size(89, 29);
             this.label5.TabIndex = 93;
             this.label5.Text = "Tarjeta";
             // 
@@ -107,9 +113,10 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(12, 169);
+            this.label4.Location = new System.Drawing.Point(18, 260);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(65, 20);
+            this.label4.Size = new System.Drawing.Size(102, 29);
             this.label4.TabIndex = 92;
             this.label4.Text = "Apellido";
             // 
@@ -117,9 +124,10 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(12, 133);
+            this.label3.Location = new System.Drawing.Point(18, 205);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(65, 20);
+            this.label3.Size = new System.Drawing.Size(101, 29);
             this.label3.TabIndex = 91;
             this.label3.Text = "Nombre";
             // 
@@ -127,9 +135,10 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(75, 83);
+            this.label2.Location = new System.Drawing.Point(112, 128);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(52, 20);
+            this.label2.Size = new System.Drawing.Size(75, 29);
             this.label2.TabIndex = 90;
             this.label2.Text = "Datos";
             // 
@@ -137,9 +146,10 @@
             // 
             this.label_tarjeta.AutoSize = true;
             this.label_tarjeta.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_tarjeta.Location = new System.Drawing.Point(115, 245);
+            this.label_tarjeta.Location = new System.Drawing.Point(172, 377);
+            this.label_tarjeta.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_tarjeta.Name = "label_tarjeta";
-            this.label_tarjeta.Size = new System.Drawing.Size(74, 20);
+            this.label_tarjeta.Size = new System.Drawing.Size(115, 29);
             this.label_tarjeta.TabIndex = 89;
             this.label_tarjeta.Text = "[ Tarjeta ]";
             // 
@@ -147,9 +157,10 @@
             // 
             this.label_apellido.AutoSize = true;
             this.label_apellido.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_apellido.Location = new System.Drawing.Point(115, 169);
+            this.label_apellido.Location = new System.Drawing.Point(172, 260);
+            this.label_apellido.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_apellido.Name = "label_apellido";
-            this.label_apellido.Size = new System.Drawing.Size(81, 20);
+            this.label_apellido.Size = new System.Drawing.Size(128, 29);
             this.label_apellido.TabIndex = 88;
             this.label_apellido.Text = "[ Apellido ]";
             // 
@@ -157,9 +168,10 @@
             // 
             this.label_nombre.AutoSize = true;
             this.label_nombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_nombre.Location = new System.Drawing.Point(115, 133);
+            this.label_nombre.Location = new System.Drawing.Point(172, 205);
+            this.label_nombre.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_nombre.Name = "label_nombre";
-            this.label_nombre.Size = new System.Drawing.Size(81, 20);
+            this.label_nombre.Size = new System.Drawing.Size(127, 29);
             this.label_nombre.TabIndex = 87;
             this.label_nombre.Text = "[ Nombre ]";
             // 
@@ -167,9 +179,10 @@
             // 
             this.label_fecha.AutoSize = true;
             this.label_fecha.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_fecha.Location = new System.Drawing.Point(115, 328);
+            this.label_fecha.Location = new System.Drawing.Point(172, 505);
+            this.label_fecha.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_fecha.Name = "label_fecha";
-            this.label_fecha.Size = new System.Drawing.Size(74, 20);
+            this.label_fecha.Size = new System.Drawing.Size(112, 29);
             this.label_fecha.TabIndex = 86;
             this.label_fecha.Text = "[ Fecha  ]";
             // 
@@ -177,9 +190,10 @@
             // 
             this.label_espectaculo.AutoSize = true;
             this.label_espectaculo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_espectaculo.Location = new System.Drawing.Point(115, 286);
+            this.label_espectaculo.Location = new System.Drawing.Point(172, 440);
+            this.label_espectaculo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_espectaculo.Name = "label_espectaculo";
-            this.label_espectaculo.Size = new System.Drawing.Size(117, 20);
+            this.label_espectaculo.Size = new System.Drawing.Size(177, 29);
             this.label_espectaculo.TabIndex = 85;
             this.label_espectaculo.Text = "[ Espectaculo  ]";
             // 
@@ -187,9 +201,10 @@
             // 
             this.label_total.AutoSize = true;
             this.label_total.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_total.Location = new System.Drawing.Point(115, 366);
+            this.label_total.Location = new System.Drawing.Point(172, 563);
+            this.label_total.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_total.Name = "label_total";
-            this.label_total.Size = new System.Drawing.Size(38, 24);
+            this.label_total.Size = new System.Drawing.Size(58, 33);
             this.label_total.TabIndex = 84;
             this.label_total.Text = "0.0";
             // 
@@ -197,9 +212,10 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(12, 370);
+            this.label1.Location = new System.Drawing.Point(18, 569);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(44, 20);
+            this.label1.Size = new System.Drawing.Size(68, 29);
             this.label1.TabIndex = 83;
             this.label1.Text = "Total";
             // 
@@ -210,11 +226,12 @@
             this.dataGridHistorialEntradas.AllowUserToResizeRows = false;
             this.dataGridHistorialEntradas.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridHistorialEntradas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridHistorialEntradas.Location = new System.Drawing.Point(359, 83);
+            this.dataGridHistorialEntradas.Location = new System.Drawing.Point(538, 128);
+            this.dataGridHistorialEntradas.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dataGridHistorialEntradas.MultiSelect = false;
             this.dataGridHistorialEntradas.Name = "dataGridHistorialEntradas";
             this.dataGridHistorialEntradas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridHistorialEntradas.Size = new System.Drawing.Size(717, 427);
+            this.dataGridHistorialEntradas.Size = new System.Drawing.Size(1076, 657);
             this.dataGridHistorialEntradas.TabIndex = 98;
             // 
             // btn_cancel
@@ -222,9 +239,10 @@
             this.btn_cancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_cancel.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_cancel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.btn_cancel.Location = new System.Drawing.Point(32, 465);
+            this.btn_cancel.Location = new System.Drawing.Point(48, 715);
+            this.btn_cancel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btn_cancel.Name = "btn_cancel";
-            this.btn_cancel.Size = new System.Drawing.Size(129, 45);
+            this.btn_cancel.Size = new System.Drawing.Size(194, 69);
             this.btn_cancel.TabIndex = 99;
             this.btn_cancel.Text = "Volver";
             this.btn_cancel.UseVisualStyleBackColor = true;
@@ -234,17 +252,18 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(355, 43);
+            this.label9.Location = new System.Drawing.Point(532, 66);
+            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(74, 20);
+            this.label9.Size = new System.Drawing.Size(108, 29);
             this.label9.TabIndex = 100;
             this.label9.Text = "Entradas";
             // 
             // Compra_Ticket
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1164, 565);
+            this.ClientSize = new System.Drawing.Size(1746, 869);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.btn_cancel);
             this.Controls.Add(this.dataGridHistorialEntradas);
@@ -263,8 +282,9 @@
             this.Controls.Add(this.label_espectaculo);
             this.Controls.Add(this.label_total);
             this.Controls.Add(this.label1);
+            this.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
             this.Name = "Compra_Ticket";
-            this.Text = "Compra_Ticket";
+            this.Text = "Ticket de compra";
             this.Load += new System.EventHandler(this.Compra_Ticket_Load);
             this.Controls.SetChildIndex(this.label1, 0);
             this.Controls.SetChildIndex(this.label_total, 0);

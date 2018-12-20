@@ -442,6 +442,9 @@
     <EmbeddedResource Include="Src\Forms\Vistas\Cliente\Compra_Ticket.resx">
       <DependentUpon>Compra_Ticket.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Src\Forms\Vistas\Cliente\Compra_Ubicacion.resx">
+      <DependentUpon>Compra_Ubicacion.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Src\Forms\Vistas\Cliente\Historial.resx">
       <DependentUpon>Historial.cs</DependentUpon>
     </EmbeddedResource>

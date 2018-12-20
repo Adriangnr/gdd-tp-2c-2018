@@ -358,7 +358,7 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
             this.Controls.Add(this.descripcion);
             this.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
             this.Name = "Publicacion_Detalle";
-            this.Text = "Palco.NET - Creación de Publicación";
+            this.Text = "Publicaciones";
             this.Load += new System.EventHandler(this.Publicacion_Detalle_Load);
             this.Controls.SetChildIndex(this.footer, 0);
             this.Controls.SetChildIndex(this.descripcion, 0);

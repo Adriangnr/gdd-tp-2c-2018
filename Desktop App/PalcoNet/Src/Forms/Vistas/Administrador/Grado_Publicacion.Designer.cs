@@ -122,7 +122,7 @@
             this.Controls.Add(this.btnAgregarGrado);
             this.Controls.Add(this.dataGridGrados);
             this.Name = "Grado_Publicacion";
-            this.Text = "Grado_Publicacion";
+            this.Text = "Grados de publicaciones";
             this.Controls.SetChildIndex(this.footer, 0);
             this.Controls.SetChildIndex(this.dataGridGrados, 0);
             this.Controls.SetChildIndex(this.btnAgregarGrado, 0);

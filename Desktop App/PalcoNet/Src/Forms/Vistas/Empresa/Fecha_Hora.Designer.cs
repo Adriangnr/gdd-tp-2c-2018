@@ -122,7 +122,7 @@
             this.Controls.Add(this.pub_fecha);
             this.Name = "Fecha_Hora";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Cargar Fecha y horario";
+            this.Text = "Fecha y horario";
             this.ResumeLayout(false);
             this.PerformLayout();
 

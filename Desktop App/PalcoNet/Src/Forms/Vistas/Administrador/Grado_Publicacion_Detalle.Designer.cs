@@ -113,7 +113,7 @@
             this.Controls.Add(this.btnGuardar);
             this.Controls.Add(this.btnCancel);
             this.Name = "Grado_Publicacion_Detalle";
-            this.Text = "Grado_Publicacion_Detalle";
+            this.Text = "Grados de publicaciones";
             this.Load += new System.EventHandler(this.Grado_Publicacion_Detalle_Load);
             this.Controls.SetChildIndex(this.footer, 0);
             this.Controls.SetChildIndex(this.btnCancel, 0);

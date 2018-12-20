@@ -173,6 +173,14 @@
             this.label6.TabIndex = 33;
             this.label6.Text = "Calle:";
             // 
+            // textBox_pass
+            // 
+            textBox_pass.Location = new System.Drawing.Point(122, 89);
+            textBox_pass.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            textBox_pass.Name = "textBox_pass";
+            textBox_pass.Size = new System.Drawing.Size(204, 26);
+            textBox_pass.TabIndex = 33;
+            // 
             // panel_datacliente
             // 
             this.panel_datacliente.Location = new System.Drawing.Point(674, 116);
@@ -275,14 +283,6 @@
             this.label2.TabIndex = 37;
             this.label2.Text = "Contraseña:";
             // 
-            // textBox_pass
-            // 
-            textBox_pass.Location = new System.Drawing.Point(122, 89);
-            textBox_pass.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            textBox_pass.Name = "textBox_pass";
-            textBox_pass.Size = new System.Drawing.Size(204, 26);
-            textBox_pass.TabIndex = 33;
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -313,7 +313,8 @@
             this.Controls.Add(this.btn_guardar);
             this.Controls.Add(this.panel_datacliente);
             this.Name = "Cliente_Edicion";
-            this.Text = "Cliente_Edicion";
+            this.Text = "Clientes";
+            this.Controls.SetChildIndex(this.footer, 0);
             this.Controls.SetChildIndex(this.panel_datacliente, 0);
             this.Controls.SetChildIndex(this.btn_guardar, 0);
             this.Controls.SetChildIndex(this.register_btn_cancel, 0);

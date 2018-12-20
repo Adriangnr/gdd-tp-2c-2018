@@ -126,7 +126,7 @@
             this.Controls.Add(this.btn_comisionar);
             this.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
             this.Name = "Comisiones_Detalle";
-            this.Text = "Comisiones_Detalle";
+            this.Text = "Comisiones";
             this.Load += new System.EventHandler(this.Comisiones_Detalle_Load);
             this.Controls.SetChildIndex(this.footer, 0);
             this.Controls.SetChildIndex(this.btn_comisionar, 0);
