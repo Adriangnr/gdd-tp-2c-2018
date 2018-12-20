@@ -1766,7 +1766,6 @@ begin
 	from ESECUELE.Empresa em join ESECUELE.Publicacion p on em.empresa_id = publicacion_empresa
 	join ESECUELE.Ubicacion u on u.ubicacion_publicacion = p.publicacion_codigo  
 	join ESECUELE.Entrada e on e.entrada_ubicacion = u.ubicacion_id
-	where e.entrada_facturada = 0
 	order by empresa_id
 end
 go

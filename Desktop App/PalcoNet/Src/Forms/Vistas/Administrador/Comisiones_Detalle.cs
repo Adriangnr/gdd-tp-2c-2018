@@ -80,13 +80,26 @@ namespace PalcoNet.Src.Forms.Vistas.Administrador
                 {
                     PalcoNet.Src.Modelo.Entidades.Empresa empresa = 
                         (PalcoNet.Src.Modelo.Entidades.Empresa) this.dataGridViewEmpresas.CurrentRow.DataBoundItem;
-                    Selector_Comisiones selectorComisiones = new Selector_Comisiones(empresa, this);
-                    selectorComisiones.Show();
-                    this.Hide();
+                    CompraService compraService = new CompraService();
+                    int compras = compraService.getCountComprasOfEmpresa(empresa.Id);
+                    if (compras == 0)
+                    {
+                        MessageBox.Show("No hay compras que requieran rendicion de comisiones!", "Rendición de comisiones.",
+                                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return;
+                    }
+                    else
+                    {
+                        Selector_Comisiones selectorComisiones = new Selector_Comisiones(empresa);
+                        selectorComisiones.previous = this;
+                        selectorComisiones.Show();
+                        this.Hide();
+                    }
                 }
                 catch (Exception ex)
                 {
                     Console.WriteLine(ex.Message);
+                    Console.WriteLine(ex.StackTrace);
                     MessageBox.Show("Error al rendir comisiones!", "Error!",
                                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;

@@ -12,24 +12,12 @@ namespace PalcoNet.Src.Forms.Vistas.Administrador
         CompraService compraService = (CompraService)ServiceFactory.GetService("Compra");
         Modelo.Entidades.Empresa empresa { get; set; }
 
-        public Selector_Comisiones(Modelo.Entidades.Empresa empresa, Comisiones_Detalle previous)
+        public Selector_Comisiones(Modelo.Entidades.Empresa empresa)
         {
-            this.previous = previous;
-            int compras = compraService.getCountComprasOfEmpresa(empresa.Id);
-            if(compras == 0)
-            {
-                MessageBox.Show("No hay compras que requieran rendicion de comisiones!", "Rendición de comisiones.",
-                                MessageBoxButtons.OK, MessageBoxIcon.Information);
-                this.Hide();
-                this.previous.Show();
-            }
-            else
-            {
-                InitializeComponent();
-                this.empresa = empresa;
-                this.labelNombreEmpresa.Text = empresa.RazonSocial;
-                this.labelCanCompras.Text = compraService.getCountComprasOfEmpresa(empresa.Id).ToString();
-            }
+            InitializeComponent();
+            this.empresa = empresa;
+            this.labelNombreEmpresa.Text = empresa.RazonSocial;
+            this.labelCanCompras.Text = compraService.getCountComprasOfEmpresa(empresa.Id).ToString();
         }
         
         private void btnCancel_Click(object sender, System.EventArgs e)
