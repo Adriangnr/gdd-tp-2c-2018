@@ -1397,7 +1397,7 @@ begin
 
 		if @fechaInicio is not null 
 		begin
-			 set @query = @query + ' and p.publicacion_fecha_inicio >= ' + @fechaInicio
+			 set @query = @query + ' and fe.fecha_evento >= ' + @fechaInicio
 		end
 
 		if @fechaFin is not null 
@@ -1447,7 +1447,7 @@ begin
 
 		if @fechaInicio is not null 
 		begin
-			 set @query = concat(@query , ' and p.publicacion_fecha_inicio >= ''', @fechaInicio, '''')
+			 set @query = concat(@query , ' and fe.fecha_evento >= ''', @fechaInicio, '''')
 		end
 
 		if @fechaFin is not null 
