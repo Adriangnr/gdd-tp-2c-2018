@@ -1766,6 +1766,7 @@ begin
 	from ESECUELE.Empresa em join ESECUELE.Publicacion p on em.empresa_id = publicacion_empresa
 	join ESECUELE.Ubicacion u on u.ubicacion_publicacion = p.publicacion_codigo  
 	join ESECUELE.Entrada e on e.entrada_ubicacion = u.ubicacion_id
+	where e.entrada_facturada = 0
 	order by empresa_id
 end
 go
@@ -2017,7 +2018,7 @@ from ESECUELE.Empresa join ESECUELE.Publicacion on publicacion_empresa = empresa
 					  join ESECUELE.Grado on grado_id = publicacion_grado				
 where fecha_evento < @fechaActual and year(fecha_evento) = @anio
 and datepart(quarter,fecha_evento) = @trimestre
-group by empresa_id, empresa_razon_social, publicacion_codigo, publicacion_descripcion, publicacion_grado, fecha_evento, ubicacion_sin_numerar
+group by empresa_id, empresa_razon_social, publicacion_codigo, publicacion_descripcion, publicacion_grado, fecha_evento, ubicacion_sin_numerar, grado_descripcion
 order by fecha_evento asc, publicacion_grado asc, 6 desc
 end
 go

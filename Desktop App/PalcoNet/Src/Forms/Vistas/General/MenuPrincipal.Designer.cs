@@ -57,7 +57,7 @@
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(850, 677);
             this.Controls.Add(this.menuPrincipalSalir);
-            this.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.Margin = new System.Windows.Forms.Padding(3);
             this.Name = "MenuPrincipal";
             this.Text = "Menu Principal";
             this.Load += new System.EventHandler(this.MenuPrincipal_Load);

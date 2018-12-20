@@ -12,7 +12,7 @@ namespace PalcoNet.Src.Forms.Vistas.Administrador
         CompraService compraService = (CompraService)ServiceFactory.GetService("Compra");
         Modelo.Entidades.Empresa empresa { get; set; }
 
-        public Selector_Comisiones(Modelo.Entidades.Empresa empresa, Master previous)
+        public Selector_Comisiones(Modelo.Entidades.Empresa empresa, Comisiones_Detalle previous)
         {
             this.previous = previous;
             int compras = compraService.getCountComprasOfEmpresa(empresa.Id);
