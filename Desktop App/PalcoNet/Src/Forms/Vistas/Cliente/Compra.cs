@@ -28,6 +28,8 @@ namespace PalcoNet.Src.Forms.Vistas.Cliente
             RubroService rubroService = new RubroService();
             categoriasComboBox.DataSource = rubroService.getAllRubros();
             categoriasVista.Text = "";
+            System.Drawing.Size size = new System.Drawing.Size(1100, 500);
+            this.Size = size;
         }
 
         private void Compra_Load(object sender, EventArgs e)
@@ -70,7 +72,7 @@ namespace PalcoNet.Src.Forms.Vistas.Cliente
                             str = str + ", " + rubro.codigo;
                     }
 
-                    categorias.Text = str;
+                    categorias.Text = "("+str+")";
                     filtros.Add("categorias", categorias.Text);
                 }
 

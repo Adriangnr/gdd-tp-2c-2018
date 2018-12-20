@@ -1454,7 +1454,7 @@ begin
 		end
 	end
 	set @query = concat(@query, ' order by p.publicacion_grado asc, p.publicacion_descripcion desc offset ', @offset ,' rows fetch next ', @items,' rows only')
-
+	
 	exec sp_executesql @query
 end
 go
