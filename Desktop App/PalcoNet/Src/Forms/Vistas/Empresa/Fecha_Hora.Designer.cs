@@ -61,6 +61,7 @@
             this.dateTimePicker_pubFecha.Name = "dateTimePicker_pubFecha";
             this.dateTimePicker_pubFecha.Size = new System.Drawing.Size(290, 26);
             this.dateTimePicker_pubFecha.TabIndex = 3;
+            this.dateTimePicker_pubFecha.ValueChanged += new System.EventHandler(this.dateTimePicker_pubFecha_ValueChanged);
             // 
             // text_inicio
             // 
