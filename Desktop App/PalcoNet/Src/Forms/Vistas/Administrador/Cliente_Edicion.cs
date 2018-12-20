@@ -66,6 +66,7 @@ namespace PalcoNet.Src.Forms.Vistas.Administrador
             this.panel_datacliente.Controls[0].Controls["doc"].Text = client.TipoDoc; 
             this.panel_datacliente.Controls[0].Controls["cuil"].Text = client.Cuil;
             this.panel_datacliente.Controls[0].Controls["nacimiento"].Text = client.FechaNacimiento;
+            this.panel_datacliente.Controls[0].Controls["tarjeta"].Text = client.DatosTarjeta;
         }
 
         private void register_btn_cancel_Click(object sender, System.EventArgs e)
@@ -87,6 +88,7 @@ namespace PalcoNet.Src.Forms.Vistas.Administrador
                 this.client.NumDoc = this.panel_datacliente.Controls[0].Controls["nrodoc"].Text;
                 this.client.TipoDoc = this.panel_datacliente.Controls[0].Controls["doc"].Text;
                 this.client.Usuario = this.textBox_usuario.Text;
+                this.client.DatosTarjeta = this.panel_datacliente.Controls[0].Controls["tarjeta"].Text;
                 this.client.UsuarioObj.CodigoPostal = this.textBox_cp.Text;
                 this.client.UsuarioObj.Direccion = this.textBox_calle.Text + "," + this.textBox_depto.Text + "," + this.textBox_piso.Text + "," + this.textBox_localidad.Text;
                 this.client.UsuarioObj.Telefono = this.textBox_telefono.Text;

@@ -20,6 +20,7 @@ namespace PalcoNet.Src.Modelo.Daos
                     new SqlParameter("@cliente_cuil", cliente.Cuil),
                     new SqlParameter("@cliente_fecha_nacimiento", cliente.FechaNacimiento),
                     new SqlParameter("@cliente_usuario", cliente.Usuario),
+                    new SqlParameter("@cliente_tarjeta", cliente.DatosTarjeta),
             });
             }
             catch (Exception e)
@@ -44,6 +45,7 @@ namespace PalcoNet.Src.Modelo.Daos
                     new SqlParameter("@cuil", cliente.Cuil),
                     new SqlParameter("@fechaNac", cliente.FechaNacimiento),
                     new SqlParameter("@usuario", cliente.Usuario),
+                    new SqlParameter("@tarjeta", cliente.DatosTarjeta)
                 });
             }
             catch (Exception e)

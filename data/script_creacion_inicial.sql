@@ -1041,7 +1041,8 @@ create procedure ESECUELE.SaveCliente(@cliente_nombre varchar(50),
 								   @cliente_num_doc varchar(30),
 								   @cliente_cuil varchar(30),
 								   @cliente_fecha_nacimiento datetime,
-								   @cliente_usuario varchar(50)) as
+								   @cliente_usuario varchar(50),
+								   @cliente_tarjeta varchar(20)) as
 begin
 	if @cliente_cuil not like '%' + @cliente_num_doc + '%'
 	begin
@@ -1051,8 +1052,8 @@ begin
 
 	begin try
 	insert into ESECUELE.Cliente
-	(cliente_nombre, cliente_apellido, cliente_tipo_doc, cliente_num_doc, cliente_cuil, cliente_fecha_nacimiento, cliente_usuario) 
-	values(@cliente_nombre, @cliente_apellido, @cliente_tipo_doc, @cliente_num_doc, @cliente_cuil, @cliente_fecha_nacimiento, @cliente_usuario)
+	(cliente_nombre, cliente_apellido, cliente_tipo_doc, cliente_num_doc, cliente_cuil, cliente_fecha_nacimiento, cliente_usuario, cliente_datos_tarjeta) 
+	values(@cliente_nombre, @cliente_apellido, @cliente_tipo_doc, @cliente_num_doc, @cliente_cuil, @cliente_fecha_nacimiento, @cliente_usuario, @cliente_tarjeta)
 	end try
 	begin catch
 		throw
@@ -1184,7 +1185,7 @@ go
 
 
 create procedure ESECUELE.UpdateCliente(@id int, @nombre varchar(50), @apellido varchar(50), @tipoDoc varchar(10),
-@numDoc varchar(30), @cuil varchar(30), @fechaNac datetime, @usuario varchar(50)) as
+@numDoc varchar(30), @cuil varchar(30), @fechaNac datetime, @usuario varchar(50), @tarjeta varchar(20)) as
 begin
 	update ESECUELE.Cliente set 
 		cliente_nombre=@nombre, 
@@ -1193,7 +1194,8 @@ begin
 		cliente_num_doc=@numDoc,
 		cliente_cuil=@cuil,
 		cliente_fecha_nacimiento=@fechaNac,
-		cliente_usuario=@usuario
+		cliente_usuario=@usuario,
+		cliente_datos_tarjeta=@tarjeta
 		where cliente_id=@id
 end
 go
