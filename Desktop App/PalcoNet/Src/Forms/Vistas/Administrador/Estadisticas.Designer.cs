@@ -36,12 +36,12 @@
             this.cb_grado = new System.Windows.Forms.ComboBox();
             this.cb_estadistica = new System.Windows.Forms.ComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.textBox2 = new System.Windows.Forms.TextBox();
             this.btn_cancel = new System.Windows.Forms.Button();
             this.Entidad = new System.Windows.Forms.Label();
             this.dataGridEstadisticas = new System.Windows.Forms.DataGridView();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridEstadisticas)).BeginInit();
             this.SuspendLayout();
@@ -145,6 +145,23 @@
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(16, 184);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(41, 15);
+            this.label1.TabIndex = 89;
+            this.label1.Text = "Grado";
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(16, 100);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(145, 22);
+            this.textBox2.TabIndex = 88;
+            // 
             // btn_cancel
             // 
             this.btn_cancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -199,23 +216,6 @@
             this.textBox1.Size = new System.Drawing.Size(145, 22);
             this.textBox1.TabIndex = 67;
             // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(16, 100);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(145, 22);
-            this.textBox2.TabIndex = 88;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(16, 184);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(41, 15);
-            this.label1.TabIndex = 89;
-            this.label1.Text = "Grado";
-            // 
             // Estadisticas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -229,11 +229,11 @@
             this.Name = "Estadisticas";
             this.Text = "Estadisticas";
             this.Load += new System.EventHandler(this.Estadisticas_Load);
-            this.Controls.SetChildIndex(this.footer, 0);
             this.Controls.SetChildIndex(this.groupBox1, 0);
             this.Controls.SetChildIndex(this.Entidad, 0);
             this.Controls.SetChildIndex(this.btn_cancel, 0);
             this.Controls.SetChildIndex(this.dataGridEstadisticas, 0);
+            this.Controls.SetChildIndex(this.footer, 0);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridEstadisticas)).EndInit();
@@ -255,9 +255,9 @@
         private System.Windows.Forms.Button btn_cancel;
         public System.Windows.Forms.Label Entidad;
         public System.Windows.Forms.DataGridView dataGridEstadisticas;
-        private System.Windows.Forms.TextBox textBox1;
         public System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox textBox1;
 
     }
 }
