@@ -9,9 +9,9 @@ namespace PalcoNet.Src.Modelo.Entidades
         //attributes
         private List<Funcionalidad> Funcionalidades;
         public byte Id { get; set; }
-        public bool Estado { get; set; }
         public string Nombre { get; set; }
         public bool Seleccionado { get; set; }
+        public bool Estado { get; set; }
 
         public Rol() {
             this.Funcionalidades = new List<Funcionalidad>();

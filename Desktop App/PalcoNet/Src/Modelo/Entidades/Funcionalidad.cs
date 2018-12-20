@@ -59,7 +59,7 @@ namespace PalcoNet.Src.Modelo.Entidades
          */
         public override string ToString()
         {
-            return descripcion;
+            return nombre +" : " + descripcion;
         }
     }
 }

@@ -27,16 +27,17 @@ namespace PalcoNet.Src.Forms.Vistas.Cliente
             this.publicacion = publicacion;
             this.entradasDisponibles = entradasDisponibles;
             this.entradasCompradas = entradasCompradas;
-            loadEntradas(publicacion);
+            this.loadEntradas();
         }
 
-        private void loadEntradas(int publicacion)
+        private void loadEntradas()
         {
             try
             {
                 this.dataGridEntradas.DataSource = this.entradasDisponibles;
 
-                List<string> encabezados = new List<string>(new string[] {"TipoId","Id", "Compra", "UbicacionId", "sinNumerar"});
+                List<string> encabezados = new List<string>(new string[] 
+                { "TipoId", "Id", "Compra", "UbicacionId", "sinNumerar", "facturada", "FechaEventoId", "FechaEvento" , "cantSinNumerar", "Ocupados"});
 
                 foreach (DataGridViewColumn column in this.dataGridEntradas.Columns)
                 {
@@ -80,7 +81,7 @@ namespace PalcoNet.Src.Forms.Vistas.Cliente
         {
             this.entradasDisponibles.Add(entrada);
             this.dataGridEntradas.DataSource = null;
-            this.dataGridEntradas.DataSource = this.entradasDisponibles;
+            this.loadEntradas();
         }
     }
 }

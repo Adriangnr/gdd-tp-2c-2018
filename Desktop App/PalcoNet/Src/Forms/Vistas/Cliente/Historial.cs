@@ -44,15 +44,16 @@ namespace PalcoNet.Src.Forms.Vistas.Cliente
                 this.dataGridHistorial.Columns[6].Visible = false;
                 /*------------- Fin Paginador ----------*/
 
-                List<string> encabezados = new List<string>(new string[] {"ClienteNombre", "ClienteApellido"});
+                List<string> encabezados = new List<string>(new string[] { "ClienteNombre", "ClienteApellido", "cantidadTotalPaginador" });
+                List<string> autoCells = new List<string>(new string[] { "Id", "Monto Total", "Fecha Compra", "Tarjeta", "Direccion" });
 
                 foreach (DataGridViewColumn column in this.dataGridHistorial.Columns)
                 {
                     if (encabezados.Contains(column.HeaderText))
                         column.Visible = false;
 
-                    if (column.HeaderText == "Publicacion" || column.HeaderText == "Direccion")
-                        column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                    if (autoCells.Contains(column.HeaderText))
+                        column.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
                 }
 
                 this.dataGridHistorial.AutoSize = false;

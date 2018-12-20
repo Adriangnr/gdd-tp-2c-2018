@@ -31,7 +31,8 @@
             this.btn_create = new System.Windows.Forms.Button();
             this.btn_edit = new System.Windows.Forms.Button();
             this.btn_cancel = new System.Windows.Forms.Button();
-            this.list_Roles = new System.Windows.Forms.ListBox();
+            this.dataGridRoles = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridRoles)).BeginInit();
             this.SuspendLayout();
             // 
             // btn_create
@@ -77,33 +78,40 @@
             this.btn_cancel.UseVisualStyleBackColor = true;
             this.btn_cancel.Click += new System.EventHandler(this.btn_cancel_Click);
             // 
-            // list_Roles
+            // dataGridRoles
             // 
-            this.list_Roles.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.list_Roles.FormattingEnabled = true;
-            this.list_Roles.ItemHeight = 20;
-            this.list_Roles.Location = new System.Drawing.Point(32, 79);
-            this.list_Roles.Name = "list_Roles";
-            this.list_Roles.Size = new System.Drawing.Size(580, 304);
-            this.list_Roles.TabIndex = 68;
+            this.dataGridRoles.AllowUserToAddRows = false;
+            this.dataGridRoles.AllowUserToDeleteRows = false;
+            this.dataGridRoles.AllowUserToResizeRows = false;
+            this.dataGridRoles.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridRoles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridRoles.Location = new System.Drawing.Point(66, 79);
+            this.dataGridRoles.MultiSelect = false;
+            this.dataGridRoles.Name = "dataGridRoles";
+            this.dataGridRoles.ReadOnly = true;
+            this.dataGridRoles.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridRoles.Size = new System.Drawing.Size(510, 316);
+            this.dataGridRoles.TabIndex = 99;
             // 
             // Rol_Listado
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(784, 441);
+            this.Controls.Add(this.dataGridRoles);
             this.Controls.Add(this.btn_cancel);
             this.Controls.Add(this.btn_create);
             this.Controls.Add(this.btn_edit);
-            this.Controls.Add(this.list_Roles);
             this.Name = "Rol_Listado";
             this.Text = "Roles";
             this.Load += new System.EventHandler(this.Rol_Listado_Load);
             this.Controls.SetChildIndex(this.footer, 0);
-            this.Controls.SetChildIndex(this.list_Roles, 0);
             this.Controls.SetChildIndex(this.btn_edit, 0);
             this.Controls.SetChildIndex(this.btn_create, 0);
             this.Controls.SetChildIndex(this.btn_cancel, 0);
+            this.Controls.SetChildIndex(this.dataGridRoles, 0);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridRoles)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -114,7 +122,7 @@
         public System.Windows.Forms.Button btn_create;
         public System.Windows.Forms.Button btn_edit;
         private System.Windows.Forms.Button btn_cancel;
-        private System.Windows.Forms.ListBox list_Roles;
+        private System.Windows.Forms.DataGridView dataGridRoles;
 
     }
 }

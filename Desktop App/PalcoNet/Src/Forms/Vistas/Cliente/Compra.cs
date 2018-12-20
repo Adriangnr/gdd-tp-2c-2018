@@ -96,23 +96,17 @@ namespace PalcoNet.Src.Forms.Vistas.Cliente
                     MessageBox.Show("No se encontraron publicaciones!", "Listado de publicaciones activas.",
                                 MessageBoxButtons.OK, MessageBoxIcon.Information);*/
 
-                List<int> esconder = new List<int>(new int[] { 0, 3, 6, 8 });
-
+                List<string> encabezados = new List<string>(new string[] { "Codigo", "Fecha de Publicación", "Grado", "Estado", "FechaEventoId" });
+                List<string> autoSizeCells = new List<string>(new string[] { "Rubro", "Fecha Evento" });
                 foreach (DataGridViewColumn column in this.dataGridPublicaciones.Columns)
                 {
-
-                    if (  esconder.Contains(column.Index) || column.HeaderText == "FechaEventoId")
+                    if (encabezados.Contains(column.HeaderText))
                         column.Visible = false;
-                    //if (column.HeaderText == "Habilitado")
-                      //  column.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-                    // Para que empiece ordenado de menor a mayor: razon social
-                   /* if (column.Index == 1)
-                    {
-                        this.dataGridPublicaciones.Sort(column, ListSortDirection.Ascending);
-                        column.HeaderCell.SortGlyphDirection = System.Windows.Forms.SortOrder.Ascending;
-                    }
-                    column.SortMode = DataGridViewColumnSortMode.Automatic;*/
+
+                    if (autoSizeCells.Contains(column.HeaderText))
+                        column.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
                 }
+
 
                 this.dataGridPublicaciones.AutoGenerateColumns = false;
                 this.dataGridPublicaciones.ClearSelection();
@@ -210,9 +204,16 @@ namespace PalcoNet.Src.Forms.Vistas.Cliente
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
             else
             {
-                Compra_Detalle compra_detalle = new Compra_Detalle(this, this.usuario,(Publicacion)this.dataGridPublicaciones.CurrentRow.DataBoundItem);
+                try
+                {
+                    Compra_Detalle compra_detalle = new Compra_Detalle(this, this.usuario, (Publicacion)this.dataGridPublicaciones.CurrentRow.DataBoundItem);
 
-                compra_detalle.ShowDialog();
+                    compra_detalle.ShowDialog();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex);
+                }
             }
         }
 

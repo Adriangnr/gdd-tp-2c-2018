@@ -1525,7 +1525,7 @@ go
 
 create procedure ESECUELE.GetEntradasVendidas(@publicacion_codigo int)
 as begin
-	select entrada_id,entrada_compra,entrada_ubicacion,entrada_fila,entrada_asiento, entrada_fecha_evento, fecha_evento_publicacion
+	select entrada_id,entrada_compra,entrada_ubicacion,entrada_fila,entrada_asiento, entrada_fecha_evento, fecha_evento
 	from ESECUELE.Entrada join ESECUELE.Fecha_Evento on fecha_evento_id = entrada_fecha_evento
 						  join ESECUELE.Ubicacion on entrada_ubicacion = ubicacion_id
 	where ubicacion_publicacion = @publicacion_codigo

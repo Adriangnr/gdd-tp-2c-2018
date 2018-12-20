@@ -35,7 +35,23 @@ namespace PalcoNet.Src.Forms.Vistas.Administrador
         public void actualizarListadoRoles()
         {
             RolService rolService = (RolService)ServiceFactory.GetService("Rol");
-            list_Roles.DataSource = rolService.getAllRoles();
+            this.dataGridRoles.DataSource = rolService.getAllRoles();
+
+            List<string> encabezados = new List<string>(new string[] { "Funcionalidades", "Seleccionado"});
+            List<string> autoCells = new List<string>(new string[] { });
+
+            foreach (DataGridViewColumn column in this.dataGridRoles.Columns)
+            {
+                if (encabezados.Contains(column.HeaderText))
+                    column.Visible = false;
+
+                if (autoCells.Contains(column.HeaderText))
+                    column.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            }
+
+            this.dataGridRoles.AutoSize = false;
+            this.dataGridRoles.ScrollBars = ScrollBars.Both;
+            this.dataGridRoles.ClearSelection();
         }
 
         private void btn_cancel_Click(object sender, EventArgs e)
@@ -46,11 +62,11 @@ namespace PalcoNet.Src.Forms.Vistas.Administrador
 
         private void btn_edit_Click(object sender, EventArgs e)
         {
-            if (list_Roles.SelectedItem == null)
+            if (this.dataGridRoles.SelectedRows.Count == 0)
                 MessageBox.Show("Debe seleccionr un rol!", "Listado roles", MessageBoxButtons.OK, MessageBoxIcon.Error);
             else
             {
-                Rol_Detalle rolDetalle = new Rol_Detalle(this, (Rol)list_Roles.SelectedItem);
+                Rol_Detalle rolDetalle = new Rol_Detalle(this, (Rol)dataGridRoles.CurrentRow.DataBoundItem);
                 rolDetalle.previous = this;
                 rolDetalle.Show();
                 Hide();

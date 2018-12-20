@@ -38,19 +38,17 @@
             // footer
             // 
             this.footer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.footer.Location = new System.Drawing.Point(1282, 652);
-            this.footer.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.footer.Location = new System.Drawing.Point(484, 440);
+            this.footer.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             // 
             // dataGridEntradas
             // 
             this.dataGridEntradas.AllowUserToAddRows = false;
             this.dataGridEntradas.AllowUserToDeleteRows = false;
-            this.dataGridEntradas.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridEntradas.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dataGridEntradas.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridEntradas.ImeMode = System.Windows.Forms.ImeMode.Off;
-            this.dataGridEntradas.Location = new System.Drawing.Point(76, 120);
+            this.dataGridEntradas.Location = new System.Drawing.Point(51, 78);
+            this.dataGridEntradas.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridEntradas.MultiSelect = false;
             this.dataGridEntradas.Name = "dataGridEntradas";
             this.dataGridEntradas.ReadOnly = true;
@@ -59,16 +57,15 @@
             this.dataGridEntradas.RowTemplate.ReadOnly = true;
             this.dataGridEntradas.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridEntradas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridEntradas.Size = new System.Drawing.Size(1294, 472);
+            this.dataGridEntradas.Size = new System.Drawing.Size(518, 307);
             this.dataGridEntradas.TabIndex = 63;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(330, 75);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(220, 49);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(129, 20);
+            this.label1.Size = new System.Drawing.Size(85, 13);
             this.label1.TabIndex = 64;
             this.label1.Text = "Comprar entrada";
             // 
@@ -78,10 +75,10 @@
             this.btn_comprar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_comprar.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_comprar.ForeColor = System.Drawing.SystemColors.Window;
-            this.btn_comprar.Location = new System.Drawing.Point(1424, 120);
+            this.btn_comprar.Location = new System.Drawing.Point(587, 78);
             this.btn_comprar.Margin = new System.Windows.Forms.Padding(0);
             this.btn_comprar.Name = "btn_comprar";
-            this.btn_comprar.Size = new System.Drawing.Size(194, 69);
+            this.btn_comprar.Size = new System.Drawing.Size(129, 45);
             this.btn_comprar.TabIndex = 65;
             this.btn_comprar.Text = "Seleccionar";
             this.btn_comprar.UseVisualStyleBackColor = false;
@@ -92,10 +89,9 @@
             this.btn_cancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_cancel.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_cancel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.btn_cancel.Location = new System.Drawing.Point(1424, 523);
-            this.btn_cancel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btn_cancel.Location = new System.Drawing.Point(587, 340);
             this.btn_cancel.Name = "btn_cancel";
-            this.btn_cancel.Size = new System.Drawing.Size(194, 69);
+            this.btn_cancel.Size = new System.Drawing.Size(129, 45);
             this.btn_cancel.TabIndex = 66;
             this.btn_cancel.Text = "Cancelar";
             this.btn_cancel.UseVisualStyleBackColor = true;
@@ -103,14 +99,14 @@
             // 
             // Compra_Ubicacion
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1701, 711);
+            this.ClientSize = new System.Drawing.Size(735, 462);
             this.Controls.Add(this.btn_cancel);
             this.Controls.Add(this.btn_comprar);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dataGridEntradas);
-            this.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "Compra_Ubicacion";
             this.Text = "Compra";
             this.Controls.SetChildIndex(this.dataGridEntradas, 0);

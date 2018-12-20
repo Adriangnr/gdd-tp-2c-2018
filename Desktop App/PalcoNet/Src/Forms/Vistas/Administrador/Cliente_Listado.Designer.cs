@@ -79,7 +79,7 @@
             // btn_cancel
             // 
             this.btn_cancel.Location = new System.Drawing.Point(964, 352);
-            this.btn_cancel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_cancel.Margin = new System.Windows.Forms.Padding(2);
             // 
             // footer
             // 
@@ -221,7 +221,7 @@
             this.dataGridClientes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dataGridClientes.ImeMode = System.Windows.Forms.ImeMode.Off;
             this.dataGridClientes.Location = new System.Drawing.Point(239, 83);
-            this.dataGridClientes.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dataGridClientes.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridClientes.MultiSelect = false;
             this.dataGridClientes.Name = "dataGridClientes";
             this.dataGridClientes.ReadOnly = true;
@@ -254,6 +254,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(1134, 462);
             this.Controls.Add(this.btn_eliminar);
             this.Controls.Add(this.btn_crear);

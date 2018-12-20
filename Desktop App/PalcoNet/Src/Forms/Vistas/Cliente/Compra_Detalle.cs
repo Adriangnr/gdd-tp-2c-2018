@@ -83,7 +83,8 @@ namespace PalcoNet.Src.Forms.Vistas.Cliente
 
             this.mostrarMontoTotal();
 
-            List<string> encabezados = new List<string>(new string[] { "TipoId", "Id", "Compra", "UbicacionId", "cantSinNumerar", "sinNumerar" });
+            List<string> encabezados = new List<string>(new string[] 
+            { "TipoId", "Id", "Compra", "UbicacionId", "sinNumerar", "FechaEvento", "FechaEventoId", "facturada" , "Cantidad", "Ocupados"});
 
             foreach (DataGridViewColumn column in this.dataGridEntradasNumeradas.Columns)
             {
@@ -103,7 +104,8 @@ namespace PalcoNet.Src.Forms.Vistas.Cliente
 
             this.mostrarMontoTotal();
 
-            List<string> encabezados = new List<string>(new string[] { "TipoId", "Id", "Compra", "UbicacionId", "Fila", "Asiento", "sinNumerar" });
+            List<string> encabezados = new List<string>(new string[] 
+            { "TipoId", "Id", "Compra", "UbicacionId", "Fila", "Asiento", "sinNumerar", "FechaEvento", "FechaEventoId", "facturada" , "Ocupados"});
 
             foreach (DataGridViewColumn column in this.dataGridEntradasSinNumerar.Columns)
             {
@@ -194,8 +196,11 @@ namespace PalcoNet.Src.Forms.Vistas.Cliente
                         CompraService compraService = (CompraService)ServiceFactory.GetService("Compra");
                         compraService.save(this.cliente, entradasTotal, this.precioTotal, this.publicacion);
                         MessageBox.Show("Compra realizada con exito!", "Compra", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        form_ubicacion.Close();
-                        form_compraSN.Close();
+                        
+                        if(this.form_ubicacion != null)
+                            this.form_ubicacion.Close();
+                        if(this.form_compraSN != null)
+                            this.form_compraSN.Close();
                         this.previous.Show();
                         this.Close();
                     }

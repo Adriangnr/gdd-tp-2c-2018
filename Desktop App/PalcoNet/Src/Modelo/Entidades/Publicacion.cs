@@ -9,6 +9,7 @@ namespace PalcoNet.Src.Modelo.Entidades
     {
         /*int, date, string, date, int, string, int, int, string*/
         public int Codigo { get; set; }
+        public Empresa Empresa { get; set; }
 
         public string Descripcion { get; set; }
 
@@ -16,10 +17,10 @@ namespace PalcoNet.Src.Modelo.Entidades
         public DateTime FechaPublicacion { get; set; }
         
         public string Direccion { get; set; }
+        [DisplayName("Fecha Evento")]
         public DateTime FechaEvento { get; set; }
         public Rubro Rubro { get; set; }
         public Grado Grado { get; set; }
-        public Empresa Empresa { get; set; }
         public Estado Estado { get; set; }
         public int FechaEventoId { get; set; }
         public List<Ubicacion> ubicaciones { get; set; }

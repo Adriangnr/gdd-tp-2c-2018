@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,10 +12,12 @@ namespace PalcoNet.Src.Modelo.Entidades
         public int Id { get; set; }
         public int Compra { get; set; }
         public int UbicacionId { get; set; }
+        [DisplayName("Tipo")]
         public string TipoDesc { get; set; }
         public int Fila { get; set; }
         public int Asiento { get; set; }
         public int TipoId { get; set; }
+        [DisplayName("Cantidad")]
         public int cantSinNumerar { get; set; }
         public double Precio { get; set; }
         public bool sinNumerar { get; set; }
