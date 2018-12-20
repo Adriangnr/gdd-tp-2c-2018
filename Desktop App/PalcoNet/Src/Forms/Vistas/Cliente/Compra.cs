@@ -52,9 +52,12 @@ namespace PalcoNet.Src.Forms.Vistas.Cliente
                     filtros.Add("fechaInicio", fechaInicioVista.Value.ToString());
                 }
 
-                if (fechaInicioCheckBox.Checked)
+                if (fechaFinCheckBox.Checked)
                 {
                     filtros.Add("fechaFin", fechaFinVista.Value.ToString());
+                    if (fechaInicioCheckBox.Checked && fechaInicioVista.Value > fechaFinVista.Value) {
+                        MessageBox.Show("La fecha de Fin no puede ser menor a la de Inicio", "Ups!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
 
                 if( categoriasVista.Text != "" )
@@ -162,6 +165,8 @@ namespace PalcoNet.Src.Forms.Vistas.Cliente
         {
             base.linkLabel1_LinkClicked(sender, e);
             categoriasElegidas.Clear();
+            fechaInicioCheckBox.Checked = false;
+            fechaFinCheckBox.Checked = false;
         }
 
         public void btn_nextPage_Click(object sender, EventArgs e)
@@ -227,6 +232,11 @@ namespace PalcoNet.Src.Forms.Vistas.Cliente
         {
             MessageBox.Show("No hay más ubicaciones disponibles!", "Error",
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        private void descripcion_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

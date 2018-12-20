@@ -181,6 +181,7 @@
             this.descripcion.Name = "descripcion";
             this.descripcion.Size = new System.Drawing.Size(153, 24);
             this.descripcion.TabIndex = 61;
+            this.descripcion.TextChanged += new System.EventHandler(this.descripcion_TextChanged);
             // 
             // label7
             // 
@@ -212,7 +213,7 @@
             this.dataGridPublicaciones.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridPublicaciones.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridPublicaciones.Location = new System.Drawing.Point(239, 85);
-            this.dataGridPublicaciones.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dataGridPublicaciones.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridPublicaciones.MultiSelect = false;
             this.dataGridPublicaciones.Name = "dataGridPublicaciones";
             this.dataGridPublicaciones.ReadOnly = true;
@@ -283,7 +284,7 @@
             // panelPaginatorControls
             // 
             this.panelPaginatorControls.Location = new System.Drawing.Point(343, 376);
-            this.panelPaginatorControls.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panelPaginatorControls.Margin = new System.Windows.Forms.Padding(2);
             this.panelPaginatorControls.Name = "panelPaginatorControls";
             this.panelPaginatorControls.Size = new System.Drawing.Size(469, 41);
             this.panelPaginatorControls.TabIndex = 60;
