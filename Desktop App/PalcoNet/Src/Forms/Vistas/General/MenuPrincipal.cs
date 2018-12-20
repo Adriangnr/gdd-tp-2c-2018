@@ -24,10 +24,10 @@ namespace PalcoNet.Src.Forms.Vistas.General
             panelFuncionalidades.AutoSize = true;
             this.AutoSizeMode = AutoSizeMode.GrowAndShrink;
 
-            panelFuncionalidades.Location = new Point(this.Width/13, this.Height/6);
+            panelFuncionalidades.Location = new Point(this.Width/10, this.Height/6);
 
-            int buttonLeft = 0;
-            int buttonTop = 0;
+            int buttonLeft = 48;
+            int buttonTop = 80;
             int i = 0;
 
             foreach (Funcionalidad f in rol.GetFuncionalidades())
@@ -40,14 +40,14 @@ namespace PalcoNet.Src.Forms.Vistas.General
                 newButton.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                 newButton.ForeColor = System.Drawing.SystemColors.Window;
                 newButton.Margin = new System.Windows.Forms.Padding(0);
-                newButton.Size = new System.Drawing.Size(200, 48);
+                newButton.Size = new System.Drawing.Size(280, 80);
                 newButton.UseVisualStyleBackColor = false;
 
                 i++;
                 if( i > rol.GetFuncionalidades().Count / 2)
                 {
-                    buttonTop = 0;
-                    buttonLeft = 270;
+                    buttonTop = 80;
+                    buttonLeft = 380;
                     i = 0;
                 }
 
@@ -83,7 +83,7 @@ namespace PalcoNet.Src.Forms.Vistas.General
                     }
                 };
 
-                buttonTop += (newButton.Height + 18);
+                buttonTop += (newButton.Height + 24);
                 panelFuncionalidades.Controls.Add(newButton);
             }
             this.Controls.Add(panelFuncionalidades);
