@@ -143,6 +143,7 @@ namespace PalcoNet.Src.Forms.Vistas.Administrador
                     EmpresaService empresaService = (EmpresaService)ServiceFactory.GetService("Empresa");
                     PalcoNet.Src.Modelo.Entidades.Empresa empresa = empresaService.GetEmpresa((int)this.dataGridEmpresas.CurrentRow.Cells[0].Value);
                     Empresa_Edicion editForm = new Empresa_Edicion();
+                    editForm.usuario = this.usuario;
                     editForm.setPrevious(this);
                     editForm.loadData(empresa);
                     editForm.Show();
@@ -151,6 +152,7 @@ namespace PalcoNet.Src.Forms.Vistas.Administrador
                 catch (Exception ex)
                 {
                     Console.WriteLine(ex.Message);
+                    Console.WriteLine(ex.StackTrace);
                     MessageBox.Show("Error al editar la empresa!", "Error!",
                                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;

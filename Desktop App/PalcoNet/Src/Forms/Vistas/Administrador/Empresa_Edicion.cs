@@ -13,6 +13,7 @@ namespace PalcoNet.Src.Forms.Vistas.Administrador
     {
         PalcoNet.Src.Modelo.Entidades.Empresa empresa;
         EmpresaService empresaService = (EmpresaService)ServiceFactory.GetService("Empresa");
+        public bool fromMenu { get; set; }
 
         public Empresa_Edicion()
         {
@@ -81,7 +82,10 @@ namespace PalcoNet.Src.Forms.Vistas.Administrador
                 
                 MessageBox.Show("Empresa actualizada con éxito!", "Actualizar empresa.",
                                 MessageBoxButtons.OK, MessageBoxIcon.Information);
-                ((Empresa_Listado)this.previous).cargarListadoEmpresas();
+                if (!this.fromMenu)
+                {
+                    ((Empresa_Listado)this.previous).cargarListadoEmpresas();   
+                }
                 this.previous.Show();
                 this.Hide();
             }

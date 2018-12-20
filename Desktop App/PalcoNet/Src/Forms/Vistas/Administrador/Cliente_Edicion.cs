@@ -14,6 +14,7 @@ namespace PalcoNet.Src.Forms.Vistas.Administrador
     {
         PalcoNet.Src.Modelo.Entidades.Cliente client;
         ClienteService clienteService = (ClienteService)ServiceFactory.GetService("Cliente");
+        public bool fromMenu { get; set; }
 
         public Cliente_Edicion(Usuario usuario)
         {
@@ -102,9 +103,14 @@ namespace PalcoNet.Src.Forms.Vistas.Administrador
                 clienteService.update(this.client);
                 MessageBox.Show("Cliente actualizado con éxito!", "Actualizar cliente.",
                                 MessageBoxButtons.OK, MessageBoxIcon.Information);
-                ((Cliente_Listado)this.previous).loadClientList();
+                if (!this.fromMenu)
+                {
+                    ((Cliente_Listado)this.previous).loadClientList();
+                }
                 this.previous.Show();
                 this.Hide();
+                
+                
             }
             catch (ValidadorException exception)
             {
