@@ -2008,7 +2008,7 @@ go
 -- las publicaciones nuevas si lo haran mientras sean ubicaciones numeradas
 create procedure ESECUELE.ReporteUno(@anio int, @trimestre int, @grado int, @fechaActual datetime)
 as begin
-select top 5 fecha_evento, empresa_razon_social, publicacion_codigo, publicacion_descripcion, grado_descripcion,
+select top 5 cast(month(fecha_evento) as varchar(5)) +'-' + cast(year(fecha_evento) as varchar(5)),empresa_cuit,empresa_razon_social,
  case when (publicacion_grado = 4 or ubicacion_sin_numerar = 1) then sum(ubicacion_cant_asientos - ubicacion_asientos_ocupados)
  else sum(ubicacion_cant_filas*ubicacion_cant_asientos - ubicacion_asientos_ocupados)
  end
@@ -2017,9 +2017,9 @@ from ESECUELE.Empresa join ESECUELE.Publicacion on publicacion_empresa = empresa
 					  join ESECUELE.Ubicacion on ubicacion_publicacion = publicacion_codigo
 					  join ESECUELE.Grado on grado_id = publicacion_grado				
 where fecha_evento < @fechaActual and year(fecha_evento) = @anio
-and datepart(quarter,fecha_evento) = @trimestre
-group by empresa_id, empresa_razon_social, publicacion_codigo, publicacion_descripcion, publicacion_grado, fecha_evento, ubicacion_sin_numerar, grado_descripcion
-order by fecha_evento asc, publicacion_grado asc, 6 desc
+and datepart(quarter,fecha_evento) = @trimestre and publicacion_grado = @grado
+group by empresa_id,empresa_cuit, empresa_razon_social, publicacion_grado, fecha_evento, ubicacion_sin_numerar
+order by month(fecha_evento) asc, publicacion_grado asc, 4 desc
 end
 go
 

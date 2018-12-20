@@ -335,6 +335,7 @@
     <Compile Include="Src\Modelo\Estados\EstadoFactory.cs" />
     <Compile Include="Src\Modelo\Estados\Finalizada.cs" />
     <Compile Include="Src\Modelo\Estados\Publicada.cs" />
+    <Compile Include="Src\Modelo\Reportes\Reporte.cs" />
     <Compile Include="Src\Modelo\Reportes\Reporte1.cs" />
     <Compile Include="Src\Modelo\Reportes\Reporte2.cs" />
     <Compile Include="Src\Modelo\Reportes\Reporte3.cs" />
@@ -364,6 +365,7 @@
     <Compile Include="Src\Validadores\ValidadorGrado.cs" />
     <Compile Include="Src\Validadores\ValidadorRegistro.cs" />
     <Compile Include="Src\Validadores\ValidadorCargaPublicacion.cs" />
+    <Compile Include="Src\Validadores\ValidadorReporte.cs" />
     <EmbeddedResource Include="Src\Forms\Layouts\Listado.resx">
       <DependentUpon>Listado.cs</DependentUpon>
     </EmbeddedResource>
