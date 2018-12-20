@@ -31,19 +31,28 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
         {
             try
             {
-                if (this.parent.getFechasDataGrid().Rows.Count > 0)
+                DateTime currentDate = DateTime.Parse(this.dateTimePicker_pubFecha.Value.ToString("yyyy-MM-dd") + " " + this.text_inicio.Text);
+                if (currentDate <= Utils.Utilities.getCurrentDate())
                 {
-                    DateTime lastDateInserted = (DateTime)this.parent.getFechasDataGrid().Rows[this.parent.getFechasDataGrid().Rows.Count - 1].Cells[0].Value;
-                    DateTime currentDate = DateTime.Parse(this.dateTimePicker_pubFecha.Value.ToString("yyyy-MM-dd") + " " + this.text_inicio.Text);
-                    int compare = DateTime.Compare(currentDate, lastDateInserted);
-                    if (compare <= 0)
-                    {
-                        MessageBox.Show("La fecha ingresada debe ser mayor a la ultima cargada!", "Error!",
-                                MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
+                    MessageBox.Show("Verifique la fecha ingresada!", "Error!",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
                 }
-                this.parent.AddFechaHora(this.dateTimePicker_pubFecha.Value.ToString("yyyy-MM-dd") + " " + this.text_inicio.Text);
+                else
+                {
+                    if (this.parent.getFechasDataGrid().Rows.Count > 0)
+                    {
+                        DateTime lastDateInserted = (DateTime)this.parent.getFechasDataGrid().Rows[this.parent.getFechasDataGrid().Rows.Count - 1].Cells[0].Value;
+                        int compare = DateTime.Compare(currentDate, lastDateInserted);
+                        if (compare <= 0)
+                        {
+                            MessageBox.Show("La fecha ingresada debe ser mayor a la ultima cargada!", "Error!",
+                                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }
+                    }
+                    this.parent.AddFechaHora(this.dateTimePicker_pubFecha.Value.ToString("yyyy-MM-dd") + " " + this.text_inicio.Text);
+                }
             }
             catch(Exception ex)
             {
@@ -55,5 +64,11 @@ namespace PalcoNet.Src.Forms.Vistas.Empresa
             }
             
         }
+
+        private void dateTimePicker_pubFecha_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }
