@@ -37,7 +37,6 @@
             this.btn_habilitar = new System.Windows.Forms.Button();
             this.btn_edit = new System.Windows.Forms.Button();
             this.btn_crear = new System.Windows.Forms.Button();
-            this.btn_comisionar = new System.Windows.Forms.Button();
             this.dataGridEmpresas = new System.Windows.Forms.DataGridView();
             this.btn_eliminar = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
@@ -73,7 +72,6 @@
             // 
             // btn_cancel
             // 
-            this.btn_cancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_cancel.Location = new System.Drawing.Point(1446, 545);
             this.btn_cancel.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
             // 
@@ -149,7 +147,6 @@
             // 
             // btn_habilitar
             // 
-            this.btn_habilitar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_habilitar.BackColor = System.Drawing.SystemColors.Highlight;
             this.btn_habilitar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_habilitar.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -165,7 +162,6 @@
             // 
             // btn_edit
             // 
-            this.btn_edit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_edit.BackColor = System.Drawing.SystemColors.Highlight;
             this.btn_edit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_edit.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -181,7 +177,6 @@
             // 
             // btn_crear
             // 
-            this.btn_crear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_crear.BackColor = System.Drawing.SystemColors.Highlight;
             this.btn_crear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_crear.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -194,21 +189,6 @@
             this.btn_crear.Text = "Cargar Nuevo";
             this.btn_crear.UseVisualStyleBackColor = false;
             this.btn_crear.Click += new System.EventHandler(this.btn_crear_Click);
-            // 
-            // btn_comisionar
-            // 
-            this.btn_comisionar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_comisionar.BackColor = System.Drawing.SystemColors.Highlight;
-            this.btn_comisionar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_comisionar.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_comisionar.ForeColor = System.Drawing.SystemColors.Window;
-            this.btn_comisionar.Location = new System.Drawing.Point(1446, 448);
-            this.btn_comisionar.Margin = new System.Windows.Forms.Padding(0);
-            this.btn_comisionar.Name = "btn_comisionar";
-            this.btn_comisionar.Size = new System.Drawing.Size(194, 69);
-            this.btn_comisionar.TabIndex = 63;
-            this.btn_comisionar.Text = "Rendir comisiones";
-            this.btn_comisionar.UseVisualStyleBackColor = false;
             // 
             // dataGridEmpresas
             // 
@@ -235,7 +215,6 @@
             // 
             // btn_eliminar
             // 
-            this.btn_eliminar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_eliminar.BackColor = System.Drawing.SystemColors.Highlight;
             this.btn_eliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_eliminar.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -257,7 +236,6 @@
             this.ClientSize = new System.Drawing.Size(1701, 711);
             this.Controls.Add(this.btn_eliminar);
             this.Controls.Add(this.dataGridEmpresas);
-            this.Controls.Add(this.btn_comisionar);
             this.Controls.Add(this.btn_crear);
             this.Controls.Add(this.btn_edit);
             this.Controls.Add(this.btn_habilitar);
@@ -272,7 +250,6 @@
             this.Controls.SetChildIndex(this.btn_habilitar, 0);
             this.Controls.SetChildIndex(this.btn_edit, 0);
             this.Controls.SetChildIndex(this.btn_crear, 0);
-            this.Controls.SetChildIndex(this.btn_comisionar, 0);
             this.Controls.SetChildIndex(this.dataGridEmpresas, 0);
             this.Controls.SetChildIndex(this.btn_eliminar, 0);
             this.groupBox1.ResumeLayout(false);
@@ -294,7 +271,6 @@
         public System.Windows.Forms.Button btn_habilitar;
         public System.Windows.Forms.Button btn_edit;
         public System.Windows.Forms.Button btn_crear;
-        public System.Windows.Forms.Button btn_comisionar;
         private System.Windows.Forms.DataGridView dataGridEmpresas;
         public System.Windows.Forms.Button btn_eliminar;
     }
