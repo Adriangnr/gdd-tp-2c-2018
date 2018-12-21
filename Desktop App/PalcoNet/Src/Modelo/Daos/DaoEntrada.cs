@@ -54,7 +54,7 @@ namespace PalcoNet.Src.Modelo.Daos
             }
             catch (Exception ex)
             {
-
+                throw ex;
             }
         }
     }
