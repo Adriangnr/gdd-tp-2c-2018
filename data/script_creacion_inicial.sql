@@ -43,7 +43,6 @@ select @drop_statement = isnull(@drop_statement, '') +
   ' drop table [' + @schema_name + '].[' + name + '];' + char(13)
   from sys.tables
   where schema_id = @schema_id
-  --Agrego tipos por ahora
   select @drop_statement = isnull(@drop_statement, '') +
   ' drop type [' + @schema_name + '].[' + name + '];' + char(13)
   from sys.types
@@ -286,8 +285,6 @@ create table ESECUELE.Medio_de_Pago(
 )
 go
 
---alter table ESECUELE.Compra add constraint FK_Comp_MPago foreign key (compra_medio_pago) references ESECUELE.Medio_de_Pago(medio_pago_id)
-
 /*
 * --------------------- Fin Creacion de tablas. ----------------------------------
 */
@@ -358,6 +355,7 @@ go
 * --------------------- Ingreso valores default ----------------------------------
 */
 
+-- Ingreso roles
 insert into ESECUELE.Rol (rol_nombre) values
   ('Administrador'),
   ('Cliente'),
@@ -515,7 +513,7 @@ Espectaculo_Descripcion,
 case when Espectaculo_Rubro_Descripcion = '' then 7 end,
 (select empresa_id from ESECUELE.Empresa where empresa_usuario = CONCAT('usr_', Espec_Empresa_Cuit)),
 Espectaculo_Estado,
-4 -- Como ninguna publicacion tiene grado, le asignamos el indeterminado
+4 -- Como ninguna publicacion tiene grado, le asignamos el indefinido
  from gd_esquema.Maestra
  SET IDENTITY_INSERT ESECUELE.Publicacion OFF
 -- Fin de Carga de Espectaculos
@@ -634,6 +632,7 @@ asiento,
 from #EntradasTemporales t
 -- Fin de carga de Entradas
 
+-- Drop de tabla temporal
 drop table #EntradasTemporales
 
 -- Tabla temporal para migracion de facturas
@@ -695,6 +694,7 @@ entrada
 from #ItemFacturaTemporales
 -- Fin de Carga de Item_Factura
 
+-- Drop de tabla temporal
 drop table #ItemFacturaTemporales
 
 /*----------------------- Fin Migracion de datos --------------------------------*/
@@ -2053,3 +2053,5 @@ begin
 	where grado_id = @id
 end
 go
+
+/*--------------------------- Fin Store procedures ----------------------------------*/
