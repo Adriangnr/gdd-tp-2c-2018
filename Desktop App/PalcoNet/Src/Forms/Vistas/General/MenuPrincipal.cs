@@ -3,6 +3,7 @@ using PalcoNet.Src.Forms.Layouts;
 using System.Drawing;
 using PalcoNet.Src.Utils;
 using System.Windows.Forms;
+using System;
 using PalcoNet.Src.Forms.Vistas.Administrador;
 
 namespace PalcoNet.Src.Forms.Vistas.General
@@ -26,8 +27,9 @@ namespace PalcoNet.Src.Forms.Vistas.General
 
             panelFuncionalidades.Location = new Point(this.Width/10, this.Height/6);
 
-            int buttonLeft = 48;
-            int buttonTop = 80;
+            int totalHeight = this.Height / 6 + 80;
+            int buttonLeft = 12;
+            int buttonTop = 20;
             int i = 0;
 
             foreach (Funcionalidad f in rol.GetFuncionalidades())
@@ -40,14 +42,14 @@ namespace PalcoNet.Src.Forms.Vistas.General
                 newButton.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                 newButton.ForeColor = System.Drawing.SystemColors.Window;
                 newButton.Margin = new System.Windows.Forms.Padding(0);
-                newButton.Size = new System.Drawing.Size(280, 80);
+                newButton.Size = new System.Drawing.Size(200, 52);
                 newButton.UseVisualStyleBackColor = false;
-
+                totalHeight = totalHeight + 35;
                 i++;
                 if( i > rol.GetFuncionalidades().Count / 2)
                 {
-                    buttonTop = 80;
-                    buttonLeft = 380;
+                    buttonTop = 20;
+                    buttonLeft = 250;
                     i = 0;
                 }
 
@@ -89,6 +91,23 @@ namespace PalcoNet.Src.Forms.Vistas.General
                 panelFuncionalidades.Controls.Add(newButton);
             }
             this.Controls.Add(panelFuncionalidades);
+            this.Refresh();
+            // 
+            // menuPrincipalSalir
+            //
+            Button menuPrincipalSalir = new Button();
+            menuPrincipalSalir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            menuPrincipalSalir.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            menuPrincipalSalir.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            menuPrincipalSalir.Location = new System.Drawing.Point(480, Math.Max(totalHeight,320));
+            menuPrincipalSalir.Margin = new System.Windows.Forms.Padding(4, 5, 25, 25);
+            menuPrincipalSalir.Name = "menuPrincipalSalir";
+            menuPrincipalSalir.Size = new System.Drawing.Size(120, 40);
+            menuPrincipalSalir.TabIndex = 2;
+            menuPrincipalSalir.Text = "Salir";
+            menuPrincipalSalir.UseVisualStyleBackColor = true;
+            menuPrincipalSalir.Click += new System.EventHandler(this.menuPrincipalSalir_Click);
+            this.Controls.Add(menuPrincipalSalir);
             this.Refresh();
         }
 
